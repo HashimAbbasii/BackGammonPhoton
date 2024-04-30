@@ -1,0 +1,946 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using System.Collections;
+using BackgammonNet.Lobby;
+using Broniek.Stuff.Sounds;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace BackgammonNet.Core
+{
+    // Mechanisms of generating two random numbers and checking the possibility of making a move.
+
+    public class GameController : MonoBehaviour
+    {
+        public Pawn randomSelectPawn;
+        public Pawn randomSelectPawn2;
+        public static int turn;                     // indicates whose turn it is now
+        public static int[] dices = new int[2];     // recently drawn numbers
+        public static bool isDublet;                // whether a doublet was thrown
+        public static bool dragEnable;              // is it possible to drag the pieces
+
+        [HideInInspector] public bool newTurn;
+        [HideInInspector] public int sidesAgreed;   // the current number of players agreeing to continue the game
+
+        [SerializeField] private Button mainMenuButton;
+        [SerializeField] private Button newGameButton;
+        [SerializeField] private GameObject gameOverPanel;
+        [SerializeField] private GameObject newGameInfoPanel;
+        [SerializeField] private Button diceButton;
+        [SerializeField] private Image[] turnImages;
+        [SerializeField] private Text[] diceTexts;
+
+        public List<Slot> allSlots = new();
+        public List<Pawn> allPawns = new();
+        public List<int> _allSlotsInts = new();
+        public List<Pawn> topEPawns = new();
+        public List<Pawn> checkExistingPawn = new();
+        public List<Pawn> ePawns = new();
+
+        private bool diceEnable = true;             // permission to roll the dice (after making moves)
+
+        public static GameController Instance { get; set; }
+        public static bool GameOver { get; set; }
+
+        private void Awake()
+        {
+            Instance = this;
+
+            Pawn.OnCompleteTurn += Pawn_OnCompleteTurn;
+            Pawn.OnGameOver += Pawn_OnGameOver;
+            TimeController.OnTimeLimitEnd += Pawn_OnGameOver;
+
+            mainMenuButton.onClick.AddListener(GoToMainMenu);
+            newGameButton.onClick.AddListener(NewGame);
+          
+
+            if (LobbyManager.AiMode==true)
+            {
+                // Debug.Log("Ai Mode");
+
+                diceButton.onClick.AddListener(GenerateForAi);
+
+
+            }
+            else
+            {
+                diceButton.onClick.AddListener(Generate);
+            }
+
+
+            turn = 0;
+
+            turnImages[0].gameObject.SetActive(turn == 0);
+            turnImages[1].gameObject.SetActive(1 - turn == 0);
+        }
+
+        private void Start()
+        {
+            if (Board.Instance.client)
+                if (!Board.Instance.isClientWhite)
+                    diceButton.gameObject.SetActive(false);
+
+            if (Board.Instance.observer)     // lock buttons
+                ActivateButtons(false);
+        }
+
+        public void ActivateButtons(bool active)
+        {
+            diceButton.interactable = active;
+            newGameButton.interactable = active;
+
+            if (Board.Instance.observer)
+                newGameInfoPanel.SetActive(active);
+        }
+
+        private void OnDestroy()
+        {
+            Pawn.OnCompleteTurn -= Pawn_OnCompleteTurn;
+            Pawn.OnGameOver -= Pawn_OnGameOver;
+            TimeController.OnTimeLimitEnd -= Pawn_OnGameOver;
+        }
+
+        private void Update()
+        {
+            if (sidesAgreed == 2)
+                LoadGameScene();
+
+            TryDeactivateDigit();
+        }
+
+        private void TryDeactivateDigit()
+        {
+            if (dices[0] == 0)
+                diceTexts[0].color = new Color(diceTexts[0].color.r, diceTexts[0].color.g, diceTexts[0].color.b, 0.3f);
+            else
+                diceTexts[0].color = Color.white;
+
+            if (dices[1] == 0)
+                diceTexts[1].color = new Color(diceTexts[1].color.r, diceTexts[1].color.g, diceTexts[1].color.b, 0.3f);
+            else
+                diceTexts[1].color = Color.white;
+        }
+
+        private void Generate()
+        {
+            if (diceEnable && Board.Instance.acceptance >= 2)
+            {
+                dragEnable = true;
+                diceEnable = false;
+
+                SoundManager.GetSoundEffect(4, 0.25f);
+                CheckIfTurnChange(1, 3);
+
+                if (Board.Instance.client)      // network game
+                {
+                    newTurn = false;
+
+                    string msg = "CDCS|" + dices[0].ToString() + "|" + dices[1].ToString();
+                    Board.Instance.client.Send(msg);            // Send the information about the roll of the dice to the server.
+                }
+            }
+        }
+
+
+        //.....................AiModeGeneration ...........................//
+
+
+        //....................Prevent a  Doublet...........................//
+
+
+        #region _AiModeGeneration
+        public void GenerateForAi()
+        {
+            if (diceEnable && Board.Instance.acceptance >= 2)
+            {
+
+
+                if (turn == 0)
+                {
+                  //  Debug.Log("Human Turn");
+                    dragEnable = true;
+                    diceEnable = false;
+                    SoundManager.GetSoundEffect(4, 0.25f);
+                    CheckIfTurnChange(Random.Range(1,7), Random.Range(1,7));
+                }
+                else
+                {
+                  //  Debug.Log("Ai Turn");
+                    _allSlotsInts.Clear();
+                    allSlots.Clear();
+                    topEPawns.Clear();
+                    checkExistingPawn.Clear();
+                    SoundManager.GetSoundEffect(4, 0.25f);
+                    int num1=Random.Range(1,7);
+                    int num2=Random.Range(1,7);
+                    while (num1 == num2)
+                    {
+                        num2 = Random.Range(1, 7);
+                    }
+
+                    CheckifTurnChangeAI(num1, num2);
+
+                }
+
+
+            }
+        }
+
+        #endregion
+
+
+
+        #region _CheckifTurnChangeAI
+
+        public void CheckifTurnChangeAI(int dice0, int dice1)      // Load the values ​​rolled by the opponent's dice.
+        {
+            diceButton.gameObject.SetActive(false);
+            isDublet = false;
+
+            dices[0] = dice0;
+            dices[1] = dice1;
+
+            diceTexts[0].text = dices[0].ToString();
+            diceTexts[1].text = dices[1].ToString();
+
+            if (dices[0] == dices[1])
+            {
+
+                isDublet = true;
+            }
+
+            if (!CanMoveAi(2))
+            {
+               StartCoroutine(ChangeTurn());
+
+            }
+
+            if (Slot.slots[25].Height() > 0)
+            {
+                //........Prison Slot...............//
+
+                CheckPrisonSlot();
+            }
+           else if (!GameController.GameOver)
+            {
+               // Debug.Log("Normal Movement");
+             //   CheckPrisonSlot();
+               SlotNumberForAI();
+
+                
+
+            }
+
+            //...........................Random Slot Select ..............................//
+
+        }
+
+        #endregion
+
+        #region _RandomSelectAi
+        public void SlotNumberForAI()
+        {
+           //_allSlotsInts.Clear();
+           // allSlots.Clear();
+
+            for (int i = 0; i < ePawns.Count; i++)
+            {
+                Pawn pawn = ePawns[i];
+                if (!_allSlotsInts.Contains(ePawns[i].slotNo))
+                {
+                    _allSlotsInts.Add(ePawns[i].slotNo);
+                    allSlots.Add(Slot.slots[ePawns[i].slotNo]);
+                }
+            }
+
+            for (int i = 0; i < allSlots.Count; i++)
+            {
+                topEPawns.Add(allSlots[i].GetTopPawn(false));
+            }
+
+            SelectRandomEnemy();
+        }
+
+        #endregion
+
+        public void SlotNumberForAI2()
+        {
+          //  _allSlotsInts.Clear();
+          //  allSlots.Clear();
+
+            for (int i = 0; i < ePawns.Count; i++)
+            {
+                Pawn pawn = ePawns[i];
+                if (!_allSlotsInts.Contains(ePawns[i].slotNo))
+                {
+                    _allSlotsInts.Add(ePawns[i].slotNo);
+                    allSlots.Add(Slot.slots[ePawns[i].slotNo]);
+                }
+            }
+
+            for (int i = 0; i < allSlots.Count; i++)
+            {
+                topEPawns.Add(allSlots[i].GetTopPawn(false));
+            }
+
+            SelectRandomEnemy2();
+        }
+
+
+
+
+        #region _Check the PrisonSlot
+
+        public void CheckPrisonSlot()
+        {
+           // Debug.Log("Check prison Slot");
+           // Pawn.instance.Selectimprisoned();  //  if (Pawn.imprisoned && Pawn.imprisonedSide[0] > 0 && Pawn.pawnColor == 0)
+            Slot.slots[25].GetTopPawn(false).Selectimprisoned();
+
+
+
+        }
+        #endregion
+
+
+        #region SECONDPRISONCHECK
+
+        public void CheckPrisonSlot2()
+        {
+           // Debug.Log("Check prison Slot");
+            Slot.slots[25].GetTopPawn(false).Selectimprisoned();  //  if (Pawn.imprisoned && Pawn.imprisonedSide[0] > 0 && Pawn.pawnColor == 0)
+
+
+
+
+        }
+
+
+        #endregion
+
+        #region _SelectRandomEnemy
+        public void SelectRandomEnemy()
+        {
+            //.............SelectRandom Enemy............From the list.....
+
+            int RandomSelectEnemy = Random.Range(0, topEPawns.Count);
+        
+            randomSelectPawn = topEPawns[RandomSelectEnemy];
+
+            checkExistingPawn.Add(randomSelectPawn);
+            topEPawns.Remove(randomSelectPawn);
+            AiMovesEnemy();
+
+           }
+        #endregion
+
+
+
+        #region _SelectRandomEnemy
+        public void SelectRandomEnemy2()
+        {
+            //.............SelectRandom Enemy............From the list.....
+
+            int RandomSelectEnemy = Random.Range(0, topEPawns.Count);
+
+            randomSelectPawn2 = topEPawns[RandomSelectEnemy];
+            checkExistingPawn.Add(randomSelectPawn2);
+            topEPawns.Remove(randomSelectPawn2);
+
+            AiMovesEnemy2();
+
+        }
+        #endregion
+
+        #region _AIEnemyMoves
+        public void AiMovesEnemy()
+        {
+            int sign = randomSelectPawn.pawnColor == 0 ? 1 : -1;
+           // Debug.Log("SlotNo" + randomSelectPawn.slotNo);
+            int slot0 = randomSelectPawn.slotNo + sign * GameController.dices[0];
+            int slot1 = randomSelectPawn.slotNo + sign * GameController.dices[1];
+          //  Debug.Log("turn" + turn);
+
+            if (GameController.turn == randomSelectPawn.pawnColor)
+            {
+                if (slot0 > 0 && slot0 < 25 && slot0 != randomSelectPawn.slotNo)
+                {
+                    //randomSelectPawn.CheckShelterStage();
+                    if (Slot.slots[slot0].Height() >= 1 && Slot.slots[slot0].IsWhite() == randomSelectPawn.pawnColor)
+                    {
+                        Debug.Log("HEIGHT GREATER THAN 1 AND NUMBER IS SAME SLOT");
+                        Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
+                        Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+                        randomSelectPawn.CheckShelterStage();
+                        randomSelectPawn.CheckShelterAndMore();
+                        Slot.slots[slot0].HightlightMe(true);
+                        randomSelectPawn.CheckIfNextTurn();
+                        StartCoroutine(SecondDice());
+
+
+                    }
+
+                    //.............If pawn Slot is Empty or Height ==0...................
+                  else  if (Slot.slots[slot0].Height() == 0)
+                    {
+                        Debug.Log("HEIGHT IS 0 ");
+                        Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
+                        Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+                        randomSelectPawn.CheckShelterStage();
+                        randomSelectPawn.CheckShelterAndMore();
+                        Slot.slots[slot0].HightlightMe(true);
+                        randomSelectPawn.CheckIfNextTurn();
+                        StartCoroutine(SecondDice());
+
+
+                    }
+
+
+                  else if (Slot.slots[slot0].Height() == 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
+                    {
+                        //.......JAIL KAR Dooh...........//
+                        Debug.Log("Jail Kar Dooh");
+                        Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
+                        Slot.slots[slot0].GetTopPawn(false).PlaceJail();
+                        Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+
+                        randomSelectPawn.CheckShelterStage();
+                        randomSelectPawn.CheckShelterAndMore();
+                        randomSelectPawn.CheckIfNextTurn();
+                        StartCoroutine(SecondDice());
+
+
+
+                    }
+
+                    else if(Slot.slots[slot0].Height() > 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
+                    {
+                        Debug.Log("Check the Different Color Pawn Height");
+                        if (topEPawns.Count == 0)
+                        {
+                            //.............. Shift the TURN tO THE HUMAN..................//
+                            Debug.Log("Turn on First SLOT");
+                            StartCoroutine(SecondDice());
+                            Pawn_OnCompleteTurn(turn);
+
+                        }
+                        else
+                        {
+
+                            SelectRandomEnemy();
+
+                        }
+                        //randomSelectPawn.CheckShelterStage();
+                        //randomSelectPawn.CheckShelterAndMore();
+                        //randomSelectPawn.CheckIfNextTurn();
+                        //if (Slot.slots[slot1].Height() > 1 && Slot.slots[slot1].IsWhite() != randomSelectPawn.pawnColor)
+                        //{
+                        //    Debug.Log("Check the Different Color Pawn with Dice 1 ");
+                        //    randomSelectPawn.CheckShelterStage();
+                        //    randomSelectPawn.CheckShelterAndMore();
+                        //    randomSelectPawn.CheckIfNextTurn();
+                        //    StartCoroutine(SecondDice());
+                        //}
+                        //else
+                        //{
+                        //    Debug.Log("moves agaist the Second Dice");
+                        //    Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
+                        //    Slot.slots[slot1].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+                        //    randomSelectPawn.CheckShelterStage();
+                        //    randomSelectPawn.CheckShelterAndMore();
+                        //    randomSelectPawn.CheckIfNextTurn();
+                        //    Slot.slots[slot0].HightlightMe(true);
+                        //    StartCoroutine(SecondDice());
+                        // }
+                    }
+                        //else
+                        //{
+                        //    //.......................For the Normal Move............................
+                        //    Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+                        //    randomSelectPawn.CheckShelterStage();
+                        //    randomSelectPawn.CheckShelterAndMore();
+                        //    Slot.slots[slot0].HightlightMe(true);
+                        //    Debug.Log("Slot Judge dddddd");
+                        //}
+                    
+
+                }
+                else
+                {
+                    //............Call it Again your Ai................//
+                    Debug.Log("Call it Again ");
+                    SelectRandomEnemy2();
+                }
+            }
+                
+        }
+        #endregion
+
+
+        #region _AIEnemyMoves
+        public void AiMovesEnemy2()
+        {
+            Pawn.moves = 1;
+            turn = 1;
+          //  Debug.Log("Second Turn");
+            int sign = randomSelectPawn2.pawnColor == 0 ? 1 : -1;
+         //   Debug.Log("SlotNo" + randomSelectPawn2.slotNo);
+            int slot1 = randomSelectPawn2.slotNo + sign * GameController.dices[1];
+          //  Debug.Log("Second Slot"+slot1);
+         //   Debug.Log("Turn " + turn);
+
+            Debug.Log(randomSelectPawn2.pawnColor);
+            if (GameController.turn == randomSelectPawn2.pawnColor)
+            {
+                Debug.Log("Turn and Color Same");
+                if (slot1 > 0 && slot1 < 25 && slot1 != randomSelectPawn2.slotNo)
+                {
+                    //randomSelectPawn.CheckShelterStage();
+                    if (Slot.slots[slot1].Height() >= 1 && Slot.slots[slot1].IsWhite() == randomSelectPawn2.pawnColor)
+                    {
+                        Debug.Log("HEIGHT GREATER THAN 1 AND NUMBER IS SAME SLOT");
+                        Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
+                        Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
+                        randomSelectPawn2.CheckShelterStage();
+                        randomSelectPawn2.CheckShelterAndMore();
+                        Slot.slots[slot1].HightlightMe(true);
+                        randomSelectPawn2.CheckIfNextTurn();
+                        //if(isDublet==true)
+                        //{
+                        //    isDublet = false;
+                        //    _allSlotsInts.Clear();
+                        //     allSlots.Clear();
+                        //    topEPawns.Clear();
+                        //    Pawn.moves = 0;
+                            
+                        //    SlotNumberForAI();
+                            
+                        //    Debug.Log("Dublet True");
+                        //}
+
+
+
+                    }
+
+                    //.............If pawn Slot is Empty or Height ==0...................
+                  else  if (Slot.slots[slot1].Height() == 0)
+                    {
+                        Debug.Log("HEIGHT IS 0 ");
+                        Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
+                        Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
+                        randomSelectPawn2.CheckShelterStage();
+                        randomSelectPawn2.CheckShelterAndMore();
+                        Slot.slots[slot1].HightlightMe(true);
+                        randomSelectPawn2.CheckIfNextTurn();
+                        //if (isDublet == true)
+                        //{
+                        //    isDublet = false;
+                        //    _allSlotsInts.Clear();
+                        //    allSlots.Clear();
+                        //    topEPawns.Clear();
+                        //    SlotNumberForAI();
+                        //    Debug.Log("Dublet True");
+                        //}
+                        // StartCoroutine(SecondDice());
+
+
+
+                    }
+
+
+                    else if (Slot.slots[slot1].Height() == 1 && Slot.slots[slot1].IsWhite() != randomSelectPawn2.pawnColor)
+                    {
+                        //.......JAIL KAR Dooh...........//
+                        Debug.Log("Jail Kar Dooh");
+                        // var TopSelectOff= randomSelectPawn2.slotNo;
+                        Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
+                        
+                        Slot.slots[slot1].GetTopPawn(false).PlaceJail();
+                        Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
+                        randomSelectPawn2.CheckShelterStage();
+                        randomSelectPawn2.CheckShelterAndMore();
+                        randomSelectPawn2.CheckIfNextTurn();
+                        _allSlotsInts.Clear();
+                        allSlots.Clear();
+                        topEPawns.Clear();
+                        SlotNumberForAI();
+
+
+                    }
+                    else if(Slot.slots[slot1].Height() > 1 && Slot.slots[slot1].IsWhite() != randomSelectPawn2.pawnColor)
+                    {
+                        if (topEPawns.Count == 0)
+                        {
+                            Debug.Log("CompleteTurn" + turn);
+                            //..............Assign a Dice to the next human player.......................//
+
+                            Pawn_OnCompleteTurn(turn);
+                            _allSlotsInts.Clear();
+                            allSlots.Clear();
+                            topEPawns.Clear();
+                            checkExistingPawn.Clear();
+                           
+                        }
+                        else
+                        {
+                            //_allSlotsInts.Clear();
+                            //allSlots.Clear();
+                          //  topEPawns.Clear();
+                            Debug.Log("Call it Again ");
+                            SelectRandomEnemy2();
+                        }
+                        //randomSelectPawn2.CheckShelterStage();
+                        //randomSelectPawn2.CheckShelterAndMore();
+                        //randomSelectPawn2.CheckIfNextTurn();
+
+                    }
+                    //else
+                    //{
+                    //    //.......................For the Normal Move............................
+                    //    Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+                    //    randomSelectPawn.CheckShelterStage();
+                    //    randomSelectPawn.CheckShelterAndMore();
+                    //    Slot.slots[slot0].HightlightMe(true);
+                    //    Debug.Log("Slot Judge dddddd");
+                    //}
+
+
+                }
+                else
+                {
+                    //............Call it Again your Ai................//
+                    if (topEPawns.Count == 0)
+                    {
+                        Debug.Log("CompleteTurn" + turn);
+                        //..............Assign a Dice to the next human player.......................//
+
+                       Pawn_OnCompleteTurn(turn);
+                        _allSlotsInts.Clear();
+                          allSlots.Clear();
+                        topEPawns.Clear();
+                        checkExistingPawn.Clear();
+                    }
+                    else
+                    {
+
+                        Debug.Log("Call it Again ");
+                        SelectRandomEnemy2();
+                    }
+                }
+            }
+
+        }
+        #endregion
+
+        public void PrisonIenumertor()
+        {
+            StartCoroutine(SecondDice());
+        }
+        #region
+      public  IEnumerator SecondDice()
+        {
+           
+            yield return new WaitForSecondsRealtime(1f);
+            topEPawns.Clear();
+            checkExistingPawn.Clear();
+            _allSlotsInts.Clear();
+            allSlots.Clear();
+         
+            yield return new WaitForSecondsRealtime(1f);
+         
+            yield return new WaitForSecondsRealtime(1.5f);
+         
+            if (Slot.slots[25].Height() > 0)
+            {
+              //  Debug.Log("Check Prison Slot 2");
+                //........Prison Slot...............//
+
+                CheckPrisonSlot2();
+            }
+            else
+            {
+               // Debug.Log("Normal Moves two");
+                SlotNumberForAI2();
+            }
+        }
+
+        #endregion
+        public void CheckIfTurnChange(int dice0, int dice1)      // Load the values ​​rolled by the opponent's dice.
+        {
+            diceButton.gameObject.SetActive(false);
+            isDublet = false;
+
+            dices[0] = dice0;
+            dices[1] = dice1;
+
+            diceTexts[0].text = dices[0].ToString();
+            diceTexts[1].text = dices[1].ToString();
+
+            if (dices[0] == dices[1])
+                isDublet = true;
+
+            if (!CanMove(2))
+                StartCoroutine(ChangeTurn());
+        }
+
+        private IEnumerator ChangeTurn()
+        {
+            yield return new WaitForSeconds(2f);
+            Pawn_OnCompleteTurn(turn);
+        }
+
+        public void Pawn_OnCompleteTurn(int isWhiteColor)
+        {
+            dices[0] = dices[1] = 0;
+
+            diceEnable = true;
+            dragEnable = false;
+
+            turn = 1 - turn;                                                // turn change
+
+            turnImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
+            turnImages[1].gameObject.SetActive(isWhiteColor == 0);
+
+            if (Board.Instance.client)      // network game
+            {
+                newTurn = true;
+
+                if (Board.Instance.isClientWhite == (turn == 0 ? true : false))    // if we are white (red) and the turn is white (red)
+                    diceButton.gameObject.SetActive(true);
+            }
+            else
+
+
+                if (turn == 1 && LobbyManager.AiMode == true)
+            {
+                GenerateForAi();
+            }
+            else
+            {
+                diceButton.gameObject.SetActive(true);                // offline game
+
+            }
+        }
+
+        private void Pawn_OnGameOver(bool isWhite)
+        {
+            GameOver = true;
+            gameOverPanel.SetActive(true);
+            gameOverPanel.GetComponentInChildren<Text>().text = "Winner: " + (isWhite ? "white" : "red");
+        }
+
+        private void NewGame()
+        {
+            if (Board.Instance.client)
+            {
+                sidesAgreed++;
+
+                string msg = "CNG|" + "OpponentAgreed";
+                Board.Instance.client.Send(msg);            // Send the information about the consent to the next game to the server.
+
+                if (!Board.Instance.client.isHost)
+                    newGameButton.interactable = false;     // deactivate after each use
+            }
+            else
+                LoadGameScene();
+
+            SoundManager.GetSoundEffect(4, 0.25f);
+        }
+
+        private void LoadGameScene()
+        {
+            Debug.Log("LoadGameScene");
+
+            sidesAgreed = 0;
+            GameOver = false;
+            isDublet = false;
+            dragEnable = false;
+            turn = 0;
+            Pawn.InitializePawn();
+            SceneManager.UnloadSceneAsync(1);
+            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        }
+
+        public void GoToMainMenu()     // delete the Backgammon scene and show the Lobby scene main menu
+        {
+            StartCoroutine(DelayedGoToMainMenu());
+        }
+
+        private IEnumerator DelayedGoToMainMenu()
+        {
+            SoundManager.GetSoundEffect(4, 0.25f);
+
+            yield return new WaitForSeconds(0.2f);
+
+            LobbyManager.Instance.RemoveNetworkParts();
+            SceneManager.LoadScene(0);
+        }
+
+        //---------------- checking the possibility of making a move -----------------------------------------------------------------
+
+        public static bool CanMove(int amount)     // detect the situation when it is not possible to make a move
+        {
+            int count = 0;
+            int sign = turn == 0 ? 1 : -1;
+            int value = turn == 0 ? 24 : -1;
+
+            if (Pawn.imprisonedSide[turn] > 0)                  // while they are in jail
+                return CanMoveFromJail(amount, count, sign);
+            else                                                // when they are not in jail
+            {
+                if (Pawn.shelterSide[turn])                     // when the mode of entering the shelter
+                    return CanMoveInShelter(value, sign);
+                else if (CanMoveFree(value, sign))    // we go through each slot with white pieces and check if it is possible to make a move from this slot
+                    return true;
+            }
+
+            return false;
+        }
+
+
+        //...............................Can Move Ai.......................//
+
+
+        #region _CanMoveAi
+        public static bool CanMoveAi(int amount)     // detect the situation when it is not possible to make a move
+        {
+            int count = 0;
+            int sign = turn == 0 ? 1 : -1;
+            int value = turn == 0 ? 24 : -1;
+
+            if (Pawn.imprisonedSide[turn] > 0)
+            {
+                //................When You are in the Jail.............//
+                Debug.Log("Can Move from Jail");
+                return CanMoveFromJail(amount, count, sign);
+            }
+            else                                                // when they are not in jail
+            {
+                if (Pawn.shelterSide[turn])
+                {  //............. when the mode of entering the shelter..................//
+                    Debug.Log("CanMoveInShelter");
+                    return CanMoveInShelter(value, sign);
+                }
+                else if (CanMoveFree(value, sign))
+                {
+                   // Debug.Log("CanMoveFree");
+                    // we go through each slot with white pieces and check if it is possible to make a move from this slot
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        #endregion
+        private static bool CanMoveFromJail(int amount, int count, int sign)
+        {
+            Debug.Log("Turn" + turn);
+            Debug.Log("PAWN Color" + Pawn.instance.pawnColor);
+            int val = turn == 0 ? -1 : 24;
+
+            for (int i = 0; i < 2; i++)
+                if (dices[i] != 0)
+                    if (Slot.slots[(val + 1) + sign * dices[i]].Height() > 1 && Slot.slots[(val + 1) + sign * dices[i]].IsWhite() != turn)
+                        count++;
+
+            return !(count == amount);
+        }
+
+        private static bool CanMoveFree(int value, int sign)
+        {
+            for (int i = 1; i <= 24; i++)
+                if (Slot.slots[i].Height() > 0 && Slot.slots[i].IsWhite() == turn)   // slot with whites
+                    for (int j = 0; j < 2; j++)
+                        if (dices[j] != 0 && dices[j] + sign * i <= value)
+                            if (Slot.slots[i + sign * dices[j]].Height() < 2)
+                                return true;
+                            else if (Slot.slots[i + sign * dices[j]].Height() > 1 && Slot.slots[i + sign * dices[j]].IsWhite() == turn)
+                                return true;
+
+            return false;
+        }
+
+        private static bool CanMoveInShelter(int value, int sign)
+        {
+            int endSlotNo = turn == 0 ? 19 : 6;
+            int first = 0;
+
+            for (int j = 0; j < 6; j++)                                             // after successive slots of the last quarter
+            {
+                if (endSlotNo + sign * j >= 0)
+                {
+                    if (Slot.slots[endSlotNo + sign * j].Height() > 0)              // if there is a pawn on the slot
+                    {
+                        if (Slot.slots[endSlotNo + sign * j].IsWhite() == turn)     // if this pawn is ours
+                        {
+                            //Debug.Log("slot no: " + (endSlotNo + sign * (j - sign)) + ", height: " + Slot.slots[endSlotNo + sign * j].Height());
+
+                            for (int i = 0; i < 2; i++)
+                            {
+                                if (dices[i] > 0)
+                                {
+                                    //Debug.Log((endSlotNo + sign * j) + " + " + (sign * dices[i]) + " : " + (value + 1));
+
+                                    int ind = endSlotNo + sign * (j + dices[i]);
+
+                                    if (ind == value + 1)           // pawns from any slot
+                                    {
+                                        return true;
+                                    }
+
+                                    if (first == 0)                 // only for pawns from the extreme slot
+                                    {
+                                        if (value == 24)
+                                        {
+                                            if (ind > value + 1)    // when the sum is greater than 25
+                                            {
+                                                return true;
+                                            }
+                                        }
+
+                                        if (value == -1)
+                                        {
+                                            if (ind < value + 1)   // when the sum is less than 0
+                                            {
+                                                return true;
+                                            }
+                                        }
+                                    }
+
+                                    if (ind >= 0 && ind < Slot.slots.Count)             // index must be non negative
+                                    {
+                                        if (Slot.slots[ind].Height() > 0)               // if there are pieces on the slot
+                                        {
+                                            if (Slot.slots[ind].IsWhite() != turn)      // if there is an opponent's pawn on the target slot
+                                            {
+                                                if (Slot.slots[ind].Height() < 2)       // if there is no wall on the destination slot
+                                                {
+                                                    return true;
+                                                }
+                                            }
+
+                                            if (Slot.slots[ind].IsWhite() == turn)      // if there is a pawn on the target slot
+                                            {
+                                                return true;
+                                            }
+                                        }
+                                        else                                            // if there are no pawns in the slot
+                                        {
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+
+                            first++;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+    }
+}
