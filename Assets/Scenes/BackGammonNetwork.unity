@@ -541,8 +541,8 @@ GameObject:
   m_Component:
   - component: {fileID: 114417029}
   - component: {fileID: 114417028}
-  - component: {fileID: 114417030}
   - component: {fileID: 114417031}
+  - component: {fileID: 114417032}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 114417027}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 639d21578dde5504f882f8c86c769db0, type: 3}
   m_Name: 
@@ -581,41 +581,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114417030
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 114417027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69a7532125c2c9c4fbe160b6180d8042, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomSelectPawn: {fileID: 0}
-  randomSelectPawn2: {fileID: 0}
-  newTurn: 0
-  sidesAgreed: 0
-  mainMenuButton: {fileID: 647862565}
-  newGameButton: {fileID: 920060461}
-  gameOverPanel: {fileID: 1405160380}
-  newGameInfoPanel: {fileID: 936457536}
-  diceButton: {fileID: 451497672}
-  turnImages:
-  - {fileID: 1072847947}
-  - {fileID: 257620976}
-  diceTexts:
-  - {fileID: 567757237}
-  - {fileID: 1021208168}
-  allSlots: []
-  allPawns: []
-  _allSlotsInts: 
-  topEPawns: []
-  checkExistingPawn: []
-  ePawns: []
-  NetworkTurn: 1
-  diceEnable: 1
 --- !u!114 &114417031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -638,6 +603,41 @@ MonoBehaviour:
   sceneViewId: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &114417032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114417027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da7d70d927e222848ba55a74d829e15c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomSelectPawn: {fileID: 0}
+  randomSelectPawn2: {fileID: 0}
+  newTurn: 0
+  sidesAgreed: 0
+  mainMenuButton: {fileID: 0}
+  newGameButton: {fileID: 0}
+  gameOverPanel: {fileID: 0}
+  newGameInfoPanel: {fileID: 0}
+  diceButton: {fileID: 451497672}
+  turnImages:
+  - {fileID: 1072847947}
+  - {fileID: 257620976}
+  diceTexts:
+  - {fileID: 567757237}
+  - {fileID: 1021208168}
+  allSlots: []
+  allPawns: []
+  _allSlotsInts: 
+  topEPawns: []
+  checkExistingPawn: []
+  ePawns: []
+  NetworkTurn: 1
+  diceEnable: 1
 --- !u!1 &135892640
 GameObject:
   m_ObjectHideFlags: 0
@@ -4270,7 +4270,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1438871982}
-  - component: {fileID: 1438871983}
+  - component: {fileID: 1438871984}
+  - component: {fileID: 1438871985}
   m_Layer: 0
   m_Name: Board
   m_TagString: Untagged
@@ -4295,7 +4296,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1438871983
+--- !u!114 &1438871984
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4304,18 +4305,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1438871981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f71d55c02acd9348904c2741a3a5f3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5eacce3ace883954fb493aa0930aeca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotPrefab: {fileID: 114880806642325786, guid: 693dd4905ec93154a914d8ef250794e8, type: 3}
-  pawnPrefab: {fileID: 114281773330944926, guid: 9821b80f38abd3445b58eff859270c40, type: 3}
+  slotPrefab: {fileID: 114880806642325786, guid: c4448c627b8f4984b8fc54bca3efecb2, type: 3}
+  photonView: {fileID: 1438871985}
+  pawnPrefab: {fileID: 114281773330944926, guid: 04324aabe73554b4385dd63bd099f37d, type: 3}
   slotsContainer: {fileID: 1190377118}
-  playersNames:
-  - {fileID: 63380744}
-  - {fileID: 1905725484}
-  infoText: {fileID: 827645253}
-  infoPanel: {fileID: 1302103713}
-  infoPanelText: {fileID: 1778752304}
+  playersNames: []
+  infoText: {fileID: 0}
+  infoPanel: {fileID: 0}
+  infoPanelText: {fileID: 0}
   submitBtns:
   - {fileID: 1183858841}
   - {fileID: 2134585655}
@@ -4323,6 +4323,28 @@ MonoBehaviour:
   isClientWhite: 0
   observer: 0
   acceptance: 0
+--- !u!114 &1438871985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1438871981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1467206163
 GameObject:
   m_ObjectHideFlags: 0
@@ -4617,7 +4639,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 5289088029853817005, guid: 3de10a8570dbf3c4c8b6fba854d3155b, type: 3}
-  networkgameObjects: []
+  myNetworkPlayer: {fileID: 0}
+  networkPlayers: []
+  WhoAmI: 
 --- !u!114 &1555065883
 MonoBehaviour:
   m_ObjectHideFlags: 0

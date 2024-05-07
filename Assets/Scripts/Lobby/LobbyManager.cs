@@ -253,17 +253,32 @@ namespace BackgammonNet.Lobby
         }
 
         //---- operation of the initial menu buttons ----------------------------------------------------------
-
+        public GameObject Canvas1;
+        public GameObject Canvas2;
         public void StartGame()                             // Start a local game.
         {
-            SwitchMenuView(false, false, false, false);
+          //  SwitchMenuView(false, false, false, false);
 
             if(SceneManager.sceneCount > 1)
                 SceneManager.UnloadSceneAsync(1);
-
+            Canvas1.gameObject.SetActive(false);
+            Canvas2.gameObject.SetActive(false);
             SceneManager.LoadScene(1, LoadSceneMode.Additive);
             //SceneManager.LoadScene(1);
         }
+
+
+
+        //public void StartGame()                             // Start a local game.
+        //{
+        //    //  SwitchMenuView(false, false, false, false);
+
+        //    if (SceneManager.sceneCount > 1)
+        //        SceneManager.UnloadSceneAsync(1);
+
+        //    SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        //    //SceneManager.LoadScene(1);
+        //}
 
         #region  _ForAiModeStart
         public void StartGameAi()                             // Start a local game.

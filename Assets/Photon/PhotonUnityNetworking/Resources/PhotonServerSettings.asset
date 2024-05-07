@@ -40,6 +40,14 @@ MonoBehaviour:
   - Fire
   - OrderPlayers
   - RespawnSpaceship
+  - ClientTurnStarted
+  - DiceEnbleForClient
+  - DiceEnbleForMaster
+  - SlotButtonDisable
+  - SpawnSlots
+  - slotButtonOff
+  - PawnSlots
+  - TextShow
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

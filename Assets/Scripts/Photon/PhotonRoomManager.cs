@@ -68,12 +68,14 @@ public class PhotonRoomManager : MonoBehaviourPunCallbacks
         MyGameManager.Instance.isMultiplayer = true;
         roomType = RoomType.Public;
         PhotonNetwork.JoinRandomRoom();
+        Debug.Log("Join Room");
+       // StartCoroutine(NetworkManager.Instance.CreatePlayer());
+        
     }
     
     //no random room is available
     public override void OnJoinRandomFailed(short returnCode, string message)
     {
-        Debug.Log("Hello");
         //NoRoomAvailable?.Invoke();
         HostRandom();
         // Here
@@ -108,6 +110,7 @@ public class PhotonRoomManager : MonoBehaviourPunCallbacks
     {
         Debug.Log("Joined room");
         roomName = PhotonNetwork.CurrentRoom.Name;
+        Debug.Log("Joined Room" + roomName);
         
         
         SceneManager.LoadScene(MyGameManager.Instance.onlineScene);

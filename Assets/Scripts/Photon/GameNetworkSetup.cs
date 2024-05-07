@@ -35,9 +35,9 @@ public class GameNetworkSetup : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (!photonView.IsMine) return;
+       // if (!photonView.IsMine) return;
 
-        Debug.Log(PhotonNetwork.PlayerList.Length);
+        //Debug.Log(PhotonNetwork.PlayerList.Length);
         
     }
 

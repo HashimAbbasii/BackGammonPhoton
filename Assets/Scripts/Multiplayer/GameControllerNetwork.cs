@@ -13,7 +13,7 @@ namespace BackgammonNet.Core
 {
     // Mechanisms of generating two random numbers and checking the possibility of making a move.
 
-    public class GameController : MonoBehaviour
+    public class GameControllerNetwork : MonoBehaviour
     {
         private PhotonView _photonView;
         public Pawn randomSelectPawn;
@@ -44,82 +44,62 @@ namespace BackgammonNet.Core
 
         public bool diceEnable = true;             // permission to roll the dice (after making moves)
 
-        public static GameController Instance { get; set; }
+        public static GameControllerNetwork Instance { get; set; }
         public static bool GameOver { get; set; }
 
         private void Awake()
         {
-            Instance = this;
-            if (photonManager.instance.multiPlayerMode == true)
-            {
-                diceButton.enabled=false;
-            }
+            diceButton.gameObject.SetActive(false);
             _photonView = GetComponent<PhotonView>();
 
             Pawn.OnCompleteTurn += Pawn_OnCompleteTurn;
             Pawn.OnGameOver += Pawn_OnGameOver;
             TimeController.OnTimeLimitEnd += Pawn_OnGameOver;
 
-            mainMenuButton.onClick.AddListener(GoToMainMenu);
-            newGameButton.onClick.AddListener(NewGame);
+          //  mainMenuButton.onClick.AddListener(GoToMainMenu);
+           // newGameButton.onClick.AddListener(NewGame);
 
-           
-            if (LobbyManager.AiMode==true)
+            
+
+            if (photonManager.instance.multiPlayerMode == true)
             {
                 // Debug.Log("Ai Mode");
 
-                diceButton.onClick.AddListener(GenerateForAi);
+                diceButton.onClick.AddListener(GenerateNetworks);
 
 
             }
-            else
-            {
-                diceButton.onClick.AddListener(Generate);
-            }
+            //else
+            //{
+            //    diceButton.onClick.AddListener(Generate);
+            //}
 
 
             turn = 0;
 
             turnImages[0].gameObject.SetActive(turn == 0);
             turnImages[1].gameObject.SetActive(1 - turn == 0);
+
+            if (photonManager.instance.multiPlayerMode == true)
+            {
+              //  if()
+            }
         }
 
         private void Start()
         {
-            if (Board.Instance.client)
-                if (!Board.Instance.isClientWhite)
-                    diceButton.gameObject.SetActive(false);
+            //if (Board.Instance.client)
+            //    if (!Board.Instance.isClientWhite)
+            //        diceButton.gameObject.SetActive(false);
 
-            if (Board.Instance.observer)     // lock buttons
-                ActivateButtons(false);
+            //if (Board.Instance.observer)     // lock buttons
+            //    ActivateButtons(false);
 
 
             if (photonManager.instance.multiPlayerMode == true)
             {
                 StartCoroutine(NetworkButton());
-            //    Board.Instance.submitBtns[0].gameObject.SetActive(false);
-            //    Board.Instance.submitBtns[1].gameObject.SetActive(false);
-            //    if (GameManager.instance.networkgameObjects[0].GetComponent<PhotonView>().IsMine)
-            //    {
-            //        _photonView.RPC(nameof(DiceEnbleForMaster), RpcTarget.AllBuffered);
-            //    }
-            //    else if(!GameManager.instance.networkgameObjects[0].IsMine)
-            //    {
-            //        _photonView.RPC(nameof(DiceEnbleForClient), RpcTarget.AllBuffered);
-            //    }
-            //    //submitBtns[0].gameObject.SetActive(false);
-            //    //submitBtns[1].gameObject.SetActive(false);
-
-            //  diceButton.onClick.AddListener(GenerateForNetwork);
-            ////  _photonView.RPC(nameof(ClientTurnStarted), RpcTarget.AllBuffered, _photonView.ViewID);
-                    
-            //        //else if (!PhotonNetwork.IsMasterClient)
-            //        //{
-                        
-            //        //}
-                
-
-
+            
             }
         }
 
@@ -130,32 +110,14 @@ namespace BackgammonNet.Core
             yield return new WaitForSeconds(2f);
             if (photonManager.instance.multiPlayerMode == true)
             {
-
-                _photonView.RPC(nameof(SlotButtonDisable), RpcTarget.AllBuffered);
-                //if (GameManager.instance.networkgameObjects[0].GetComponent<PhotonView>().IsMine)
-                //{
-                //   // _photonView.RPC(nameof(DiceEnbleForClient), RpcTarget.AllBuffered);
-                //    yield return new WaitForSecondsRealtime(1f);
-                //    _photonView.RPC(nameof(DiceEnbleForMaster), RpcTarget.MasterClient); 
-                //}
-
-                //else if (!GameManager.instance.networkgameObjects[0].IsMine)
-                //{
-                //    _photonView.RPC(nameof(DiceEnbleForClient), RpcTarget.AllBuffered);
-                //}
-                //submitBtns[0].gameObject.SetActive(false);
-                //submitBtns[1].gameObject.SetActive(false);
-
-                diceButton.onClick.AddListener(GenerateForNetwork);
-                //  _photonView.RPC(nameof(ClientTurnStarted), RpcTarget.AllBuffered, _photonView.ViewID);
-
-                //else if (!PhotonNetwork.IsMasterClient)
-                //{
-
-                //}
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    _photonView.RPC(nameof(DiceEnbleForMaster), RpcTarget.MasterClient);
+                }
 
 
-
+              // _photonView.RPC(nameof(SlotButtonDisable), RpcTarget.AllBuffered);
+         
             }
         }
 
@@ -167,7 +129,8 @@ namespace BackgammonNet.Core
 
         public void DiceEnbleForMaster()
         {
-            diceButton.enabled=true;
+            diceButton.gameObject.SetActive(true);
+            diceButton.enabled = true;
         }
         [PunRPC]
         public void DiceEnbleForClient()
@@ -234,7 +197,7 @@ namespace BackgammonNet.Core
             if (sidesAgreed == 2)
                 LoadGameScene();
 
-            TryDeactivateDigit();
+            //TryDeactivateDigit();
         }
 
         private void TryDeactivateDigit()
@@ -295,6 +258,27 @@ namespace BackgammonNet.Core
 
         //....................Prevent a  Doublet...........................//
 
+        #region _NetworkGeneration
+
+        public void GenerateNetwork()
+        {
+            if (diceEnable)
+            {
+                if (turn == 0)
+                {
+                    dragEnable = true;
+                    diceEnable = false;
+                    SoundManager.GetSoundEffect(4, 0.25f);
+                    CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
+                }
+            }
+
+        }
+
+
+        #endregion
+
+
 
         #region _AiModeGeneration
         public void GenerateForAi()
@@ -335,6 +319,41 @@ namespace BackgammonNet.Core
         }
 
         #endregion
+
+        public void GenerateNetworks()
+        {
+            if (diceEnable)
+            {
+                if (turn == 0)
+                {
+                    //  Debug.Log("Human Turn");
+                    dragEnable = true;
+                    diceEnable = false;
+                    SoundManager.GetSoundEffect(4, 0.25f);
+                    CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
+                }
+                else
+                {
+                    //  Debug.Log("Ai Turn");
+                    _allSlotsInts.Clear();
+                    allSlots.Clear();
+                    topEPawns.Clear();
+                    checkExistingPawn.Clear();
+                    SoundManager.GetSoundEffect(4, 0.25f);
+                    int num1 = Random.Range(1, 7);
+                    int num2 = Random.Range(1, 7);
+                    while (num1 == num2)
+                    {
+                        num2 = Random.Range(1, 7);
+                    }
+
+                    CheckifTurnChangeAI(num1, num2);
+
+                }
+
+
+            }
+        }
 
 
 
@@ -816,25 +835,29 @@ namespace BackgammonNet.Core
         public void CheckIfTurnChange(int dice0, int dice1)      // Load the values ​​rolled by the opponent's dice.
         {
 
-            if (NetworkTurn == true)
-            {
-                ///.....Check it...........
-            }
+           
             diceButton.gameObject.SetActive(false);
             isDublet = false;
+            ///................Idhr seen wala Function call Kar Dooh poory network paar...............................//
 
-            dices[0] = dice0;
-            dices[1] = dice1;
-
-            diceTexts[0].text = dices[0].ToString();
-            diceTexts[1].text = dices[1].ToString();
-
+            _photonView.RPC("TextShow", RpcTarget.AllBuffered, dice0, dice1);
             if (dices[0] == dices[1])
                 isDublet = true;
 
             if (!CanMove(2))
                 StartCoroutine(ChangeTurn());
         }
+
+        [PunRPC]
+        public void TextShow(int dice0, int dice1)
+        {
+            dices[0] = dice0;
+            dices[1] = dice1;
+
+            diceTexts[0].text = dices[0].ToString();
+            diceTexts[1].text = dices[1].ToString();
+        }
+
 
         private IEnumerator ChangeTurn()
         {

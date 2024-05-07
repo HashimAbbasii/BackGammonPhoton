@@ -17,7 +17,7 @@ namespace BackgammonNet.Core
         [SerializeField] private Text infoText;
         [SerializeField] private GameObject infoPanel;
         [SerializeField] private Text infoPanelText;
-        [SerializeField] private Button[] submitBtns;
+        [SerializeField] public Button[] submitBtns;
 
         [HideInInspector] public Client client;             // The client associated with our game created in the Lobby scene.
         [HideInInspector] public bool isClientWhite;        // Is the client white or red?
@@ -32,7 +32,7 @@ namespace BackgammonNet.Core
             client = LobbyManager.Instance.client;
             LobbyManager.monitContent = "";
 
-            CreateSlots();
+           CreateSlots();
 
             if (client)     // network game
             {

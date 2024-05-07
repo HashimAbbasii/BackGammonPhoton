@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,7 +28,8 @@ public class MyGameManager : MonoBehaviour
     [Header("Scenes")]
     public SceneField offlineScene;
     public SceneField onlineScene;
-    
+
+
     [Header("Other References")]
     public string playerTurn;
     public bool isMultiplayer;
@@ -48,6 +50,7 @@ public class MyGameManager : MonoBehaviour
         {
             Debug.Log("Found it");
         }
+
     }
 
     private void Start()
