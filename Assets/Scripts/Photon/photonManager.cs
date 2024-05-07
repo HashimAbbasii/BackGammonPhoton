@@ -6,6 +6,8 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+using Random = UnityEngine.Random;
 
 public class photonManager : MonoBehaviourPunCallbacks
 {
@@ -37,6 +39,9 @@ public class photonManager : MonoBehaviourPunCallbacks
     public RectTransform playerListItemParent;
     public GameObject PlayButton;
     public static photonManager instance;
+
+    public DateTime startingTime;
+
     #region UnityMethod
     private void Awake()
     {
@@ -277,14 +282,25 @@ public class photonManager : MonoBehaviourPunCallbacks
         roomListData = new Dictionary<string, RoomInfo>();
         roomListGameObject = new Dictionary<string, GameObject>();
         PhotonNetwork.AutomaticallySyncScene = true;
+        startingTime = DateTime.Now;
+        StartCoroutine(Test());
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
 
+    IEnumerator Test()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(Random.Range(0, 10));
+            Debug.Log(DateTime.Now.Ticks - startingTime.Ticks);
+        }
+
+    }
 
     #region _PublicMethod
 
