@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using Broniek.Stuff.Sounds;
+using Photon.Pun;
 
 namespace BackgammonNet.Core
 {
@@ -68,38 +69,35 @@ namespace BackgammonNet.Core
 
         private void OnMouseDown()
         {
-            if (!GameController.GameOver)
+            //if (GameControllerNetwork.turn != int.Parse(PhotonNetwork.NickName)) return;
+
+
+            if (GameController.GameOver) return;
+            
+            if (Board.Instance.client)              // if network game
             {
-                if (Board.Instance.client)              // if network game
+                if (Board.Instance.isClientWhite)
                 {
-                    if (Board.Instance.isClientWhite)
-                    {
-                        if (pawnColor == 0)
-                        {
-                            if (!imprisoned && imprisonedSide[pawnColor] > 0)
-                                return;     // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
-
-                            TrySelectPawn();
-                        }
-                    }
-                    else
-                    {
-                        if (pawnColor == 1)
-                        {
-                            if (!imprisoned && imprisonedSide[pawnColor] > 0)
-                                return;     // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
-
-                            TrySelectPawn();
-                        }
-                    }
-                }
-                else
-                {
-                    if (!imprisoned && ((imprisonedSide[0] > 0 && pawnColor == 0) || (imprisonedSide[1] > 0 && pawnColor == 1)))
-                        return;             // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
+                    if (pawnColor != 0) return;
+                    
+                    if (!imprisoned && imprisonedSide[pawnColor] > 0) return;     // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
 
                     TrySelectPawn();
                 }
+                else
+                {
+                    if (pawnColor != 1) return;
+
+                    if (!imprisoned && imprisonedSide[pawnColor] > 0) return;     // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
+
+                    TrySelectPawn();
+                }
+            }
+            else
+            {
+                if (!imprisoned && ((imprisonedSide[0] > 0 && pawnColor == 0) || (imprisonedSide[1] > 0 && pawnColor == 1))) return;    // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
+
+                TrySelectPawn();
             }
         }
 
@@ -377,14 +375,13 @@ namespace BackgammonNet.Core
         }
         private void TrySelectPawn()
         {
-            if (GameController.dragEnable && GameController.turn == pawnColor)
-                if (Slot.slots[slotNo].Height() - 1 == pawnNo)  // only the highest pawn in the slot can be moved
-                {
-                    beginSlot = slotNo;
-                    startPos = transform.position;
-                    isDown = true;
-                    TryHighlight(true);     // we turn on the highlighting of the appropriate slots
-                }
+            if (!GameController.dragEnable || GameController.turn != pawnColor) return;
+            if (Slot.slots[slotNo].Height() - 1 != pawnNo) return; // only the highest pawn in the slot can be moveds
+    
+            beginSlot = slotNo;
+            startPos = transform.position;
+            isDown = true;
+            TryHighlight(true);     // we turn on the highlighting of the appropriate slots
         }
 
         private void OnMouseDrag()

@@ -298,7 +298,7 @@ public class photonManager : MonoBehaviourPunCallbacks
         while (true)
         {
             yield return new WaitForSeconds(Random.Range(0, 10));
-            Debug.Log(DateTime.Now.Ticks - startingTime.Ticks);
+            //Debug.Log(DateTime.Now.Ticks - startingTime.Ticks);
         }
 
     }

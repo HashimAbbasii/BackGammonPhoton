@@ -197,18 +197,23 @@ namespace BackgammonNet.Core
         {
             if (sidesAgreed == 2)
                 LoadGameScene();
-            if (timeCounter == true)
-            {
-                _photonView.RPC("UpdateTimeText", RpcTarget.AllBuffered);
-            }
+            //if (timeCounter == true)
+            //{
+            //    _photonView.RPC("UpdateTimeText", RpcTarget.AllBuffered);
+            //}
+
+            if (timeCounter) UpdateTimeText();
+
+
             //TryDeactivateDigit();
         }
 
         private float currentTime = 0f;
-        [PunRPC]
+        
 
         void UpdateTimeText()
         {
+            Debug.Log("Timer Running");
             int minutes = Mathf.FloorToInt(currentTime / 60);
             int seconds = Mathf.FloorToInt(currentTime % 60);
            // counterTime.text = string.Format("{0:00}:{1:00}", minutes, seconds);
@@ -335,9 +340,18 @@ namespace BackgammonNet.Core
 
         #endregion
 
+        [PunRPC]
+        public void TimerSetActive(int viewID)
+        {
+            PhotonView.Find(viewID).GetComponent<GameControllerNetwork>().timeCounter = true;
+        }
+
         public void GenerateNetworks()
         {
-            timeCounter = true;
+            //timeCounter = true;
+
+            _photonView.RPC(nameof(TimerSetActive),RpcTarget.AllBuffered, _photonView.ViewID);
+
             if (diceEnable)
             {
                 if (turn == 0)
