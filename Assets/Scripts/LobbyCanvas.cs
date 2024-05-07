@@ -75,7 +75,4 @@ public class LobbyCanvas : MonoBehaviour
         photonManager.Instance.OnClickPlayButton();
     }
 
-
-
-
 }
