@@ -11,6 +11,7 @@ using Random = UnityEngine.Random;
 
 public class photonManager : MonoBehaviourPunCallbacks
 {
+    public static photonManager Instance { get; set; }
 
     [Header("GAME OBJECT")]
     public GameObject roomListPrefab;
