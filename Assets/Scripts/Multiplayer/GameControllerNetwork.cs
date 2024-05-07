@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Photon.Pun;
 using static UnityEngine.GraphicsBuffer;
+using System;
+using Random = UnityEngine.Random;
 
 namespace BackgammonNet.Core
 {
@@ -34,6 +36,7 @@ namespace BackgammonNet.Core
         [SerializeField] private Image[] turnImages;
         [SerializeField] private Text[] diceTexts;
 
+
         public List<Slot> allSlots = new();
         public List<Pawn> allPawns = new();
         public List<int> _allSlotsInts = new();
@@ -43,6 +46,8 @@ namespace BackgammonNet.Core
         public bool NetworkTurn=true;
 
         public bool diceEnable = true;             // permission to roll the dice (after making moves)
+
+        public DateTime startDateTime;
 
         public static GameControllerNetwork Instance { get; set; }
         public static bool GameOver { get; set; }
@@ -197,11 +202,7 @@ namespace BackgammonNet.Core
         {
             if (sidesAgreed == 2)
                 LoadGameScene();
-            //if (timeCounter == true)
-            //{
-            //    _photonView.RPC("UpdateTimeText", RpcTarget.AllBuffered);
-            //}
-
+            
             if (timeCounter) UpdateTimeText();
 
 
@@ -213,11 +214,13 @@ namespace BackgammonNet.Core
 
         void UpdateTimeText()
         {
-            Debug.Log("Timer Running");
-            int minutes = Mathf.FloorToInt(currentTime / 60);
-            int seconds = Mathf.FloorToInt(currentTime % 60);
-           // counterTime.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-            counterTime.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+            //Debug.Log("Timer Running");
+            //int minutes = Mathf.FloorToInt(currentTime / 60);
+            //int seconds = Mathf.FloorToInt(currentTime % 60);
+            // counterTime.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            //counterTime.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+
+            counterTime.text = string.Format("{0:mm\\:ss}", DateTime.Now - startDateTime);
         }
         private void TryDeactivateDigit()
         {
@@ -344,6 +347,7 @@ namespace BackgammonNet.Core
         public void TimerSetActive(int viewID)
         {
             PhotonView.Find(viewID).GetComponent<GameControllerNetwork>().timeCounter = true;
+            PhotonView.Find(viewID).GetComponent<GameControllerNetwork>().startDateTime = DateTime.Now;
         }
 
         public void GenerateNetworks()
