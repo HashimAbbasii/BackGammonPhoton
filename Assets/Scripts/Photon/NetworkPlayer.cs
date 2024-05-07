@@ -4,12 +4,14 @@ using System.Linq;
 using Photon.Pun;
 using Photon.Pun.Demo.PunBasics;
 using UnityEngine;
+using System;
 
 public class NetworkPlayer : MonoBehaviour
 {
     public PhotonView photonView;
 
     public string playerName;
+    
     
     // Start is called before the first frame update
     void Start()
@@ -25,13 +27,11 @@ public class NetworkPlayer : MonoBehaviour
             PhotonNetwork.NickName = GameManager.instance.networkPlayers.IndexOf(view).ToString();
             GameManager.instance.myNetworkPlayer = view;
         }
+
     }
 
     private void Update()
     {
-        //if (photonView.IsMine) 
-        //{ 
-        //    playerName = PhotonNetwork.NickName;
-        //}
+        
     }
 }

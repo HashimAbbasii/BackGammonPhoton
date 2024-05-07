@@ -191,15 +191,29 @@ namespace BackgammonNet.Core
             Pawn.OnGameOver -= Pawn_OnGameOver;
             TimeController.OnTimeLimitEnd -= Pawn_OnGameOver;
         }
-
+        public bool timeCounter = false;
+        public Text counterTime;
         private void Update()
         {
             if (sidesAgreed == 2)
                 LoadGameScene();
-
+            if (timeCounter == true)
+            {
+                _photonView.RPC("UpdateTimeText", RpcTarget.AllBuffered);
+            }
             //TryDeactivateDigit();
         }
 
+        private float currentTime = 0f;
+        [PunRPC]
+
+        void UpdateTimeText()
+        {
+            int minutes = Mathf.FloorToInt(currentTime / 60);
+            int seconds = Mathf.FloorToInt(currentTime % 60);
+           // counterTime.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+            counterTime.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        }
         private void TryDeactivateDigit()
         {
             if (dices[0] == 0)
@@ -236,6 +250,7 @@ namespace BackgammonNet.Core
         {
             if (diceEnable)
             {
+
                 dragEnable = true;
                 diceEnable = false;
 
@@ -322,6 +337,7 @@ namespace BackgammonNet.Core
 
         public void GenerateNetworks()
         {
+            timeCounter = true;
             if (diceEnable)
             {
                 if (turn == 0)

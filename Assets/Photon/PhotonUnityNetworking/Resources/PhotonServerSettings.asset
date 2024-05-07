@@ -48,6 +48,8 @@ MonoBehaviour:
   - slotButtonOff
   - PawnSlots
   - TextShow
+  - TimerForNetwork
+  - UpdateTimeText
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
