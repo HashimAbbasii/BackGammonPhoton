@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BackgammonNet.Lobby;
 
 public class LobbySceneManager : MonoBehaviour
 {
@@ -21,4 +22,5 @@ public class LobbySceneManager : MonoBehaviour
 
     public GameObject connectionPanel;
     public GameObject lobbyCanvas;
+
 }

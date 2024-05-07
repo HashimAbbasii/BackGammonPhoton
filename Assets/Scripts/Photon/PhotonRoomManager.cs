@@ -10,6 +10,8 @@ using Random = UnityEngine.Random;
 
 public class PhotonRoomManager : MonoBehaviourPunCallbacks
 {
+    public static PhotonRoomManager Instance { get; set; }
+
     public string myUsername;
 
     public RoomType roomType = RoomType.None;
