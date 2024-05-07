@@ -34,6 +34,7 @@ namespace BackgammonNet.Lobby
         [SerializeField] private GameObject hostMenu;
         [SerializeField] private GameObject connectMenu;
         [SerializeField] private GameObject mainServerPanel;
+        [SerializeField] private GameObject loadingScreenPanel;
 
         [Header("Other UI elements")]
         [SerializeField] private ScrollRect scrollRect;
@@ -59,26 +60,26 @@ namespace BackgammonNet.Lobby
             hosts = new List<GameObject>();
             prefabHeight = playerPrefabRect.rect.height;
 
-            if (mainServer)
-            {
-                SwitchMenuView(false, false, false, true);
-                CreateMainServer();
-                StartCoroutine(HostAvailabilityControl(controlPeriod));
-            }
-            else
-            {
-                SwitchMenuView(true, false, false, false);
+            //if (mainServer)
+            //{
+            //    SwitchMenuView(false, false, false, true);
+            //    CreateMainServer();
+            //    StartCoroutine(HostAvailabilityControl(controlPeriod));
+            //}
+            //else
+           // {
+               // SwitchMenuView(true, false, false, false);
                 
-                if (clientName != "")
-                    nameInput.text = clientName;
+                //if (clientName != "")
+                //    nameInput.text = clientName;
 
-                ourIpAddress = GetLocalIPAddress();
-                hostGoButton = mainMenu.transform.Find("Host").gameObject;
-                monitText.text = monitContent;
+                //ourIpAddress = GetLocalIPAddress();
+                //hostGoButton = mainMenu.transform.Find("Host").gameObject;
+                //monitText.text = monitContent;
 
-                Client.OnNewPlayer += InformMainServer;
-                Client.OnRemovePlayer += InformMainServer;
-            }
+                //Client.OnNewPlayer += InformMainServer;
+                //Client.OnRemovePlayer += InformMainServer;
+            //}
         }
 
         private void OnDisable()
@@ -284,7 +285,7 @@ namespace BackgammonNet.Lobby
         public void StartGameAi()                             // Start a local game.
         {
             AiMode = true;
-            SwitchMenuView(false, false, false, false);
+            SwitchMenuView(false, false, false, false,false);
 
             if (SceneManager.sceneCount > 1)
                 SceneManager.UnloadSceneAsync(1);
@@ -347,7 +348,7 @@ namespace BackgammonNet.Lobby
                         monitText.text = "No main server!";
                         yield return new WaitForSeconds(1f);
                         monitContent = "";
-                        SwitchMenuView(false, false, true, false);
+                        SwitchMenuView(false, false, true, false,false);
                         CreateHost();
                     }
                 }
@@ -406,7 +407,7 @@ namespace BackgammonNet.Lobby
 
                         if (mainClient.ConnectToServer(mainServerAddresses[i], portNo))          // if there is already a given Main Server
                         {
-                            SwitchMenuView(false, true, false, true);   // The list with the addresses of the hosts sent by the master server appears.
+                            SwitchMenuView(false, true, false, true,false);   // The list with the addresses of the hosts sent by the master server appears.
                             monitContent = "";
                             mainServerMode = true;
                             break;
@@ -424,7 +425,7 @@ namespace BackgammonNet.Lobby
                     yield return new WaitForSeconds(1f);
                     monitText.text = "No main server!";
                     yield return new WaitForSeconds(1f);
-                    SwitchMenuView(false, true, false, true);   // The list with the addresses of the hosts sent by the master server appears.
+                    SwitchMenuView(false, true, false, true,false);   // The list with the addresses of the hosts sent by the master server appears.
                     monitContent = "";
                     inputField.text = ourIpAddress;
                     //inputField.text = "xxx.162.1.6";
@@ -468,7 +469,7 @@ namespace BackgammonNet.Lobby
         public void GoToMainMenu()
         {
             monitText.text = monitContent;
-            SwitchMenuView(true, false, false, false);         // return to the main menu
+            SwitchMenuView(true, false, false, false,false);         // return to the main menu
             RemoveNetworkParts();
         }
 
@@ -489,12 +490,13 @@ namespace BackgammonNet.Lobby
                 Destroy(mainClient.gameObject);
         }
 
-        public void SwitchMenuView(bool vis1, bool vis2, bool vis3, bool vis4)
+        public void SwitchMenuView(bool vis1, bool vis2, bool vis3, bool vis4,bool vis5)
         {
             mainMenu.SetActive(vis1);
             connectMenu.SetActive(vis2);
             hostMenu.SetActive(vis3);
             mainServerPanel.SetActive(vis4);
+            loadingScreenPanel.SetActive(vis5);
         }
     }
 }

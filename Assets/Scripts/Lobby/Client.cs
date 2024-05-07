@@ -120,7 +120,7 @@ namespace BackgammonNet.Lobby
                         {
                             Send("CIPA|" + LobbyManager.Instance.ourIpAddress + "|" + LobbyManager.clientName); // forward host address
                             LobbyManager.Instance.CreateHost();                                                 // creating the host
-                            LobbyManager.Instance.SwitchMenuView(false, false, true, false);
+                            LobbyManager.Instance.SwitchMenuView(false, false, true, false, false);
                         }
                         else
                         {
