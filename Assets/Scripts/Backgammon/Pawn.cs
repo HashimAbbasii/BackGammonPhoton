@@ -35,6 +35,8 @@ namespace BackgammonNet.Core
         private int rescuedPawns;                               // the number of pieces of a given color in the shelter
         private int beginSlot;                                  // starting slot number
         public int maxMoves;
+        [SerializeField] public Sprite whitePawn;
+        [SerializeField] public Sprite blackPawn;
 
 
         private void Awake()
@@ -43,7 +45,8 @@ namespace BackgammonNet.Core
         }
         public void SetColorAndHouse(int color)
         {
-            GetComponent<SpriteRenderer>().color = color == 0 ? Color.white : Color.red;
+            GetComponent<SpriteRenderer>().sprite = color == 0 ? GetComponent<SpriteRenderer>().sprite = whitePawn : GetComponent<SpriteRenderer>().sprite = blackPawn;
+            //GetComponent<SpriteRenderer>().color = color == 0 ? Color.white : Color.black; // black == red
             house = GameObject.Find((color == 0 ? "White" : "Red") + " House");
             pawnColor = color;
         }
