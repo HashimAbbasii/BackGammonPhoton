@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 50636994061017222}
   - component: {fileID: 58256282178089650}
   - component: {fileID: 212208489821492190}
-  - component: {fileID: 114281773330944926}
   - component: {fileID: -749466965310162608}
+  - component: {fileID: -5618297825496121330}
   m_Layer: 0
   m_Name: PawnNetwork
   m_TagString: Untagged
@@ -125,23 +125,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &114281773330944926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1913759149231010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5f63323d94a10b4f9f9f9cc57e14e55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pawnColor: 0
-  slotNo: 0
-  pawnNo: 0
-  imprisoned: 0
-  maxMoves: 0
 --- !u!114 &-749466965310162608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,3 +147,20 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &-5618297825496121330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913759149231010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5560ef3d6c9284142aa40489f5cd231a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pawnColor: 0
+  slotNo: 0
+  pawnNo: 0
+  imprisoned: 0
+  maxMoves: 0

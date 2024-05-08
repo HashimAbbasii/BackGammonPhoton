@@ -4310,9 +4310,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eacce3ace883954fb493aa0930aeca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slotPrefab: {fileID: 114880806642325786, guid: c4448c627b8f4984b8fc54bca3efecb2, type: 3}
+  slotPrefab: {fileID: 4647705190182044861, guid: fbd3d298e3b58914aa65313a731d1d94, type: 3}
   photonView: {fileID: 1438871985}
-  pawnPrefab: {fileID: 114281773330944926, guid: 04324aabe73554b4385dd63bd099f37d, type: 3}
+  pawnPrefab: {fileID: -5618297825496121330, guid: 04324aabe73554b4385dd63bd099f37d, type: 3}
   slotsContainer: {fileID: 1190377118}
   playersNames: []
   infoText: {fileID: 0}

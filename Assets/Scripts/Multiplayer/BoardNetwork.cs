@@ -11,9 +11,9 @@ namespace BackgammonNet.Core
 
     public class BoardNetwork : MonoBehaviour
     {
-        [SerializeField] private Slot slotPrefab;
+        [SerializeField] private SlotNetwork slotPrefab;
         [SerializeField] private PhotonView photonView;
-        [SerializeField] private Pawn pawnPrefab;
+        [SerializeField] private PawnNetwork pawnPrefab;
         [SerializeField] private Transform slotsContainer;
         [SerializeField] private Text[] playersNames;
         [SerializeField] private Text infoText;
@@ -144,7 +144,7 @@ namespace BackgammonNet.Core
 
         public void OpponentTryMove(int fromSlot, int toSlot, bool isShelter, float moveTime)   // move your network opponent's piece
         {
-            Pawn pawn = Slot.slots[fromSlot].GetTopPawn(false);
+            PawnNetwork pawn = SlotNetwork.slots[fromSlot].GetTopPawn(false);
             pawn.OpponentMove(toSlot, isShelter);
 
             if (isClientWhite)
@@ -173,7 +173,7 @@ namespace BackgammonNet.Core
         void SpawnSlots()
         {
             float UP_POS = 5.43f;
-            Slot.slots = new List<Slot>();
+            SlotNetwork.slots = new List<SlotNetwork>();
             Vector3 slotPos = new Vector3(0, UP_POS, -0.2f);
             Quaternion slotRot = Quaternion.identity;
             CreateSlot(0, slotPos, slotRot);              // prison slot for white
@@ -238,7 +238,7 @@ namespace BackgammonNet.Core
         private void CreateSlots()
         {
             float UP_POS = 5.43f;
-            Slot.slots = new List<Slot>();
+            SlotNetwork.slots = new List<SlotNetwork>();
             Vector3 slotPos = new Vector3(0, UP_POS, -0.2f);
             Quaternion slotRot = Quaternion.identity;
             CreateSlot(0, slotPos, slotRot);              // prison slot for white
@@ -262,10 +262,10 @@ namespace BackgammonNet.Core
 
         private void CreateSlot(int slotNo, Vector3 slotPos, Quaternion slotRot)
         {
-            Slot slot = Instantiate(slotPrefab, slotPos, slotRot, slotsContainer);
+            SlotNetwork slot = Instantiate(slotPrefab, slotPos, slotRot, slotsContainer);
             slot.name = "slot" + slotNo.ToString();
             slot.slotNo = slotNo;
-            Slot.slots.Add(slot);
+            SlotNetwork.slots.Add(slot);
         }
 
         private void DefaultPawns()
@@ -287,8 +287,8 @@ namespace BackgammonNet.Core
 
         private void CreatePawn(int slotNo, int isWhite)        // assign a pawn to the appropriate slot
         {
-            Pawn pawn = Instantiate(pawnPrefab);
-            Slot.slots[slotNo].PlacePawn(pawn, isWhite);
+            PawnNetwork pawn = Instantiate(pawnPrefab);
+            SlotNetwork.slots[slotNo].PlacePawn(pawn, isWhite);
           //  GameController.Instance.allPawns.Add(pawn);
            // if (isWhite == 1) { GameController.Instance.ePawns.Add(pawn); }
         }

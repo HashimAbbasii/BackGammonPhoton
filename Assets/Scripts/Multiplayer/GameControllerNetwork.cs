@@ -18,8 +18,8 @@ namespace BackgammonNet.Core
     public class GameControllerNetwork : MonoBehaviour
     {
         private PhotonView _photonView;
-        public Pawn randomSelectPawn;
-        public Pawn randomSelectPawn2;
+        public PawnNetwork randomSelectPawn;
+        public PawnNetwork randomSelectPawn2;
         public static int turn;                     // indicates whose turn it is now
         public static int[] dices = new int[2];     // recently drawn numbers
         public static bool isDublet;                // whether a doublet was thrown
@@ -37,12 +37,12 @@ namespace BackgammonNet.Core
         [SerializeField] private Text[] diceTexts;
 
 
-        public List<Slot> allSlots = new();
-        public List<Pawn> allPawns = new();
+       
+        public List<PawnNetwork> allPawns = new();
         public List<int> _allSlotsInts = new();
-        public List<Pawn> topEPawns = new();
-        public List<Pawn> checkExistingPawn = new();
-        public List<Pawn> ePawns = new();
+        public List<PawnNetwork> topEPawns = new();
+        public List<PawnNetwork> checkExistingPawn = new();
+        public List<PawnNetwork> ePawns = new();
         public bool NetworkTurn=true;
 
         public bool diceEnable = true;             // permission to roll the dice (after making moves)
@@ -57,8 +57,8 @@ namespace BackgammonNet.Core
             diceButton.gameObject.SetActive(false);
             _photonView = GetComponent<PhotonView>();
 
-            Pawn.OnCompleteTurn += Pawn_OnCompleteTurn;
-            Pawn.OnGameOver += Pawn_OnGameOver;
+            PawnNetwork.OnCompleteTurn += Pawn_OnCompleteTurn;
+            PawnNetwork.OnGameOver += Pawn_OnGameOver;
             TimeController.OnTimeLimitEnd += Pawn_OnGameOver;
 
           //  mainMenuButton.onClick.AddListener(GoToMainMenu);
@@ -192,8 +192,8 @@ namespace BackgammonNet.Core
 
         private void OnDestroy()
         {
-            Pawn.OnCompleteTurn -= Pawn_OnCompleteTurn;
-            Pawn.OnGameOver -= Pawn_OnGameOver;
+            PawnNetwork.OnCompleteTurn -= Pawn_OnCompleteTurn;
+            PawnNetwork.OnGameOver -= Pawn_OnGameOver;
             TimeController.OnTimeLimitEnd -= Pawn_OnGameOver;
         }
         public bool timeCounter = false;
@@ -206,7 +206,7 @@ namespace BackgammonNet.Core
             if (timeCounter) UpdateTimeText();
 
 
-            //TryDeactivateDigit();
+            TryDeactivateDigit();
         }
 
         private float currentTime = 0f;
@@ -322,7 +322,7 @@ namespace BackgammonNet.Core
                 {
                   //  Debug.Log("Ai Turn");
                     _allSlotsInts.Clear();
-                    allSlots.Clear();
+                    //allSlots.Clear();
                     topEPawns.Clear();
                     checkExistingPawn.Clear();
                     SoundManager.GetSoundEffect(4, 0.25f);
@@ -370,7 +370,7 @@ namespace BackgammonNet.Core
                 {
                     //  Debug.Log("Ai Turn");
                     _allSlotsInts.Clear();
-                    allSlots.Clear();
+                    //allSlots.Clear();
                     topEPawns.Clear();
                     checkExistingPawn.Clear();
                     SoundManager.GetSoundEffect(4, 0.25f);
@@ -416,13 +416,13 @@ namespace BackgammonNet.Core
 
             }
 
-            if (Slot.slots[25].Height() > 0)
+            if (SlotNetwork.slots[25].Height() > 0)
             {
                 //........Prison Slot...............//
 
                 CheckPrisonSlot();
             }
-           else if (!GameController.GameOver)
+           else if (!GameControllerNetwork.GameOver)
             {
                // Debug.Log("Normal Movement");
              //   CheckPrisonSlot();
@@ -446,18 +446,18 @@ namespace BackgammonNet.Core
 
             for (int i = 0; i < ePawns.Count; i++)
             {
-                Pawn pawn = ePawns[i];
+                PawnNetwork pawn = ePawns[i];
                 if (!_allSlotsInts.Contains(ePawns[i].slotNo))
                 {
                     _allSlotsInts.Add(ePawns[i].slotNo);
-                    allSlots.Add(Slot.slots[ePawns[i].slotNo]);
+                  //  allSlots.Add(Slot.slots[ePawns[i].slotNo]);
                 }
             }
 
-            for (int i = 0; i < allSlots.Count; i++)
-            {
-                topEPawns.Add(allSlots[i].GetTopPawn(false));
-            }
+            //for (int i = 0; i < allSlots.Count; i++)
+            //{
+            //    topEPawns.Add(allSlots[i].GetTopPawn(false));
+            //}
 
             SelectRandomEnemy();
         }
@@ -471,18 +471,18 @@ namespace BackgammonNet.Core
 
             for (int i = 0; i < ePawns.Count; i++)
             {
-                Pawn pawn = ePawns[i];
+                PawnNetwork pawn = ePawns[i];
                 if (!_allSlotsInts.Contains(ePawns[i].slotNo))
                 {
                     _allSlotsInts.Add(ePawns[i].slotNo);
-                    allSlots.Add(Slot.slots[ePawns[i].slotNo]);
+                    //allSlots.Add(Slot.slots[ePawns[i].slotNo]);
                 }
             }
 
-            for (int i = 0; i < allSlots.Count; i++)
-            {
-                topEPawns.Add(allSlots[i].GetTopPawn(false));
-            }
+            //for (int i = 0; i < allSlots.Count; i++)
+            //{
+            //    topEPawns.Add(allSlots[i].GetTopPawn(false));
+            //}
 
             SelectRandomEnemy2();
         }
@@ -496,7 +496,7 @@ namespace BackgammonNet.Core
         {
            // Debug.Log("Check prison Slot");
            // Pawn.instance.Selectimprisoned();  //  if (Pawn.imprisoned && Pawn.imprisonedSide[0] > 0 && Pawn.pawnColor == 0)
-            Slot.slots[25].GetTopPawn(false).Selectimprisoned();
+            SlotNetwork.slots[25].GetTopPawn(false).Selectimprisoned();
 
 
 
@@ -509,7 +509,7 @@ namespace BackgammonNet.Core
         public void CheckPrisonSlot2()
         {
            // Debug.Log("Check prison Slot");
-            Slot.slots[25].GetTopPawn(false).Selectimprisoned();  //  if (Pawn.imprisoned && Pawn.imprisonedSide[0] > 0 && Pawn.pawnColor == 0)
+            SlotNetwork.slots[25].GetTopPawn(false).Selectimprisoned();  //  if (Pawn.imprisoned && Pawn.imprisonedSide[0] > 0 && Pawn.pawnColor == 0)
 
 
 
@@ -558,23 +558,23 @@ namespace BackgammonNet.Core
         {
             int sign = randomSelectPawn.pawnColor == 0 ? 1 : -1;
            // Debug.Log("SlotNo" + randomSelectPawn.slotNo);
-            int slot0 = randomSelectPawn.slotNo + sign * GameController.dices[0];
-            int slot1 = randomSelectPawn.slotNo + sign * GameController.dices[1];
+            int slot0 = randomSelectPawn.slotNo + sign * GameControllerNetwork.dices[0];
+            int slot1 = randomSelectPawn.slotNo + sign * GameControllerNetwork.dices[1];
           //  Debug.Log("turn" + turn);
 
-            if (GameController.turn == randomSelectPawn.pawnColor)
+            if (GameControllerNetwork.turn == randomSelectPawn.pawnColor)
             {
                 if (slot0 > 0 && slot0 < 25 && slot0 != randomSelectPawn.slotNo)
                 {
                     //randomSelectPawn.CheckShelterStage();
-                    if (Slot.slots[slot0].Height() >= 1 && Slot.slots[slot0].IsWhite() == randomSelectPawn.pawnColor)
+                    if (SlotNetwork.slots[slot0].Height() >= 1 && SlotNetwork.slots[slot0].IsWhite() == randomSelectPawn.pawnColor)
                     {
                         Debug.Log("HEIGHT GREATER THAN 1 AND NUMBER IS SAME SLOT");
-                        Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
-                        Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+                        SlotNetwork.slots[randomSelectPawn.slotNo].GetTopPawn(true);
+                        SlotNetwork.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
                         randomSelectPawn.CheckShelterStage();
                         randomSelectPawn.CheckShelterAndMore();
-                        Slot.slots[slot0].HightlightMe(true);
+                        SlotNetwork.slots[slot0].HightlightMe(true);
                         randomSelectPawn.CheckIfNextTurn();
                         StartCoroutine(SecondDice());
 
@@ -585,8 +585,8 @@ namespace BackgammonNet.Core
                   else  if (Slot.slots[slot0].Height() == 0)
                     {
                         Debug.Log("HEIGHT IS 0 ");
-                        Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
-                        Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+                        SlotNetwork.slots[randomSelectPawn.slotNo].GetTopPawn(true);
+                        SlotNetwork.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
                         randomSelectPawn.CheckShelterStage();
                         randomSelectPawn.CheckShelterAndMore();
                         Slot.slots[slot0].HightlightMe(true);
@@ -597,13 +597,13 @@ namespace BackgammonNet.Core
                     }
 
 
-                  else if (Slot.slots[slot0].Height() == 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
+                  else if (SlotNetwork.slots[slot0].Height() == 1 && SlotNetwork.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
                     {
                         //.......JAIL KAR Dooh...........//
                         Debug.Log("Jail Kar Dooh");
-                        Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
-                        Slot.slots[slot0].GetTopPawn(false).PlaceJail();
-                        Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+                        SlotNetwork.slots[randomSelectPawn.slotNo].GetTopPawn(true);
+                        SlotNetwork.slots[slot0].GetTopPawn(false).PlaceJail();
+                        SlotNetwork.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
 
                         randomSelectPawn.CheckShelterStage();
                         randomSelectPawn.CheckShelterAndMore();
@@ -681,30 +681,30 @@ namespace BackgammonNet.Core
         #region _AIEnemyMoves
         public void AiMovesEnemy2()
         {
-            Pawn.moves = 1;
+            PawnNetwork.moves = 1;
             turn = 1;
           //  Debug.Log("Second Turn");
             int sign = randomSelectPawn2.pawnColor == 0 ? 1 : -1;
          //   Debug.Log("SlotNo" + randomSelectPawn2.slotNo);
-            int slot1 = randomSelectPawn2.slotNo + sign * GameController.dices[1];
+            int slot1 = randomSelectPawn2.slotNo + sign * GameControllerNetwork.dices[1];
           //  Debug.Log("Second Slot"+slot1);
          //   Debug.Log("Turn " + turn);
 
             Debug.Log(randomSelectPawn2.pawnColor);
-            if (GameController.turn == randomSelectPawn2.pawnColor)
+            if (GameControllerNetwork.turn == randomSelectPawn2.pawnColor)
             {
                 Debug.Log("Turn and Color Same");
                 if (slot1 > 0 && slot1 < 25 && slot1 != randomSelectPawn2.slotNo)
                 {
                     //randomSelectPawn.CheckShelterStage();
-                    if (Slot.slots[slot1].Height() >= 1 && Slot.slots[slot1].IsWhite() == randomSelectPawn2.pawnColor)
+                    if (SlotNetwork.slots[slot1].Height() >= 1 && SlotNetwork.slots[slot1].IsWhite() == randomSelectPawn2.pawnColor)
                     {
                         Debug.Log("HEIGHT GREATER THAN 1 AND NUMBER IS SAME SLOT");
-                        Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
-                        Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
+                        SlotNetwork.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
+                        SlotNetwork.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
                         randomSelectPawn2.CheckShelterStage();
                         randomSelectPawn2.CheckShelterAndMore();
-                        Slot.slots[slot1].HightlightMe(true);
+                        SlotNetwork.slots[slot1].HightlightMe(true);
                         randomSelectPawn2.CheckIfNextTurn();
                         //if(isDublet==true)
                         //{
@@ -727,11 +727,11 @@ namespace BackgammonNet.Core
                   else  if (Slot.slots[slot1].Height() == 0)
                     {
                         Debug.Log("HEIGHT IS 0 ");
-                        Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
-                        Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
+                        SlotNetwork.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
+                        SlotNetwork.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
                         randomSelectPawn2.CheckShelterStage();
                         randomSelectPawn2.CheckShelterAndMore();
-                        Slot.slots[slot1].HightlightMe(true);
+                        SlotNetwork.slots[slot1].HightlightMe(true);
                         randomSelectPawn2.CheckIfNextTurn();
                         //if (isDublet == true)
                         //{
@@ -754,21 +754,21 @@ namespace BackgammonNet.Core
                         //.......JAIL KAR Dooh...........//
                         Debug.Log("Jail Kar Dooh");
                         // var TopSelectOff= randomSelectPawn2.slotNo;
-                        Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
-                        
-                        Slot.slots[slot1].GetTopPawn(false).PlaceJail();
-                        Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
+                        SlotNetwork.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
+
+                        SlotNetwork.slots[slot1].GetTopPawn(false).PlaceJail();
+                        SlotNetwork.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
                         randomSelectPawn2.CheckShelterStage();
                         randomSelectPawn2.CheckShelterAndMore();
                         randomSelectPawn2.CheckIfNextTurn();
                         _allSlotsInts.Clear();
-                        allSlots.Clear();
+                        //allSlots.Clear();
                         topEPawns.Clear();
                         SlotNumberForAI();
 
 
                     }
-                    else if(Slot.slots[slot1].Height() > 1 && Slot.slots[slot1].IsWhite() != randomSelectPawn2.pawnColor)
+                    else if(SlotNetwork.slots[slot1].Height() > 1 && SlotNetwork.slots[slot1].IsWhite() != randomSelectPawn2.pawnColor)
                     {
                         if (topEPawns.Count == 0)
                         {
@@ -777,7 +777,7 @@ namespace BackgammonNet.Core
 
                             Pawn_OnCompleteTurn(turn);
                             _allSlotsInts.Clear();
-                            allSlots.Clear();
+                            //allSlots.Clear();
                             topEPawns.Clear();
                             checkExistingPawn.Clear();
                            
@@ -817,7 +817,7 @@ namespace BackgammonNet.Core
 
                        Pawn_OnCompleteTurn(turn);
                         _allSlotsInts.Clear();
-                          allSlots.Clear();
+                          //allSlots.Clear();
                         topEPawns.Clear();
                         checkExistingPawn.Clear();
                     }
@@ -845,13 +845,13 @@ namespace BackgammonNet.Core
             topEPawns.Clear();
             checkExistingPawn.Clear();
             _allSlotsInts.Clear();
-            allSlots.Clear();
+            //allSlots.Clear();
          
             yield return new WaitForSecondsRealtime(1f);
          
             yield return new WaitForSecondsRealtime(1.5f);
          
-            if (Slot.slots[25].Height() > 0)
+            if (SlotNetwork.slots[25].Height() > 0)
             {
               //  Debug.Log("Check Prison Slot 2");
                 //........Prison Slot...............//
@@ -911,11 +911,11 @@ namespace BackgammonNet.Core
             turnImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
             turnImages[1].gameObject.SetActive(isWhiteColor == 0);
 
-            if (Board.Instance.client)      // network game
+            if (BoardNetwork.Instance.client)      // network game
             {
                 newTurn = true;
 
-                if (Board.Instance.isClientWhite == (turn == 0 ? true : false))    // if we are white (red) and the turn is white (red)
+                if (BoardNetwork.Instance.isClientWhite == (turn == 0 ? true : false))    // if we are white (red) and the turn is white (red)
                     diceButton.gameObject.SetActive(true);
             }
             else
@@ -966,7 +966,7 @@ namespace BackgammonNet.Core
             isDublet = false;
             dragEnable = false;
             turn = 0;
-            Pawn.InitializePawn();
+            PawnNetwork.InitializePawn();
             SceneManager.UnloadSceneAsync(1);
             SceneManager.LoadScene(1, LoadSceneMode.Additive);
         }
@@ -994,14 +994,25 @@ namespace BackgammonNet.Core
             int sign = turn == 0 ? 1 : -1;
             int value = turn == 0 ? 24 : -1;
 
-            if (Pawn.imprisonedSide[turn] > 0)                  // while they are in jail
+            if (PawnNetwork.imprisonedSide[turn] > 0)
+            // while they are in jail 
+            {
+                Debug.Log("Imprisoned Slot");
                 return CanMoveFromJail(amount, count, sign);
+
+            }
             else                                                // when they are not in jail
             {
-                if (Pawn.shelterSide[turn])                     // when the mode of entering the shelter
+                if (PawnNetwork.shelterSide[turn])
+                {
+                    
                     return CanMoveInShelter(value, sign);
-                else if (CanMoveFree(value, sign))    // we go through each slot with white pieces and check if it is possible to make a move from this slot
+                }                 // when the mode of entering the shelter
+                else if (CanMoveFree(value, sign))
+                {
+                    Debug.Log("Moves Free");
                     return true;
+                }  // we go through each slot with white pieces and check if it is possible to make a move from this slot
             }
 
             return false;
@@ -1018,7 +1029,7 @@ namespace BackgammonNet.Core
             int sign = turn == 0 ? 1 : -1;
             int value = turn == 0 ? 24 : -1;
 
-            if (Pawn.imprisonedSide[turn] > 0)
+            if (PawnNetwork.imprisonedSide[turn] > 0)
             {
                 //................When You are in the Jail.............//
                 Debug.Log("Can Move from Jail");
@@ -1026,7 +1037,7 @@ namespace BackgammonNet.Core
             }
             else                                                // when they are not in jail
             {
-                if (Pawn.shelterSide[turn])
+                if (PawnNetwork.shelterSide[turn])
                 {  //............. when the mode of entering the shelter..................//
                     Debug.Log("CanMoveInShelter");
                     return CanMoveInShelter(value, sign);
@@ -1046,12 +1057,12 @@ namespace BackgammonNet.Core
         private static bool CanMoveFromJail(int amount, int count, int sign)
         {
             Debug.Log("Turn" + turn);
-            Debug.Log("PAWN Color" + Pawn.instance.pawnColor);
+            Debug.Log("PAWN Color" + PawnNetwork.instance.pawnColor);
             int val = turn == 0 ? -1 : 24;
 
             for (int i = 0; i < 2; i++)
                 if (dices[i] != 0)
-                    if (Slot.slots[(val + 1) + sign * dices[i]].Height() > 1 && Slot.slots[(val + 1) + sign * dices[i]].IsWhite() != turn)
+                    if (SlotNetwork.slots[(val + 1) + sign * dices[i]].Height() > 1 && SlotNetwork.slots[(val + 1) + sign * dices[i]].IsWhite() != turn)
                         count++;
 
             return !(count == amount);
@@ -1060,12 +1071,12 @@ namespace BackgammonNet.Core
         private static bool CanMoveFree(int value, int sign)
         {
             for (int i = 1; i <= 24; i++)
-                if (Slot.slots[i].Height() > 0 && Slot.slots[i].IsWhite() == turn)   // slot with whites
+                if (SlotNetwork.slots[i].Height() > 0 && SlotNetwork.slots[i].IsWhite() == turn)   // slot with whites
                     for (int j = 0; j < 2; j++)
                         if (dices[j] != 0 && dices[j] + sign * i <= value)
-                            if (Slot.slots[i + sign * dices[j]].Height() < 2)
+                            if (SlotNetwork.slots[i + sign * dices[j]].Height() < 2)
                                 return true;
-                            else if (Slot.slots[i + sign * dices[j]].Height() > 1 && Slot.slots[i + sign * dices[j]].IsWhite() == turn)
+                            else if (SlotNetwork.slots[i + sign * dices[j]].Height() > 1 && SlotNetwork.slots[i + sign * dices[j]].IsWhite() == turn)
                                 return true;
 
             return false;
@@ -1080,9 +1091,9 @@ namespace BackgammonNet.Core
             {
                 if (endSlotNo + sign * j >= 0)
                 {
-                    if (Slot.slots[endSlotNo + sign * j].Height() > 0)              // if there is a pawn on the slot
+                    if (SlotNetwork.slots[endSlotNo + sign * j].Height() > 0)              // if there is a pawn on the slot
                     {
-                        if (Slot.slots[endSlotNo + sign * j].IsWhite() == turn)     // if this pawn is ours
+                        if (SlotNetwork.slots[endSlotNo + sign * j].IsWhite() == turn)     // if this pawn is ours
                         {
                             //Debug.Log("slot no: " + (endSlotNo + sign * (j - sign)) + ", height: " + Slot.slots[endSlotNo + sign * j].Height());
 
@@ -1118,19 +1129,19 @@ namespace BackgammonNet.Core
                                         }
                                     }
 
-                                    if (ind >= 0 && ind < Slot.slots.Count)             // index must be non negative
+                                    if (ind >= 0 && ind < SlotNetwork.slots.Count)             // index must be non negative
                                     {
-                                        if (Slot.slots[ind].Height() > 0)               // if there are pieces on the slot
+                                        if (SlotNetwork.slots[ind].Height() > 0)               // if there are pieces on the slot
                                         {
-                                            if (Slot.slots[ind].IsWhite() != turn)      // if there is an opponent's pawn on the target slot
+                                            if (SlotNetwork.slots[ind].IsWhite() != turn)      // if there is an opponent's pawn on the target slot
                                             {
-                                                if (Slot.slots[ind].Height() < 2)       // if there is no wall on the destination slot
+                                                if (SlotNetwork.slots[ind].Height() < 2)       // if there is no wall on the destination slot
                                                 {
                                                     return true;
                                                 }
                                             }
 
-                                            if (Slot.slots[ind].IsWhite() == turn)      // if there is a pawn on the target slot
+                                            if (SlotNetwork.slots[ind].IsWhite() == turn)      // if there is a pawn on the target slot
                                             {
                                                 return true;
                                             }
