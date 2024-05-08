@@ -9,9 +9,7 @@ namespace BackgammonNet.Core
 
     public class PawnNetwork : MonoBehaviour
     {
-
-
-
+        public PhotonView photonView;
         public static PawnNetwork instance;
         public static event Action<int> OnCompleteTurn = delegate { };
         public static event Action<bool> OnGameOver = delegate { };
@@ -43,6 +41,7 @@ namespace BackgammonNet.Core
         }
         public void SetColorAndHouse(int color)
         {
+            photonView = GetComponent<PhotonView>();
             GetComponent<SpriteRenderer>().color = color == 0 ? Color.white : Color.red;
             house = GameObject.Find((color == 0 ? "White" : "Red") + " House");
             pawnColor = color;
@@ -69,17 +68,18 @@ namespace BackgammonNet.Core
 
         private void OnMouseDown()
         {
-            //if (GameControllerNetwork.turn != int.Parse(PhotonNetwork.NickName)) return;
+            if (GameControllerNetwork.turn != int.Parse(PhotonNetwork.NickName)) return;
 
+            if (GameControllerNetwork.turn != pawnColor) return;
 
             if (GameControllerNetwork.GameOver) return;
-            
+
             if (BoardNetwork.Instance.client)              // if network game
             {
                 if (BoardNetwork.Instance.isClientWhite)
                 {
                     if (pawnColor != 0) return;
-                    
+
                     if (!imprisoned && imprisonedSide[pawnColor] > 0) return;     // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
 
                     TrySelectPawn();
@@ -96,290 +96,20 @@ namespace BackgammonNet.Core
             else
             {
                 if (!imprisoned && ((imprisonedSide[0] > 0 && pawnColor == 0) || (imprisonedSide[1] > 0 && pawnColor == 1))) return;    // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
-                         
                 {
-
                     TrySelectPawn();
-
-                }                                                                                                          
-            }
-        }
-
-
-        public void Selectimprisoned()
-        {
-
-            //   if (imprisoned && (imprisonedSide[1] > 0 && pawnColor == 1))
-
-            Debug.Log("Imprisoned Slot");
-
-            int count = 0;
-            int sign = GameControllerNetwork.turn == 0 ? 1 : -1;
-            int value = GameControllerNetwork.turn == 0 ? 24 : -1;
-            int val = GameControllerNetwork.turn == 0 ? -1 : 24;
-
-            var prisonSlot = Slot.slots[25];
-
-           // Debug.Log("PAWN cOLOR" + pawnColor);
-            if (prisonSlot.Height() >= 1 /*&& Slot.slots[25].IsWhite()==pawnColor*/)
-            {
-
-
-              //  Debug.Log("Height Greater than 1 ");
-                if (Slot.slots[25 + sign * GameControllerNetwork.dices[0]].Height() > 0)
-                {
-                    if (Slot.slots[25 + sign * GameControllerNetwork.dices[0]].Height() == 1 && Slot.slots[25 + sign * GameControllerNetwork.dices[0]].IsWhite() != prisonSlot.IsWhite())
-                    {
-                        Debug.Log("JAIL KAR DOOH");
-                        var prisonPawn = prisonSlot.GetTopPawn(true);
-                        int slot0 = Slot.slots[25 + sign * GameControllerNetwork.dices[0]].slotNo;
-                        Slot.slots[slot0].GetTopPawn(false).PlaceJail();
-                        Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                        prisonPawn.imprisoned = false;
-                        imprisonedSide[pawnColor]--;
-                        CheckShelterStage();
-                        CheckShelterAndMore();
-                        //  StartCoroutine(SecondDice());
-                        StartCoroutine(GameControllerNetwork.Instance.SecondDice());
-
-
-                    }
-                    else if (Slot.slots[25 + sign * GameControllerNetwork.dices[0]].Height() > 0 && Slot.slots[25 + sign * GameControllerNetwork.dices[0]].IsWhite() == prisonSlot.IsWhite())
-
-
-                    {
-
-                        Debug.Log("Same Color Slot");
-
-                        var prisonPawn = prisonSlot.GetTopPawn(true);
-                        int slot0 = Slot.slots[25 + sign * GameControllerNetwork.dices[0]].slotNo;
-                        Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                        prisonPawn.imprisoned = false;
-                        imprisonedSide[pawnColor]--;
-                        CheckShelterStage();
-                        CheckShelterAndMore();
-                        StartCoroutine(GameControllerNetwork.Instance.SecondDice());
-
-                    }
-
-                    else if (Slot.slots[25 + sign * GameControllerNetwork.dices[0]].Height() > 1 && Slot.slots[25 + sign * GameControllerNetwork.dices[0]].IsWhite() != prisonSlot.IsWhite())
-                    {
-                        CheckShelterStage();
-                        CheckShelterAndMore();
-                        if (Slot.slots[25 + sign * GameControllerNetwork.dices[1]].Height() > 1 && Slot.slots[25 + sign * GameControllerNetwork.dices[1]].IsWhite() != prisonSlot.IsWhite())
-                        {
-
-                            Debug.Log("Give the Dice to the Human Player");
-                            CheckShelterStage();
-                            CheckShelterAndMore();
-
-
-                        }
-                        else
-                        {
-                            Debug.Log("Moves According to Dice 1");
-
-                            var prisonPawn = prisonSlot.GetTopPawn(true);
-                            int slot0 = Slot.slots[25 + sign * GameControllerNetwork.dices[1]].slotNo;
-                            Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                            prisonPawn.imprisoned = false;
-                            imprisonedSide[pawnColor]--;
-                            CheckShelterStage();
-                            CheckShelterAndMore();
-                            StartCoroutine(GameControllerNetwork.Instance.SecondDice());
-
-
-                        }
-                    }
-
-
                 }
 
 
-                else if (Slot.slots[25 + sign * GameControllerNetwork.dices[0]].Height() == 0)
-                {
-                    Debug.Log("HEIGHT IS Zero");
-                    var prisonPawn = prisonSlot.GetTopPawn(true);
-                    int slot0 = Slot.slots[25 + sign * GameControllerNetwork.dices[0]].slotNo;
-                    Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                    prisonPawn.imprisoned = false;
-                    imprisonedSide[pawnColor]--;
-                    CheckShelterStage();
-                    CheckShelterAndMore();
-                    StartCoroutine(GameControllerNetwork.Instance.SecondDice());
 
-                }
-
-                //if (Slot.slots[25 + sign * GameController.dices[0]].Height() >= 0 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() == Slot.slots[25].IsWhite())
-                //{
-                //    Debug.Log("BAIL OUT");
-                //    //..................Slot Prison Bail Out...................//
-                //    var prisonPawn = Slot.slots[25].GetTopPawn(true);
-                //    int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
-                //    Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                //    imprisoned = false;
-                //    imprisonedSide[pawnColor]--;
-                //    Debug.Log("BAIL OUT afafasf");
-                //    GameController.Instance.PrisonIenumertor();
-
-                //    //...............Call the Second Dice movement...........................//
-
-
-
-                //}
-                //else if (Slot.slots[25 + sign * GameController.dices[0]].Height() == 1 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() != Slot.slots[25].IsWhite())
-                //    {
-                //    /// .................Jail Hoon gi hain..................... ///
-                //      Debug.Log("IN JAIL");
-                //    var prisonPawn = Slot.slots[25].GetTopPawn(false);
-                //        int slot0= Slot.slots[25 + sign * GameController.dices[0]].slotNo;
-                //        Slot.slots[slot0].GetTopPawn(false).PlaceJail();
-                //        Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                //         imprisoned = false;
-                //          imprisonedSide[pawnColor]--;
-                //   // StartCoroutine(GameController.Instance.SecondDice());
-
-                //    //...............Call the Second Dice movement...........................//
-
-                //}
-
-
-                //...................... aghr Prison Hu gi hain ................
             }
-
-            //for (int i = 0; i < 2; i++)
-            //{
-
-            //}
-
 
 
         }
-        public void Selectimprisoned2()
-        {
 
-          //  Debug.Log("Imprisoned Slot");
-
-            int count = 0;
-            int sign = GameControllerNetwork.turn == 0 ? 1 : -1;
-            int value = GameControllerNetwork.turn == 0 ? 24 : -1;
-            int val = GameControllerNetwork.turn == 0 ? -1 : 24;
-           // Debug.Log("PAWN cOLOR" + pawnColor);
-            if (Slot.slots[25].Height() >= 1 /*&& Slot.slots[25].IsWhite()==pawnColor*/)
-            {
-
-
-               // Debug.Log("Height Greater than 1 ");
-                if (Slot.slots[25 + sign * GameController.dices[1]].Height() > 0)
-                {
-                    if (Slot.slots[25 + sign * GameControllerNetwork.dices[1]].Height() == 1 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() != pawnColor)
-                    {
-                        Debug.Log("JAIL KAR DOOH");
-                        var prisonPawn = Slot.slots[25].GetTopPawn(true);
-                        int slot0 = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
-                        Slot.slots[slot0].GetTopPawn(false).PlaceJail();
-                        Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                        prisonPawn.imprisoned = false;
-                        imprisonedSide[pawnColor]--;
-                        CheckShelterStage();
-                        CheckShelterAndMore();
-                        CheckIfNextTurn();
-                        OnCompleteTurn(pawnColor);
-                        //  StartCoroutine(SecondDice());
-                        // StartCoroutine(GameController.Instance.SecondDice());
-
-
-                    }
-                    else if (Slot.slots[25 + sign * GameControllerNetwork.dices[1]].Height() > 0 && Slot.slots[25 + sign * GameControllerNetwork.dices[1]].IsWhite() == pawnColor)
-
-
-                    {
-
-                        Debug.Log("Same Color Slot");
-
-                        var prisonPawn = Slot.slots[25].GetTopPawn(true);
-                        int slot0 = Slot.slots[25 + sign * GameControllerNetwork.dices[1]].slotNo;
-                        Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                        prisonPawn.imprisoned = false;
-                        imprisonedSide[pawnColor]--;
-                        CheckShelterStage();
-                        CheckShelterAndMore();
-                        CheckIfNextTurn();
-                        OnCompleteTurn(pawnColor);
-                        // StartCoroutine(GameController.Instance.SecondDice());
-
-                    }
-
-                    else if (Slot.slots[25 + sign * GameControllerNetwork.dices[1]].Height() > 1 && Slot.slots[25 + sign * GameControllerNetwork.dices[1]].IsWhite() != pawnColor)
-                    {
-                        CheckShelterStage();
-                        CheckShelterAndMore();
-                        CheckIfNextTurn();
-                        OnCompleteTurn(pawnColor);
-
-
-                    }
-
-
-                }
-
-
-                else if (Slot.slots[25 + sign * GameControllerNetwork.dices[1]].Height() == 0)
-                {
-                    Debug.Log("HEIGHT IS Zero");
-                    var prisonPawn = Slot.slots[25].GetTopPawn(true);
-                    int slot0 = Slot.slots[25 + sign * GameControllerNetwork.dices[1]].slotNo;
-                    Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                    prisonPawn.imprisoned = false;
-                    imprisonedSide[pawnColor]--;
-                    CheckShelterStage();
-                    CheckShelterAndMore();
-                    OnCompleteTurn(pawnColor);
-
-
-                }
-
-                //if (Slot.slots[25 + sign * GameController.dices[0]].Height() >= 0 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() == Slot.slots[25].IsWhite())
-                //{
-                //    Debug.Log("BAIL OUT");
-                //    //..................Slot Prison Bail Out...................//
-                //    var prisonPawn = Slot.slots[25].GetTopPawn(true);
-                //    int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
-                //    Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                //    imprisoned = false;
-                //    imprisonedSide[pawnColor]--;
-                //    Debug.Log("BAIL OUT afafasf");
-                //    GameController.Instance.PrisonIenumertor();
-
-                //    //...............Call the Second Dice movement...........................//
-
-
-
-                //}
-                //else if (Slot.slots[25 + sign * GameController.dices[0]].Height() == 1 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() != Slot.slots[25].IsWhite())
-                //    {
-                //    /// .................Jail Hoon gi hain..................... ///
-                //      Debug.Log("IN JAIL");
-                //    var prisonPawn = Slot.slots[25].GetTopPawn(false);
-                //        int slot0= Slot.slots[25 + sign * GameController.dices[0]].slotNo;
-                //        Slot.slots[slot0].GetTopPawn(false).PlaceJail();
-                //        Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                //         imprisoned = false;
-                //          imprisonedSide[pawnColor]--;
-                //   // StartCoroutine(GameController.Instance.SecondDice());
-
-                //    //...............Call the Second Dice movement...........................//
-
-                //}
-
-
-                //...................... aghr Prison Hu gi hain ................
-            }
-
-        }
         private void TrySelectPawn()
         {
-            if (!GameControllerNetwork.dragEnable || GameControllerNetwork.turn != pawnColor) return;
+            //if (!GameControllerNetwork.dragEnable || GameControllerNetwork.turn != pawnColor) return;
             if (SlotNetwork.slots[slotNo].Height() - 1 != pawnNo) return; // only the highest pawn in the slot can be moveds
     
             beginSlot = slotNo;
@@ -387,9 +117,13 @@ namespace BackgammonNet.Core
             isDown = true;
 
             if (GameControllerNetwork.turn == int.Parse(PhotonNetwork.NickName))
-            //{
+            {
 
                 TryHighlight(true);     // we turn on the highlighting of the appropriate slots
+            }
+            //else if(GameControllerNetwork.turn != int.Parse(PhotonNetwork.NickName))
+            //{
+            //    TryHighlight(true);
             //}
         }
 

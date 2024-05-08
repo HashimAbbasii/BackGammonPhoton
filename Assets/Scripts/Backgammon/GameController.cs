@@ -50,7 +50,7 @@ namespace BackgammonNet.Core
         private void Awake()
         {
             Instance = this;
-            if (photonManager.instance.multiPlayerMode == true)
+            if (PhotonManager.instance.multiPlayerMode == true)
             {
                 diceButton.enabled=false;
             }
@@ -94,7 +94,7 @@ namespace BackgammonNet.Core
                 ActivateButtons(false);
 
 
-            if (photonManager.instance.multiPlayerMode == true)
+            if (PhotonManager.instance.multiPlayerMode == true)
             {
                 StartCoroutine(NetworkButton());
             }
@@ -105,7 +105,7 @@ namespace BackgammonNet.Core
         {
             diceButton.enabled = false;
             yield return new WaitForSeconds(2f);
-            if (photonManager.instance.multiPlayerMode == true)
+            if (PhotonManager.instance.multiPlayerMode == true)
             {
                 _photonView.RPC(nameof(SlotButtonDisable), RpcTarget.AllBuffered);
                 
@@ -198,12 +198,12 @@ namespace BackgammonNet.Core
             if (dices[0] == 0)
                 diceTexts[0].color = new Color(diceTexts[0].color.r, diceTexts[0].color.g, diceTexts[0].color.b, 0.3f);
             else
-                diceTexts[0].color = Color.white;
+                diceTexts[0].color = Color.black;
 
             if (dices[1] == 0)
                 diceTexts[1].color = new Color(diceTexts[1].color.r, diceTexts[1].color.g, diceTexts[1].color.b, 0.3f);
             else
-                diceTexts[1].color = Color.white;
+                diceTexts[1].color = Color.black;
         }
 
         private void Generate()
@@ -214,7 +214,7 @@ namespace BackgammonNet.Core
                 diceEnable = false;
 
                 SoundManager.GetSoundEffect(4, 0.25f);
-                CheckIfTurnChange(1, 3);
+                CheckIfTurnChange(Random.Range(1,7), Random.Range(1,7));
 
                 if (Board.Instance.client)      // network game
                 {

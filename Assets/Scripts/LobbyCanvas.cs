@@ -27,7 +27,7 @@ public class LobbyCanvas : MonoBehaviour
 
     public void OnLoginClick()
     {
-        photonManager.Instance.OnLoginClick();
+        PhotonManager.Instance.OnLoginClick();
     }
 
     public void ConnectToHost()
@@ -42,37 +42,37 @@ public class LobbyCanvas : MonoBehaviour
 
     public void ActiveMyPanel(string panelName)
     {
-        photonManager.Instance.ActiveMyPanel(panelName);
+        PhotonManager.Instance.ActiveMyPanel(panelName);
     }
 
     public void RoomListBtnClicked()
     {
-        photonManager.Instance.RoomListBtnClicked();
+        PhotonManager.Instance.RoomListBtnClicked();
     }
 
     public void OnClickRoomCreate()
     {
-        photonManager.Instance.OnClickRoomCreate();
+        PhotonManager.Instance.OnClickRoomCreate();
     }
 
     public void onCancelClick()
     {
-        photonManager.Instance.onCancelClick();
+        PhotonManager.Instance.onCancelClick();
     }
 
     public void BackFromRoomList()
     {
-        photonManager.Instance.BackFromRoomList();
+        PhotonManager.Instance.BackFromRoomList();
     }
 
     public void BackFromPlayerList()
     {
-        photonManager.Instance.BackFromPlayerList();
+        PhotonManager.Instance.BackFromPlayerList();
     }
 
     public void OnClickPlayButton()
     {
-        photonManager.Instance.OnClickPlayButton();
+        PhotonManager.Instance.OnClickPlayButton();
     }
 
 }

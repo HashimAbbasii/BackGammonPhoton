@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using DG.Tweening;
 
 namespace BackgammonNet.Core
 {
@@ -23,14 +24,21 @@ namespace BackgammonNet.Core
         {
             spriteRenderer.color = (slotNo % 2 == 0) ? new Color(0.706f, 0.306f, 0.282f) : new Color(0.933f, 0.910f, 0.886f); // R/W
 
+            
+
             if (slotNo == 0 || slotNo == 25)
                 spriteRenderer.color = Color.clear;
         }
 
         public void PlacePawn(Pawn pawn, int isWhite)       // put the last piece from the pawns list in the right place in the slot
         {
-            pawn.transform.SetParent(pawnsContainer, false);
-            pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
+
+            pawn.transform.SetParent(pawnsContainer, true);
+
+            pawn.transform.DOLocalMove(new Vector3(0, -0.5f + pawns.Count * yOffset, 0), 0.5f);
+            //pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
+
+
             pawn.SetColorAndHouse(isWhite);
             pawn.slotNo = slotNo;                                   // the slot that the pawn belongs to
             pawn.pawnNo = pawns.Count;                              // the position of the pawn in the slot

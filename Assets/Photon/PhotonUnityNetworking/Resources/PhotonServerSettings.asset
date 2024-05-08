@@ -51,6 +51,11 @@ MonoBehaviour:
   - TimerForNetwork
   - UpdateTimeText
   - TimerSetActive
+  - Pawn_OnCompleteTurnRPC
+  - MultiplayerModeRPC
+  - PlacePawn
+  - PlacePawnRPC
+  - RemoveListNetwork
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

@@ -102,7 +102,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1426467786331350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af3f2e4ae2055d84fa6dfcc023ad908a, type: 3}
+  m_Script: {fileID: 11500000, guid: a6a4988774018f443a7e738e588a8e67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slotNo: 0
@@ -110,6 +110,7 @@ MonoBehaviour:
   highlighted: {fileID: 1621064181770348}
   pawnsContainer: {fileID: 4009519221710956}
   pawns: []
+  photonView: {fileID: 8987106261224037546}
 --- !u!114 &8987106261224037546
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,9 +9,10 @@ using UnityEngine.SceneManagement;
 using System;
 using Random = UnityEngine.Random;
 
-public class photonManager : MonoBehaviourPunCallbacks
+public class PhotonManager : MonoBehaviourPunCallbacks
 {
-    public static photonManager Instance { get; set; }
+    private PhotonView _photonView;
+    public static PhotonManager Instance { get; set; }
 
     [Header("GAME OBJECT")]
     public GameObject roomListPrefab;
@@ -39,9 +40,10 @@ public class photonManager : MonoBehaviourPunCallbacks
     public GameObject playerListItemPrefab;
     public RectTransform playerListItemParent;
     public GameObject PlayButton;
-    public static photonManager instance;
+    public static PhotonManager instance;
 
-    public DateTime startingTime;
+    //public DateTime startingTime;
+    public bool multiPlayerMode = false;
 
     #region UnityMethod
     private void Awake()
@@ -280,10 +282,11 @@ public class photonManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        _photonView = GetComponent<PhotonView>();
         roomListData = new Dictionary<string, RoomInfo>();
         roomListGameObject = new Dictionary<string, GameObject>();
         PhotonNetwork.AutomaticallySyncScene = true;
-        startingTime = DateTime.Now;
+        //startingTime = DateTime.Now;
         StartCoroutine(Test());
     }
 
@@ -340,11 +343,10 @@ public class photonManager : MonoBehaviourPunCallbacks
         }
         ActiveMyPanel(Roomlist.name);
     }
-    public bool multiPlayerMode=false;
+    
     public void OnClickPlayButton()
-
     {
-        multiPlayerMode = true;
+        _photonView.RPC(nameof(MultiplayerModeRPC), RpcTarget.AllBuffered);
         if (PhotonNetwork.IsMasterClient)
         {
             if (SceneManager.sceneCount > 2)
@@ -357,4 +359,10 @@ public class photonManager : MonoBehaviourPunCallbacks
         }
     }
     #endregion
+
+    [PunRPC]
+    public void MultiplayerModeRPC()
+    {
+        multiPlayerMode = true;
+    }
 }

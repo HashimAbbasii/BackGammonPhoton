@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using Photon.Pun;
+using Photon.Realtime;
+using Unity.VisualScripting;
+
 
 namespace BackgammonNet.Core
 {
@@ -19,22 +23,41 @@ namespace BackgammonNet.Core
         private float yOffset = -0.9f;
         private int lastCount;
 
+        public PhotonView photonView;
+
         private void Start()
         {
+            photonView = GetComponent<PhotonView>();
+
             spriteRenderer.color = (slotNo % 2 == 0) ? new Color(0, 0.6f, 1) : new Color(0.5f, 0.7f, 0.8f);
 
             if (slotNo == 0 || slotNo == 25)
                 spriteRenderer.color = Color.clear;
         }
 
-        public void PlacePawn(PawnNetwork pawn, int isWhite)       // put the last piece from the pawns list in the right place in the slot
+        [PunRPC]
+        public void PlacePawnRPC(int viewID, int isWhite)
         {
+            var pawn = PhotonView.Find(viewID).GetComponent<PawnNetwork>();
+
             pawn.transform.SetParent(pawnsContainer, false);
             pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
             pawn.SetColorAndHouse(isWhite);
             pawn.slotNo = slotNo;                                   // the slot that the pawn belongs to
             pawn.pawnNo = pawns.Count;                              // the position of the pawn in the slot
             pawns.Add(pawn);
+        }
+
+        public void PlacePawn(PawnNetwork pawn, int isWhite)       // put the last piece from the pawns list in the right place in the slot
+        {
+            photonView.RPC(nameof(PlacePawnRPC),RpcTarget.AllBuffered,pawn.photonView, isWhite);
+
+            //pawn.transform.SetParent(pawnsContainer, false);
+            //pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
+            //pawn.SetColorAndHouse(isWhite);
+            //pawn.slotNo = slotNo;                                   // the slot that the pawn belongs to
+            //pawn.pawnNo = pawns.Count;                              // the position of the pawn in the slot
+            //pawns.Add(pawn);
         }
 
         public PawnNetwork GetTopPawn(bool pop)
@@ -45,13 +68,19 @@ namespace BackgammonNet.Core
                 PawnNetwork pawn = pawns[pawns.Count - 1];
                 if (pop)
                 {
+                    photonView.RPC(nameof(RemoveListNetwork), RpcTarget.AllBuffered);
                   //  Debug.Log("LLLLL");
-                    pawns.RemoveAt(pawns.Count - 1);
+                   // pawns.RemoveAt(pawns.Count - 1);
                 }
                 return pawn;
             }
 
             return null;
+        }
+        [PunRPC]
+        public void RemoveListNetwork()
+        {
+            pawns.RemoveAt(pawns.Count - 1);
         }
 
         public int Height() => pawns.Count;
