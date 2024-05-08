@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 58256282178089650}
   - component: {fileID: 212208489821492190}
   - component: {fileID: 114281773330944926}
+  - component: {fileID: 3780298561855699858}
   m_Layer: 0
   m_Name: Pawn
   m_TagString: Untagged
@@ -30,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -82,6 +84,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -134,6 +137,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f63323d94a10b4f9f9f9cc57e14e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pawnColor: 0
   slotNo: 0
   pawnNo: 0
-  isWhiteColor: 0
+  imprisoned: 0
+  maxMoves: 0
+--- !u!114 &3780298561855699858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913759149231010}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cfe7d31a1f00ca48ba5b31b47ed90cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  localPosition: {x: 0, y: 0, z: 0}
+  globalPosition: {x: 0, y: 0, z: 0}
+  localRotation: {x: 0, y: 0, z: 0, w: 1}
+  globalRotation: {x: 0, y: 0, z: 0, w: 1}
+  localScale: {x: 1, y: 1, z: 1}
+  lossyScale: {x: 0, y: 0, z: 0}

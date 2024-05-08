@@ -128,7 +128,9 @@ namespace BackgammonNet.Core
                     {
                         Debug.Log("JAIL KAR DOOH");
                         var prisonPawn = prisonSlot.GetTopPawn(true);
+                       
                         int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
+                        TryHighlight(true);
                         Slot.slots[slot0].GetTopPawn(false).PlaceJail();
                         Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
                         prisonPawn.imprisoned = false;
@@ -149,6 +151,8 @@ namespace BackgammonNet.Core
 
                         var prisonPawn = prisonSlot.GetTopPawn(true);
                         int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
+                        var slotHighlight= Slot.slots[25 + sign * GameController.dices[0]].slotNo;
+                        TryHighlight(true);
                         Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
                         prisonPawn.imprisoned = false;
                         imprisonedSide[pawnColor]--;
@@ -178,6 +182,7 @@ namespace BackgammonNet.Core
                             var prisonPawn = prisonSlot.GetTopPawn(true);
                             int slot0 = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
                             Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
+                            TryHighlight(true);
                             prisonPawn.imprisoned = false;
                             imprisonedSide[pawnColor]--;
                             CheckShelterStage();
@@ -201,54 +206,15 @@ namespace BackgammonNet.Core
                     prisonPawn.imprisoned = false;
                     imprisonedSide[pawnColor]--;
                     CheckShelterStage();
+                    TryHighlight(true);
                     CheckShelterAndMore();
                     StartCoroutine(GameController.Instance.SecondDice());
 
                 }
 
-                //if (Slot.slots[25 + sign * GameController.dices[0]].Height() >= 0 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() == Slot.slots[25].IsWhite())
-                //{
-                //    Debug.Log("BAIL OUT");
-                //    //..................Slot Prison Bail Out...................//
-                //    var prisonPawn = Slot.slots[25].GetTopPawn(true);
-                //    int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
-                //    Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                //    imprisoned = false;
-                //    imprisonedSide[pawnColor]--;
-                //    Debug.Log("BAIL OUT afafasf");
-                //    GameController.Instance.PrisonIenumertor();
-
-                //    //...............Call the Second Dice movement...........................//
-
-
-
-                //}
-                //else if (Slot.slots[25 + sign * GameController.dices[0]].Height() == 1 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() != Slot.slots[25].IsWhite())
-                //    {
-                //    /// .................Jail Hoon gi hain..................... ///
-                //      Debug.Log("IN JAIL");
-                //    var prisonPawn = Slot.slots[25].GetTopPawn(false);
-                //        int slot0= Slot.slots[25 + sign * GameController.dices[0]].slotNo;
-                //        Slot.slots[slot0].GetTopPawn(false).PlaceJail();
-                //        Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                //         imprisoned = false;
-                //          imprisonedSide[pawnColor]--;
-                //   // StartCoroutine(GameController.Instance.SecondDice());
-
-                //    //...............Call the Second Dice movement...........................//
-
-                //}
-
 
                 //...................... aghr Prison Hu gi hain ................
             }
-
-            //for (int i = 0; i < 2; i++)
-            //{
-
-            //}
-
-
 
         }
         public void Selectimprisoned2()
@@ -589,6 +555,9 @@ namespace BackgammonNet.Core
                 PlaceJail();
 
             Slot.slots[slotNo].GetTopPawn(true);                      // we remove the piece from the slot that has been occupied so far
+            //Debug.Log("Pawn after MU Before Parent Local Pos " + transform.localPosition);
+            //Debug.Log("Pawn after MU Before Parent Global Pos " + transform.position);
+            
             slot.PlacePawn(this, pawnColor);                          // put a piece in the new slot
 
             if (!GameController.isDublet)

@@ -97,29 +97,6 @@ namespace BackgammonNet.Core
             if (photonManager.instance.multiPlayerMode == true)
             {
                 StartCoroutine(NetworkButton());
-            //    Board.Instance.submitBtns[0].gameObject.SetActive(false);
-            //    Board.Instance.submitBtns[1].gameObject.SetActive(false);
-            //    if (GameManager.instance.networkgameObjects[0].GetComponent<PhotonView>().IsMine)
-            //    {
-            //        _photonView.RPC(nameof(DiceEnbleForMaster), RpcTarget.AllBuffered);
-            //    }
-            //    else if(!GameManager.instance.networkgameObjects[0].IsMine)
-            //    {
-            //        _photonView.RPC(nameof(DiceEnbleForClient), RpcTarget.AllBuffered);
-            //    }
-            //    //submitBtns[0].gameObject.SetActive(false);
-            //    //submitBtns[1].gameObject.SetActive(false);
-
-            //  diceButton.onClick.AddListener(GenerateForNetwork);
-            ////  _photonView.RPC(nameof(ClientTurnStarted), RpcTarget.AllBuffered, _photonView.ViewID);
-                    
-            //        //else if (!PhotonNetwork.IsMasterClient)
-            //        //{
-                        
-            //        //}
-                
-
-
             }
         }
 
@@ -130,32 +107,11 @@ namespace BackgammonNet.Core
             yield return new WaitForSeconds(2f);
             if (photonManager.instance.multiPlayerMode == true)
             {
-
                 _photonView.RPC(nameof(SlotButtonDisable), RpcTarget.AllBuffered);
-                //if (GameManager.instance.networkgameObjects[0].GetComponent<PhotonView>().IsMine)
-                //{
-                //   // _photonView.RPC(nameof(DiceEnbleForClient), RpcTarget.AllBuffered);
-                //    yield return new WaitForSecondsRealtime(1f);
-                //    _photonView.RPC(nameof(DiceEnbleForMaster), RpcTarget.MasterClient); 
-                //}
-
-                //else if (!GameManager.instance.networkgameObjects[0].IsMine)
-                //{
-                //    _photonView.RPC(nameof(DiceEnbleForClient), RpcTarget.AllBuffered);
-                //}
-                //submitBtns[0].gameObject.SetActive(false);
-                //submitBtns[1].gameObject.SetActive(false);
+                
 
                 diceButton.onClick.AddListener(GenerateForNetwork);
-                //  _photonView.RPC(nameof(ClientTurnStarted), RpcTarget.AllBuffered, _photonView.ViewID);
-
-                //else if (!PhotonNetwork.IsMasterClient)
-                //{
-
-                //}
-
-
-
+                
             }
         }
 
@@ -299,10 +255,13 @@ namespace BackgammonNet.Core
         #region _AiModeGeneration
         public void GenerateForAi()
         {
+            foreach (var slot in Slot.slots)
+            {
+                slot.HightlightMe(false);
+            }
+
             if (diceEnable && Board.Instance.acceptance >= 2)
             {
-
-
                 if (turn == 0)
                 {
                   //  Debug.Log("Human Turn");
@@ -313,7 +272,7 @@ namespace BackgammonNet.Core
                 }
                 else
                 {
-                  //  Debug.Log("Ai Turn");
+                    //  Debug.Log("Ai Turn");
                     _allSlotsInts.Clear();
                     allSlots.Clear();
                     topEPawns.Clear();
@@ -357,30 +316,50 @@ namespace BackgammonNet.Core
                 isDublet = true;
             }
 
+            StartCoroutine(PawnMoveCoroutine());
+
+           // if (!CanMoveAi(2))
+           // {
+           //    StartCoroutine(ChangeTurn());
+
+           // }
+           // if (Slot.slots[25].Height() > 0)
+           // {
+           //     //........Prison Slot...............//
+
+           //     CheckPrisonSlot();
+           // }
+           // else if (!GameController.GameOver)
+           // {
+           //    // Debug.Log("Normal Movement");
+           //  //   CheckPrisonSlot();
+           //    SlotNumberForAI(); 
+           //}
+
+            //...........................Random Slot Select ..............................//
+
+        }
+
+        private IEnumerator PawnMoveCoroutine()
+        {
+            yield return new WaitForSeconds(1);
             if (!CanMoveAi(2))
             {
-               StartCoroutine(ChangeTurn());
+                StartCoroutine(ChangeTurn());
 
             }
-
             if (Slot.slots[25].Height() > 0)
             {
                 //........Prison Slot...............//
 
                 CheckPrisonSlot();
             }
-           else if (!GameController.GameOver)
+            else if (!GameController.GameOver)
             {
-               // Debug.Log("Normal Movement");
-             //   CheckPrisonSlot();
-               SlotNumberForAI();
-
-                
-
+                // Debug.Log("Normal Movement");
+                //   CheckPrisonSlot();
+                SlotNumberForAI();
             }
-
-            //...........................Random Slot Select ..............................//
-
         }
 
         #endregion
@@ -864,15 +843,22 @@ namespace BackgammonNet.Core
             else
 
 
-                if (turn == 1 && LobbyManager.AiMode == true)
+            if (turn == 1 && LobbyManager.AiMode == true)
             {
-                GenerateForAi();
+                //GenerateForAi();
+                StartCoroutine(TurnChangeDelay());
             }
             else
             {
                 diceButton.gameObject.SetActive(true);                // offline game
 
             }
+        }
+
+        private IEnumerator TurnChangeDelay()
+        {
+            yield return new WaitForSeconds(1f);
+            GenerateForAi();
         }
 
         private void Pawn_OnGameOver(bool isWhite)
