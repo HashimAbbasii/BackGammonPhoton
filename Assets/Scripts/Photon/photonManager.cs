@@ -326,8 +326,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     {
         if (roomListGameObject.Count > 0)
         {
-
-
             foreach (var v in roomListGameObject.Values)
             {
                 Destroy(v);

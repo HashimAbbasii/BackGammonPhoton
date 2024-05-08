@@ -128,6 +128,7 @@ MonoBehaviour:
   highlighted: {fileID: 1621064181770348}
   pawnsContainer: {fileID: 4009519221710956}
   pawns: []
+  photonView: {fileID: -5582932979422961073}
 --- !u!114 &-5582932979422961073
 MonoBehaviour:
   m_ObjectHideFlags: 0

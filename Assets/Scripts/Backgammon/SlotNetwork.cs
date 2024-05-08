@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 
 
 namespace BackgammonNet.Core
@@ -29,6 +30,14 @@ namespace BackgammonNet.Core
         {
             photonView = GetComponent<PhotonView>();
 
+
+            slotNo = (int)photonView.InstantiationData[0];
+            name = (string)photonView.InstantiationData[1];
+            transform.SetParent(BoardNetwork.Instance.slotsContainer);
+            slots.Add(this);
+
+            //Hashim Check Slot tomorrow
+
             spriteRenderer.color = (slotNo % 2 == 0) ? new Color(0, 0.6f, 1) : new Color(0.5f, 0.7f, 0.8f);
 
             if (slotNo == 0 || slotNo == 25)
@@ -50,14 +59,18 @@ namespace BackgammonNet.Core
 
         public void PlacePawn(PawnNetwork pawn, int isWhite)       // put the last piece from the pawns list in the right place in the slot
         {
-            photonView.RPC(nameof(PlacePawnRPC),RpcTarget.AllBuffered,pawn.photonView, isWhite);
+            Debug.Log(photonView);
+            Debug.Log(pawn.photonView);
+            Debug.Log(isWhite);
 
-            //pawn.transform.SetParent(pawnsContainer, false);
-            //pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
-            //pawn.SetColorAndHouse(isWhite);
-            //pawn.slotNo = slotNo;                                   // the slot that the pawn belongs to
-            //pawn.pawnNo = pawns.Count;                              // the position of the pawn in the slot
-            //pawns.Add(pawn);
+            //photonView.RPC(nameof(PlacePawnRPC),RpcTarget.AllBuffered,pawn.photonView, isWhite);
+
+            pawn.transform.SetParent(pawnsContainer, false);
+            pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
+            pawn.SetColorAndHouse(isWhite);
+            pawn.slotNo = slotNo;                                   // the slot that the pawn belongs to
+            pawn.pawnNo = pawns.Count;                              // the position of the pawn in the slot
+            pawns.Add(pawn);
         }
 
         public PawnNetwork GetTopPawn(bool pop)

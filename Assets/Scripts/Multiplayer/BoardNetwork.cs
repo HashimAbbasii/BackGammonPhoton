@@ -9,12 +9,12 @@ namespace BackgammonNet.Core
 {
     // Create slots and assign them the initial order of pieces.
 
-    public class BoardNetwork : MonoBehaviour
+    public class BoardNetwork : MonoBehaviourPunCallbacks
     {
-        [SerializeField] private SlotNetwork slotPrefab;
         [SerializeField] private PhotonView photonView;
+        [SerializeField] private SlotNetwork slotPrefab;
         [SerializeField] private PawnNetwork pawnPrefab;
-        [SerializeField] private Transform slotsContainer;
+        [SerializeField] public Transform slotsContainer;
         [SerializeField] private Text[] playersNames;
         [SerializeField] private Text infoText;
         [SerializeField] private GameObject infoPanel;
@@ -31,72 +31,6 @@ namespace BackgammonNet.Core
         private void Awake()
         {
             Instance = this;
-           // client = LobbyManager.Instance.client;
-           // LobbyManager.monitContent = "";
-
-            //CreateSlots();
-
-        //    if (client)     // network game
-        //    {
-        //        Debug.Log(LobbyManager.clientName + ": " + client.players[0].name + " vs. " + client.players[1].name);
-
-        //        playersNames[0].text = client.players[0].name;
-        //        playersNames[1].text = client.players[1].name;
-
-        //        isClientWhite = client.isHost;
-
-        //        if (LobbyManager.clientName != client.players[0].name && LobbyManager.clientName != client.players[1].name)
-        //        {
-        //            observer = true;
-        //            infoText.text = "(" + LobbyManager.clientName + ": Observer)";
-
-        //            if (Client.isSobsrvMessage)
-        //                DefaultPawns();
-        //        }
-        //        else
-        //        {
-        //            infoText.text = "(" + LobbyManager.clientName + ")";
-        //            DefaultPawns();
-        //        }
-
-        //        StartCoroutine(HostExistenceTest());
-        //        OpponentsList.Instance.SwitchVisibility(true);
-
-        //        if (client.isHost)
-        //            infoPanel.SetActive(true);
-
-        //        //---- game start confirmation buttons
-
-        //        if (!observer)
-        //        {
-        //            int no = isClientWhite ? 0 : 1;
-        //            submitBtns[no].onClick.AddListener(delegate { Accept(no); });
-        //            submitBtns[1 - no].gameObject.SetActive(false);
-        //        }
-        //        else
-        //        {
-        //            submitBtns[0].gameObject.SetActive(false);
-        //            submitBtns[1].gameObject.SetActive(false);
-
-        //            acceptance = 2;
-        //        }
-        //    }
-        //    else
-        //    {
-        //        submitBtns[0].onClick.AddListener(delegate { Accept(0); });
-        //        submitBtns[1].onClick.AddListener(delegate { Accept(1); });
-
-        //        DefaultPawns();
-        //    }
-        //}
-
-        //private void Accept(int no)
-        //{
-        //    acceptance++;
-        //    submitBtns[no].gameObject.SetActive(false);
-
-        //    if (client)
-        //        client.Send("CACCPT|acceptance");           // our confirmation of the willingness to start the game
         }
 
         private void Start()
@@ -157,7 +91,7 @@ namespace BackgammonNet.Core
             yield return new WaitForSecondsRealtime(1f);
             if (PhotonNetwork.IsMasterClient)
             {
-                photonView.RPC(nameof(SpawnSlots), RpcTarget.All);
+                photonView.RPC(nameof(SpawnSlots), RpcTarget.AllBuffered);
             }
         }
 
@@ -194,6 +128,7 @@ namespace BackgammonNet.Core
             slotRot = Quaternion.Euler(new Vector3(0, 0, 180));
             CreateSlot(25, slotPos, slotRot);
         }
+
         [PunRPC]
         void PawnSlots()
         {
@@ -235,34 +170,51 @@ namespace BackgammonNet.Core
 
 
 
-        private void CreateSlots()
-        {
-            float UP_POS = 5.43f;
-            SlotNetwork.slots = new List<SlotNetwork>();
-            Vector3 slotPos = new Vector3(0, UP_POS, -0.2f);
-            Quaternion slotRot = Quaternion.identity;
-            CreateSlot(0, slotPos, slotRot);              // prison slot for white
+        //private void CreateSlots()
+        //{
+        //    float UP_POS = 5.43f;
+        //    SlotNetwork.slots = new List<SlotNetwork>();
+        //    Vector3 slotPos = new Vector3(0, UP_POS, -0.2f);
+        //    Quaternion slotRot = Quaternion.identity;
+        //    CreateSlot(0, slotPos, slotRot);              // prison slot for white
 
-            for (int i = 1; i <= 24; i++)
-            {
-                float xDelta = (i < 13) ? -1.125f : 1.125f;             // increments on the x-axis of slot positions
-                float xOffset = (((i - 1) / 6) % 3 == 0) ? 0 : -1.25f;  // jumping over the middle gang
-                float iOffset = (i < 13) ? 1 : 24;
-                float ySign = (i < 13) ? 1 : -1;
+        //    for (int i = 1; i <= 24; i++)
+        //    {
+        //        float xDelta = (i < 13) ? -1.125f : 1.125f;             // increments on the x-axis of slot positions
+        //        float xOffset = (((i - 1) / 6) % 3 == 0) ? 0 : -1.25f;  // jumping over the middle gang
+        //        float iOffset = (i < 13) ? 1 : 24;
+        //        float ySign = (i < 13) ? 1 : -1;
 
-                slotPos = new Vector3(6.81f + (i - iOffset) * xDelta + xOffset, ySign * UP_POS, -0.2f);
-                slotRot = (i < 13) ? Quaternion.identity : Quaternion.Euler(new Vector3(0, 0, 180));
-                CreateSlot(i, slotPos, slotRot);
-            }
+        //        slotPos = new Vector3(6.81f + (i - iOffset) * xDelta + xOffset, ySign * UP_POS, -0.2f);
+        //        slotRot = (i < 13) ? Quaternion.identity : Quaternion.Euler(new Vector3(0, 0, 180));
+        //        CreateSlot(i, slotPos, slotRot);
+        //    }
 
-            slotPos = new Vector3(0, -UP_POS, -0.2f);
-            slotRot = Quaternion.Euler(new Vector3(0, 0, 180));
-            CreateSlot(25, slotPos, slotRot);             // prison slot for reds
-        }
+        //    slotPos = new Vector3(0, -UP_POS, -0.2f);
+        //    slotRot = Quaternion.Euler(new Vector3(0, 0, 180));
+        //    CreateSlot(25, slotPos, slotRot);             // prison slot for reds
+        //}
 
         private void CreateSlot(int slotNo, Vector3 slotPos, Quaternion slotRot)
         {
-            SlotNetwork slot = Instantiate(slotPrefab, slotPos, slotRot, slotsContainer);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                object[] data = new object[] { slotNo, "slot" + slotNo.ToString() };
+
+                var slotGo = PhotonNetwork.Instantiate("SlotNetwork", slotPos, slotRot, 0, data);
+
+
+                //photonView.RPC(nameof(CreateSlotRPC),RpcTarget.AllBuffered, slotGo.GetComponent<PhotonView>().ViewID, slotNo);
+            }
+        }
+
+        
+        [PunRPC]
+        public void CreateSlotRPC(int slotViewID, int slotNo)
+        {
+            var slotGo = PhotonView.Find(slotViewID).gameObject;
+            slotGo.transform.SetParent(slotsContainer);
+            var slot = slotGo.GetComponent<SlotNetwork>();
             slot.name = "slot" + slotNo.ToString();
             slot.slotNo = slotNo;
             SlotNetwork.slots.Add(slot);
@@ -307,6 +259,12 @@ namespace BackgammonNet.Core
 
             for (int i = 0; i < amount; i++)
                 go.transform.GetChild(i).gameObject.SetActive(true);
+        }
+
+        [ContextMenu("Test")]
+        public void InstantiateTest()
+        {
+            PhotonNetwork.Instantiate("Test", Vector3.zero, Quaternion.identity);
         }
     }
 }
