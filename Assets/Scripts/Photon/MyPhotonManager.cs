@@ -9,10 +9,10 @@ using UnityEngine.SceneManagement;
 using System;
 using Random = UnityEngine.Random;
 
-public class PhotonManager : MonoBehaviourPunCallbacks
+public class MyPhotonManager : MonoBehaviourPunCallbacks
 {
     private PhotonView _photonView;
-    public static PhotonManager Instance { get; set; }
+    public static MyPhotonManager Instance { get; set; }
 
     [Header("GAME OBJECT")]
     public GameObject roomListPrefab;
@@ -40,7 +40,7 @@ public class PhotonManager : MonoBehaviourPunCallbacks
     public GameObject playerListItemPrefab;
     public RectTransform playerListItemParent;
     public GameObject PlayButton;
-    public static PhotonManager instance;
+    public static MyPhotonManager instance;
 
     //public DateTime startingTime;
     public bool multiPlayerMode = false;
@@ -290,11 +290,6 @@ public class PhotonManager : MonoBehaviourPunCallbacks
         StartCoroutine(Test());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     IEnumerator Test()
     {

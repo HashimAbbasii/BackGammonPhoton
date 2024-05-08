@@ -50,7 +50,7 @@ namespace BackgammonNet.Core
         private void Awake()
         {
             Instance = this;
-            if (PhotonManager.instance.multiPlayerMode == true)
+            if (MyPhotonManager.instance.multiPlayerMode == true)
             {
                 diceButton.enabled=false;
             }
@@ -94,7 +94,7 @@ namespace BackgammonNet.Core
                 ActivateButtons(false);
 
 
-            if (PhotonManager.instance.multiPlayerMode == true)
+            if (MyPhotonManager.instance.multiPlayerMode == true)
             {
                 StartCoroutine(NetworkButton());
             }
@@ -105,7 +105,7 @@ namespace BackgammonNet.Core
         {
             diceButton.enabled = false;
             yield return new WaitForSeconds(2f);
-            if (PhotonManager.instance.multiPlayerMode == true)
+            if (MyPhotonManager.instance.multiPlayerMode == true)
             {
                 _photonView.RPC(nameof(SlotButtonDisable), RpcTarget.AllBuffered);
                 

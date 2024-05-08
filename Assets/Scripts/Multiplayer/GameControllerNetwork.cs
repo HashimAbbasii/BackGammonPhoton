@@ -67,7 +67,7 @@ namespace BackgammonNet.Core
 
             
 
-            if (PhotonManager.instance.multiPlayerMode == true)
+            if (MyPhotonManager.instance.multiPlayerMode == true)
             {
                 Debug.Log("GN");
 
@@ -96,7 +96,7 @@ namespace BackgammonNet.Core
             //    ActivateButtons(false);
 
 
-            if (PhotonManager.instance.multiPlayerMode == true)
+            if (MyPhotonManager.instance.multiPlayerMode == true)
             {
                 StartCoroutine(NetworkButton());
             
@@ -114,7 +114,7 @@ namespace BackgammonNet.Core
             diceButton.gameObject.SetActive(false);
             yield return new WaitForSeconds(2f);
 
-            if (PhotonManager.instance.multiPlayerMode == true)
+            if (MyPhotonManager.instance.multiPlayerMode == true)
             {
                 if (YourTurn())
                 {
