@@ -21,7 +21,7 @@ namespace BackgammonNet.Core
 
         private void Start()
         {
-            spriteRenderer.color = (slotNo % 2 == 0) ? new Color(0, 0.6f, 1) : new Color(0.5f, 0.7f, 0.8f);
+            spriteRenderer.color = (slotNo % 2 == 0) ? new Color(0.706f, 0.306f, 0.282f) : new Color(0.933f, 0.910f, 0.886f); // R/W
 
             if (slotNo == 0 || slotNo == 25)
                 spriteRenderer.color = Color.clear;
@@ -39,6 +39,7 @@ namespace BackgammonNet.Core
 
         public Pawn GetTopPawn(bool pop)
         {
+            
             if (pawns.Count > 0)
             {
                // Debug.Log("gggg");
