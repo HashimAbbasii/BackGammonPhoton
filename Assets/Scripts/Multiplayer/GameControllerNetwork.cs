@@ -55,6 +55,8 @@ namespace BackgammonNet.Core
 
         private void Awake()
         {
+            Instance = this;
+
             diceButton.gameObject.SetActive(false);
             _photonView = GetComponent<PhotonView>();
 

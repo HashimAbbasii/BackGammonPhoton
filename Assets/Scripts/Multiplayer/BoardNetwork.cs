@@ -98,7 +98,11 @@ namespace BackgammonNet.Core
         IEnumerator createPawnNetwork()
         {
             yield return new WaitForSecondsRealtime(1f);
-            photonView.RPC(nameof(PawnSlots), RpcTarget.All);
+            if (PhotonNetwork.IsMasterClient)
+            {
+               photonView.RPC(nameof(PawnSlots), RpcTarget.All);
+
+            }
 
         }
 
@@ -199,8 +203,14 @@ namespace BackgammonNet.Core
 
         private void CreatePawn(int slotNo, int isWhite)        // assign a pawn to the appropriate slot
         {
-            PawnNetwork pawn = Instantiate(pawnPrefab);
-            SlotNetwork.slots[slotNo].PlacePawn(pawn, isWhite);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                object[] data = new object[] { slotNo, isWhite };
+                var slotGo = PhotonNetwork.Instantiate("PawnNetwork", transform.position, Quaternion.identity, 0, data);
+
+            }
+            //PawnNetwork pawn = Instantiate(pawnPrefab);
+            //SlotNetwork.slots[slotNo].PlacePawn(pawn, isWhite);
           //  GameController.Instance.allPawns.Add(pawn);
            // if (isWhite == 1) { GameController.Instance.ePawns.Add(pawn); }
         }

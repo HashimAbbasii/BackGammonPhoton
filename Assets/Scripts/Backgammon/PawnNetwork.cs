@@ -37,11 +37,23 @@ namespace BackgammonNet.Core
 
         private void Awake()
         {
-            instance = this;
+            //instance = this;
+            photonView = GetComponent<PhotonView>();
         }
+
+        private void Start()
+        {
+            var slotNo = (int)photonView.InstantiationData[0];
+            var isWhite = (int)photonView.InstantiationData[1];
+
+            SlotNetwork.slots[slotNo].PlacePawn(this, isWhite);
+            GameControllerNetwork.Instance.allPawns.Add(this);
+            if (isWhite == 1) { GameControllerNetwork.Instance.ePawns.Add(this); }
+        }
+
         public void SetColorAndHouse(int color)
         {
-            photonView = GetComponent<PhotonView>();
+            
             GetComponent<SpriteRenderer>().color = color == 0 ? Color.white : Color.red;
             house = GameObject.Find((color == 0 ? "White" : "Red") + " House");
             pawnColor = color;

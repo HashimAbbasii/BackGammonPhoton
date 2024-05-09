@@ -59,18 +59,18 @@ namespace BackgammonNet.Core
 
         public void PlacePawn(PawnNetwork pawn, int isWhite)       // put the last piece from the pawns list in the right place in the slot
         {
-            Debug.Log(photonView);
-            Debug.Log(pawn.photonView);
-            Debug.Log(isWhite);
+            //Debug.Log(photonView);
+            //Debug.Log(pawn.photonView);
+            //Debug.Log(isWhite);
 
-            //photonView.RPC(nameof(PlacePawnRPC),RpcTarget.AllBuffered,pawn.photonView, isWhite);
+            photonView.RPC(nameof(PlacePawnRPC), RpcTarget.AllBuffered, pawn.photonView.ViewID, isWhite);
 
-            pawn.transform.SetParent(pawnsContainer, false);
-            pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
-            pawn.SetColorAndHouse(isWhite);
-            pawn.slotNo = slotNo;                                   // the slot that the pawn belongs to
-            pawn.pawnNo = pawns.Count;                              // the position of the pawn in the slot
-            pawns.Add(pawn);
+            //pawn.transform.SetParent(pawnsContainer, false);
+            //pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
+            //pawn.SetColorAndHouse(isWhite);
+            //pawn.slotNo = slotNo;                                   // the slot that the pawn belongs to
+            //pawn.pawnNo = pawns.Count;                              // the position of the pawn in the slot
+            //pawns.Add(pawn);
         }
 
         public PawnNetwork GetTopPawn(bool pop)
