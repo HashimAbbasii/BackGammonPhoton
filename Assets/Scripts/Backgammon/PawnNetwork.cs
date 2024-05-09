@@ -46,9 +46,12 @@ namespace BackgammonNet.Core
             var slotNo = (int)photonView.InstantiationData[0];
             var isWhite = (int)photonView.InstantiationData[1];
 
-            SlotNetwork.slots[slotNo].PlacePawn(this, isWhite);
+            if (PhotonNetwork.IsMasterClient)
+            {
+                SlotNetwork.slots[slotNo].PlacePawn(this, isWhite);
+            }
             GameControllerNetwork.Instance.allPawns.Add(this);
-            if (isWhite == 1) { GameControllerNetwork.Instance.ePawns.Add(this); }
+           // if (isWhite == 1) { GameControllerNetwork.Instance.ePawns.Add(this); }
         }
 
         public void SetColorAndHouse(int color)

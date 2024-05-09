@@ -38,7 +38,6 @@ namespace BackgammonNet.Core
             photonView=GetComponent<PhotonView>(); 
             if (PhotonNetwork.IsMasterClient)
             {
-                Debug.Log("MASTER Client");
                 StartCoroutine(createSlotNetwork());
                 photonView.RPC(nameof(slotButtonOff), RpcTarget.All);
                 StartCoroutine(createPawnNetwork());
@@ -97,7 +96,7 @@ namespace BackgammonNet.Core
 
         IEnumerator createPawnNetwork()
         {
-            yield return new WaitForSecondsRealtime(1f);
+            yield return new WaitForSecondsRealtime(2f);
             if (PhotonNetwork.IsMasterClient)
             {
                photonView.RPC(nameof(PawnSlots), RpcTarget.All);
@@ -184,23 +183,6 @@ namespace BackgammonNet.Core
             SlotNetwork.slots.Add(slot);
         }
 
-        private void DefaultPawns()
-        {
-            for (int i = 0; i < 5; i++)
-            {
-                if (i < 2) CreatePawn(1, 0);    // slot  1
-                if (i < 2) CreatePawn(24, 1);   // slot 24            
-
-                if (i < 3) CreatePawn(8, 1);    // slot  8
-                if (i < 3) CreatePawn(17, 0);   // slot 17
-
-                CreatePawn(6, 1);               // slot  6
-                CreatePawn(12, 0);              // slot 12
-                CreatePawn(13, 1);              // slot 13
-                CreatePawn(19, 0);              // slot 19
-            }
-        }
-
         private void CreatePawn(int slotNo, int isWhite)        // assign a pawn to the appropriate slot
         {
             if (PhotonNetwork.IsMasterClient)
@@ -209,10 +191,6 @@ namespace BackgammonNet.Core
                 var slotGo = PhotonNetwork.Instantiate("PawnNetwork", transform.position, Quaternion.identity, 0, data);
 
             }
-            //PawnNetwork pawn = Instantiate(pawnPrefab);
-            //SlotNetwork.slots[slotNo].PlacePawn(pawn, isWhite);
-          //  GameController.Instance.allPawns.Add(pawn);
-           // if (isWhite == 1) { GameController.Instance.ePawns.Add(pawn); }
         }
 
         //---- recovery of the game

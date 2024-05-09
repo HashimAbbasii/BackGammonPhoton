@@ -48,7 +48,7 @@ namespace BackgammonNet.Core
         public void PlacePawnRPC(int viewID, int isWhite)
         {
             var pawn = PhotonView.Find(viewID).GetComponent<PawnNetwork>();
-
+            Debug.Log("Place Pawn  RPC");
             pawn.transform.SetParent(pawnsContainer, false);
             pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
             pawn.SetColorAndHouse(isWhite);
@@ -63,6 +63,7 @@ namespace BackgammonNet.Core
             //Debug.Log(pawn.photonView);
             //Debug.Log(isWhite);
 
+            Debug.Log("Place Pawn");
             photonView.RPC(nameof(PlacePawnRPC), RpcTarget.AllBuffered, pawn.photonView.ViewID, isWhite);
 
             //pawn.transform.SetParent(pawnsContainer, false);
