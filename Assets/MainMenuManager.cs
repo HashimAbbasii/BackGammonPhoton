@@ -10,8 +10,11 @@ public class MainMenuManager : MonoBehaviour
 
     public bool menuToggle;
 
+    public static MainMenuManager Instance { get; set; }
+
     public void MenuButtonToggle()
     {
+        Debug.Log("Menu Button Toggle");
         if (menuToggle)
         {
             menuToggle = false;

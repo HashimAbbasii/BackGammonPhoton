@@ -16,6 +16,11 @@ namespace BackgammonNet.Core
     public class GameController : MonoBehaviour
     {
         private PhotonView _photonView;
+
+        [SerializeField] public HorizontalLayoutGroup topMenu;
+        [SerializeField] public List<GameObject> buttons;
+        [SerializeField]  public bool menuToggle;
+
         public Pawn randomSelectPawn;
         public Pawn randomSelectPawn2;
         public static int turn;                     // indicates whose turn it is now
@@ -33,6 +38,8 @@ namespace BackgammonNet.Core
         [SerializeField] private Button diceButton;
         [SerializeField] private Image[] turnImages;
         [SerializeField] private Text[] diceTexts;
+
+       
 
         public List<Slot> allSlots = new();
         public List<Pawn> allPawns = new();
@@ -247,9 +254,67 @@ namespace BackgammonNet.Core
             }
         }
 
+
+
+        public void MenuButtonToggle()
+        {
+            Debug.Log("Menu Button Toggle");
+            if (menuToggle)
+            {
+                menuToggle = false;
+
+                StopAllCoroutines();
+                StartCoroutine(AnimateTopMenu(false));
+            }
+            else
+            {
+                menuToggle = true;
+                foreach (var button in buttons)
+                {
+                    button.SetActive(true);
+                }
+                StopAllCoroutines();
+                StartCoroutine(AnimateTopMenu(true));
+            }
+        }
+
+        private IEnumerator AnimateTopMenu(bool toggle)
+        {
+            float elapsedTime = 0;
+            float percentageComplete = 0;
+
+            if (toggle)
+            {
+                while (topMenu.spacing < -270f)
+                {
+                    elapsedTime += Time.deltaTime;
+                    percentageComplete = elapsedTime / 1.8f;
+
+                    topMenu.spacing = Mathf.Lerp(topMenu.spacing, 10f, percentageComplete);
+
+                    yield return new WaitForFixedUpdate();
+                }
+            }
+            else
+            {
+                while (topMenu.spacing > -580f)
+                {
+                    elapsedTime += Time.deltaTime;
+                    percentageComplete = elapsedTime / 1.8f;
+
+                    topMenu.spacing = Mathf.Lerp(topMenu.spacing, -580f, percentageComplete);
+
+                    yield return new WaitForFixedUpdate();
+                }
+
+                foreach (var button in buttons)
+                {
+                    button.SetActive(false);
+                }
+            }
+        }
+
         //.....................AiModeGeneration ...........................//
-
-
         //....................Prevent a  Doublet...........................//
 
 
