@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class LanguageManager : MonoBehaviour
 {
     [SerializeField] private LanguageEnumerated _languageEnum;
+    public static LanguageManager mlanguageManagerInstance { get; set; }
 
     [Header ("Fonts")]
     public TMP_FontAsset normalFont;

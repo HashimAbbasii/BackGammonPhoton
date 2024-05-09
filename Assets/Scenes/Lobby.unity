@@ -1025,6 +1025,17 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &860387542 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8271413476325208761, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
+  m_PrefabInstance: {fileID: 3957825309650377470}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b743370ac3e4ec2a1668f5455a8ef8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &935671018
 GameObject:
   m_ObjectHideFlags: 0
@@ -1416,6 +1427,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1159882806}
   - component: {fileID: 1159882808}
+  - component: {fileID: 1159882809}
   m_Layer: 0
   m_Name: MyGameManager
   m_TagString: Untagged
@@ -1450,6 +1462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd205f95706fd7b4cb9b6a9c75c03b66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  languageManager: {fileID: 0}
   offlineScene:
     m_SceneAsset: {fileID: 102900000, guid: bf913cb728b74384ea6dcb89eba002c6, type: 3}
     m_SceneName: Lobby
@@ -1459,6 +1472,38 @@ MonoBehaviour:
   playerTurn: 
   isMultiplayer: 0
   players: []
+--- !u!114 &1159882809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1159882805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982de7d28fa731043a927d2df037fbe6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _languageEnum: 0
+  normalFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  headingFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  buttonFont: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  arabicFont: {fileID: 11400000, guid: f018771570d87e248ace661f57fb61e9, type: 2}
+  normalMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  headingMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  buttonMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  arabicMaterial: {fileID: -201471664471610528, guid: f018771570d87e248ace661f57fb61e9, type: 2}
+  LanguageDropdown: {fileID: 860387542}
+  flags:
+  - {fileID: 21300000, guid: 8291c5b6a54a1d84693b50f7890291e7, type: 3}
+  - {fileID: 21300000, guid: 84962f7712e2a5a41b369c76bd490d72, type: 3}
+  - {fileID: 21300000, guid: 36325691a1036ce449bf32a4dbf7eb67, type: 3}
+  - {fileID: 21300000, guid: 2cba65b277a24ba45a2000eafea48c3b, type: 3}
+  - {fileID: 21300000, guid: 0e5fabd65cda2674f9948124a9221a48, type: 3}
+  - {fileID: 21300000, guid: 67d949f024296cc4494b8fa562466b82, type: 3}
+  - {fileID: 21300000, guid: c77d0753bb98eab44a9b680d5a7c1e52, type: 3}
+  - {fileID: 21300000, guid: 16ce4195969e46044b2704f480315926, type: 3}
+  - {fileID: 21300000, guid: 729a0a8738b4b8d479633f50ebd9eaf0, type: 3}
 --- !u!1 &1171208520
 GameObject:
   m_ObjectHideFlags: 0

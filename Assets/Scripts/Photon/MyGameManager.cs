@@ -9,6 +9,9 @@ public class MyGameManager : MonoBehaviour
     #region Singleton
 
     public static MyGameManager Instance;
+    public LanguageManager languageManager;
+    //public FullscreenWebGLManager fullScreenWebGLManager;
+    
 
     public void Awake()
     {

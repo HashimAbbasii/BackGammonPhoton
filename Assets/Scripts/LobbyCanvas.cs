@@ -9,6 +9,16 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
     public Button loginButton;
 
+    [Header("Bools")]
+    public bool fullscreenToggle;
+    public bool soundToggle;
+    public bool musicToggle;
+
+    [Header("Animators")]
+    public Animator FullScreenToggleAnimator;
+    public Animator VfxSoundToggleAnimator;
+    public Animator musicSoundToggleAnimator;
+
 
     public void CreateHostRequest()
     {
@@ -90,5 +100,66 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
         Debug.Log("Test");
         PhotonNetwork.Disconnect();
     }
+
+
+
+
+    public void ToggleBoolSound(bool toggle)
+    {
+        soundToggle = toggle;
+
+        AudioManager.Instance.ToggleVFXSound(soundToggle);
+
+        if (toggle)
+        {
+            VfxSoundToggleAnimator.Play("vfx sound Anim Reverse");
+        }
+        else
+        {
+            VfxSoundToggleAnimator.Play("vfx sound Anim");
+        }
+    }
+
+    public void ToggleBoolMusic(bool toggle)
+    {
+        musicToggle = toggle;
+
+        AudioManager.Instance.ToggleMusicSound(musicToggle);
+
+        if (toggle)
+        {
+            musicSoundToggleAnimator.Play("Music Anim Reverse");
+        }
+        else
+        {
+            musicSoundToggleAnimator.Play("Music Anim");
+        }
+
+    }
+
+    public void ToggleBoolFullScreen(bool toggle)
+    {
+        fullscreenToggle = toggle;
+
+        if (toggle)
+        {
+            //MyGameManager.Instance.fullScreenWebGLManager.EnterFullscreen();
+            FullScreenToggleAnimator.Play("Full Screen Anim");
+
+
+        }
+        else
+        {
+            //MyGameManager.Instance.fullScreenWebGLManager.ExitFullscreen();
+            FullScreenToggleAnimator.Play("Full Screen Anim Reverse");
+
+        }
+    }
+
+    public void LanguageChange(int index)
+    {
+        MyGameManager.Instance.languageManager.LanguageSelect(index);
+    }
+
 
 }
