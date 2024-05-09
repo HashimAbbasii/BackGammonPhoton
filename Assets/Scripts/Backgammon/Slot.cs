@@ -19,13 +19,15 @@ namespace BackgammonNet.Core
 
         public List<Pawn> pawns = new List<Pawn>();
         private float yOffset = -0.9f;
+        private float placeOffset = -0.9f;
         private int lastCount;
+        private bool isModifyingPosition;
 
         private void Start()
         {
             spriteRenderer.color = (slotNo % 2 == 0) ? new Color(0.706f, 0.306f, 0.282f) : new Color(0.933f, 0.910f, 0.886f); // R/W
 
-            
+
 
             if (slotNo == 0 || slotNo == 25)
                 spriteRenderer.color = Color.clear;
@@ -36,8 +38,8 @@ namespace BackgammonNet.Core
 
             pawn.transform.SetParent(pawnsContainer, true);
 
-            pawn.transform.DOLocalMove(new Vector3(0, -0.5f + pawns.Count * yOffset, 0), 0.5f);
-            //pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
+            isModifyingPosition = true;
+            pawn.transform.DOLocalMove(new Vector3(0, -0.5f + pawns.Count * placeOffset, 0), 0.5f);
             StartCoroutine(CorrectHeight());
 
             pawn.SetColorAndHouse(isWhite);
@@ -52,32 +54,48 @@ namespace BackgammonNet.Core
 
             if (pawns.Count > 5)
             {
+                float difference = 0;
                 for (int i = 1; i < pawnsContainer.childCount; i++)
                 {
                     pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * yOffset, 0);
                     float value = (20 - pawnsContainer.childCount) / 15f * 0.85f;
                     float posY = pawnsContainer.GetChild(i).transform.localPosition.y * Mathf.Clamp(value, 0f, 1f);
                     pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, posY, -i / 150f);
+                    if (i == pawnsContainer.childCount - 2)
+                    {
+                        difference = posY;
+                    }
+                    else if (i == pawnsContainer.childCount - 1)
+                    {
+                        difference = posY - difference;
+                    }
                 }
+
+                placeOffset = difference;
+
             }
             else
+            {
                 for (int i = 1; i < pawnsContainer.childCount; i++)
                 {
-                    yOffset = -0.9f;
+                    placeOffset = -0.9f;
                     pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * yOffset, 0);
                 }
+            }
+
+            isModifyingPosition = false;
         }
 
         public Pawn GetTopPawn(bool pop)
         {
-            
+
             if (pawns.Count > 0)
             {
-               // Debug.Log("gggg");
+                // Debug.Log("gggg");
                 Pawn pawn = pawns[pawns.Count - 1];
                 if (pop)
                 {
-                  //  Debug.Log("LLLLL");
+                    //  Debug.Log("LLLLL");
                     pawns.RemoveAt(pawns.Count - 1);
                 }
                 return pawn;
@@ -92,7 +110,11 @@ namespace BackgammonNet.Core
 
         //---- methods related to the control of the position of the pieces in the slot
 
-        private void Update() => ModifyPositions();   // adjusting the arrangement of pieces on the slot depending on their number
+        private void Update()
+        {
+            if (isModifyingPosition) return;
+            ModifyPositions();         // adjusting the arrangement of pieces on the slot depending on their number
+        }
 
         private void ModifyPositions()     // modify the positions in the pieces container
         {

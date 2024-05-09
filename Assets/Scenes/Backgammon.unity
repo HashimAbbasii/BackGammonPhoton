@@ -618,7 +618,6 @@ GameObject:
   - component: {fileID: 114417029}
   - component: {fileID: 114417028}
   - component: {fileID: 114417030}
-  - component: {fileID: 114417031}
   m_Layer: 0
   m_Name: Controllers
   m_TagString: Untagged
@@ -692,28 +691,6 @@ MonoBehaviour:
   ePawns: []
   NetworkTurn: 1
   diceEnable: 1
---- !u!114 &114417031
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 114417027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 2
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &135892640
 GameObject:
   m_ObjectHideFlags: 0
@@ -4969,7 +4946,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1555065881}
   - component: {fileID: 1555065882}
-  - component: {fileID: 1555065883}
   m_Layer: 0
   m_Name: Script
   m_TagString: Untagged
@@ -5008,28 +4984,6 @@ MonoBehaviour:
   myNetworkPlayer: {fileID: 0}
   networkPlayers: []
   WhoAmI: 
---- !u!114 &1555065883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1555065880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ObservedComponentsFoldoutOpen: 1
-  Group: 0
-  prefixField: -1
-  Synchronization: 3
-  OwnershipTransfer: 0
-  observableSearch: 2
-  ObservedComponents: []
-  sceneViewId: 1
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
 --- !u!1 &1615687909
 GameObject:
   m_ObjectHideFlags: 0

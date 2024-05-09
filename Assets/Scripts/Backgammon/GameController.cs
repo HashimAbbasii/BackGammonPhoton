@@ -214,7 +214,8 @@ namespace BackgammonNet.Core
                 diceEnable = false;
 
                 SoundManager.GetSoundEffect(4, 0.25f);
-                CheckIfTurnChange(Random.Range(1,7), Random.Range(1,7));
+                //CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
+                CheckIfTurnChange(1, 2);
 
                 if (Board.Instance.client)      // network game
                 {
