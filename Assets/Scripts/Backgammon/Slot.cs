@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using DG.Tweening;
+using System.Collections;
 
 namespace BackgammonNet.Core
 {
@@ -37,12 +38,34 @@ namespace BackgammonNet.Core
 
             pawn.transform.DOLocalMove(new Vector3(0, -0.5f + pawns.Count * yOffset, 0), 0.5f);
             //pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
-
+            StartCoroutine(CorrectHeight());
 
             pawn.SetColorAndHouse(isWhite);
             pawn.slotNo = slotNo;                                   // the slot that the pawn belongs to
             pawn.pawnNo = pawns.Count;                              // the position of the pawn in the slot
             pawns.Add(pawn);
+        }
+
+        private IEnumerator CorrectHeight()
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            if (pawns.Count > 5)
+            {
+                for (int i = 1; i < pawnsContainer.childCount; i++)
+                {
+                    pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * yOffset, 0);
+                    float value = (20 - pawnsContainer.childCount) / 15f * 0.85f;
+                    float posY = pawnsContainer.GetChild(i).transform.localPosition.y * Mathf.Clamp(value, 0f, 1f);
+                    pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, posY, -i / 150f);
+                }
+            }
+            else
+                for (int i = 1; i < pawnsContainer.childCount; i++)
+                {
+                    yOffset = -0.9f;
+                    pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * yOffset, 0);
+                }
         }
 
         public Pawn GetTopPawn(bool pop)
