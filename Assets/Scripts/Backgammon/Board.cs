@@ -22,7 +22,7 @@ namespace BackgammonNet.Core
         [HideInInspector] public Client client;             // The client associated with our game created in the Lobby scene.
         [HideInInspector] public bool isClientWhite;        // Is the client white or red?
         [HideInInspector] public bool observer;        
-        [HideInInspector] public int acceptance;            // Both players confirm they want to start the game.
+        public int acceptance = 1;            // Both players confirm they want to start the game.
 
         public static Board Instance { get; set; }
                 
@@ -36,7 +36,7 @@ namespace BackgammonNet.Core
 
             if (client)     // network game
             {
-                Debug.Log(LobbyManager.clientName + ": " + client.players[0].name + " vs. " + client.players[1].name);
+                //Debug.Log(LobbyManager.clientName + ": " + client.players[0].name + " vs. " + client.players[1].name);
 
                 playersNames[0].text = client.players[0].name;
                 playersNames[1].text = client.players[1].name;

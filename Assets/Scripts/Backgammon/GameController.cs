@@ -17,9 +17,10 @@ namespace BackgammonNet.Core
     {
         private PhotonView _photonView;
 
-        [SerializeField] public HorizontalLayoutGroup topMenu;
-        [SerializeField] public List<GameObject> buttons;
-        [SerializeField]  public bool menuToggle;
+        public CanvasHandler canvasHandler;
+        public HorizontalLayoutGroup topMenu;
+        public List<GameObject> buttons;
+        public bool menuToggle;
 
         public Pawn randomSelectPawn;
         public Pawn randomSelectPawn2;
@@ -30,6 +31,7 @@ namespace BackgammonNet.Core
 
         [HideInInspector] public bool newTurn;
         [HideInInspector] public int sidesAgreed;   // the current number of players agreeing to continue the game
+
 
         [SerializeField] private Button mainMenuButton;
         [SerializeField] private Button newGameButton;
@@ -217,12 +219,15 @@ namespace BackgammonNet.Core
         {
             if (diceEnable && Board.Instance.acceptance >= 2)
             {
+                canvasHandler.diceRollButton.SetActive(true);
+                canvasHandler.diceResults.SetActive(true);
+
                 dragEnable = true;
                 diceEnable = false;
 
                 SoundManager.GetSoundEffect(4, 0.25f);
-                //CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
-                CheckIfTurnChange(1, 2);
+                CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
+                //CheckIfTurnChange(1, 2);
 
                 if (Board.Instance.client)      // network game
                 {
@@ -328,6 +333,9 @@ namespace BackgammonNet.Core
 
             if (diceEnable && Board.Instance.acceptance >= 2)
             {
+                canvasHandler.diceRollButton.SetActive(true);
+                canvasHandler.diceResults.SetActive(true);
+
                 if (turn == 0)
                 {
                   //  Debug.Log("Human Turn");
