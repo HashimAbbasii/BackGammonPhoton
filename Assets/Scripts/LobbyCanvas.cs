@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using BackgammonNet.Lobby;
+using UnityEngine.UI;
+using Photon.Pun;
 
-public class LobbyCanvas : MonoBehaviour
+public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
+    public Button loginButton;
+
+
     public void CreateHostRequest()
     {
         LobbyManager.Instance.CreateHostRequest();
@@ -73,6 +78,17 @@ public class LobbyCanvas : MonoBehaviour
     public void OnClickPlayButton()
     {
         MyPhotonManager.Instance.OnClickPlayButton();
+    }
+
+    public void CheckLoginName(string playerName)
+    {
+        loginButton.interactable = !string.IsNullOrEmpty(playerName);
+    }
+
+    public void DisconnectAndReturn()
+    {
+        Debug.Log("Test");
+        PhotonNetwork.Disconnect();
     }
 
 }
