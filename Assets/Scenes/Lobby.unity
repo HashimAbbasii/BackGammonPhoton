@@ -1570,7 +1570,7 @@ MonoBehaviour:
   userNameText: {fileID: 3957825309650377481}
   roomNameText: {fileID: 3957825309650377480}
   maxPlayer: {fileID: 3957825309650377479}
-  LobbyPanel: {fileID: 3957825309650377478}
+  LobbyPanel: {fileID: 2085245129}
   PlayerNamePanel: {fileID: 3957825309650377477}
   RoomCreatePanel: {fileID: 3957825309650377476}
   ConnectingPanel: {fileID: 3957825309650377475}
@@ -2130,6 +2130,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3957825308997475551, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
   m_PrefabInstance: {fileID: 3957825309650377470}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2085245129 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3957825308699527367, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
+  m_PrefabInstance: {fileID: 3957825309650377470}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2085513302
 GameObject:
   m_ObjectHideFlags: 0
@@ -2503,11 +2508,6 @@ GameObject:
 --- !u!1 &3957825309650377477 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3957825309481675811, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
-  m_PrefabInstance: {fileID: 3957825309650377470}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &3957825309650377478 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3957825308651584111, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
   m_PrefabInstance: {fileID: 3957825309650377470}
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &3957825309650377479 stripped
