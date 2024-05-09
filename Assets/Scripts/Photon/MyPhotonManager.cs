@@ -178,7 +178,8 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         }
 
         RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = (byte)int.Parse(maxPlayer.text);
+        //roomOptions.MaxPlayers = (byte)int.Parse(maxPlayer.text);
+        roomOptions.MaxPlayers = 2;
         PhotonNetwork.CreateRoom(roomName, roomOptions);
 
     }

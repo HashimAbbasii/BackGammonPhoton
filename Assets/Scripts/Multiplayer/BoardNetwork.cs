@@ -158,43 +158,6 @@ namespace BackgammonNet.Core
 
         #endregion
 
-        //void CreateSlot(int slotNo, Vector3 slotPos, Quaternion slotRot)
-        //{
-        //    GameObject slotGO = PhotonNetwork.Instantiate(slotPrefab.name, slotPos, slotRot);
-        //    Slot slot = slotGO.GetComponent<Slot>();
-        //    slot.name = "slot" + slotNo.ToString();
-        //    slot.slotNo = slotNo;
-        //    Slot.slots.Add(slot);
-        //}
-
-
-
-
-        //private void CreateSlots()
-        //{
-        //    float UP_POS = 5.43f;
-        //    SlotNetwork.slots = new List<SlotNetwork>();
-        //    Vector3 slotPos = new Vector3(0, UP_POS, -0.2f);
-        //    Quaternion slotRot = Quaternion.identity;
-        //    CreateSlot(0, slotPos, slotRot);              // prison slot for white
-
-        //    for (int i = 1; i <= 24; i++)
-        //    {
-        //        float xDelta = (i < 13) ? -1.125f : 1.125f;             // increments on the x-axis of slot positions
-        //        float xOffset = (((i - 1) / 6) % 3 == 0) ? 0 : -1.25f;  // jumping over the middle gang
-        //        float iOffset = (i < 13) ? 1 : 24;
-        //        float ySign = (i < 13) ? 1 : -1;
-
-        //        slotPos = new Vector3(6.81f + (i - iOffset) * xDelta + xOffset, ySign * UP_POS, -0.2f);
-        //        slotRot = (i < 13) ? Quaternion.identity : Quaternion.Euler(new Vector3(0, 0, 180));
-        //        CreateSlot(i, slotPos, slotRot);
-        //    }
-
-        //    slotPos = new Vector3(0, -UP_POS, -0.2f);
-        //    slotRot = Quaternion.Euler(new Vector3(0, 0, 180));
-        //    CreateSlot(25, slotPos, slotRot);             // prison slot for reds
-        //}
-
         private void CreateSlot(int slotNo, Vector3 slotPos, Quaternion slotRot)
         {
             if (PhotonNetwork.IsMasterClient)
@@ -202,9 +165,6 @@ namespace BackgammonNet.Core
                 object[] data = new object[] { slotNo, "slot" + slotNo.ToString() };
 
                 var slotGo = PhotonNetwork.Instantiate("SlotNetwork", slotPos, slotRot, 0, data);
-
-
-                //photonView.RPC(nameof(CreateSlotRPC),RpcTarget.AllBuffered, slotGo.GetComponent<PhotonView>().ViewID, slotNo);
             }
         }
 
