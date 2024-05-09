@@ -93,6 +93,9 @@ namespace BackgammonNet.Core
             acceptance++;
             submitBtns[no].gameObject.SetActive(false);
 
+            GameController.Instance.canvasHandler.diceRollButton.SetActive(true);
+            GameController.Instance.canvasHandler.diceResults.SetActive(true);
+
             if (client)
                 client.Send("CACCPT|acceptance");           // our confirmation of the willingness to start the game
         }

@@ -28,8 +28,8 @@ namespace BackgammonNet.Core
         {
             if (!GameController.GameOver && Board.Instance.acceptance >= 2)
             {
-                GetComponent<GameController>().canvasHandler.diceRollButton.SetActive(true);
-                GetComponent<GameController>().canvasHandler.diceResults.SetActive(true);
+                //GetComponent<GameController>().canvasHandler.diceRollButton.SetActive(true);
+                //GetComponent<GameController>().canvasHandler.diceResults.SetActive(true);
 
                 float time;
 

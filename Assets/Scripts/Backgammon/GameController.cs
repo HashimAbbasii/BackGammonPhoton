@@ -217,11 +217,14 @@ namespace BackgammonNet.Core
 
         private void Generate()
         {
-            if (diceEnable && Board.Instance.acceptance >= 2)
+            if (Board.Instance.acceptance >= 2)
             {
                 canvasHandler.diceRollButton.SetActive(true);
                 canvasHandler.diceResults.SetActive(true);
+            }
 
+            if (diceEnable && Board.Instance.acceptance >= 2)
+            {
                 dragEnable = true;
                 diceEnable = false;
 
@@ -331,10 +334,15 @@ namespace BackgammonNet.Core
                 slot.HightlightMe(false);
             }
 
-            if (diceEnable && Board.Instance.acceptance >= 2)
+            if (Board.Instance.acceptance >= 2)
             {
                 canvasHandler.diceRollButton.SetActive(true);
                 canvasHandler.diceResults.SetActive(true);
+            }
+
+            if (diceEnable && Board.Instance.acceptance >= 2)
+            {
+                
 
                 if (turn == 0)
                 {
