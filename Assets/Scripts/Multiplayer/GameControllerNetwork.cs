@@ -237,12 +237,12 @@ namespace BackgammonNet.Core
             if (dices[0] == 0)
                 diceTexts[0].color = new Color(diceTexts[0].color.r, diceTexts[0].color.g, diceTexts[0].color.b, 0.3f);
             else
-                diceTexts[0].color = Color.white;
+                diceTexts[0].color = Color.black;
 
             if (dices[1] == 0)
                 diceTexts[1].color = new Color(diceTexts[1].color.r, diceTexts[1].color.g, diceTexts[1].color.b, 0.3f);
             else
-                diceTexts[1].color = Color.white;
+                diceTexts[1].color = Color.black;
         }
 
         private void Generate()

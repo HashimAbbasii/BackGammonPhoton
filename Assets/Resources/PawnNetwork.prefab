@@ -143,8 +143,8 @@ MonoBehaviour:
   pawnNo: 0
   imprisoned: 0
   maxMoves: 0
-  whitePawn: {fileID: 21300000, guid: cbf4811c53db6c74da338263c131cf6c, type: 3}
-  blackPawn: {fileID: 21300000, guid: 89b350ddeacc2a64799ec2861f6ca421, type: 3}
+  whitePawn: {fileID: 21300000, guid: de86e3165a1adea42ba7fe678930aa18, type: 3}
+  blackPawn: {fileID: 21300000, guid: 42ef72c58919be64b88e10e2d7bf6940, type: 3}
   movesShow: 0
 --- !u!114 &-749466965310162608
 MonoBehaviour:
