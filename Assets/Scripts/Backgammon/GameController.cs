@@ -350,7 +350,7 @@ namespace BackgammonNet.Core
                     dragEnable = true;
                     diceEnable = false;
                     SoundManager.GetSoundEffect(4, 0.25f);
-                    CheckIfTurnChange(Random.Range(1,7), Random.Range(1,7));
+                    CheckIfTurnChange(6, 6);
                 }
                 else
                 {
@@ -360,14 +360,14 @@ namespace BackgammonNet.Core
                     topEPawns.Clear();
                     checkExistingPawn.Clear();
                     SoundManager.GetSoundEffect(4, 0.25f);
-                    int num1=Random.Range(1,7);
-                    int num2=Random.Range(1,7);
-                    while (num1 == num2)
-                    {
-                        num2 = Random.Range(1, 7);
-                    }
+                    //int num1=Random.Range(1,7);
+                    //int num2=Random.Range(1,7);
+                    //while (num1 == num2)
+                    //{
+                    //    num2 = Random.Range(1, 7);
+                    //}
 
-                    CheckifTurnChangeAI(num1, num2);
+                    CheckifTurnChangeAI(2, 2);
 
                 }
 
@@ -398,27 +398,11 @@ namespace BackgammonNet.Core
                 isDublet = true;
             }
 
+
+
+
             StartCoroutine(PawnMoveCoroutine());
 
-           // if (!CanMoveAi(2))
-           // {
-           //    StartCoroutine(ChangeTurn());
-
-           // }
-           // if (Slot.slots[25].Height() > 0)
-           // {
-           //     //........Prison Slot...............//
-
-           //     CheckPrisonSlot();
-           // }
-           // else if (!GameController.GameOver)
-           // {
-           //    // Debug.Log("Normal Movement");
-           //  //   CheckPrisonSlot();
-           //    SlotNumberForAI(); 
-           //}
-
-            //...........................Random Slot Select ..............................//
 
         }
 
@@ -535,7 +519,10 @@ namespace BackgammonNet.Core
             int RandomSelectEnemy = Random.Range(0, topEPawns.Count);
         
             randomSelectPawn = topEPawns[RandomSelectEnemy];
+            //if (topEPawns[randomSelectPawn].isDublet == true)
+            //{
 
+            //}
             checkExistingPawn.Add(randomSelectPawn);
             topEPawns.Remove(randomSelectPawn);
             AiMovesEnemy();
@@ -714,6 +701,7 @@ namespace BackgammonNet.Core
                         randomSelectPawn2.CheckShelterAndMore();
                         Slot.slots[slot1].HightlightMe(true);
                         randomSelectPawn2.CheckIfNextTurn();
+                        
                         //if(isDublet==true)
                         //{
                         //    isDublet = false;

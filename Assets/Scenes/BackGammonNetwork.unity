@@ -615,6 +615,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7d70d927e222848ba55a74d829e15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topMenu: {fileID: 0}
+  buttons: []
+  menuToggle: 0
   randomSelectPawn: {fileID: 0}
   randomSelectPawn2: {fileID: 0}
   newTurn: 0
@@ -651,6 +654,7 @@ GameObject:
   - component: {fileID: 135892643}
   - component: {fileID: 135892642}
   - component: {fileID: 135892641}
+  - component: {fileID: 135892645}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -750,6 +754,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &135892645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135892640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83f56d475fc32164a96c39bf9c2c4041, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  diceRollButton: {fileID: 451497670}
+  diceResults: {fileID: 1874818424}
 --- !u!1 &190039504
 GameObject:
   m_ObjectHideFlags: 0

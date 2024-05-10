@@ -106,6 +106,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNo: 0
+  lightSlot: {r: 1, g: 0, b: 0, a: 1}
+  darkSlot: {r: 0, g: 0.5773268, b: 1, a: 1}
   spriteRenderer: {fileID: 212648366908974186}
   highlighted: {fileID: 1621064181770348}
   pawnsContainer: {fileID: 4009519221710956}
@@ -158,8 +160,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1621064181770348}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.6231, z: 0.05}
-  m_LocalScale: {x: 1.1269654, y: 1.1359919, z: 1}
+  m_LocalPosition: {x: -0.0164, y: -1.483, z: 0.05}
+  m_LocalScale: {x: 0.8815058, y: 0.6084983, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4353572793399272}
@@ -206,8 +208,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3755d97a7570ab54cb28cd5fe18431bb, type: 3}
-  m_Color: {r: 0.9716981, g: 0.9716981, b: 0.9716981, a: 1}
+  m_Sprite: {fileID: 21300000, guid: cc868985083bea9449d8738551611e5c, type: 3}
+  m_Color: {r: 1, g: 0.70980394, b: 0.003921569, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -291,7 +293,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3755d97a7570ab54cb28cd5fe18431bb, type: 3}
-  m_Color: {r: 0, g: 0.6, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

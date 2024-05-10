@@ -4,6 +4,8 @@ using Photon.Pun;
 using Photon.Realtime;
 using Unity.VisualScripting;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using DG.Tweening;
+using System.Collections;
 
 
 namespace BackgammonNet.Core
@@ -13,9 +15,11 @@ namespace BackgammonNet.Core
     public class SlotNetwork : MonoBehaviour
     {
         public static List<SlotNetwork> slots;             // stores created slots
-
+        private float placeOffset = -0.9f;
         [HideInInspector] public int slotNo;        // slot number assigned at the time of its creation
 
+        public Color lightSlot;
+        public Color darkSlot;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private GameObject highlighted;              // a reference to a game object representing a lighting effect
         [SerializeField] private Transform pawnsContainer;
@@ -23,6 +27,7 @@ namespace BackgammonNet.Core
         public List<PawnNetwork> pawns = new List<PawnNetwork>();
         private float yOffset = -0.9f;
         private int lastCount;
+        private bool isModifyingPosition;
 
         public PhotonView photonView;
 
@@ -38,7 +43,7 @@ namespace BackgammonNet.Core
 
             //Hashim Check Slot tomorrow
 
-            spriteRenderer.color = (slotNo % 2 == 0) ? new Color(0, 0.6f, 1) : new Color(0.5f, 0.7f, 0.8f);
+            spriteRenderer.color = (slotNo % 2 == 0) ? new Color(0.706f, 0.306f, 0.282f) : new Color(0.933f, 0.910f, 0.886f);
 
             if (slotNo == 0 || slotNo == 25)
                 spriteRenderer.color = Color.clear;
@@ -49,8 +54,11 @@ namespace BackgammonNet.Core
         {
             var pawn = PhotonView.Find(viewID).GetComponent<PawnNetwork>();
             Debug.Log("Place Pawn  RPC");
-            pawn.transform.SetParent(pawnsContainer, false);
-            pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
+            pawn.transform.SetParent(pawnsContainer, true);
+            isModifyingPosition = true;
+            pawn.transform.DOLocalMove(new Vector3(0, -0.5f + pawns.Count * placeOffset, 0), 0.5f);
+            //pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
+            StartCoroutine(CorrectHeight());
             pawn.SetColorAndHouse(isWhite);
             pawn.slotNo = slotNo;                                   // the slot that the pawn belongs to
             pawn.pawnNo = pawns.Count;                              // the position of the pawn in the slot
@@ -59,19 +67,9 @@ namespace BackgammonNet.Core
 
         public void PlacePawn(PawnNetwork pawn, int isWhite)       // put the last piece from the pawns list in the right place in the slot
         {
-            //Debug.Log(photonView);
-            //Debug.Log(pawn.photonView);
-            //Debug.Log(isWhite);
-
             Debug.Log("Place Pawn");
             photonView.RPC(nameof(PlacePawnRPC), RpcTarget.AllBuffered, pawn.photonView.ViewID, isWhite);
 
-            //pawn.transform.SetParent(pawnsContainer, false);
-            //pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
-            //pawn.SetColorAndHouse(isWhite);
-            //pawn.slotNo = slotNo;                                   // the slot that the pawn belongs to
-            //pawn.pawnNo = pawns.Count;                              // the position of the pawn in the slot
-            //pawns.Add(pawn);
         }
 
         public PawnNetwork GetTopPawn(bool pop)
@@ -103,7 +101,7 @@ namespace BackgammonNet.Core
 
         //---- methods related to the control of the position of the pieces in the slot
 
-        private void Update() => ModifyPositions();   // adjusting the arrangement of pieces on the slot depending on their number
+       // private void Update() => ModifyPositions();   // adjusting the arrangement of pieces on the slot depending on their number
 
         private void ModifyPositions()     // modify the positions in the pieces container
         {
@@ -123,6 +121,49 @@ namespace BackgammonNet.Core
                     for (int i = 1; i < pawnsContainer.childCount; i++)
                         pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * yOffset, 0);
             }
+        }
+        private void Update()
+        {
+            if (isModifyingPosition) return;
+            ModifyPositions();         // adjusting the arrangement of pieces on the slot depending on their number
+        }
+
+        private IEnumerator CorrectHeight()
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            if (pawns.Count > 5)
+            {
+                float difference = 0;
+                for (int i = 1; i < pawnsContainer.childCount; i++)
+                {
+                    pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * yOffset, 0);
+                    float value = (20 - pawnsContainer.childCount) / 15f * 0.85f;
+                    float posY = pawnsContainer.GetChild(i).transform.localPosition.y * Mathf.Clamp(value, 0f, 1f);
+                    pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, posY, -i / 150f);
+                    if (i == pawnsContainer.childCount - 2)
+                    {
+                        difference = posY;
+                    }
+                    else if (i == pawnsContainer.childCount - 1)
+                    {
+                        difference = posY - difference;
+                    }
+                }
+
+                placeOffset = difference;
+
+            }
+            else
+            {
+                for (int i = 1; i < pawnsContainer.childCount; i++)
+                {
+                    placeOffset = -0.9f;
+                    pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * yOffset, 0);
+                }
+            }
+
+            isModifyingPosition = false;
         }
     }
 }

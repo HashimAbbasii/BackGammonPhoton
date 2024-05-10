@@ -18,6 +18,12 @@ namespace BackgammonNet.Core
     public class GameControllerNetwork : MonoBehaviour
     {
         private PhotonView _photonView;
+
+
+        public HorizontalLayoutGroup topMenu;
+        public List<GameObject> buttons;
+        public bool menuToggle;
+
         public PawnNetwork randomSelectPawn;
         public PawnNetwork randomSelectPawn2;
         public static int turn;                     // indicates whose turn it is now
@@ -277,6 +283,64 @@ namespace BackgammonNet.Core
                 //    string msg = "CDCS|" + dices[0].ToString() + "|" + dices[1].ToString();
                 //    Board.Instance.client.Send(msg);            // Send the information about the roll of the dice to the server.
                 //}
+            }
+        }
+
+        public void MenuButtonToggle()
+        {
+            Debug.Log("Menu Button Toggle");
+            if (menuToggle)
+            {
+                menuToggle = false;
+
+                StopAllCoroutines();
+                StartCoroutine(AnimateTopMenu(false));
+            }
+            else
+            {
+                menuToggle = true;
+                foreach (var button in buttons)
+                {
+                    button.SetActive(true);
+                }
+                StopAllCoroutines();
+                StartCoroutine(AnimateTopMenu(true));
+            }
+        }
+
+        private IEnumerator AnimateTopMenu(bool toggle)
+        {
+            float elapsedTime = 0;
+            float percentageComplete = 0;
+
+            if (toggle)
+            {
+                while (topMenu.spacing < -270f)
+                {
+                    elapsedTime += Time.deltaTime;
+                    percentageComplete = elapsedTime / 1.8f;
+
+                    topMenu.spacing = Mathf.Lerp(topMenu.spacing, 10f, percentageComplete);
+
+                    yield return new WaitForFixedUpdate();
+                }
+            }
+            else
+            {
+                while (topMenu.spacing > -580f)
+                {
+                    elapsedTime += Time.deltaTime;
+                    percentageComplete = elapsedTime / 1.8f;
+
+                    topMenu.spacing = Mathf.Lerp(topMenu.spacing, -580f, percentageComplete);
+
+                    yield return new WaitForFixedUpdate();
+                }
+
+                foreach (var button in buttons)
+                {
+                    button.SetActive(false);
+                }
             }
         }
 
@@ -570,7 +634,7 @@ namespace BackgammonNet.Core
                 return CanMoveFromJail(amount, count, sign);
 
             }
-            else                                                // when they are not in jail
+            else                                               // when they are not in jail
             {
                 if (PawnNetwork.shelterSide[turn])
                 {
