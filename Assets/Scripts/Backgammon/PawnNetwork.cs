@@ -418,7 +418,7 @@ namespace BackgammonNet.Core
                 GameControllerNetwork.GameOver = true;
             }
 
-            Slot.slots[slotNo].GetTopPawn(true);            // remove from current slot
+            SlotNetwork.slots[slotNo].GetTopPawn(true);            // remove from current slot
             gameObject.transform.localScale = Vector3.zero;
             Destroy(gameObject, 1f);
         }
