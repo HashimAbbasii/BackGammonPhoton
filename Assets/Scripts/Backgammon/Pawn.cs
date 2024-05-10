@@ -45,6 +45,7 @@ namespace BackgammonNet.Core
         }
         public void SetColorAndHouse(int color)
         {
+          
             GetComponent<SpriteRenderer>().sprite = color == 0 ? GetComponent<SpriteRenderer>().sprite = whitePawn : GetComponent<SpriteRenderer>().sprite = blackPawn;
             //GetComponent<SpriteRenderer>().color = color == 0 ? Color.white : Color.black; // black == red
             house = GameObject.Find((color == 0 ? "White" : "Red") + " House");
@@ -118,6 +119,11 @@ namespace BackgammonNet.Core
             int val = GameController.turn == 0 ? -1 : 24;
 
             var prisonSlot = Slot.slots[25];
+            //if (prisonSlot[25].m == maxMoves)
+            //{
+
+            //}
+
 
            // Debug.Log("PAWN cOLOR" + pawnColor);
             if (prisonSlot.Height() >= 1 /*&& Slot.slots[25].IsWhite()==pawnColor*/)
@@ -411,10 +417,17 @@ namespace BackgammonNet.Core
 
         public void CheckIfNextTurn()
         {
+            Debug.Log("Moves" + moves);
+            Debug.Log("MaxMoves" + maxMoves);
             if (moves == maxMoves && !GameController.GameOver)           // all moves have been made
             {
                 moves = 0;
                 OnCompleteTurn(pawnColor);
+            }
+
+            else if (moves == 2 && !GameController.GameOver && GameController.isDublet == true)
+            {
+                GameController.Instance.CallDublet();
             }
         }
 
@@ -443,6 +456,9 @@ namespace BackgammonNet.Core
                 shelterSide[pawnColor] = true;
            // Debug.Log("Moves " + moves);
            // Debug.Log("Max Moves"+maxMoves);
+
+
+           
             if (++moves < maxMoves)      // after each move
             {
                // Debug.Log("andr aya hain");
@@ -661,6 +677,11 @@ namespace BackgammonNet.Core
             moves = 0;
             imprisonedSide = new int[2];
             shelterSide = new bool[2];
+        }
+        public int movesShow;
+        private void Start()
+        {
+            movesShow = moves;
         }
     }
 }

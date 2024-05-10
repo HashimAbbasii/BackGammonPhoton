@@ -105,6 +105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotNo: 0
+  lightSlot: {r: 1, g: 0, b: 0, a: 1}
+  darkSlot: {r: 0, g: 0.5764706, b: 1, a: 1}
   spriteRenderer: {fileID: 212648366908974186}
   highlighted: {fileID: 1621064181770348}
   pawnsContainer: {fileID: 4009519221710956}

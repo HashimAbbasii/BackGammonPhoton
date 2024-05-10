@@ -34,18 +34,21 @@ namespace BackgammonNet.Core
         private int beginSlot;                                  // starting slot number
         public int maxMoves;
 
+        [SerializeField] public Sprite whitePawn;
+        [SerializeField] public Sprite blackPawn;
 
         private void Awake()
         {
             //instance = this;
             photonView = GetComponent<PhotonView>();
         }
-
+        public int movesShow;
         private void Start()
         {
+            movesShow = moves;
             var slotNo = (int)photonView.InstantiationData[0];
             var isWhite = (int)photonView.InstantiationData[1];
-
+            
             if (PhotonNetwork.IsMasterClient)
             {
                 SlotNetwork.slots[slotNo].PlacePawn(this, isWhite);
@@ -56,8 +59,9 @@ namespace BackgammonNet.Core
 
         public void SetColorAndHouse(int color)
         {
-            
-            GetComponent<SpriteRenderer>().color = color == 0 ? Color.white : Color.red;
+
+            //GetComponent<SpriteRenderer>().color = color == 0 ? Color.white : Color.red;
+            GetComponent<SpriteRenderer>().sprite = color == 0 ? GetComponent<SpriteRenderer>().sprite = whitePawn : GetComponent<SpriteRenderer>().sprite = blackPawn;
             house = GameObject.Find((color == 0 ? "White" : "Red") + " House");
             pawnColor = color;
         }

@@ -13,6 +13,9 @@ namespace BackgammonNet.Core
 
         [HideInInspector] public int slotNo;        // slot number assigned at the time of its creation
 
+
+        public Color lightSlot;
+        public Color darkSlot;
         [SerializeField] private SpriteRenderer spriteRenderer;
         [SerializeField] private GameObject highlighted;              // a reference to a game object representing a lighting effect
         [SerializeField] private Transform pawnsContainer;
