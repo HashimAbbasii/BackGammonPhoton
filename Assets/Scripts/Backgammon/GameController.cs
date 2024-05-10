@@ -262,11 +262,9 @@ namespace BackgammonNet.Core
             }
         }
 
-
-
         public void MenuButtonToggle()
         {
-            Debug.Log("Menu Button Toggle");
+            
             if (menuToggle)
             {
                 menuToggle = false;
