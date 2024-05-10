@@ -417,15 +417,17 @@ namespace BackgammonNet.Core
 
         public void CheckIfNextTurn()
         {
+            Debug.Log("Moves" + moves);
+            Debug.Log("MaxMoves" + maxMoves);
             if (moves == maxMoves && !GameController.GameOver)           // all moves have been made
             {
                 moves = 0;
                 OnCompleteTurn(pawnColor);
             }
 
-            else if(moves ==2 && !GameController.GameOver && GameController.isDublet == true)
+            else if (moves == 2 && !GameController.GameOver && GameController.isDublet == true)
             {
-                GameController.Instance.SelectRandomEnemy();
+                GameController.Instance.CallDublet();
             }
         }
 

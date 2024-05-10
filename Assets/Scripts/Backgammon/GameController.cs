@@ -251,14 +251,6 @@ namespace BackgammonNet.Core
                 SoundManager.GetSoundEffect(4, 0.25f);
 
                 CheckIfTurnChange(Random.Range(1,7), Random.Range(1,7));
-
-                //if (Board.Instance.client)      // network game
-                //{
-                //    newTurn = false;
-
-                //    string msg = "CDCS|" + dices[0].ToString() + "|" + dices[1].ToString();
-                //    Board.Instance.client.Send(msg);            // Send the information about the roll of the dice to the server.
-                //}
             }
         }
 
@@ -350,7 +342,7 @@ namespace BackgammonNet.Core
                     dragEnable = true;
                     diceEnable = false;
                     SoundManager.GetSoundEffect(4, 0.25f);
-                    CheckIfTurnChange(6, 6);
+                    CheckIfTurnChange(Random.Range(1,7), Random.Range(1,7));
                 }
                 else
                 {
@@ -360,14 +352,8 @@ namespace BackgammonNet.Core
                     topEPawns.Clear();
                     checkExistingPawn.Clear();
                     SoundManager.GetSoundEffect(4, 0.25f);
-                    //int num1=Random.Range(1,7);
-                    //int num2=Random.Range(1,7);
-                    //while (num1 == num2)
-                    //{
-                    //    num2 = Random.Range(1, 7);
-                    //}
-
-                    CheckifTurnChangeAI(2, 2);
+                   
+                    CheckifTurnChangeAI(Random.Range(1,7), Random.Range(1,7));
 
                 }
 
@@ -394,26 +380,31 @@ namespace BackgammonNet.Core
 
             if (dices[0] == dices[1])
             {
-
                 isDublet = true;
             }
 
-
-
-
             StartCoroutine(PawnMoveCoroutine());
+        }
 
-
+        public void CallDublet()
+        {
+            StartCoroutine(PawnMoveCoroutine());
         }
 
         private IEnumerator PawnMoveCoroutine()
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSecondsRealtime(1);
             if (!CanMoveAi(2))
             {
                 StartCoroutine(ChangeTurn());
 
             }
+
+            _allSlotsInts.Clear();
+            allSlots.Clear();
+            topEPawns.Clear();
+            checkExistingPawn.Clear();
+
             if (Slot.slots[25].Height() > 0)
             {
                 //........Prison Slot...............//
@@ -486,12 +477,7 @@ namespace BackgammonNet.Core
 
         public void CheckPrisonSlot()
         {
-           // Debug.Log("Check prison Slot");
-           // Pawn.instance.Selectimprisoned();  //  if (Pawn.imprisoned && Pawn.imprisonedSide[0] > 0 && Pawn.pawnColor == 0)
             Slot.slots[25].GetTopPawn(false).Selectimprisoned();
-
-
-
         }
         #endregion
 
@@ -502,9 +488,6 @@ namespace BackgammonNet.Core
         {
            // Debug.Log("Check prison Slot");
             Slot.slots[25].GetTopPawn(false).Selectimprisoned();  //  if (Pawn.imprisoned && Pawn.imprisonedSide[0] > 0 && Pawn.pawnColor == 0)
-
-
-
 
         }
 
@@ -519,10 +502,6 @@ namespace BackgammonNet.Core
             int RandomSelectEnemy = Random.Range(0, topEPawns.Count);
         
             randomSelectPawn = topEPawns[RandomSelectEnemy];
-            //if (topEPawns[randomSelectPawn].isDublet == true)
-            //{
-
-            //}
             checkExistingPawn.Add(randomSelectPawn);
             topEPawns.Remove(randomSelectPawn);
             AiMovesEnemy();
@@ -564,7 +543,6 @@ namespace BackgammonNet.Core
                     //randomSelectPawn.CheckShelterStage();
                     if (Slot.slots[slot0].Height() >= 1 && Slot.slots[slot0].IsWhite() == randomSelectPawn.pawnColor)
                     {
-                        Debug.Log("HEIGHT GREATER THAN 1 AND NUMBER IS SAME SLOT");
                         Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
                         Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
                         randomSelectPawn.CheckShelterStage();
@@ -572,14 +550,11 @@ namespace BackgammonNet.Core
                         Slot.slots[slot0].HightlightMe(true);
                         randomSelectPawn.CheckIfNextTurn();
                         StartCoroutine(SecondDice());
-
-
                     }
 
                     //.............If pawn Slot is Empty or Height ==0...................
                   else  if (Slot.slots[slot0].Height() == 0)
                     {
-                        Debug.Log("HEIGHT IS 0 ");
                         Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
                         Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
                         randomSelectPawn.CheckShelterStage();
@@ -587,8 +562,6 @@ namespace BackgammonNet.Core
                         Slot.slots[slot0].HightlightMe(true);
                         randomSelectPawn.CheckIfNextTurn();
                         StartCoroutine(SecondDice());
-
-
                     }
 
 
@@ -604,9 +577,6 @@ namespace BackgammonNet.Core
                         randomSelectPawn.CheckShelterAndMore();
                         randomSelectPawn.CheckIfNextTurn();
                         StartCoroutine(SecondDice());
-
-
-
                     }
 
                     else if(Slot.slots[slot0].Height() > 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
@@ -626,39 +596,7 @@ namespace BackgammonNet.Core
                             SelectRandomEnemy();
 
                         }
-                        //randomSelectPawn.CheckShelterStage();
-                        //randomSelectPawn.CheckShelterAndMore();
-                        //randomSelectPawn.CheckIfNextTurn();
-                        //if (Slot.slots[slot1].Height() > 1 && Slot.slots[slot1].IsWhite() != randomSelectPawn.pawnColor)
-                        //{
-                        //    Debug.Log("Check the Different Color Pawn with Dice 1 ");
-                        //    randomSelectPawn.CheckShelterStage();
-                        //    randomSelectPawn.CheckShelterAndMore();
-                        //    randomSelectPawn.CheckIfNextTurn();
-                        //    StartCoroutine(SecondDice());
-                        //}
-                        //else
-                        //{
-                        //    Debug.Log("moves agaist the Second Dice");
-                        //    Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
-                        //    Slot.slots[slot1].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
-                        //    randomSelectPawn.CheckShelterStage();
-                        //    randomSelectPawn.CheckShelterAndMore();
-                        //    randomSelectPawn.CheckIfNextTurn();
-                        //    Slot.slots[slot0].HightlightMe(true);
-                        //    StartCoroutine(SecondDice());
-                        // }
                     }
-                        //else
-                        //{
-                        //    //.......................For the Normal Move............................
-                        //    Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
-                        //    randomSelectPawn.CheckShelterStage();
-                        //    randomSelectPawn.CheckShelterAndMore();
-                        //    Slot.slots[slot0].HightlightMe(true);
-                        //    Debug.Log("Slot Judge dddddd");
-                        //}
-                    
 
                 }
                 else
@@ -676,14 +614,9 @@ namespace BackgammonNet.Core
         #region _AIEnemyMoves
         public void AiMovesEnemy2()
         {
-            Pawn.moves = 1;
             turn = 1;
-          //  Debug.Log("Second Turn");
             int sign = randomSelectPawn2.pawnColor == 0 ? 1 : -1;
-         //   Debug.Log("SlotNo" + randomSelectPawn2.slotNo);
             int slot1 = randomSelectPawn2.slotNo + sign * GameController.dices[1];
-          //  Debug.Log("Second Slot"+slot1);
-         //   Debug.Log("Turn " + turn);
 
             Debug.Log(randomSelectPawn2.pawnColor);
             if (GameController.turn == randomSelectPawn2.pawnColor)
@@ -694,53 +627,24 @@ namespace BackgammonNet.Core
                     //randomSelectPawn.CheckShelterStage();
                     if (Slot.slots[slot1].Height() >= 1 && Slot.slots[slot1].IsWhite() == randomSelectPawn2.pawnColor)
                     {
-                        Debug.Log("HEIGHT GREATER THAN 1 AND NUMBER IS SAME SLOT");
                         Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
                         Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
                         randomSelectPawn2.CheckShelterStage();
                         randomSelectPawn2.CheckShelterAndMore();
                         Slot.slots[slot1].HightlightMe(true);
                         randomSelectPawn2.CheckIfNextTurn();
-                        
-                        //if(isDublet==true)
-                        //{
-                        //    isDublet = false;
-                        //    _allSlotsInts.Clear();
-                        //     allSlots.Clear();
-                        //    topEPawns.Clear();
-                        //    Pawn.moves = 0;
-                            
-                        //    SlotNumberForAI();
-                            
-                        //    Debug.Log("Dublet True");
-                        //}
-
-
 
                     }
 
                     //.............If pawn Slot is Empty or Height ==0...................
                   else  if (Slot.slots[slot1].Height() == 0)
                     {
-                        Debug.Log("HEIGHT IS 0 ");
                         Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
                         Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
                         randomSelectPawn2.CheckShelterStage();
                         randomSelectPawn2.CheckShelterAndMore();
                         Slot.slots[slot1].HightlightMe(true);
                         randomSelectPawn2.CheckIfNextTurn();
-                        //if (isDublet == true)
-                        //{
-                        //    isDublet = false;
-                        //    _allSlotsInts.Clear();
-                        //    allSlots.Clear();
-                        //    topEPawns.Clear();
-                        //    SlotNumberForAI();
-                        //    Debug.Log("Dublet True");
-                        //}
-                        // StartCoroutine(SecondDice());
-
-
 
                     }
 
@@ -786,21 +690,8 @@ namespace BackgammonNet.Core
                             Debug.Log("Call it Again ");
                             SelectRandomEnemy2();
                         }
-                        //randomSelectPawn2.CheckShelterStage();
-                        //randomSelectPawn2.CheckShelterAndMore();
-                        //randomSelectPawn2.CheckIfNextTurn();
 
                     }
-                    //else
-                    //{
-                    //    //.......................For the Normal Move............................
-                    //    Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
-                    //    randomSelectPawn.CheckShelterStage();
-                    //    randomSelectPawn.CheckShelterAndMore();
-                    //    Slot.slots[slot0].HightlightMe(true);
-                    //    Debug.Log("Slot Judge dddddd");
-                    //}
-
 
                 }
                 else
@@ -834,7 +725,7 @@ namespace BackgammonNet.Core
             StartCoroutine(SecondDice());
         }
         #region
-      public  IEnumerator SecondDice()
+        public IEnumerator SecondDice()
         {
            
             yield return new WaitForSecondsRealtime(1f);
@@ -843,9 +734,9 @@ namespace BackgammonNet.Core
             _allSlotsInts.Clear();
             allSlots.Clear();
          
-            yield return new WaitForSecondsRealtime(1f);
+            //yield return new WaitForSecondsRealtime(1f);
          
-            yield return new WaitForSecondsRealtime(1.5f);
+            //yield return new WaitForSecondsRealtime(1.5f);
          
             if (Slot.slots[25].Height() > 0)
             {
