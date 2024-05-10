@@ -372,6 +372,7 @@ namespace BackgammonNet.Core
 
 
         #region _AiModeGeneration
+
         //public void GenerateForAi()
         //{
         //    if (diceEnable && Board.Instance.acceptance >= 2)

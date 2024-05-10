@@ -706,8 +706,8 @@ MonoBehaviour:
   randomSelectPawn2: {fileID: 0}
   newTurn: 0
   sidesAgreed: 0
-  mainMenuButton: {fileID: 0}
-  newGameButton: {fileID: 0}
+  mainMenuButton: {fileID: 394922758}
+  newGameButton: {fileID: 652726982}
   gameOverPanel: {fileID: 0}
   newGameInfoPanel: {fileID: 0}
   diceButton: {fileID: 451497672}
