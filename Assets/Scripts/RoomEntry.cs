@@ -1,19 +1,20 @@
-﻿
 using UnityEngine;
 using UnityEngine.UI;
 using Photon.Pun;
+using TMPro;
 
-public class RoomListEntry : MonoBehaviour
+public class RoomEntry : MonoBehaviour
 {
-    public Text RoomNameText;
-    public Text RoomPlayersText;
-    public Button JoinRoomButton;
+    public TMP_Text roomNameText;
+    public TMP_Text roomNumberText;
+    public TMP_Text roomPlayerAmountText;
+    public Button joinRoomButton;
 
     private string roomName;
 
     public void Start()
     {
-        JoinRoomButton.onClick.AddListener(() =>
+        joinRoomButton.onClick.AddListener(() =>
         {
             if (PhotonNetwork.InLobby)
             {
@@ -28,7 +29,7 @@ public class RoomListEntry : MonoBehaviour
     {
         roomName = name;
 
-        RoomNameText.text = name;
-        RoomPlayersText.text = currentPlayers + " / " + maxPlayers;
+        roomNameText.text = name;
+        roomPlayerAmountText.text = currentPlayers + " / " + maxPlayers;
     }
 }

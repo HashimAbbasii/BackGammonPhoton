@@ -14,9 +14,7 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
     private PhotonView _photonView;
     public static MyPhotonManager Instance { get; set; }
 
-    [Header("GAME OBJECT")]
-    public GameObject roomListPrefab;
-    public GameObject roomListParent;
+    
 
     [Header("Text")]
     public TMP_InputField userNameText;
@@ -35,9 +33,13 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
     private Dictionary<string, GameObject> roomListGameObject;
     private Dictionary<int, GameObject> playerListGameObject;
 
+    [Header("Room List Panel")]
+    public RoomEntry roomListPrefab;
+    public RectTransform roomListParent;
+
     [Header("Inside Room Panel")]
     public GameObject InsideRoomPanel;
-    public GameObject playerListItemPrefab;
+    public PlayerEntry playerListItemPrefab;
     public RectTransform playerListItemParent;
     public GameObject PlayButton;
     public static MyPhotonManager instance;
@@ -101,19 +103,20 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         }
         foreach (RoomInfo roomitem in roomListData.Values)
         {
-            GameObject roomListItemObject = Instantiate(roomListPrefab, roomListParent.transform);
-            roomListItemObject.transform.localPosition = Vector3.zero;
-            //roomListItemObject.transform.SetParent();
-            //roomListItemObject.transform.localPosition = Vector3.one;
-            RectTransform rectTransform = roomListItemObject.GetComponent<RectTransform>();
+            var roomListItem = Instantiate(roomListPrefab, roomListParent.transform);
+            roomListItem.transform.localPosition = Vector3.zero;
+            RectTransform rectTransform = roomListItem.GetComponent<RectTransform>();
             rectTransform.position = Vector2.zero;
             rectTransform.anchoredPosition = Vector2.zero;
 
             // Room name ...Room player...Button room Join ...//
-            roomListItemObject.transform.GetChild(0).gameObject.GetComponent<TMP_Text>().text = roomitem.Name;
-            roomListItemObject.transform.GetChild(1).gameObject.GetComponent<TMP_Text>().text = roomitem.PlayerCount + "/" + roomitem.MaxPlayers;
-            roomListItemObject.transform.GetChild(2).gameObject.GetComponent<Button>().onClick.AddListener(() => RoomJoinFromList(roomitem.Name));
-            roomListGameObject.Add(roomitem.Name, roomListItemObject);
+            //roomListItem.roomNameText.text = roomitem.Name;
+            var rif = roomitem.Name.Split("|");
+            roomListItem.roomNameText.text = rif[0];
+            roomListItem.roomNumberText.text = rif[1];
+            roomListItem.roomPlayerAmountText.text = roomitem.PlayerCount + "/" + roomitem.MaxPlayers;
+            roomListItem.joinRoomButton.onClick.AddListener(() => RoomJoinFromList(roomitem.Name));
+            roomListGameObject.Add(roomitem.Name, roomListItem.gameObject);
         }
     }
 
@@ -174,11 +177,10 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         string roomName = roomNameText.text;
         if (!string.IsNullOrEmpty(roomName))
         {
-            roomName = roomName + Random.Range(0, 1000);
+            roomName = roomName + "|" + Random.Range(100000, 1000000);
         }
 
         RoomOptions roomOptions = new RoomOptions();
-        //roomOptions.MaxPlayers = (byte)int.Parse(maxPlayer.text);
         roomOptions.MaxPlayers = 2;
         PhotonNetwork.CreateRoom(roomName, roomOptions);
 
@@ -209,24 +211,22 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         }
         foreach (Player p in PhotonNetwork.PlayerList)
         {
-            GameObject playerListItem = Instantiate(playerListItemPrefab, playerListItemParent.transform);
+            var playerListItem = Instantiate(playerListItemPrefab, playerListItemParent.transform);
             playerListItem.transform.localPosition = Vector3.zero;
-            //playerListItem.transform.SetParent(playerListItemParent.transform);
-            //playerListItem.transform.localScale = Vector3.one;
             RectTransform rectTransform = playerListItem.GetComponent<RectTransform>();
             rectTransform.position = Vector2.zero;
             rectTransform.anchoredPosition = Vector2.zero;
 
-            playerListItem.transform.GetChild(0).gameObject.GetComponent<TMP_Text>().text = p.NickName;
+            playerListItem.playerNameText.text = p.NickName;
             if (p.ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
             {
-                playerListItem.transform.GetChild(1).gameObject.SetActive(true);
+                playerListItem.meIndicator.SetActive(true);
             }
             else
             {
-                playerListItem.transform.GetChild(1).gameObject.SetActive(false);
+                playerListItem.meIndicator.SetActive(false);
             }
-            playerListGameObject.Add(p.ActorNumber, playerListItem);
+            playerListGameObject.Add(p.ActorNumber, playerListItem.gameObject);
         }
 
 
@@ -234,7 +234,7 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        GameObject playerListItem = Instantiate(playerListItemPrefab, playerListItemParent.transform);
+        var playerListItem = Instantiate(playerListItemPrefab, playerListItemParent.transform);
         playerListItem.transform.localPosition = Vector3.zero;
         //playerListItem.transform.SetParent(playerListItemParent.transform);
         //playerListItem.transform.localScale = Vector3.one;
@@ -242,16 +242,17 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         rectTransform.position = Vector2.zero;
 
 
-        playerListItem.transform.GetChild(0).gameObject.GetComponent<TMP_Text>().text = newPlayer.NickName;
+        playerListItem.playerNameText.text = newPlayer.NickName;
         if (newPlayer.ActorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
         {
-            playerListItem.transform.GetChild(1).gameObject.SetActive(true);
+            playerListItem.meIndicator.SetActive(true);
         }
         else
         {
-            playerListItem.transform.GetChild(1).gameObject.SetActive(false);
+            playerListItem.meIndicator.gameObject.SetActive(false);
         }
-        playerListGameObject.Add(newPlayer.ActorNumber, playerListItem);
+        playerListGameObject.Add(newPlayer.ActorNumber, playerListItem.gameObject);
+
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount > 1)
         {
             PlayButton.SetActive(true); // Enable the Play button
