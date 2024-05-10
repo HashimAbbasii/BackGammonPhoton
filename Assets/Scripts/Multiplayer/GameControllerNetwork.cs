@@ -70,8 +70,8 @@ namespace BackgammonNet.Core
             PawnNetwork.OnGameOver += Pawn_OnGameOver;
             TimeController.OnTimeLimitEnd += Pawn_OnGameOver;
 
-          //  mainMenuButton.onClick.AddListener(GoToMainMenu);
-           // newGameButton.onClick.AddListener(NewGame);
+            mainMenuButton.onClick.AddListener(GoToMainMenu);
+            newGameButton.onClick.AddListener(NewGame);
 
             
 

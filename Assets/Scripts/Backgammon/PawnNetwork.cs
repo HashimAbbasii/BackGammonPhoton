@@ -395,7 +395,7 @@ namespace BackgammonNet.Core
         {
             int sign = pawnColor == 0 ? -1 : 1;
             int val = value + sign * slotNo;
-            int diceVal = GameController.dices[ind];
+            int diceVal = GameControllerNetwork.dices[ind];
             bool result = lastOrNearer ? diceVal >= val : diceVal == val;
 
             if (result)
