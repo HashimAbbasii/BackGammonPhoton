@@ -102,8 +102,6 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     }
 
 
-
-
     public void ToggleBoolSound(bool toggle)
     {
         soundToggle = toggle;
