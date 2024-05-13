@@ -40,8 +40,10 @@ namespace BackgammonNet.Core
         [SerializeField] private Button diceButton;
         [SerializeField] private Image[] turnImages;
         [SerializeField] private Text[] diceTexts;
+        [SerializeField] private Image[] diceImages;
+        public List<Sprite> diceFaces = new List<Sprite>();
 
-       
+
 
         public List<Slot> allSlots = new();
         public List<Pawn> allPawns = new();
@@ -764,15 +766,76 @@ namespace BackgammonNet.Core
             dices[0] = dice0;
             dices[1] = dice1;
 
-            diceTexts[0].text = dices[0].ToString();
-            diceTexts[1].text = dices[1].ToString();
+            //diceTexts[0].text = dices[0].ToString();
+           // diceTexts[1].text = dices[1].ToString();
+
+            //if (dices[0] == dices[1])
+            //    isDublet = true;
+
+            StartCoroutine(DiceThrow(dice0, dice1));
+
+            //  if (!CanMove(2))
+            //StartCoroutine(ChangeTurn());
+        }
+
+
+        private IEnumerator DiceThrow(int dice0, int dice1)
+        {
+            Debug.Log("--------Dice Throw-----");
+
+            for (int i = 0; i < 12; i++)
+            {
+                diceImages[0].sprite = diceFaces[Random.Range(1, 7)];
+                diceImages[1].sprite = diceFaces[Random.Range(1, 7)];
+                yield return new WaitForSeconds(0.05f);
+            }
+
+            diceImages[0].sprite = diceFaces[dice0];
+            diceImages[1].sprite = diceFaces[dice1];
+
+
+
+            //diceTexts[0].text = dices[0].ToString();
+            //diceTexts[1].text = dices[1].ToString();
 
             if (dices[0] == dices[1])
                 isDublet = true;
 
+            //My Turn or Enemy Turn
+            //if (turn == 1)
+            //{
+            //    AIController.Instance.maxMoves = isDublet ? 4 : 2;
+            //    AIController.Instance.moves = 0;
+            //    AIController.Instance.AITurn();
+            //}
+
+
+
+
+            //if (turn == 1)                                            ///////////////////////////
+            //{
+            //    Debug.Log("--------Enemy turn-----");
+
+            //    var maxMoves = isDublet ? 4 : 2;
+            //    var moves = 0;
+
+            //    while (moves < maxMoves)
+            //    {
+            //        Debug.Log("--------Enemy move----- " + moves);
+            //        AIController.Instance.AITurn();
+            //        moves++;
+            //    }
+            //}
+
+
             if (!CanMove(2))
                 StartCoroutine(ChangeTurn());
         }
+
+
+
+
+
 
         private IEnumerator ChangeTurn()
         {
