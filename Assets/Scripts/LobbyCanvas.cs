@@ -7,17 +7,34 @@ using Photon.Pun;
 
 public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
+
+
+
     public Button loginButton;
 
     [Header("Bools")]
-    public bool fullscreenToggle;
-    public bool soundToggle;
-    public bool musicToggle;
+    public bool fullscreenToggle = false;
+    public bool soundToggle = false;
+    public bool musicToggle = false;
 
     [Header("Animators")]
     public Animator FullScreenToggleAnimator;
     public Animator VfxSoundToggleAnimator;
     public Animator musicSoundToggleAnimator;
+
+    [Header("ButtonSprites")]
+    public Sprite OnSoundToggle;
+    public Sprite OffSoundToggle;
+    public Sprite OnMusicToggle;
+    public Sprite OffMusicToggle;
+    public Sprite OnFullScreenToggle;
+    public Sprite OffFullScreenToggle;
+
+    [Header("TopMenuButtons")]
+    public Button soundBtn;
+    public Button musicBtn;
+    public Button fullScreenBtn;
+
 
 
     public void CreateHostRequest()
@@ -102,55 +119,65 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     }
 
 
-    public void ToggleBoolSound(bool toggle)
+
+
+
+    public void ToggleBoolSound()
     {
-        soundToggle = toggle;
+        Debug.Log("ToggleBoolSound");
+        soundToggle = !soundToggle;
 
         AudioManager.Instance.ToggleVFXSound(soundToggle);
 
-        if (toggle)
+        if (soundToggle)
         {
-            VfxSoundToggleAnimator.Play("vfx sound Anim Reverse");
+            Debug.Log("true");
+            // VfxSoundToggleAnimator.Play("vfx sound Anim Reverse");
+            soundBtn.image.sprite = OffSoundToggle;
         }
         else
         {
-            VfxSoundToggleAnimator.Play("vfx sound Anim");
+            Debug.Log("false");
+            // VfxSoundToggleAnimator.Play("vfx sound Anim");
+            soundBtn.image.sprite = OnSoundToggle;
         }
     }
 
-    public void ToggleBoolMusic(bool toggle)
+    public void ToggleBoolMusic()
     {
-        musicToggle = toggle;
+        Debug.Log("ToggleBoolSound");
+        musicToggle = !musicToggle;
 
         AudioManager.Instance.ToggleMusicSound(musicToggle);
 
-        if (toggle)
+        if (musicToggle)
         {
-            musicSoundToggleAnimator.Play("Music Anim Reverse");
+            Debug.Log("true");
+            //musicSoundToggleAnimator.Play("Music Anim Reverse");
+            musicBtn.image.sprite = OffMusicToggle;
         }
         else
         {
-            musicSoundToggleAnimator.Play("Music Anim");
+            Debug.Log("false");
+            //musicSoundToggleAnimator.Play("Music Anim");
+            musicBtn.image.sprite = OnMusicToggle;
         }
 
     }
 
-    public void ToggleBoolFullScreen(bool toggle)
+    public void ToggleBoolFullScreen()
     {
-        fullscreenToggle = toggle;
+        fullscreenToggle = !fullscreenToggle;
 
-        if (toggle)
+        if (fullscreenToggle)
         {
-            //MyGameManager.Instance.fullScreenWebGLManager.EnterFullscreen();
-            FullScreenToggleAnimator.Play("Full Screen Anim");
-
-
+            //FullScreenToggleAnimator.Play("Full Screen Anim");
+            fullScreenBtn.image.sprite = OnFullScreenToggle;
         }
         else
         {
-            //MyGameManager.Instance.fullScreenWebGLManager.ExitFullscreen();
-            FullScreenToggleAnimator.Play("Full Screen Anim Reverse");
-
+            //FullScreenToggleAnimator.Play("Full Screen Anim Reverse");
+            fullScreenBtn.image.sprite = OffFullScreenToggle;
         }
     }
 

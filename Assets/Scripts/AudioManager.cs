@@ -34,10 +34,9 @@ public class AudioManager : MonoBehaviour
 
     #endregion
 
-    [Header("Audio Clips")] public AudioClip bombDropping;
-    public AudioClip bombBlasting;
-    public AudioClip bombWater;
-    public AudioClip placeShip;
+    [Header("Audio Clips")] 
+    public AudioClip pawnPlacement;
+ 
 
     public AudioClip actionSuccess;
     public AudioClip actionFail;
@@ -87,17 +86,17 @@ public class AudioManager : MonoBehaviour
     
     public void BombDropped()
     {
-        vfxAudioSource.PlayOneShot(bombDropping);
+        vfxAudioSource.PlayOneShot(pawnPlacement);
     }
 
     public void BombBlast()
     {
-        vfxAudioSource.PlayOneShot(bombBlasting);
+        vfxAudioSource.PlayOneShot(pawnPlacement);
     }
 
     public void BombWaterMiss()
     {
-        vfxAudioSource.PlayOneShot(bombWater);
+        vfxAudioSource.PlayOneShot(pawnPlacement);
     }
 
     public void PlaceShipInWater()
@@ -109,7 +108,7 @@ public class AudioManager : MonoBehaviour
     {
         if (vfxAudioSource.isPlaying)
             vfxAudioSource.Stop();
-        vfxAudioSource.clip = placeShip;
+        vfxAudioSource.clip = pawnPlacement;
         //vfxAudioSource.Play();
     }
 

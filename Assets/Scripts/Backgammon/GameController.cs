@@ -111,7 +111,6 @@ namespace BackgammonNet.Core
             }
         }
 
-
         IEnumerator NetworkButton()
         {
             diceButton.enabled = false;
@@ -124,11 +123,7 @@ namespace BackgammonNet.Core
                 diceButton.onClick.AddListener(GenerateForNetwork);
                 
             }
-        }
-
-
-       // [PunRPC]
-        
+        }       
         
         [PunRPC]
 
@@ -146,9 +141,6 @@ namespace BackgammonNet.Core
         [PunRPC]
         void ClientTurnStarted(int viewID)
         {
-            
-
-
             //Dice Button Off
 
 
@@ -177,8 +169,6 @@ namespace BackgammonNet.Core
             // Disable the master client's dice button
             diceButton.interactable = false;
         }
-
-
 
         public void ActivateButtons(bool active)
         {
@@ -469,8 +459,6 @@ namespace BackgammonNet.Core
 
             SelectRandomEnemy2();
         }
-
-
 
 
         #region _Check the PrisonSlot
@@ -831,11 +819,6 @@ namespace BackgammonNet.Core
             if (!CanMove(2))
                 StartCoroutine(ChangeTurn());
         }
-
-
-
-
-
 
         private IEnumerator ChangeTurn()
         {

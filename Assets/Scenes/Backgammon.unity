@@ -912,6 +912,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   diceRollButton: {fileID: 451497670}
   diceResults: {fileID: 1874818424}
+  fullscreenToggle: 0
+  soundToggle: 0
+  musicToggle: 0
+  OnSoundToggle: {fileID: 21300000, guid: 40632378c541c884b93f587a93d8886c, type: 3}
+  OffSoundToggle: {fileID: 21300000, guid: c84619f060922324292705de2fd74e34, type: 3}
+  OnMusicToggle: {fileID: 21300000, guid: 0e38fb7a2ff25b3449dde330b48b7d42, type: 3}
+  OffMusicToggle: {fileID: 21300000, guid: d676fbec4c468164bba24691ca031421, type: 3}
+  OnFullScreenToggle: {fileID: 21300000, guid: 5e6dc3e077cb0434c873c7411d22434c, type: 3}
+  OffFullScreenToggle: {fileID: 21300000, guid: 708c3f31cb441d54196087ed83f71f3e, type: 3}
+  soundBtn: {fileID: 1136576336}
+  musicBtn: {fileID: 1714909978}
+  fullScreenBtn: {fileID: 0}
 --- !u!1 &190039504
 GameObject:
   m_ObjectHideFlags: 0
@@ -4056,7 +4068,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1136576337}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 135892645}
+        m_TargetAssemblyTypeName: CanvasHandler, Assembly-CSharp
+        m_MethodName: ToggleBoolSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1136576337
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4077,7 +4101,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c23a5d5b02c3a304e81230c5e73f31cb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 40632378c541c884b93f587a93d8886c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5411,7 +5435,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 46e38f5660b8972469602789ffb04840, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 24a70089fffe5e048b175faea4e4c30b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6517,7 +6541,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1714909979}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 135892645}
+        m_TargetAssemblyTypeName: CanvasHandler, Assembly-CSharp
+        m_MethodName: ToggleBoolMusic
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1714909979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6538,7 +6574,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0404cb8e4b2edd54e9a64833641b4de9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0e38fb7a2ff25b3449dde330b48b7d42, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
