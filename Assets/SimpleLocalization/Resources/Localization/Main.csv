@@ -2,7 +2,7 @@ Key,English,Spanish,Russian,Ukrainian,French,Italian,Arabic,Portuguese,German
 Text.LocalPlay,Local Play,Juego local,Локальная игра,Локальна гра,Jeu local,Gioco locale,اللعب المحلي,Jogo local,Lokales Spielen
 Text.ChooseATable,Choose a Table,Elige una mesa,Выберите стол,Виберіть стіл,Choisissez un tableau,Scegli un tavolo,اختر جدولاً,Escolha uma mesa,Wählen Sie eine Tabelle
 Text.CreateATable,Create a Table,Crear una tabla,Создать таблицу,Створіть таблицю,Créer un tableau,Crea una tabella,إنشاء جدول,Crie uma tabela,Erstellen Sie eine Tabelle
-Text.EnterYourName,Enter your Name,Introduzca su nombre,Введите ваше имя,Введіть ім'я,Entrez votre nom,Inserisci il tuo nome,أدخل أسمك,Digite seu nome,Gib deinen Namen ein
+Text.EnterName,Enter Name,Ingrese su nombre,Введите имя,Введіть ім'я,Entrez le nom,Inserisci il nome,أدخل الاسم,Insira o nome,Name eingeben
 Text.StartGame,Start Game,Empezar juego,Начать игру,Почни гру,Démarrer jeu,Inizia il gioco,بدء اللعبة,Começar o jogo,Spiel beginnen
 Text.Information,Information,Información,Информация,Інформація,Information,Informazione,معلومة,Informação,Information
 Text.MainMenu,Main Menu,Menú principal,Главное меню,Головне меню,Menu principal,Menu principale,القائمة الرئيسية,Menu principal,Hauptmenü
@@ -23,7 +23,7 @@ Text.HostUnReachable,Host Unreachable!,¡Host inalcanzable!,Хост недос�
 Text.RemovedPlayer,Removed player: {0},Jugador eliminado: {0},Удалён игрок: {0},Видалений гравець: {0},Joueur supprimé : {0},Giocatore rimosso: {0},اللاعب الذي تمت إزالته: {0},Jogador removido: {0},Entfernter Spieler: {0}
 Text.NewGameRequest,New Game Request,Solicitud de nuevo juego,Запрос на новую игру,Новий запит на гру,Demande de nouveau jeu,Nuova richiesta di gioco,طلب لعبة جديدة,Solicitação de novo jogo,Neue Spielanfrage
 Text.Human,Human,Humano,Человек,Людина,Humain,Umano,بشر,Humano,Menschlich
-Text.VsAI,Vs AI,Contra la IA,против ИИ,Проти ШІ,Contre l'IA,Contro l’intelligenza artificiale,مقابل الذكاء الاصطناعي,Contra IA,Gegen KI
+Text.VsAI,Vs AI,Contra la IA,против ИИ,Проти ШІ,Contre l'IA,Contro l’intelligenza artificiale,مقابل الذكاء الاصطناعي,Contra IA,Loading...
 Text.MultiPlayer,MultiPlayer,Multijugador,Мультиплеер,Мультіплеер,Multijoueur,Multigiocatore,متعددة اللاعبين,Multijogador,Multiplayer
 Text.Settings,Settings,Ajustes,Настройки,Налаштування,Paramètres,Impostazioni,إعدادات,Configurações,Einstellungen
 Text.Tutorial,Tutorial,Tutorial,Руководство,Підручник,Didacticiel,Esercitazione,درس تعليمي,Tutorial,Lernprogramm
@@ -31,7 +31,7 @@ Text.Music,Music,Música,Музыка,музика,Musique,Musica,موسيقى,M
 Text.Sound,Sound,Sonido,Звук,Звук,Son,Suono,صوت,Som,Klang
 Text.Pause,Pause,Pausa,Пауза,Пауза,Pause,Pausa,يوقف,Pausa,Pause
 Text.Play,PLAY,JUGAR,ИГРАТЬ,ГРАТИ,JOUER,GIOCARE,يلعب,JOGAR,SPIELEN
-Text.OnlinePlay,ONLINE PLAY,JUGAR EN LÍNEA,ОНЛАЙН-ИГРА,ГРА ОНЛАЙН,JEU EN LIGNE,GIOCO ONLINE,اللعب عبر الإنترنت,JOGO ON-LINE,ONLINE-SPIEL
+Text.OnlineMode,ONLINE MODE,MODO EN LÍNEA,ОНЛАЙН РЕЖИМ,ОНЛАЙН РЕЖИМ,MODE EN LIGNE,MODALITÀ ONLINE,وضع على شبكة الإنترنت,MODO ONLINE,Loading...
 Text.Sounds,Sounds:,Sonidos:,Звуки:,Звуки:,Des sons:,Suoni:,اصوات:,Sons:,Geräusche:
 Text.FullScreen,FullScreen:,Pantalla completa:,Полноэкранный:,Повноекранний:,Plein écran:,A schermo intero:,تكبير الشاشة:,Tela cheia:,Ganzer Bildschirm:
 Text.Language,Language:,Idioma:,Язык:,Мова:,Langue:,Lingua:,لغة:,Linguagem:,Sprache:
@@ -47,4 +47,16 @@ Text.Score,Score,Puntaje,Счет,Оцінка,Score,Punto,نتيجة,Pontuaçã
 Text.YouWin,YOU WIN,TÚ GANAS,ТЫ ПОБЕДИЛ,ТИ ВИГРАВ,VOUS GAGNEZ,HAI VINTO,فزت,VOCÊ GANHA,DU GEWINNST
 Text.Difficulty,Difficulty,Dificultad,Сложность,Складність,Difficulté,Difficoltà,صعوبة,Dificuldade,Schwierigkeit
 Text.GameOver,GAME OVER,JUEGO TERMINADO,ИГРА ЗАКОНЧЕНА,ГРА ЗАВЕРШЕНА,JEU TERMINÉ,GAME OVER,انتهت اللعبة,GAME OVER,SPIEL VORBEI
-Text.VsHuman,Vs Human,contra humano,против человека,Проти людини,Contre l'humain,Contro Umano,مقابل الإنسان,Contra Humano,Gegen Mensch
+Text.VsHuman,Vs Human,contra humano,против человека,Проти людини,Contre l'humain,Contro Umano,مقابل الإنسان,Contra Humano,Loading...
+Text.OfflineMode,OFFLINE MODE,MODO OFFLINE,ОФФЛАЙН РЕЖИМ,ОФЛАЙН РЕЖИМ,MODE HORS-LIGNE,MODALITÀ OFFLINE,وضع غير متصل بالشبكة,MODO OFFLINE,Loading...
+Text.JoinLobby,JOIN LOBBY,ÚNETE AL LOBBY,ПРИСОЕДИНЯЙТЕСЬ К ЛОББИ,ПРИЄДНУЙТЕСЯ до ЛОБІ,REJOIGNEZ LE LOBBY,UNISCITI ALLA LOBBY,انضم إلى الردهة,ENTRAR NO LOBBY,Treten Sie der Lobby bei
+Text.Join,JOIN ,UNIRSE,ПРИСОЕДИНИТЬСЯ,ПРИЄДНУЙТЕСЯ,REJOINDRE,GIUNTURA,ينضم,JUNTAR,VERBINDEN
+Text.Connecting,Connecting...,Conectando...,Подключение...,Підключення...,De liaison...,Connessione...,توصيل...,Conectando...,Verbinden...
+Text.Lobby,Lobby,Vestíbulo,Лобби,Вестибюль,Hall d'entrée,Atrio,ردهة,Salão,Empfangshalle
+Text.CreateRoom,Create Room,Crear habitación,Создать комнату,Створити кімнату,Créer une chambre,Crea stanza,إنشاء غرفة,Criar quarto,Platz schaffen
+Text.RandomList,Random List,Lista aleatoria,Случайный список,Випадковий список,Liste aléatoire,Elenco casuale,قائمة عشوائية,Lista Aleatória,Zufällige Liste
+Text.RoomName,Room Name,Nombre de la habitación,Название комнаты,Назва кімнати,Nom de la salle,Nome della stanza,اسم الغرفة,Nome da sala,Raumname
+Text.EnterRoomName,Enter Room Name,Ingrese el nombre de la habitación,Введите название комнаты,Введіть назву кімнати,Entrez le nom de la salle,Inserisci il nome della stanza,أدخل اسم الغرفة,Insira o nome da sala,Geben Sie den Raumnamen ein
+Text.Create,Create,Crear,Создавать,Створити,Créer,Creare,يخلق,Criar,Erstellen
+Text.RoomsList,Rooms List,Lista de habitaciones,Список номеров,Список кімнат,Liste des chambres,Elenco stanze,قائمة الغرف,Lista de salas,Zimmerliste
+Text.InsideRoom,Inside Room,Habitación interior,Внутренняя комната,Внутрішня кімната,Chambre intérieure,Sala interna,داخل الغرفة,Quarto interno,Im Zimmer

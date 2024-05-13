@@ -23,12 +23,12 @@ namespace BackgammonNet.Lobby
 
         private void Awake()
         {
-            Instance = this;
-            playersPanel.gameObject.SetActive(false);
-            Client.OnNewPlayer += AddPlayer;
-            Client.OnRemovePlayer += RemovePlayer;
-            playerBtn.onClick.AddListener(delegate { scrollRect.gameObject.SetActive(!scrollRect.gameObject.activeSelf); });
-            prefabHeight = playerPrefabRect.rect.height;
+            //Instance = this;
+            //playersPanel.gameObject.SetActive(false);
+            //Client.OnNewPlayer += AddPlayer;
+            //Client.OnRemovePlayer += RemovePlayer;
+            //playerBtn.onClick.AddListener(delegate { scrollRect.gameObject.SetActive(!scrollRect.gameObject.activeSelf); });
+            //prefabHeight = playerPrefabRect.rect.height;
         }
 
         private void OnDestroy()

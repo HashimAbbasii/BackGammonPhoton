@@ -42,8 +42,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        textText.variableText = "Hello Hello";
-        LanguageManager.OnVariableChanged();
+        //textText.variableText = "Hello Hello";
+       // LanguageManager.OnVariableChanged();
 
     }
 
