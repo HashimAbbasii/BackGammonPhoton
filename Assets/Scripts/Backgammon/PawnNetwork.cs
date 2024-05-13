@@ -346,8 +346,11 @@ namespace BackgammonNet.Core
 
         private void DoCorrectMove(int diceNo)
         {
+          //  var testSlot = PhotonView.Find(slotViewId).GetComponent<SlotNetwork>();
             if (slot.Height() == 1 && slot.IsWhite() != pawnColor)   // a slot with one opponent's piece
                 PlaceJail();
+            //............yaha p issue hain Hopefuly...................//
+         //   int boardViewId=BoardNetwork.Instance.photonView.ViewID;
 
             SlotNetwork.slots[slotNo].GetTopPawn(true);                      // we remove the piece from the slot that has been occupied so far
             slot.PlacePawn(this, pawnColor);                          // put a piece in the new slot
@@ -360,7 +363,20 @@ namespace BackgammonNet.Core
 
         public void PlaceJail()                   // placing a whipped piece in prison (suspension of introduction to the shelter)
         {
-            photonView.RPC(nameof(PlaceJailRPC), RpcTarget.AllBuffered);
+            int boardViewId = BoardNetwork.Instance.photonView.ViewID;
+            int index = BoardNetwork.Instance.slots.IndexOf(slot);
+            photonView.RPC(nameof(PlaceJailRPC), RpcTarget.AllBuffered, boardViewId, index);
+            Debug.Log("Hello");
+            //photonView.RPC(nameof(PlaceJailRPC), RpcTarget.AllBuffered, slotViewId, BoardNetwork.Instance.slots.FindIndex(slot => slot.photonView.ViewID == slotViewId);
+            //int index = BoardNetwork.Instance.slots.(slot => slot.photonView.ViewID == slotViewId);
+            //PawnNetwork pawn = slot.GetTopPawn(true);                              // get a whipped piece
+            //pawn.imprisoned = true;
+
+            //SlotNetwork.slots[pawn.pawnColor == 0 ? 0 : 25].PlacePawn(pawn, pawn.pawnColor); // put the piece in the prison slot
+            //imprisonedSide[pawn.pawnColor]++;
+            //shelterSide[pawn.pawnColor] = false;                            // a piece in prison, therefore no entry into the shelter
+
+            //SoundManager.GetSoundEffect(2, 0.8f);
 
             //PawnNetwork pawn = slot.GetTopPawn(true);                              // get a whipped piece
             //pawn.imprisoned = true;
@@ -373,16 +389,23 @@ namespace BackgammonNet.Core
         }
 
         [PunRPC]
-        public void PlaceJailRPC()
+        public void PlaceJailRPC(int boardViewId, int slotNo)
         {
-            //Hashim Check here (Slot should be taken from viewID)
+          
+            var testBoeard = PhotonView.Find(boardViewId).GetComponent<BoardNetwork>();
+            var testSlot = testBoeard.slots[slotNo];
+            Debug.Log("Slot test" + slotNo);
+            Debug.Log("Slot No" + testBoeard.slots[slotNo]);
 
-            PawnNetwork pawn = slot.GetTopPawn(true);                       // get a whipped piece
-            pawn.imprisoned = true;
+            PawnNetwork pawn = testSlot.GetTopPawn(false);                       // get a whipped piece
+            pawn.imprisoned = true;    //...............apny ap ko hi imprsoned mein ly geya........
 
             if (PhotonNetwork.IsMasterClient)
             {
-                SlotNetwork.slots[pawn.pawnColor == 0 ? 0 : 25].PlacePawn(pawn, pawn.pawnColor);
+               // SlotNetwork.slots[slotNo].GetTopPawn(true);
+               testBoeard.slots[pawn.pawnColor == 0 ? 0 : 25].PlacePawn(pawn, pawn.pawnColor);
+                //var testChck = PhotonView.Find(slotViewId).GetComponent<SlotNetwork>();
+                testSlot.GetTopPawn(true);
             }
 
             imprisonedSide[pawn.pawnColor]++;

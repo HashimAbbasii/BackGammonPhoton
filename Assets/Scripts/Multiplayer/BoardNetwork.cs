@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections;
 using BackgammonNet.Lobby;
 using Photon.Pun;
+using Unity.VisualScripting;
 
 namespace BackgammonNet.Core
 {
@@ -26,6 +27,8 @@ namespace BackgammonNet.Core
         [HideInInspector] public bool observer;        
         [HideInInspector] public int acceptance;            // Both players confirm they want to start the game.
 
+        public List<SlotNetwork> slots = new ();
+
         public static BoardNetwork Instance { get; set; }
                 
         private void Awake()
@@ -35,7 +38,8 @@ namespace BackgammonNet.Core
 
         private void Start()
         {
-            photonView=GetComponent<PhotonView>(); 
+          //  slotCreated();
+            photonView =GetComponent<PhotonView>(); 
             if (PhotonNetwork.IsMasterClient)
             {
                 StartCoroutine(createSlotNetwork());
@@ -53,7 +57,15 @@ namespace BackgammonNet.Core
 
             
         }
-
+        IEnumerator slotCreated()
+        {
+            yield return new WaitForSecondsRealtime(3);
+            foreach (var slot in SlotNetwork.slots)
+            {
+                // Add a copy of the slot to the slots list of this BoardNetwork instance
+                slots.Add(slot);
+            }
+        }
 
 
                 

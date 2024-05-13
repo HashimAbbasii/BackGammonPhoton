@@ -16,7 +16,7 @@ namespace BackgammonNet.Core
     {
         public static List<SlotNetwork> slots;             // stores created slots
         private float placeOffset = -0.9f;
-        [HideInInspector] public int slotNo;        // slot number assigned at the time of its creation
+         public int slotNo;        // slot number assigned at the time of its creation
 
         public Color lightSlot;
         public Color darkSlot;
@@ -40,6 +40,7 @@ namespace BackgammonNet.Core
             name = (string)photonView.InstantiationData[1];
             transform.SetParent(BoardNetwork.Instance.slotsContainer);
             slots.Add(this);
+            BoardNetwork.Instance.slots.Add(this);
 
             spriteRenderer.color = (slotNo % 2 == 0) ? new Color(0.706f, 0.306f, 0.282f) : new Color(0.933f, 0.910f, 0.886f);
 
@@ -51,7 +52,7 @@ namespace BackgammonNet.Core
         public void PlacePawnRPC(int viewID, int isWhite)
         {
             var pawn = PhotonView.Find(viewID).GetComponent<PawnNetwork>();
-            Debug.Log("Place Pawn  RPC");
+            //Debug.Log("Place Pawn  RPC");
             pawn.transform.SetParent(pawnsContainer, true);
             isModifyingPosition = true;
             pawn.transform.DOLocalMove(new Vector3(0, -0.5f + pawns.Count * placeOffset, 0), 0.5f);
@@ -72,13 +73,14 @@ namespace BackgammonNet.Core
 
         public PawnNetwork GetTopPawn(bool pop)
         {
+            Debug.Log("pawn Count" + pawns.Count);
             if (pawns.Count > 0)
             {
                 // Debug.Log("gggg");
                 PawnNetwork pawn = pawns[pawns.Count - 1];
                 if (pop)
                 {
-                    photonView.RPC(nameof(RemoveListNetwork), RpcTarget.AllBuffered);
+                    photonView.RPC(nameof(RemoveListNetwork), RpcTarget.AllBuffered,photonView.ViewID);
                   //  Debug.Log("LLLLL");
                    // pawns.RemoveAt(pawns.Count - 1);
                 }
@@ -87,10 +89,37 @@ namespace BackgammonNet.Core
 
             return null;
         }
-        [PunRPC]
-        public void RemoveListNetwork()
+
+        public PawnNetwork GetTopPawnForus(bool pop)
         {
-            pawns.RemoveAt(pawns.Count - 1);
+            Debug.Log("pawn Count" + pawns.Count);
+            if (pawns.Count > 0)
+            {
+                // Debug.Log("gggg");
+                PawnNetwork pawn = pawns[pawns.Count - 1];
+                if (pop)
+                {
+                    photonView.RPC(nameof(RemoveListNetwork), RpcTarget.AllBuffered, photonView.ViewID);
+                    //  Debug.Log("LLLLL");
+                    // pawns.RemoveAt(pawns.Count - 1);
+                }
+                return pawn;
+            }
+
+            return null;
+        }
+
+
+        [PunRPC]
+        public void RemoveListNetwork(int slotViewId)
+        {
+         
+
+          
+            var testSlot = PhotonView.Find(slotViewId).GetComponent<SlotNetwork>();
+            testSlot.pawns.RemoveAt(pawns.Count - 1);
+          
+            
         }
 
         public int Height() => pawns.Count;

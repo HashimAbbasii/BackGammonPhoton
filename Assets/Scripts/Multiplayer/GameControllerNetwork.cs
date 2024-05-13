@@ -655,8 +655,7 @@ namespace BackgammonNet.Core
         #endregion
         private static bool CanMoveFromJail(int amount, int count, int sign)
         {
-            Debug.Log("Turn" + turn);
-            Debug.Log("PAWN Color" + PawnNetwork.instance.pawnColor);
+           
             int val = turn == 0 ? -1 : 24;
 
             for (int i = 0; i < 2; i++)
