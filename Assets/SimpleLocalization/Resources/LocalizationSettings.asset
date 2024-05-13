@@ -12,15 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63817d93022759543b57e795c78efe11, type: 3}
   m_Name: LocalizationSettings
   m_EditorClassIdentifier: 
-  TableId: 1RvKY3VE_y5FPhEECCa5dv4F7REJ7rBtGzQg9Z_B_DE4
+  TableId: 1UH3d-ecToFsOsGmV9zisr6rHjtKeq3DHHFZzWyeQBvo
   Sheets:
-  - Name: Menu
+  - Name: Main
     Id: 0
-    TextAsset: {fileID: 4900000, guid: cf55c05861a4d264a855e6349bef560e, type: 3}
-  - Name: Settings
-    Id: 331980525
-    TextAsset: {fileID: 4900000, guid: 9e915f09744b99e4eb2d3ded7f443ddc, type: 3}
-  - Name: Tests
-    Id: 1674352817
-    TextAsset: {fileID: 4900000, guid: 78955087f9a816a49851f5f94193f224, type: 3}
+    TextAsset: {fileID: 4900000, guid: f0a2147eb98f59348874cd1b96e89314, type: 3}
+  - Name: Tut
+    Id: 1693946421
+    TextAsset: {fileID: 4900000, guid: e862313b147aa434f8f8e1f5c84e232d, type: 3}
   SaveFolder: {fileID: 102900000, guid: c392831e85f928548b8494fefd912562, type: 3}

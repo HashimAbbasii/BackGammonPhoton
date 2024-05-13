@@ -57,7 +57,6 @@ public class LanguageManager : MonoBehaviour
         {
             case 0:
                 LanguageEnum = LanguageEnumerated.English;
-               // LanguageDropdown.image = flags(0);
                 LanguageDropdown.GetComponent<Image>().sprite = flags[0];
                 break;
             case 1:

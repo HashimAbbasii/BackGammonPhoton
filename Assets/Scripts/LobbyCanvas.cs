@@ -4,6 +4,7 @@ using UnityEngine;
 using BackgammonNet.Lobby;
 using UnityEngine.UI;
 using Photon.Pun;
+using Assets.SimpleLocalization.Scripts;
 
 public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
@@ -35,6 +36,16 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public Button musicBtn;
     public Button fullScreenBtn;
 
+
+    public LocalizedTextTMP textText;
+
+
+    private void Start()
+    {
+        textText.variableText = "Hello Hello";
+        LanguageManager.OnVariableChanged();
+
+    }
 
 
     public void CreateHostRequest()
