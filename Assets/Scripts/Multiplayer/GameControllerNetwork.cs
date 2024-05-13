@@ -353,6 +353,7 @@ namespace BackgammonNet.Core
 
         public void GenerateNetwork()
         {
+           
             if (diceEnable)
             {
                 if (turn == 0)
@@ -370,47 +371,6 @@ namespace BackgammonNet.Core
         #endregion
 
 
-
-        #region _AiModeGeneration
-
-        //public void GenerateForAi()
-        //{
-        //    if (diceEnable && Board.Instance.acceptance >= 2)
-        //    {
-
-
-        //        if (turn == 0)
-        //        {
-        //          //  Debug.Log("Human Turn");
-        //            dragEnable = true;
-        //            diceEnable = false;
-        //            SoundManager.GetSoundEffect(4, 0.25f);
-        //           // CheckIfTurnChange(Random.Range(1,7), Random.Range(1,7));
-        //        }
-        //        else
-        //        {
-        //          //  Debug.Log("Ai Turn");
-        //            _allSlotsInts.Clear();
-        //            //allSlots.Clear();
-        //            topEPawns.Clear();
-        //            checkExistingPawn.Clear();
-        //            SoundManager.GetSoundEffect(4, 0.25f);
-        //            int num1=Random.Range(1,7);
-        //            int num2=Random.Range(1,7);
-        //            while (num1 == num2)
-        //            {
-        //                num2 = Random.Range(1, 7);
-        //            }
-
-        //           // CheckifTurnChangeAI(num1, num2);
-
-        //        }
-
-
-        //    }
-        //}
-
-        #endregion
 
         [PunRPC]
         public void TimerSetActive(int viewID)

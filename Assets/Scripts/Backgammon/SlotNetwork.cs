@@ -41,8 +41,6 @@ namespace BackgammonNet.Core
             transform.SetParent(BoardNetwork.Instance.slotsContainer);
             slots.Add(this);
 
-            //Hashim Check Slot tomorrow
-
             spriteRenderer.color = (slotNo % 2 == 0) ? new Color(0.706f, 0.306f, 0.282f) : new Color(0.933f, 0.910f, 0.886f);
 
             if (slotNo == 0 || slotNo == 25)

@@ -115,9 +115,8 @@ namespace BackgammonNet.Core
             else
             {
                 if (!imprisoned && ((imprisonedSide[0] > 0 && pawnColor == 0) || (imprisonedSide[1] > 0 && pawnColor == 1))) return;    // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
-                {
-                    TrySelectPawn();
-                }
+                
+                TrySelectPawn();
 
 
 
@@ -361,17 +360,36 @@ namespace BackgammonNet.Core
 
         public void PlaceJail()                   // placing a whipped piece in prison (suspension of introduction to the shelter)
         {
-            PawnNetwork pawn = slot.GetTopPawn(true);                              // get a whipped piece
+            photonView.RPC(nameof(PlaceJailRPC), RpcTarget.AllBuffered);
+
+            //PawnNetwork pawn = slot.GetTopPawn(true);                              // get a whipped piece
+            //pawn.imprisoned = true;
+
+            //SlotNetwork.slots[pawn.pawnColor == 0 ? 0 : 25].PlacePawn(pawn, pawn.pawnColor); // put the piece in the prison slot
+            //imprisonedSide[pawn.pawnColor]++;
+            //shelterSide[pawn.pawnColor] = false;                            // a piece in prison, therefore no entry into the shelter
+
+            //SoundManager.GetSoundEffect(2, 0.8f);
+        }
+
+        [PunRPC]
+        public void PlaceJailRPC()
+        {
+            //Hashim Check here (Slot should be taken from viewID)
+
+            PawnNetwork pawn = slot.GetTopPawn(true);                       // get a whipped piece
             pawn.imprisoned = true;
 
-            SlotNetwork.slots[pawn.pawnColor == 0 ? 0 : 25].PlacePawn(pawn, pawn.pawnColor); // put the piece in the prison slot
+            if (PhotonNetwork.IsMasterClient)
+            {
+                SlotNetwork.slots[pawn.pawnColor == 0 ? 0 : 25].PlacePawn(pawn, pawn.pawnColor);
+            }
+
             imprisonedSide[pawn.pawnColor]++;
             shelterSide[pawn.pawnColor] = false;                            // a piece in prison, therefore no entry into the shelter
 
             SoundManager.GetSoundEffect(2, 0.8f);
         }
-
-
 
 
         //-------- private methods related to shelter mode support
