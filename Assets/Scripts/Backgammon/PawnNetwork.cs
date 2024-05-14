@@ -2,6 +2,7 @@
 using System;
 using Broniek.Stuff.Sounds;
 using Photon.Pun;
+using System.Reflection;
 
 namespace BackgammonNet.Core
 {
@@ -350,9 +351,9 @@ namespace BackgammonNet.Core
             if (slot.Height() == 1 && slot.IsWhite() != pawnColor)   // a slot with one opponent's piece
                 PlaceJail();
             //............yaha p issue hain Hopefuly...................//
-         //   int boardViewId=BoardNetwork.Instance.photonView.ViewID;
+            //   int boardViewId=BoardNetwork.Instance.photonView.ViewID;
 
-            SlotNetwork.slots[slotNo].GetTopPawn(true);                      // we remove the piece from the slot that has been occupied so far
+            NormalMovement();                    // we remove the piece from the slot that has been occupied so far
             slot.PlacePawn(this, pawnColor);                          // put a piece in the new slot
 
             if (!GameControllerNetwork.isDublet)
@@ -361,31 +362,40 @@ namespace BackgammonNet.Core
             SoundManager.GetSoundEffect(1, 0.2f);
         }
 
+
+        //......................Call on Rpc Pun..................................//
+
+
+        public void NormalMovement()
+        {
+
+            int boardViewId = BoardNetwork.Instance.photonView.ViewID;
+            int index = BoardNetwork.Instance.slots.IndexOf(slot);
+            photonView.RPC(nameof(NormalMovementRPC), RpcTarget.AllBuffered, boardViewId, index);
+        }
+
+
+        [PunRPC]
+        public void NormalMovementRPC(int boardViewId,int index)
+        {
+            var testBoeard = PhotonView.Find(boardViewId).GetComponent<BoardNetwork>();
+            // var testSlot=PhotonView.Find(index).GetComponent<SlotNetwork>();
+            var testSlot = testBoeard.slots[slotNo];
+            testBoeard.slots[index].GetTopPawn(true);
+
+            //slot.PlacePawn(this.);
+         // testSlot.slot.p
+           
+
+
+        }
         public void PlaceJail()                   // placing a whipped piece in prison (suspension of introduction to the shelter)
         {
             int boardViewId = BoardNetwork.Instance.photonView.ViewID;
             int index = BoardNetwork.Instance.slots.IndexOf(slot);
             photonView.RPC(nameof(PlaceJailRPC), RpcTarget.AllBuffered, boardViewId, index);
             Debug.Log("Hello");
-            //photonView.RPC(nameof(PlaceJailRPC), RpcTarget.AllBuffered, slotViewId, BoardNetwork.Instance.slots.FindIndex(slot => slot.photonView.ViewID == slotViewId);
-            //int index = BoardNetwork.Instance.slots.(slot => slot.photonView.ViewID == slotViewId);
-            //PawnNetwork pawn = slot.GetTopPawn(true);                              // get a whipped piece
-            //pawn.imprisoned = true;
-
-            //SlotNetwork.slots[pawn.pawnColor == 0 ? 0 : 25].PlacePawn(pawn, pawn.pawnColor); // put the piece in the prison slot
-            //imprisonedSide[pawn.pawnColor]++;
-            //shelterSide[pawn.pawnColor] = false;                            // a piece in prison, therefore no entry into the shelter
-
-            //SoundManager.GetSoundEffect(2, 0.8f);
-
-            //PawnNetwork pawn = slot.GetTopPawn(true);                              // get a whipped piece
-            //pawn.imprisoned = true;
-
-            //SlotNetwork.slots[pawn.pawnColor == 0 ? 0 : 25].PlacePawn(pawn, pawn.pawnColor); // put the piece in the prison slot
-            //imprisonedSide[pawn.pawnColor]++;
-            //shelterSide[pawn.pawnColor] = false;                            // a piece in prison, therefore no entry into the shelter
-
-            //SoundManager.GetSoundEffect(2, 0.8f);
+           
         }
 
         [PunRPC]
