@@ -10,6 +10,7 @@ using Photon.Pun;
 using static UnityEngine.GraphicsBuffer;
 using System;
 using Random = UnityEngine.Random;
+using Assets.SimpleLocalization.Scripts;
 
 namespace BackgammonNet.Core
 {
@@ -18,6 +19,17 @@ namespace BackgammonNet.Core
     public class GameControllerNetwork : MonoBehaviour
     {
         private PhotonView _photonView;
+
+        public LocalizedTextTMP difficultyTextGameOverPanel;
+        public LocalizedTextTMP difficultyTextYouWinPanel;
+        public LocalizedTextTMP difficultyTextPausePanel;
+
+        [Header("Panels")]
+        public GameObject GameOverPanel;
+        public GameObject YouWinPanel;
+
+        [SerializeField] private Image[] diceImages;
+        public List<Sprite> diceFaces = new List<Sprite>();
 
 
         public HorizontalLayoutGroup topMenu;
@@ -470,6 +482,15 @@ namespace BackgammonNet.Core
             dices[0] = dice0;
             dices[1] = dice1;
 
+            //for (int i = 0; i < 12; i++)
+            //{
+            //    diceImages[0].sprite = diceFaces[Random.Range(1, 7)];
+            //    diceImages[1].sprite = diceFaces[Random.Range(1, 7)];
+            //}
+
+            diceImages[0].sprite = diceFaces[dice0];
+            diceImages[1].sprite = diceFaces[dice1];
+
             diceTexts[0].text = dices[0].ToString();
             diceTexts[1].text = dices[1].ToString();
         }
@@ -532,6 +553,50 @@ namespace BackgammonNet.Core
             GameOver = true;
             gameOverPanel.SetActive(true);
             gameOverPanel.GetComponentInChildren<Text>().text = "Winner: " + (isWhite ? "white" : "red");
+
+            int winner;
+
+            if (isWhite)
+            {
+                winner = 0;
+            }
+            else
+            {
+                winner = 1;
+            }
+
+            ActiveGameOver(winner);
+        }
+
+        public void ActiveGameOver(int winner)
+        {
+
+            if (winner == 0)
+            {
+                //difficultyTextYouWinPanel.variableText = difficulty;
+                //LanguageManager.OnVariableChanged();
+                YouWinPanel.gameObject.SetActive(true);
+                difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+                LanguageManager.OnVariableChanged();
+            }
+            else
+            {
+                // difficultyTextGameOverPanel.variableText = difficulty;
+                // LanguageManager.OnVariableChanged();
+                gameOverPanel.gameObject.SetActive(true);
+                difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+                LanguageManager.OnVariableChanged();
+            }
+
+        }
+
+        public void ActivatePausePanel()
+        {
+            // difficultyTextPausePanel.variableText = difficulty;
+            // LanguageManager.OnVariableChanged();
+
+            difficultyTextPausePanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+            LanguageManager.OnVariableChanged();
         }
 
         private void NewGame()
@@ -580,10 +645,6 @@ namespace BackgammonNet.Core
             LobbyManager.Instance.RemoveNetworkParts();
             SceneManager.LoadScene(0);
         }
-
-
-
-
 
 
         //---------------- checking the possibility of making a move -----------------------------------------------------------------
