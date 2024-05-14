@@ -59,6 +59,8 @@ MonoBehaviour:
   - CreateSlotRPC
   - PlaceJailRPC
   - NormalMovementRPC
+  - SlotAllotmentRPC
+  - SlotDeallocateRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

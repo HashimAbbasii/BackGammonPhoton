@@ -59,6 +59,7 @@ namespace BackgammonNet.Core
             //pawn.transform.localPosition = new Vector3(0, -0.5f + pawns.Count * yOffset, 0);
             StartCoroutine(CorrectHeight());
             pawn.SetColorAndHouse(isWhite);
+            Debug.Log("Slot no Differential" + slotNo);
             pawn.slotNo = slotNo;                                   // the slot that the pawn belongs to
             pawn.pawnNo = pawns.Count;                              // the position of the pawn in the slot
             pawns.Add(pawn);
@@ -73,7 +74,7 @@ namespace BackgammonNet.Core
 
         public PawnNetwork GetTopPawn(bool pop)
         {
-            Debug.Log("pawn Count" + pawns.Count);
+            Debug.Log("pawn Count Check" + pawns.Count);
             if (pawns.Count > 0)
             {
                 // Debug.Log("gggg");

@@ -141,6 +141,7 @@ MonoBehaviour:
   pawnColor: 0
   slotNo: 0
   pawnNo: 0
+  slot: {fileID: 0}
   imprisoned: 0
   maxMoves: 0
   whitePawn: {fileID: 21300000, guid: de86e3165a1adea42ba7fe678930aa18, type: 3}

@@ -3,6 +3,7 @@ using System;
 using Broniek.Stuff.Sounds;
 using Photon.Pun;
 using System.Reflection;
+using System.Collections;
 
 namespace BackgammonNet.Core
 {
@@ -25,7 +26,7 @@ namespace BackgammonNet.Core
         public int slotNo;                                      // slot to which this pawn is currently assigned
         public int pawnNo;                                      // the position taken by a pawn in a slot
 
-        private SlotNetwork slot;                                      // the slot over which the piece being drawn is currently located
+        public SlotNetwork slot;                                      // the slot over which the piece being drawn is currently located
         private Vector3 startPos;
         private GameObject house;
         private bool isDown;                                    // Is the mouse button pressed?
@@ -69,21 +70,52 @@ namespace BackgammonNet.Core
 
         //-------- events that carry out dragging a piece
 
-        private void OnTriggerStay2D(Collider2D other)
+        //private void OnTriggerStay2D(Collider2D other)
+        //{
+        //    if (other.CompareTag("Slot"))
+        //        slot = other.GetComponent<SlotNetwork>();
+        //    else if (other.CompareTag("Shelter"))
+        //        if (shelterSide[0] || shelterSide[1])
+        //            shelter = true;
+        //}
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if (other.CompareTag("Slot"))
-                slot = other.GetComponent<SlotNetwork>();
+            {
+                //slot = other.GetComponent<SlotNetwork>().photonView.ViewID;
+                photonView.RPC(nameof(SlotAllotmentRPC), RpcTarget.AllBuffered, other.GetComponent<SlotNetwork>().photonView.ViewID);
+                
+            }
             else if (other.CompareTag("Shelter"))
                 if (shelterSide[0] || shelterSide[1])
                     shelter = true;
         }
 
+        [PunRPC]
+        public void SlotAllotmentRPC(int SlotViewId)
+        {
+            slot = PhotonView.Find(SlotViewId).GetComponent<SlotNetwork>();
+            //slot = slotinfo;
+        }
+
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("Slot"))
-                slot = SlotNetwork.slots[slotNo];         // when we are not in the area of ​​any of the slots (in the context of OnTriggerStay2D)
+                //SlotUnallotmentRPC();// when we are not in the area of ​​any of the slots (in the context of OnTriggerStay2D)
+            {
+                photonView.RPC(nameof(SlotDeallocateRPC), RpcTarget.AllBuffered, BoardNetwork.Instance.photonView.ViewID, slotNo);
+            }
             else if (other.CompareTag("Shelter"))
                 shelter = false;
+        }
+
+
+        [PunRPC]
+        public void SlotDeallocateRPC(int boardViewId, int slotIndex)
+        {
+            var testBoard = PhotonView.Find(boardViewId).GetComponent<BoardNetwork>();
+            slot = testBoard.slots[slotIndex];
         }
 
         private void OnMouseDown()
@@ -348,13 +380,19 @@ namespace BackgammonNet.Core
         private void DoCorrectMove(int diceNo)
         {
           //  var testSlot = PhotonView.Find(slotViewId).GetComponent<SlotNetwork>();
-            if (slot.Height() == 1 && slot.IsWhite() != pawnColor)   // a slot with one opponent's piece
-                PlaceJail();
             //............yaha p issue hain Hopefuly...................//
             //   int boardViewId=BoardNetwork.Instance.photonView.ViewID;
 
-            NormalMovement();                    // we remove the piece from the slot that has been occupied so far
-            slot.PlacePawn(this, pawnColor);                          // put a piece in the new slot
+            if (slot.Height() == 1 && slot.IsWhite() != pawnColor)
+            {
+                PlaceJail();
+               StartCoroutine(delayForSlot());
+                return;
+
+            }   // a slot with one opponent's piece
+            SlotNetwork.slots[slotNo].GetTopPawn(true);                      // we remove the piece from the slot that has been occupied so far
+            slot.PlacePawn(this, pawnColor);             // we remove the piece from the slot that has been occupied so far
+
 
             if (!GameControllerNetwork.isDublet)
                 GameControllerNetwork.dices[diceNo] = 0;
@@ -365,7 +403,12 @@ namespace BackgammonNet.Core
 
         //......................Call on Rpc Pun..................................//
 
-
+        IEnumerator delayForSlot()
+        {
+            yield return new WaitForSeconds(0.2f);
+            SlotNetwork.slots[slotNo].GetTopPawn(true);
+            slot.PlacePawn(this, pawnColor);
+        }
         public void NormalMovement()
         {
 
@@ -379,13 +422,24 @@ namespace BackgammonNet.Core
         public void NormalMovementRPC(int boardViewId,int index)
         {
             var testBoeard = PhotonView.Find(boardViewId).GetComponent<BoardNetwork>();
+
             // var testSlot=PhotonView.Find(index).GetComponent<SlotNetwork>();
-            var testSlot = testBoeard.slots[slotNo];
-            testBoeard.slots[index].GetTopPawn(true);
+            if (PhotonNetwork.IsMasterClient)
+            {
+               
+                var testSlot = testBoeard.slots[slotNo];
+                testBoeard.slots[index].GetTopPawn(true);
+                testSlot.GetTopPawn(true);
+                //Debug.Log("master" + testBoeard.slots[index]);
+                //Debug.Log("kha sy ja raha hain" + testSlot);
+
+
+            }
 
             //slot.PlacePawn(this.);
-         // testSlot.slot.p
-           
+          //  slot.PlacePawn(this, pawnColor);
+            // testSlot.slot.p
+
 
 
         }
@@ -404,9 +458,10 @@ namespace BackgammonNet.Core
           
             var testBoeard = PhotonView.Find(boardViewId).GetComponent<BoardNetwork>();
             var testSlot = testBoeard.slots[slotNo];
-            Debug.Log("Slot test" + slotNo);
-            Debug.Log("Slot No" + testBoeard.slots[slotNo]);
+          //  Debug.Log("Slot test" + slotNo);
 
+            Debug.Log("Slot No" + testBoeard.slots[slotNo]);   // black yaha sy jaha jana hai.....
+         
             PawnNetwork pawn = testSlot.GetTopPawn(false);                       // get a whipped piece
             pawn.imprisoned = true;    //...............apny ap ko hi imprsoned mein ly geya........
 
@@ -415,7 +470,8 @@ namespace BackgammonNet.Core
                // SlotNetwork.slots[slotNo].GetTopPawn(true);
                testBoeard.slots[pawn.pawnColor == 0 ? 0 : 25].PlacePawn(pawn, pawn.pawnColor);
                 //var testChck = PhotonView.Find(slotViewId).GetComponent<SlotNetwork>();
-                testSlot.GetTopPawn(true);
+                //testBoeard.slots[slotNo].GetTopPawn(true);
+               testSlot.GetTopPawn(true);
             }
 
             imprisonedSide[pawn.pawnColor]++;
