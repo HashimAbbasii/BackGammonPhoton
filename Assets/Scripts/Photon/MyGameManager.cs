@@ -10,8 +10,10 @@ public class MyGameManager : MonoBehaviour
 
     public static MyGameManager Instance;
     public LanguageManager languageManager;
+    public FullscreenWebGLManager fullScreenWebGLManager;
+
     //public FullscreenWebGLManager fullScreenWebGLManager;
-    
+
 
     public void Awake()
     {

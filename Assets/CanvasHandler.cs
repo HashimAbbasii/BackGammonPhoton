@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Assets.SimpleLocalization.Scripts;
 
 public class CanvasHandler : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class CanvasHandler : MonoBehaviour
     public bool fullscreenToggle = false;
     public bool soundToggle = false;
     public bool musicToggle = false;
+    private bool isToggle = true;
 
     [Header("ButtonSprites")]
     public Sprite OnSoundToggle;
@@ -26,8 +28,50 @@ public class CanvasHandler : MonoBehaviour
     public Button soundBtn;
     public Button musicBtn;
     public Button fullScreenBtn;
-    
 
+    public static CanvasHandler Instance;
+    public FullscreenWebGLManager fullScreenWebGLManager;
+
+    private void Awake()
+    {
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            if (IsRunningOnAndroid())
+            {
+                fullScreenWebGLManager.EnterFullscreen();
+            }
+        }
+
+        LocalizationManager.Read();
+
+
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+#if UNITY_ANDROID
+        Application.targetFrameRate = 60;
+#endif
+
+    }
+
+    public bool IsRunningOnAndroid()
+    {
+        return SystemInfo.operatingSystem.ToLower().Contains("android");
+
+    }
+
+    public bool IsRunningOniOS()
+    {
+        return SystemInfo.operatingSystem.ToLower().Contains("iphone") ||
+               SystemInfo.operatingSystem.ToLower().Contains("ipad") ||
+               SystemInfo.operatingSystem.ToLower().Contains("ios");
+    }
 
 
     public void ToggleBoolSound()
@@ -72,24 +116,48 @@ public class CanvasHandler : MonoBehaviour
         }
 
     }
-
-    public void ToggleBoolFullScreen()
+    public void OnPointerDown()
     {
-        fullscreenToggle = !fullscreenToggle;
+        ToggleBoolean();
+        ToggleBoolFullScreen(isToggle);
+    }
 
-        if (fullscreenToggle)
+    public void ToggleBoolean()
+    {
+        isToggle = !isToggle;
+    }
+
+    public void ToggleBoolFullScreen(bool istoggle)
+    {
+       // fullscreenToggle = !fullscreenToggle;
+
+        if (istoggle)
         {
-            //FullScreenToggleAnimator.Play("Full Screen Anim");
+
+            MyGameManager.Instance.fullScreenWebGLManager.EnterFullscreen();
+
+            //FullScreenR.gameObject.SetActive(true);
+            //FullScreenL.gameObject.SetActive(false);
+
             fullScreenBtn.image.sprite = OnFullScreenToggle;
         }
         else
         {
-            //FullScreenToggleAnimator.Play("Full Screen Anim Reverse");
+
+            MyGameManager.Instance.fullScreenWebGLManager.ExitFullscreen();
+
+            //FullScreenR.gameObject.SetActive(false);
+            //FullScreenL.gameObject.SetActive(true);
+
             fullScreenBtn.image.sprite = OffFullScreenToggle;
         }
     }
+   
 
 
-
+    public void ButtonClicked()
+    {
+        AudioManager.Instance.ButtonClicked();
+    }
 
 }

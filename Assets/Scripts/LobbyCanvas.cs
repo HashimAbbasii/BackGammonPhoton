@@ -44,7 +44,14 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public LocalizedTextTMP textText;
 
 
-    private void Start()
+    public static LobbyCanvas Instance { get; set; }
+
+    private void Awake()
+    {
+        Instance = this;
+    }
+
+        private void Start()
     {
         //textText.variableText = "Hello Hello";
        // LanguageManager.OnVariableChanged();
@@ -60,11 +67,13 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public void StartGame()
     {
         LobbyManager.Instance.StartGame();
+        AudioManager.Instance.PlayGameMusic();
     }
 
     public void StartGameAi()
     {
         LobbyManager.Instance.StartGameAi();
+        AudioManager.Instance.PlayGameMusic();
     }
 
     public void JoinRandomRoom()
@@ -120,6 +129,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public void OnClickPlayButton()
     {
         MyPhotonManager.Instance.OnClickPlayButton();
+        AudioManager.Instance.PlayGameMusic();
     }
 
     public void CheckLoginName(string playerName)
@@ -133,6 +143,10 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
         PhotonNetwork.Disconnect();
     }
 
+    public void ButtonClicked()
+    {
+        AudioManager.Instance.ButtonClicked();
+    }
 
 
 
@@ -205,19 +219,22 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public void BeginnerDifficulty()
     {
         difficulty = "Beginner";
-        GameController.Instance.difficulty = "Beginner";
+        //GameController.Instance.difficultyTextPausePanel.variableText = difficulty.ToString();
+        //LanguageManager.OnVariableChanged();
 
     }
     public void IntermediateDifficulty()
     {
         difficulty = "Intermediate";
-        GameController.Instance.difficulty = "Intermediate";
+        //GameController.Instance.difficultyTextPausePanel.variableText = difficulty.ToString();
+       // LanguageManager.OnVariableChanged();
 
     }
     public void GrandMasterDifficulty()
     {
         difficulty = "GrandMaster";
-        GameController.Instance.difficulty = "GrandMaster";
+        //GameController.Instance.difficultyTextPausePanel.variableText = difficulty.ToString();
+        //LanguageManager.OnVariableChanged();
     }
 
 
