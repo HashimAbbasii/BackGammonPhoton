@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Photon.Pun;
 using static UnityEngine.GraphicsBuffer;
+using Assets.SimpleLocalization.Scripts;
 
 namespace BackgammonNet.Core
 {
@@ -16,6 +17,17 @@ namespace BackgammonNet.Core
     public class GameController : MonoBehaviour
     {
         private PhotonView _photonView;
+
+        public string difficulty;
+        public LocalizedTextTMP difficultyTextGameOverPanel;
+        public LocalizedTextTMP difficultyTextYouWinPanel;
+        public LocalizedTextTMP difficultyTextPausePanel;
+
+
+
+        [Header("Panels")]
+        public GameObject GameOverPanel;
+        public GameObject YouWinPanel;
 
         public CanvasHandler canvasHandler;
         public HorizontalLayoutGroup topMenu;
@@ -871,9 +883,46 @@ namespace BackgammonNet.Core
             GameOver = true;
             gameOverPanel.SetActive(true);
             gameOverPanel.GetComponentInChildren<Text>().text = "Winner: " + (isWhite ? "white" : "red");
+
+            int winner;
+
+            if (isWhite)
+            {
+               winner = 0;
+            }
+            else
+            {
+                winner = 1;
+            }
+            
+            ActiveGameOver(winner);
         }
 
-        private void NewGame()
+        public void ActiveGameOver(int winner)
+        {
+
+            if(winner == 0)
+            {
+                difficultyTextYouWinPanel.variableText = difficulty;
+                LanguageManager.OnVariableChanged();
+                YouWinPanel.gameObject.SetActive(true);
+            }
+            else
+            {
+                difficultyTextGameOverPanel.variableText = difficulty;
+                LanguageManager.OnVariableChanged();
+                gameOverPanel.gameObject.SetActive(true);
+            }
+
+        }
+
+        public void ActivatePausePanel()
+        {
+            difficultyTextPausePanel.variableText = difficulty;
+            LanguageManager.OnVariableChanged();
+        }
+
+        public  void NewGame()
         {
             if (Board.Instance.client)
             {

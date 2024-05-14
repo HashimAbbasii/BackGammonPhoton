@@ -5,6 +5,7 @@ using BackgammonNet.Lobby;
 using UnityEngine.UI;
 using Photon.Pun;
 using Assets.SimpleLocalization.Scripts;
+using BackgammonNet.Core;
 
 public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
@@ -12,6 +13,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 
     public Button loginButton;
+    public string difficulty;
 
     [Header("Bools")]
     public bool fullscreenToggle = false;
@@ -35,6 +37,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public Button soundBtn;
     public Button musicBtn;
     public Button fullScreenBtn;
+
+
 
 
     public LocalizedTextTMP textText;
@@ -195,6 +199,25 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public void LanguageChange(int index)
     {
         MyGameManager.Instance.languageManager.LanguageSelect(index);
+    }
+
+
+    public void BeginnerDifficulty()
+    {
+        difficulty = "Beginner";
+        GameController.Instance.difficulty = "Beginner";
+
+    }
+    public void IntermediateDifficulty()
+    {
+        difficulty = "Intermediate";
+        GameController.Instance.difficulty = "Intermediate";
+
+    }
+    public void GrandMasterDifficulty()
+    {
+        difficulty = "GrandMaster";
+        GameController.Instance.difficulty = "GrandMaster";
     }
 
 

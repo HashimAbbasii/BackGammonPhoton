@@ -26,6 +26,7 @@ public class CanvasHandler : MonoBehaviour
     public Button soundBtn;
     public Button musicBtn;
     public Button fullScreenBtn;
+    
 
 
 

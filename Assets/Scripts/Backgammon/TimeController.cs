@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System;
+using TMPro;
 
 namespace BackgammonNet.Core
 {
@@ -13,6 +14,10 @@ namespace BackgammonNet.Core
         private float timeInterval = 1f;            // how often the clock is updated
         private float timeElapsed;                  // elapsed time since the last update
         [SerializeField] private Text timeDisplay;
+        [SerializeField] private TMP_Text timeDisplayPanel;
+        [SerializeField] private TMP_Text timeDisplayPanel2;
+        [SerializeField] private TMP_Text timeDisplayPanel3;
+
 
         public static TimeController Instance { get; set; }
 
@@ -53,12 +58,18 @@ namespace BackgammonNet.Core
                 return;
             }
 
+         
+
             time = timeRange + 1 - time;
 
             int minutes = Mathf.FloorToInt(time / 60);
             int seconds = Mathf.FloorToInt(time % 60);
 
             timeDisplay.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+            timeDisplayPanel.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+            timeDisplayPanel2.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+            timeDisplayPanel3.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+
         }
     }
 }

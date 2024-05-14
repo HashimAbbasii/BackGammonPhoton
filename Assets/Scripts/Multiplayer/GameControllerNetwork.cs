@@ -23,6 +23,7 @@ namespace BackgammonNet.Core
         public HorizontalLayoutGroup topMenu;
         public List<GameObject> buttons;
         public bool menuToggle;
+        
 
         public PawnNetwork randomSelectPawn;
         public PawnNetwork randomSelectPawn2;

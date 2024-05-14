@@ -20,10 +20,10 @@ Text.TableName,Table Name,Nombre de la tabla,Имя таблицы,Назва т
 Text.Time,Time : {0},Hora: {0},Время: {0},Час: {0},Heure : {0},Ora: {0},الوقت : {0},Hora: {0},Zeit: {0}
 Text.Players,Players,Jugadores,Игроки,Гравці,Joueurs,Giocatori,اللاعبين,Jogadoras,Spieler
 Text.HostUnReachable,Host Unreachable!,¡Host inalcanzable!,Хост недоступен!,Хост недоступний!,Hôte inaccessible!,Host irraggiungibile!,المضيف غير قابل للوصول إليه!,Host inacessível!,Host nicht erreichbar!
-Text.RemovedPlayer,Removed player: {0},Jugador eliminado: {0},Удалён игрок: {0},Видалений гравець: {0},Joueur supprimé : {0},Giocatore rimosso: {0},اللاعب الذي تمت إزالته: {0},Jogador removido: {0},Entfernter Spieler: {0}
+Text.RemovedPlayer,Removed player: {0},Jugador eliminado: {0},Удаленный игрок: {0},Видалений гравець: {0},Joueur supprimé : {0},Giocatore rimosso: {0},اللاعب الذي تمت إزالته: {0},Jogador removido: {0},Entfernter Spieler: {0}
 Text.NewGameRequest,New Game Request,Solicitud de nuevo juego,Запрос на новую игру,Новий запит на гру,Demande de nouveau jeu,Nuova richiesta di gioco,طلب لعبة جديدة,Solicitação de novo jogo,Neue Spielanfrage
 Text.Human,Human,Humano,Человек,Людина,Humain,Umano,بشر,Humano,Menschlich
-Text.VsAI,Vs AI,Contra la IA,против ИИ,Проти ШІ,Contre l'IA,Contro l’intelligenza artificiale,مقابل الذكاء الاصطناعي,Contra IA,Loading...
+Text.VsAI,Vs AI,Contra la IA,против ИИ,Проти ШІ,Contre l'IA,Contro l’intelligenza artificiale,مقابل الذكاء الاصطناعي,Contra IA,Gegen KI
 Text.MultiPlayer,MultiPlayer,Multijugador,Мультиплеер,Мультіплеер,Multijoueur,Multigiocatore,متعددة اللاعبين,Multijogador,Multiplayer
 Text.Settings,Settings,Ajustes,Настройки,Налаштування,Paramètres,Impostazioni,إعدادات,Configurações,Einstellungen
 Text.Tutorial,Tutorial,Tutorial,Руководство,Підручник,Didacticiel,Esercitazione,درس تعليمي,Tutorial,Lernprogramm
@@ -31,12 +31,12 @@ Text.Music,Music,Música,Музыка,музика,Musique,Musica,موسيقى,M
 Text.Sound,Sound,Sonido,Звук,Звук,Son,Suono,صوت,Som,Klang
 Text.Pause,Pause,Pausa,Пауза,Пауза,Pause,Pausa,يوقف,Pausa,Pause
 Text.Play,PLAY,JUGAR,ИГРАТЬ,ГРАТИ,JOUER,GIOCARE,يلعب,JOGAR,SPIELEN
-Text.OnlineMode,ONLINE MODE,MODO EN LÍNEA,ОНЛАЙН РЕЖИМ,ОНЛАЙН РЕЖИМ,MODE EN LIGNE,MODALITÀ ONLINE,وضع على شبكة الإنترنت,MODO ONLINE,Loading...
+Text.OnlineMode,ONLINE MODE,MODO EN LÍNEA,ОНЛАЙН РЕЖИМ,ОНЛАЙН РЕЖИМ,MODE EN LIGNE,MODALITÀ ONLINE,وضع على شبكة الإنترنت,MODO ONLINE,ONLINEMODUS
 Text.Sounds,Sounds:,Sonidos:,Звуки:,Звуки:,Des sons:,Suoni:,اصوات:,Sons:,Geräusche:
 Text.FullScreen,FullScreen:,Pantalla completa:,Полноэкранный:,Повноекранний:,Plein écran:,A schermo intero:,تكبير الشاشة:,Tela cheia:,Ganzer Bildschirm:
 Text.Language,Language:,Idioma:,Язык:,Мова:,Langue:,Lingua:,لغة:,Linguagem:,Sprache:
 Text.Home,HOME,HOGAR,ДОМ,ДІМ,MAISON,CASA,بيت,LAR,HEIM
-Text.VsComputer,Vs Computer,Contra la computadora,против компьютера,Проти комп'ютера,Contre l'ordinateur,Contro il computer,مقابل الكمبيوتر,Contra o computador,Gegen Computer
+Text.VsComputer,Vs Computer,contra computadora,против компьютера,Проти комп'ютера,Contre l'ordinateur,Contro il computer,مقابل الكمبيوتر,Contra o computador,Gegen Computer
 Text.PlayComputer,Play Computer,Jugar a la computadora,Играть в компьютер,Гратися на комп'ютері,Jouer à l'ordinateur,Giocare al computer,العب الكمبيوتر,Jogar computador,Computer spielen
 Text.Beginner,Beginner,Principiante,Новичок,Початківець,Débutant,Principiante,مبتدئ,Principiante,Anfänger
 Text.Intermediate,Intermediate,Intermedio,Средний,Проміжний,Intermédiaire,Intermedio,متوسط,Intermediário,Dazwischenliegend
@@ -47,16 +47,17 @@ Text.Score,Score,Puntaje,Счет,Оцінка,Score,Punto,نتيجة,Pontuaçã
 Text.YouWin,YOU WIN,TÚ GANAS,ТЫ ПОБЕДИЛ,ТИ ВИГРАВ,VOUS GAGNEZ,HAI VINTO,فزت,VOCÊ GANHA,DU GEWINNST
 Text.Difficulty,Difficulty,Dificultad,Сложность,Складність,Difficulté,Difficoltà,صعوبة,Dificuldade,Schwierigkeit
 Text.GameOver,GAME OVER,JUEGO TERMINADO,ИГРА ЗАКОНЧЕНА,ГРА ЗАВЕРШЕНА,JEU TERMINÉ,GAME OVER,انتهت اللعبة,GAME OVER,SPIEL VORBEI
-Text.VsHuman,Vs Human,contra humano,против человека,Проти людини,Contre l'humain,Contro Umano,مقابل الإنسان,Contra Humano,Loading...
-Text.OfflineMode,OFFLINE MODE,MODO OFFLINE,ОФФЛАЙН РЕЖИМ,ОФЛАЙН РЕЖИМ,MODE HORS-LIGNE,MODALITÀ OFFLINE,وضع غير متصل بالشبكة,MODO OFFLINE,Loading...
-Text.JoinLobby,JOIN LOBBY,ÚNETE AL LOBBY,ПРИСОЕДИНЯЙТЕСЬ К ЛОББИ,ПРИЄДНУЙТЕСЯ до ЛОБІ,REJOIGNEZ LE LOBBY,UNISCITI ALLA LOBBY,انضم إلى الردهة,ENTRAR NO LOBBY,Treten Sie der Lobby bei
+Text.VsHuman,Vs Human,contra humano,против человека,Проти людини,Contre l'humain,Contro Umano,مقابل الإنسان,Contra Humano,Gegen Mensch
+Text.OfflineMode,OFFLINE MODE,MODO OFFLINE,ОФФЛАЙН РЕЖИМ,ОФЛАЙН РЕЖИМ,MODE HORS-LIGNE,MODALITÀ OFFLINE,وضع غير متصل بالشبكة,MODO OFFLINE,OFFLINE-MODUS
+Text.JoinLobby,JOIN LOBBY,ÚNETE AL LOBBY,ПРИСОЕДИНЯЙТЕСЬ К ЛОББИ,ПРИЄДНУЙТЕСЬ до ЛОБІ,REJOIGNEZ LE LOBBY,ISCRIVITI ALLA LOBBY,انضم إلى الردهة,ENTRAR NO LOBBY,Treten Sie der Lobby bei
 Text.Join,JOIN ,UNIRSE,ПРИСОЕДИНИТЬСЯ,ПРИЄДНУЙТЕСЯ,REJOINDRE,GIUNTURA,ينضم,JUNTAR,VERBINDEN
-Text.Connecting,Connecting...,Conectando...,Подключение...,Підключення...,De liaison...,Connessione...,توصيل...,Conectando...,Verbinden...
+Text.Connecting,Connecting...,Conectando...,Подключение...,Підключення...,De liaison...,Collegamento...,توصيل...,Conectando...,Verbinden...
 Text.Lobby,Lobby,Vestíbulo,Лобби,Вестибюль,Hall d'entrée,Atrio,ردهة,Salão,Empfangshalle
 Text.CreateRoom,Create Room,Crear habitación,Создать комнату,Створити кімнату,Créer une chambre,Crea stanza,إنشاء غرفة,Criar quarto,Platz schaffen
 Text.RandomList,Random List,Lista aleatoria,Случайный список,Випадковий список,Liste aléatoire,Elenco casuale,قائمة عشوائية,Lista Aleatória,Zufällige Liste
 Text.RoomName,Room Name,Nombre de la habitación,Название комнаты,Назва кімнати,Nom de la salle,Nome della stanza,اسم الغرفة,Nome da sala,Raumname
-Text.EnterRoomName,Enter Room Name,Ingrese el nombre de la habitación,Введите название комнаты,Введіть назву кімнати,Entrez le nom de la salle,Inserisci il nome della stanza,أدخل اسم الغرفة,Insira o nome da sala,Geben Sie den Raumnamen ein
+Text.EnterRoomName,Enter Room Name,Ingrese el nombre de la habitación,Введите название комнаты,Введіть назву кімнати,Entrez le nom de la pièce,Inserisci il nome della stanza,أدخل اسم الغرفة,Insira o nome da sala,Geben Sie den Raumnamen ein
 Text.Create,Create,Crear,Создавать,Створити,Créer,Creare,يخلق,Criar,Erstellen
 Text.RoomsList,Rooms List,Lista de habitaciones,Список номеров,Список кімнат,Liste des chambres,Elenco stanze,قائمة الغرف,Lista de salas,Zimmerliste
 Text.InsideRoom,Inside Room,Habitación interior,Внутренняя комната,Внутрішня кімната,Chambre intérieure,Sala interna,داخل الغرفة,Quarto interno,Im Zimmer
+Text.Record,Inside Room,Habitación interior,habitacion interior,habitación interior,interior de la habitacion,interior de la habitación,interior de la habitación,interior de la habitación,interior de la habitación
