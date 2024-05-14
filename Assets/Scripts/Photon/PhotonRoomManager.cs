@@ -12,6 +12,11 @@ public class PhotonRoomManager : MonoBehaviourPunCallbacks
 {
     public static PhotonRoomManager Instance { get; set; }
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     public string myUsername;
 
     public RoomType roomType = RoomType.None;

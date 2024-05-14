@@ -83,7 +83,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
     public void OnLoginClick()
     {
-        MyPhotonManager.Instance.OnLoginClick();
+        MyPhotonManager.instance.OnLoginClick();
     }
 
     public void ConnectToHost()
@@ -98,37 +98,37 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
     public void ActiveMyPanel(string panelName)
     {
-        MyPhotonManager.Instance.ActiveMyPanel(panelName);
+        MyPhotonManager.instance.ActiveMyPanel(panelName);
     }
 
     public void RoomListBtnClicked()
     {
-        MyPhotonManager.Instance.RoomListBtnClicked();
+        MyPhotonManager.instance.RoomListBtnClicked();
     }
 
     public void OnClickRoomCreate()
     {
-        MyPhotonManager.Instance.OnClickRoomCreate();
+        MyPhotonManager.instance.OnClickRoomCreate();
     }
 
     public void onCancelClick()
     {
-        MyPhotonManager.Instance.onCancelClick();
+        MyPhotonManager.instance.onCancelClick();
     }
 
     public void BackFromRoomList()
     {
-        MyPhotonManager.Instance.BackFromRoomList();
+        MyPhotonManager.instance.BackFromRoomList();
     }
 
     public void BackFromPlayerList()
     {
-        MyPhotonManager.Instance.BackFromPlayerList();
+        MyPhotonManager.instance.BackFromPlayerList();
     }
 
     public void OnClickPlayButton()
     {
-        MyPhotonManager.Instance.OnClickPlayButton();
+        MyPhotonManager.instance.OnClickPlayButton();
         AudioManager.Instance.PlayGameMusic();
     }
 

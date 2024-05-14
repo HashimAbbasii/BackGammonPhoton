@@ -8,13 +8,12 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 using Random = UnityEngine.Random;
+using AYellowpaper.SerializedCollections;
+
 
 public class MyPhotonManager : MonoBehaviourPunCallbacks
 {
-    private PhotonView _photonView;
-    public static MyPhotonManager Instance { get; set; }
-
-    
+    private PhotonView _photonView;    
 
     [Header("Text")]
     public TMP_InputField userNameText;
