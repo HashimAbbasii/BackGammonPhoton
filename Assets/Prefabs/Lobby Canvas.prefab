@@ -8347,12 +8347,12 @@ MonoBehaviour:
   FullScreenToggleAnimator: {fileID: 0}
   VfxSoundToggleAnimator: {fileID: 0}
   musicSoundToggleAnimator: {fileID: 0}
-  OnSoundToggle: {fileID: 21300000, guid: 40632378c541c884b93f587a93d8886c, type: 3}
-  OffSoundToggle: {fileID: 21300000, guid: c84619f060922324292705de2fd74e34, type: 3}
-  OnMusicToggle: {fileID: 21300000, guid: 0e38fb7a2ff25b3449dde330b48b7d42, type: 3}
-  OffMusicToggle: {fileID: 21300000, guid: d676fbec4c468164bba24691ca031421, type: 3}
-  OnFullScreenToggle: {fileID: 21300000, guid: 5e6dc3e077cb0434c873c7411d22434c, type: 3}
-  OffFullScreenToggle: {fileID: 21300000, guid: 708c3f31cb441d54196087ed83f71f3e, type: 3}
+  OnSoundToggle: {fileID: 21300000, guid: c84619f060922324292705de2fd74e34, type: 3}
+  OffSoundToggle: {fileID: 21300000, guid: 40632378c541c884b93f587a93d8886c, type: 3}
+  OnMusicToggle: {fileID: 21300000, guid: d676fbec4c468164bba24691ca031421, type: 3}
+  OffMusicToggle: {fileID: 21300000, guid: 0e38fb7a2ff25b3449dde330b48b7d42, type: 3}
+  OnFullScreenToggle: {fileID: 21300000, guid: 708c3f31cb441d54196087ed83f71f3e, type: 3}
+  OffFullScreenToggle: {fileID: 21300000, guid: 5e6dc3e077cb0434c873c7411d22434c, type: 3}
   soundBtn: {fileID: 2304213212485471041}
   musicBtn: {fileID: 1151501120422154241}
   fullScreenBtn: {fileID: 2591297642377705698}
@@ -9603,18 +9603,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2335359526736728201}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 3957825310216825505}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -9630,6 +9618,18 @@ MonoBehaviour:
       - m_Target: {fileID: 2321881972388751544}
         m_TargetAssemblyTypeName: LobbyCanvas, Assembly-CSharp
         m_MethodName: ButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2321881972388751544}
+        m_TargetAssemblyTypeName: LobbyCanvas, Assembly-CSharp
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -377,15 +377,49 @@ namespace BackgammonNet.Core
             dices[0] = dice0;
             dices[1] = dice1;
 
+
+
+            diceTexts[0].text = dices[0].ToString();
+            diceTexts[1].text = dices[1].ToString();
+
+            //if (dices[0] == dices[1])
+            //{
+            //    isDublet = true;
+            //}
+
+            //StartCoroutine(PawnMoveCoroutine());
+
+            StartCoroutine(DiceThrowAI(dice0, dice1));
+
+        }
+
+
+        private IEnumerator DiceThrowAI(int dice0, int dice1)
+        {
+
+            for (int i = 0; i < 12; i++)
+            {
+                diceImages[0].sprite = diceFaces[Random.Range(1, 7)];
+                diceImages[1].sprite = diceFaces[Random.Range(1, 7)];
+                yield return new WaitForSeconds(0.05f);
+            }
+
+            diceImages[0].sprite = diceFaces[dice0];
+            diceImages[1].sprite = diceFaces[dice1];
+
+
+
             diceTexts[0].text = dices[0].ToString();
             diceTexts[1].text = dices[1].ToString();
 
             if (dices[0] == dices[1])
-            {
                 isDublet = true;
-            }
+
 
             StartCoroutine(PawnMoveCoroutine());
+
+            //if (!CanMove(2))
+            //    StartCoroutine(ChangeTurn());
         }
 
         public void CallDublet()
@@ -795,8 +829,8 @@ namespace BackgammonNet.Core
 
 
 
-            //diceTexts[0].text = dices[0].ToString();
-            //diceTexts[1].text = dices[1].ToString();
+            diceTexts[0].text = dices[0].ToString();
+            diceTexts[1].text = dices[1].ToString();
 
             if (dices[0] == dices[1])
                 isDublet = true;

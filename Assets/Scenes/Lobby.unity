@@ -2493,30 +2493,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2321881972388751544, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
-      propertyPath: OnMusicToggle
-      value: 
-      objectReference: {fileID: 21300000, guid: d676fbec4c468164bba24691ca031421, type: 3}
-    - target: {fileID: 2321881972388751544, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
-      propertyPath: OnSoundToggle
-      value: 
-      objectReference: {fileID: 21300000, guid: c84619f060922324292705de2fd74e34, type: 3}
-    - target: {fileID: 2321881972388751544, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
-      propertyPath: OffMusicToggle
-      value: 
-      objectReference: {fileID: 21300000, guid: 0e38fb7a2ff25b3449dde330b48b7d42, type: 3}
-    - target: {fileID: 2321881972388751544, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
-      propertyPath: OffSoundToggle
-      value: 
-      objectReference: {fileID: 21300000, guid: 40632378c541c884b93f587a93d8886c, type: 3}
-    - target: {fileID: 2321881972388751544, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
-      propertyPath: OnFullScreenToggle
-      value: 
-      objectReference: {fileID: 21300000, guid: 708c3f31cb441d54196087ed83f71f3e, type: 3}
-    - target: {fileID: 2321881972388751544, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
-      propertyPath: OffFullScreenToggle
-      value: 
-      objectReference: {fileID: 21300000, guid: 5e6dc3e077cb0434c873c7411d22434c, type: 3}
     - target: {fileID: 3957825308760889450, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
