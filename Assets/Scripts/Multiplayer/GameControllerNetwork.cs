@@ -676,8 +676,15 @@ namespace BackgammonNet.Core
 
         }
 
+        public override void OnPlayerLeftRoom(Player otherPlayer)
+        {
+            YouWinPanel.gameObject.SetActive(true);
+            //base.OnPlayerLeftRoom(otherPlayer);
+        }
+
         public override void OnLeftRoom()
         {
+            //YouWinPanel.gameObject.SetActive(true);
             // This method is called after the local player leaves the room
            // SceneManager.LoadScene(0);
             //photonView.RPC(nameof(LoadScene), RpcTarget.AllBuffered);
