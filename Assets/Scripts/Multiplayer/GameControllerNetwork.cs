@@ -585,15 +585,19 @@ namespace BackgammonNet.Core
                 //LanguageManager.OnVariableChanged();
                 YouWinPanel.gameObject.SetActive(true);
                 //difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
-               // LanguageManager.OnVariableChanged();
+                // LanguageManager.OnVariableChanged();
+
+                AudioManager.Instance.GameWon();
             }
             else
             {
                 // difficultyTextGameOverPanel.variableText = difficulty;
                 // LanguageManager.OnVariableChanged();
                 gameOverPanel.gameObject.SetActive(true);
-              //  difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
-              //  LanguageManager.OnVariableChanged();
+                //  difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+                //  LanguageManager.OnVariableChanged();
+
+                AudioManager.Instance.GameLost();
             }
 
         }

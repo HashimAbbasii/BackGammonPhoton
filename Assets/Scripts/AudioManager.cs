@@ -38,6 +38,9 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Clips")] 
     public AudioClip pawnPlacement;
+    public AudioClip diceRoll;
+
+
  
 
     public AudioClip actionSuccess;
@@ -55,7 +58,16 @@ public class AudioManager : MonoBehaviour
     {
         vfxAudioSource.PlayOneShot(buttonClicked);
     }
-    
+    public void DiceRoll()
+    {
+        vfxAudioSource.PlayOneShot(diceRoll);
+    }
+
+    public void PawnPlacement()
+    {
+        vfxAudioSource.PlayOneShot(pawnPlacement);
+    }
+
     public void GameWon()
     {
         musicAudioSource.PlayOneShot(gameWin);
@@ -86,25 +98,10 @@ public class AudioManager : MonoBehaviour
         musicAudioSource.Play();
     }
     
-    public void BombDropped()
-    {
-        vfxAudioSource.PlayOneShot(pawnPlacement);
-    }
+ 
 
-    public void BombBlast()
-    {
-        vfxAudioSource.PlayOneShot(pawnPlacement);
-    }
 
-    public void BombWaterMiss()
-    {
-        vfxAudioSource.PlayOneShot(pawnPlacement);
-    }
-
-    public void PlaceShipInWater()
-    {
-        Invoke(nameof(PlaceShip), 0.3f);
-    }
+  
 
     private void PlaceShip()
     {

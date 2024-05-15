@@ -1073,12 +1073,13 @@ MonoBehaviour:
   vfxAudioSource: {fileID: 1123117246}
   musicAudioSource: {fileID: 1779368989}
   audioMixer: {fileID: 24100000, guid: 1de8f5118139c22449a29a35e95d34e5, type: 2}
-  pawnPlacement: {fileID: 0}
+  pawnPlacement: {fileID: 8300000, guid: 2fcf2bb5bbbf4ce4eb991a9027b4e277, type: 3}
+  diceRoll: {fileID: 8300000, guid: 3e1103c3e8599914ba7841359c7fce24, type: 3}
   actionSuccess: {fileID: 0}
   actionFail: {fileID: 0}
   buttonClicked: {fileID: 8300000, guid: 43c798a919bdfb04386e088c9e231a58, type: 3}
-  gameWin: {fileID: 8300000, guid: 7d080d7536ac25345bb8a93ed21ee0fd, type: 3}
-  gameLose: {fileID: 8300000, guid: 114158680d7c9e34a9cd6070586eea20, type: 3}
+  gameWin: {fileID: 8300000, guid: 0cb86b30019e96247a53fb27cad9132b, type: 3}
+  gameLose: {fileID: 8300000, guid: 36a0587dcbcacaf4ab1dda9dd3a95d5d, type: 3}
   menuMusic: {fileID: 8300000, guid: 390870036d5b67b42afdc632316040e5, type: 3}
   gameMusic: {fileID: 8300000, guid: 390870036d5b67b42afdc632316040e5, type: 3}
 --- !u!4 &890353086

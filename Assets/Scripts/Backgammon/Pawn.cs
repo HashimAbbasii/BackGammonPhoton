@@ -589,7 +589,8 @@ namespace BackgammonNet.Core
             if (!GameController.isDublet)
                 GameController.dices[diceNo] = 0;
 
-            SoundManager.GetSoundEffect(1, 0.2f);
+            //SoundManager.GetSoundEffect(1, 0.2f);
+            AudioManager.Instance.PawnPlacement();
         }
 
         public void PlaceJail()                   // placing a whipped piece in prison (suspension of introduction to the shelter)
@@ -602,6 +603,7 @@ namespace BackgammonNet.Core
             shelterSide[pawn.pawnColor] = false;                            // a piece in prison, therefore no entry into the shelter
 
             SoundManager.GetSoundEffect(2, 0.8f);
+            
         }
 
 

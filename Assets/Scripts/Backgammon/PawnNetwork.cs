@@ -397,7 +397,8 @@ namespace BackgammonNet.Core
             if (!GameControllerNetwork.isDublet)
                 GameControllerNetwork.dices[diceNo] = 0;
 
-            SoundManager.GetSoundEffect(1, 0.2f);
+            // SoundManager.GetSoundEffect(1, 0.2f);
+            AudioManager.Instance.PawnPlacement();
         }
 
 

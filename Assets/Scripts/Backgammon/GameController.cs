@@ -241,8 +241,10 @@ namespace BackgammonNet.Core
             {
                 dragEnable = true;
                 diceEnable = false;
-                
-                SoundManager.GetSoundEffect(4, 0.25f);
+
+                // SoundManager.GetSoundEffect(4, 0.25f);
+                AudioManager.Instance.DiceRoll();
+
                 CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
                 //CheckIfTurnChange(1, 2);
 
@@ -953,6 +955,10 @@ namespace BackgammonNet.Core
                 YouWinPanel.gameObject.SetActive(true);
                 difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
                 LanguageManager.OnVariableChanged();
+
+                AudioManager.Instance.GameWon();
+
+
             }
             else
             {
@@ -961,6 +967,8 @@ namespace BackgammonNet.Core
                 gameOverPanel.gameObject.SetActive(true);
                 difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
                 LanguageManager.OnVariableChanged();
+
+                AudioManager.Instance.GameLost();
             }
 
         }
