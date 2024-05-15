@@ -119,7 +119,7 @@ namespace BackgammonNet.Core
             //if (Board.Instance.observer)     // lock buttons
             //    ActivateButtons(false);
 
-
+            AudioManager.Instance.PlayGameMusic();
             if (MyPhotonManager.instance.multiPlayerMode == true)
             {
                 StartCoroutine(NetworkButton());
@@ -666,7 +666,7 @@ namespace BackgammonNet.Core
                     yield return null;
                 }
             }
-           // SceneManager.LoadScene(0);
+            SceneManager.LoadScene(0);
 
             // Load the main menu scene via RPC
             //photonView.RPC(nameof(LoadScene), RpcTarget.AllBuffered);
@@ -678,7 +678,7 @@ namespace BackgammonNet.Core
         {
             // This method is called after the local player leaves the room
            // SceneManager.LoadScene(0);
-            photonView.RPC(nameof(LoadScene), RpcTarget.AllBuffered);
+            //photonView.RPC(nameof(LoadScene), RpcTarget.AllBuffered);
         }
 
         [PunRPC]
