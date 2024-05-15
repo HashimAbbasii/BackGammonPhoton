@@ -28,6 +28,7 @@ namespace BackgammonNet.Core
         [Header("Panels")]
         public GameObject GameOverPanel;
         public GameObject YouWinPanel;
+        public GameObject YouWinPanelPlayerLeftPanel;
 
         public CanvasHandlerNetwork canvasHandlerNetwork;
 
@@ -678,7 +679,7 @@ namespace BackgammonNet.Core
 
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
-            YouWinPanel.gameObject.SetActive(true);
+            YouWinPanelPlayerLeftPanel.gameObject.SetActive(true);
             //base.OnPlayerLeftRoom(otherPlayer);
         }
 
