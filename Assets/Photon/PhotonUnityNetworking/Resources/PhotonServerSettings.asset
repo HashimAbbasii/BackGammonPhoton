@@ -61,6 +61,7 @@ MonoBehaviour:
   - NormalMovementRPC
   - SlotAllotmentRPC
   - SlotDeallocateRPC
+  - RPCLeaveRoom
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0
