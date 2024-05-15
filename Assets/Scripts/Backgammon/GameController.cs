@@ -1013,6 +1013,7 @@ namespace BackgammonNet.Core
 
         private IEnumerator DelayedGoToMainMenu()
         {
+            LobbyManager.AiMode = false;
             SoundManager.GetSoundEffect(4, 0.25f);
 
             yield return new WaitForSeconds(0.2f);
