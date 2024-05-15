@@ -142,7 +142,9 @@ namespace BackgammonNet.Core
             {
                 if (YourTurn())
                 {
-                    diceButton.gameObject.SetActive(true);
+                    //diceButton.gameObject.SetActive(true);
+
+
                     //_photonView.RPC(nameof(DiceEnbleForMaster), RpcTarget.AllBuffered);
                 }
 
