@@ -241,7 +241,7 @@ namespace BackgammonNet.Core
             {
                 dragEnable = true;
                 diceEnable = false;
-
+                
                 SoundManager.GetSoundEffect(4, 0.25f);
                 CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
                 //CheckIfTurnChange(1, 2);
@@ -683,6 +683,7 @@ namespace BackgammonNet.Core
                     //.............If pawn Slot is Empty or Height ==0...................
                   else  if (Slot.slots[slot1].Height() == 0)
                     {
+                        Debug.Log("Slot is Empty");
                         Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
                         Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
                         randomSelectPawn2.CheckShelterStage();
@@ -716,7 +717,7 @@ namespace BackgammonNet.Core
                     {
                         if (topEPawns.Count == 0)
                         {
-                            Debug.Log("CompleteTurn" + turn);
+                            Debug.Log("CompleteTurn1" + turn);
                             //..............Assign a Dice to the next human player.......................//
 
                             Pawn_OnCompleteTurn(turn);
@@ -731,7 +732,7 @@ namespace BackgammonNet.Core
                             //_allSlotsInts.Clear();
                             //allSlots.Clear();
                           //  topEPawns.Clear();
-                            Debug.Log("Call it Again ");
+                            Debug.Log("Call it Again1 ");
                             SelectRandomEnemy2();
                         }
 
@@ -743,7 +744,7 @@ namespace BackgammonNet.Core
                     //............Call it Again your Ai................//
                     if (topEPawns.Count == 0)
                     {
-                        Debug.Log("CompleteTurn" + turn);
+                        Debug.Log("CompleteTurn2" + turn);
                         //..............Assign a Dice to the next human player.......................//
 
                        Pawn_OnCompleteTurn(turn);
@@ -755,7 +756,7 @@ namespace BackgammonNet.Core
                     else
                     {
 
-                        Debug.Log("Call it Again ");
+                        Debug.Log("Call it Again2 ");
                         SelectRandomEnemy2();
                     }
                 }
