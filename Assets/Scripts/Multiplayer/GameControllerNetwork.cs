@@ -16,7 +16,7 @@ namespace BackgammonNet.Core
 {
     // Mechanisms of generating two random numbers and checking the possibility of making a move.
 
-    public class GameControllerNetwork : MonoBehaviour
+    public class GameControllerNetwork : MonoBehaviourPunCallbacks
     {
         private PhotonView _photonView;
 
@@ -642,15 +642,68 @@ namespace BackgammonNet.Core
 
         private IEnumerator DelayedGoToMainMenu()
         {
+
+
+            //SoundManager.GetSoundEffect(4, 0.25f);
+
+            //yield return new WaitForSeconds(0.2f);
+
+            //if (PhotonNetwork.IsMasterClient)
+            //{
+            //    PhotonNetwork.LeaveRoom();
+
+            //    // Wait for the leave room operation to complete
+            //    while (PhotonNetwork.InRoom)
+            //    {
+            //        yield return null;
+            //    }
+            //}
+
+            //// Unload the room scene and load the main menu scene
+            //SceneManager.LoadScene(0);
+
+
+
             SoundManager.GetSoundEffect(4, 0.25f);
 
             yield return new WaitForSeconds(0.2f);
 
+            if (PhotonNetwork.IsMasterClient)
+            {
+                LeaveRoomAndReturnToLobby();
+                //photonView.RPC(nameof(RPCLeaveRoom), RpcTarget.All);
+            }
+            
             LobbyManager.Instance.RemoveNetworkParts();
             SceneManager.LoadScene(0);
         }
 
 
+        private void LeaveRoomAndReturnToLobby()
+        {
+            // Ensure we're connected to the network
+            if (!PhotonNetwork.IsConnected)
+                return;
+
+            // If we're the master client, inform all clients to leave the room
+            if (PhotonNetwork.IsMasterClient)
+            {
+                photonView.RPC(nameof(RPCLeaveRoom), RpcTarget.AllBuffered);
+            }
+        }
+
+        [PunRPC]
+        private void RPCLeaveRoom()
+        {
+            // Leave the room
+            PhotonNetwork.LeaveRoom();
+        }
+        public override void OnLeftRoom()
+        {
+            Debug.Log("Scene is loaded");
+            // Load the lobby scene after leaving the room
+            SceneManager.LoadScene(0);
+        }
         //---------------- checking the possibility of making a move -----------------------------------------------------------------
 
         public static bool CanMove(int amount)     // detect the situation when it is not possible to make a move
