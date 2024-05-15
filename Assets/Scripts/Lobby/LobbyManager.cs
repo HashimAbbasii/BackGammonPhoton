@@ -60,26 +60,8 @@ namespace BackgammonNet.Lobby
             hosts = new List<GameObject>();
             prefabHeight = playerPrefabRect.rect.height;
 
-            //if (mainServer)
-            //{
-            //    SwitchMenuView(false, false, false, true);
-            //    CreateMainServer();
-            //    StartCoroutine(HostAvailabilityControl(controlPeriod));
-            //}
-            //else
-           // {
-               // SwitchMenuView(true, false, false, false);
-                
-                //if (clientName != "")
-                //    nameInput.text = clientName;
-
-                //ourIpAddress = GetLocalIPAddress();
-                //hostGoButton = mainMenu.transform.Find("Host").gameObject;
-                //monitText.text = monitContent;
-
-                //Client.OnNewPlayer += InformMainServer;
-                //Client.OnRemovePlayer += InformMainServer;
-            //}
+            
+          
         }
 
         private void OnDisable()

@@ -9766,6 +9766,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1533936357}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1066869323
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9786,7 +9798,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c23a5d5b02c3a304e81230c5e73f31cb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5be5ff2174b245c49b21ca2ecfd9b748, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

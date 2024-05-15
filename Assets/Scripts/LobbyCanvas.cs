@@ -218,21 +218,21 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
     public void BeginnerDifficulty()
     {
-        difficulty = "Beginner";
+        difficulty = "Text.Beginner";
         //GameController.Instance.difficultyTextPausePanel.variableText = difficulty.ToString();
         //LanguageManager.OnVariableChanged();
 
     }
     public void IntermediateDifficulty()
     {
-        difficulty = "Intermediate";
+        difficulty = "Text.Intermediate";
         //GameController.Instance.difficultyTextPausePanel.variableText = difficulty.ToString();
        // LanguageManager.OnVariableChanged();
 
     }
     public void GrandMasterDifficulty()
     {
-        difficulty = "GrandMaster";
+        difficulty = "Text.GrandMaster";
         //GameController.Instance.difficultyTextPausePanel.variableText = difficulty.ToString();
         //LanguageManager.OnVariableChanged();
     }
