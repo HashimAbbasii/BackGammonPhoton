@@ -264,7 +264,8 @@ namespace BackgammonNet.Core
                 dragEnable = true;
                 diceEnable = false;
 
-                SoundManager.GetSoundEffect(4, 0.25f);
+                //SoundManager.GetSoundEffect(4, 0.25f);
+                AudioManager.Instance.DiceRoll();
 
                 CheckIfTurnChange(Random.Range(1,7), Random.Range(1,7));
             }
@@ -355,7 +356,8 @@ namespace BackgammonNet.Core
                   //  Debug.Log("Human Turn");
                     dragEnable = true;
                     diceEnable = false;
-                    SoundManager.GetSoundEffect(4, 0.25f);
+                    //SoundManager.GetSoundEffect(4, 0.25f);
+                    AudioManager.Instance.DiceRoll();
                     CheckIfTurnChange(Random.Range(1,7), Random.Range(1,7));
                 }
                 else
@@ -365,8 +367,9 @@ namespace BackgammonNet.Core
                     allSlots.Clear();
                     topEPawns.Clear();
                     checkExistingPawn.Clear();
-                    SoundManager.GetSoundEffect(4, 0.25f);
-                   
+                    //SoundManager.GetSoundEffect(4, 0.25f);
+                    AudioManager.Instance.DiceRoll();
+
                     CheckifTurnChangeAI(Random.Range(1,7), Random.Range(1,7));
 
                 }
@@ -997,7 +1000,7 @@ namespace BackgammonNet.Core
             else
                 LoadGameScene();
 
-            SoundManager.GetSoundEffect(4, 0.25f);
+            //SoundManager.GetSoundEffect(4, 0.25f);
         }
 
         private void LoadGameScene()
@@ -1022,7 +1025,7 @@ namespace BackgammonNet.Core
         private IEnumerator DelayedGoToMainMenu()
         {
             LobbyManager.AiMode = false;
-            SoundManager.GetSoundEffect(4, 0.25f);
+          //  SoundManager.GetSoundEffect(4, 0.25f);
 
             yield return new WaitForSeconds(0.2f);
 

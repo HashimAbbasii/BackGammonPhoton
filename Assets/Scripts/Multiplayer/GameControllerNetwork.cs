@@ -271,7 +271,9 @@ namespace BackgammonNet.Core
                 dragEnable = true;
                 diceEnable = false;
 
-                SoundManager.GetSoundEffect(4, 0.25f);
+                //SoundManager.GetSoundEffect(4, 0.25f);
+                AudioManager.Instance.DiceRoll();
+
                 CheckIfTurnChange(1, 3);
 
                 if (Board.Instance.client)      // network game
@@ -291,7 +293,8 @@ namespace BackgammonNet.Core
                 dragEnable = true;
                 diceEnable = false;
 
-                SoundManager.GetSoundEffect(4, 0.25f);
+                //SoundManager.GetSoundEffect(4, 0.25f);
+                AudioManager.Instance.DiceRoll();
 
                 CheckIfTurnChange(Random.Range(1,7), Random.Range(1,7));
 
@@ -379,7 +382,8 @@ namespace BackgammonNet.Core
                 {
                     dragEnable = true;
                     diceEnable = false;
-                    SoundManager.GetSoundEffect(4, 0.25f);
+                    // SoundManager.GetSoundEffect(4, 0.25f);
+                    AudioManager.Instance.DiceRoll();
                     CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
                 }
             }
@@ -419,7 +423,8 @@ namespace BackgammonNet.Core
                     //  Debug.Log("Human Turn");
                     dragEnable = true;
                     diceEnable = false;
-                    SoundManager.GetSoundEffect(4, 0.25f);
+                    // SoundManager.GetSoundEffect(4, 0.25f);
+                    AudioManager.Instance.DiceRoll();
                     CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
                 }
                 else
@@ -429,7 +434,8 @@ namespace BackgammonNet.Core
                  
                     topEPawns.Clear();
                     checkExistingPawn.Clear();
-                    SoundManager.GetSoundEffect(4, 0.25f);
+                    //SoundManager.GetSoundEffect(4, 0.25f);
+                    AudioManager.Instance.DiceRoll();
                     CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
 
                 }
@@ -626,7 +632,7 @@ namespace BackgammonNet.Core
             else
                 LoadGameScene();
 
-            SoundManager.GetSoundEffect(4, 0.25f);
+           // SoundManager.GetSoundEffect(4, 0.25f);
         }
 
         private void LoadGameScene()
@@ -651,7 +657,7 @@ namespace BackgammonNet.Core
         private IEnumerator DelayedGoToMainMenu()
         {
 
-            SoundManager.GetSoundEffect(4, 0.25f); // Play sound effect
+          //  SoundManager.GetSoundEffect(4, 0.25f); // Play sound effect
 
             // Disconnect from Photon network
             PhotonNetwork.Disconnect();

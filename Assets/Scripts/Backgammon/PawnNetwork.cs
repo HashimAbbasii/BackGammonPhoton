@@ -478,7 +478,7 @@ namespace BackgammonNet.Core
             imprisonedSide[pawn.pawnColor]++;
             shelterSide[pawn.pawnColor] = false;                            // a piece in prison, therefore no entry into the shelter
 
-            SoundManager.GetSoundEffect(2, 0.8f);
+            //SoundManager.GetSoundEffect(2, 0.8f);
         }
 
 
@@ -518,7 +518,7 @@ namespace BackgammonNet.Core
         private void PlaceInShelter()
         {
             house.transform.GetChild(rescuedPawns++).gameObject.SetActive(true);
-            SoundManager.GetSoundEffect(0, 0.3f);
+           // SoundManager.GetSoundEffect(0, 0.3f);
 
             if (rescuedPawns == 15)
             {
