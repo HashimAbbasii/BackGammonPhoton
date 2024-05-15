@@ -6,7 +6,7 @@ using BackgammonNet.Lobby;
 public class LobbySceneManager : MonoBehaviour
 {
     public static LobbySceneManager Instance;
-    public AudioManager _audioManager;
+    private AudioManager _audioManager;
 
     private void Awake()
     {
@@ -26,7 +26,7 @@ public class LobbySceneManager : MonoBehaviour
 
     public void Start()
     {
-        _audioManager = GetComponent<AudioManager>();
+        _audioManager = AudioManager.Instance;
 
         if (_audioManager.musicAudioSource.isPlaying)
             _audioManager.musicAudioSource.Stop();
