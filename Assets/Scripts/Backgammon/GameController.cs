@@ -53,6 +53,9 @@ namespace BackgammonNet.Core
         [SerializeField] private Image[] turnImages;
         [SerializeField] private Text[] diceTexts;
         [SerializeField] private Image[] diceImages;
+
+        [SerializeField] private GameObject AiDifficulty;
+
         public List<Sprite> diceFaces = new List<Sprite>();
 
 
@@ -120,6 +123,13 @@ namespace BackgammonNet.Core
             if (MyPhotonManager.instance.multiPlayerMode == true)
             {
                 StartCoroutine(NetworkButton());
+            }
+
+
+            if(LobbyManager.AiMode == false)
+            {
+                AiDifficulty.gameObject.SetActive(false);
+
             }
         }
 
