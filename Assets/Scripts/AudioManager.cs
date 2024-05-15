@@ -17,6 +17,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
+
         if (Instance == null)
         {
             Instance = this;
@@ -25,13 +26,14 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        DontDestroyOnLoad(gameObject);
 
         // if (audioSource)
         // {
         //     audioSource = GetComponent<AudioSource>();
         // }
-    }
 
+    }
     #endregion
 
     [Header("Audio Clips")] 

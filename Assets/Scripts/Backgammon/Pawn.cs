@@ -430,6 +430,7 @@ namespace BackgammonNet.Core
             if (LobbyManager.AiMode == true)
             {
 
+
                 if (moves == 2 && !GameController.GameOver && GameController.isDublet == true)
                 {
                     GameController.Instance.CallDublet();
