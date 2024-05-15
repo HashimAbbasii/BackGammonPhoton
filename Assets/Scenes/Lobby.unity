@@ -1079,8 +1079,8 @@ MonoBehaviour:
   buttonClicked: {fileID: 8300000, guid: 43c798a919bdfb04386e088c9e231a58, type: 3}
   gameWin: {fileID: 8300000, guid: 7d080d7536ac25345bb8a93ed21ee0fd, type: 3}
   gameLose: {fileID: 8300000, guid: 114158680d7c9e34a9cd6070586eea20, type: 3}
-  menuMusic: {fileID: 8300000, guid: 9fc0332692f72134abdd7364749b963b, type: 3}
-  gameMusic: {fileID: 8300000, guid: 9fc0332692f72134abdd7364749b963b, type: 3}
+  menuMusic: {fileID: 8300000, guid: 390870036d5b67b42afdc632316040e5, type: 3}
+  gameMusic: {fileID: 8300000, guid: 390870036d5b67b42afdc632316040e5, type: 3}
 --- !u!4 &890353086
 Transform:
   m_ObjectHideFlags: 0
@@ -2110,7 +2110,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 8726542286914324606, guid: 1de8f5118139c22449a29a35e95d34e5, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.488
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2480,7 +2480,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1a86eb5d8bdca49a1df335f5a881ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioManager: {fileID: 890353085}
   connectionPanel: {fileID: 2123360282}
   lobbyCanvas: {fileID: 121226666}
 --- !u!1 &2123360282 stripped

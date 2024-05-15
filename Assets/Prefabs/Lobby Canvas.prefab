@@ -585,6 +585,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.p5
   variableText: 
 --- !u!114 &3005788364691496119
@@ -1044,6 +1045,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!1 &533609643798370519
@@ -1584,12 +1586,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
+  m_fontSize: 30
   m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 1
-  m_fontSizeMax: 40
+  m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -1640,6 +1642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.OnlineMode
   variableText: 
 --- !u!114 &4103064708515355680
@@ -2064,6 +2067,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.p3
   variableText: 
 --- !u!114 &4239111071145452602
@@ -2475,12 +2479,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
+  m_fontSize: 30
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 1
-  m_fontSizeMax: 40
+  m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -2531,6 +2535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.OfflineMode
   variableText: 
 --- !u!114 &1353406312808565619
@@ -3533,6 +3538,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.h4
   variableText: 
 --- !u!114 &8769602299662281044
@@ -5242,6 +5248,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.h1
   variableText: 
 --- !u!114 &1925995633712015448
@@ -5703,6 +5710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Tutorial
   variableText: 
 --- !u!114 &8434165548851791097
@@ -5872,6 +5880,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Beginner
   variableText: 
 --- !u!114 &2428145347502496578
@@ -6424,6 +6433,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.h2
   variableText: 
 --- !u!114 &8103832413627217147
@@ -7122,6 +7132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Create
   variableText: 
 --- !u!114 &5263185258581340293
@@ -8588,6 +8599,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Connecting
   variableText: 
 --- !u!114 &485744557183357690
@@ -9116,12 +9128,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
+  m_fontSize: 30
   m_fontSizeBase: 34
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 30
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -9172,6 +9184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.RandomList
   variableText: 
 --- !u!114 &4482053789044487182
@@ -10495,6 +10508,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.InsideRoom
   variableText: 
 --- !u!114 &231200688181339443
@@ -10880,12 +10894,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
+  m_fontSize: 30
   m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
-  m_fontSizeMax: 40
+  m_fontSizeMax: 30
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -10936,6 +10950,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.VsAI
   variableText: 
 --- !u!114 &6147176393924914578
@@ -11375,6 +11390,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.JoinLobby
   variableText: 
 --- !u!114 &7919239749449321963
@@ -12022,12 +12038,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 34
+  m_fontSize: 30
   m_fontSizeBase: 34
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 30
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -12078,6 +12094,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.CreateRoom
   variableText: 
 --- !u!114 &4592669317291382013
@@ -12271,12 +12288,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 39.5
+  m_fontSize: 30
   m_fontSizeBase: 39.5
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 30
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -12327,6 +12344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Join
   variableText: 
 --- !u!114 &2480136556407659152
@@ -12440,12 +12458,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
+  m_fontSize: 30
   m_fontSizeBase: 45
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 0
-  m_fontSizeMax: 40
+  m_fontSizeMax: 30
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -12496,6 +12514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.VsHuman
   variableText: 
 --- !u!114 &6872259127040540557
@@ -13015,6 +13034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Lobby
   variableText: 
 --- !u!114 &2205339227454548853
@@ -13340,6 +13360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.EnterName
   variableText: 
 --- !u!114 &8538681539858290993
@@ -13509,6 +13530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 0}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Lobby
   variableText: 
 --- !u!114 &4646331868266179263
@@ -13696,6 +13718,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Play
   variableText: 
 --- !u!1 &3957825310051048670
@@ -15190,6 +15213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.RoomName
   variableText: 
 --- !u!114 &8906828959436059478
@@ -15460,6 +15484,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 0, g: 0, b: 0, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.EnterRoomName
   variableText: 
 --- !u!114 &408978051293760260
@@ -15944,6 +15969,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.CreateRoom
   variableText: 
 --- !u!114 &8108572723403080917
@@ -16113,6 +16139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.RoomsList
   variableText: 
 --- !u!114 &3202556452963387450
@@ -16303,6 +16330,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 0, g: 0, b: 0, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.EnterName
   variableText: 
 --- !u!114 &5595497711666293322
@@ -16474,6 +16502,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!114 &2644948301801015674
@@ -16643,6 +16672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.GrandMaster
   variableText: 
 --- !u!114 &4801538089361145152
@@ -17036,6 +17066,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.h5
   variableText: 
 --- !u!114 &5424175178391142194
@@ -19515,6 +19546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!1 &5294312281271855779
@@ -20581,6 +20613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!1 &5552259364209343072
@@ -22020,6 +22053,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.PlayComputer
   variableText: 
 --- !u!114 &3967257533803559320
@@ -23137,6 +23171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.p1
   variableText: 
 --- !u!114 &154905575487133565
@@ -23530,6 +23565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!114 &1369583106795206475
@@ -23775,6 +23811,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.h6
   variableText: 
 --- !u!114 &6959964719218216469
@@ -24899,6 +24936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.h3
   variableText: 
 --- !u!114 &4820281269748441324
@@ -25672,6 +25710,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.p6
   variableText: 
 --- !u!114 &1398768378033025768
@@ -25995,6 +26034,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.p2
   variableText: 
 --- !u!114 &3268999623366749007
@@ -27145,6 +27185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Intermediate
   variableText: 
 --- !u!114 &6463807649405250621
@@ -28393,6 +28434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!114 &982652005084593661
@@ -28700,6 +28742,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.p4
   variableText: 
 --- !u!114 &2206029350421849649

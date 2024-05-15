@@ -1758,7 +1758,7 @@ MonoBehaviour:
   OffFullScreenToggle: {fileID: 21300000, guid: 708c3f31cb441d54196087ed83f71f3e, type: 3}
   soundBtn: {fileID: 2133190255}
   musicBtn: {fileID: 942671942}
-  fullScreenBtn: {fileID: 0}
+  fullScreenBtn: {fileID: 1220113288}
   fullScreenWebGLManager: {fileID: 0}
 --- !u!1 &176873942
 GameObject:
