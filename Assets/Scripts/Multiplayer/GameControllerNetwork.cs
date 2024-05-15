@@ -581,16 +581,16 @@ namespace BackgammonNet.Core
                 //difficultyTextYouWinPanel.variableText = difficulty;
                 //LanguageManager.OnVariableChanged();
                 YouWinPanel.gameObject.SetActive(true);
-                difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
-                LanguageManager.OnVariableChanged();
+                //difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+               // LanguageManager.OnVariableChanged();
             }
             else
             {
                 // difficultyTextGameOverPanel.variableText = difficulty;
                 // LanguageManager.OnVariableChanged();
                 gameOverPanel.gameObject.SetActive(true);
-                difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
-                LanguageManager.OnVariableChanged();
+              //  difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+              //  LanguageManager.OnVariableChanged();
             }
 
         }
@@ -600,8 +600,8 @@ namespace BackgammonNet.Core
             // difficultyTextPausePanel.variableText = difficulty;
             // LanguageManager.OnVariableChanged();
 
-            difficultyTextPausePanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
-            LanguageManager.OnVariableChanged();
+          //  difficultyTextPausePanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+           // LanguageManager.OnVariableChanged();
         }
 
         public void NewGame()

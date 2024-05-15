@@ -80,7 +80,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
         Debug.Log("ToggleBoolSound");
         soundToggle = !soundToggle;
 
-        AudioManager.Instance.ToggleVFXSound(soundToggle);
+        AudioManager.Instance.ToggleVFXSound(!soundToggle);
 
         if (soundToggle)
         {
@@ -101,7 +101,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
         Debug.Log("ToggleBoolSound");
         musicToggle = !musicToggle;
 
-        AudioManager.Instance.ToggleMusicSound(musicToggle);
+        AudioManager.Instance.ToggleMusicSound(!musicToggle);
 
         if (musicToggle)
         {
