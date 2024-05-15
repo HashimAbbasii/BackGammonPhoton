@@ -194,6 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Difficulty
   variableText: 
 --- !u!114 &1929322
@@ -853,6 +854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.p3
   variableText: 
 --- !u!114 &68560434
@@ -1402,6 +1404,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!114 &100368486
@@ -2096,6 +2099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Difficulty
   variableText: 
 --- !u!114 &166597158
@@ -2341,6 +2345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.h4
   variableText: 
 --- !u!114 &169238235
@@ -3060,6 +3065,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.p5
   variableText: 
 --- !u!114 &285659137
@@ -3357,6 +3363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.h2
   variableText: 
 --- !u!114 &303522873
@@ -3526,6 +3533,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Tutorial
   variableText: 
 --- !u!114 &309281441
@@ -4081,6 +4089,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!114 &337328669
@@ -4494,6 +4503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Time
   variableText: 
 --- !u!1 &389019657
@@ -4604,6 +4614,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!114 &409422608
@@ -4926,6 +4937,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.p6
   variableText: 
 --- !u!114 &451254009
@@ -5660,6 +5672,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Difficulty
   variableText: 
 --- !u!1 &537876544
@@ -6893,6 +6906,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.p2
   variableText: 
 --- !u!114 &663032257
@@ -7599,6 +7613,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.GameOver
   variableText: 
 --- !u!114 &738709583
@@ -7768,6 +7783,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.p4
   variableText: 
 --- !u!114 &759698856
@@ -7941,6 +7957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Player1
   variableText: 
 --- !u!114 &778634007
@@ -8110,6 +8127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!114 &821297351
@@ -8840,6 +8858,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.h5
   variableText: 
 --- !u!114 &928243952
@@ -10209,6 +10228,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.StartGame
   variableText: 
 --- !u!1 &1072847945
@@ -10433,6 +10453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 1097259424}
   localizationKey: 
   variableText: 
 --- !u!114 &1097259424
@@ -11007,6 +11028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!114 &1142358636
@@ -12944,6 +12966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Score
   variableText: 
 --- !u!1 &1371991343
@@ -13905,10 +13928,10 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
-      - m_Target: {fileID: 114417030}
-        m_TargetAssemblyTypeName: BackgammonNet.Core.GameController, Assembly-CSharp
-        m_MethodName: ActivatePausePanel
-        m_Mode: 1
+      - m_Target: {fileID: 1983442714}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -14511,6 +14534,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!1 &1548623900
@@ -14815,6 +14839,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!1 &1555065880
@@ -15325,6 +15350,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!114 &1644809669
@@ -15865,6 +15891,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!114 &1688103031
@@ -16179,6 +16206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.h3
   variableText: 
 --- !u!114 &1763636801
@@ -16445,6 +16473,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.h1
   variableText: 
 --- !u!1 &1771648271
@@ -16938,6 +16967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Player0
   variableText: 
 --- !u!1 &1812080848
@@ -17246,6 +17276,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.YouWin
   variableText: 
 --- !u!114 &1838784333
@@ -17858,6 +17889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.p1
   variableText: 
 --- !u!1 &1896441973
@@ -18103,6 +18135,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Pause
   variableText: 
 --- !u!1 &1959044364
@@ -18175,6 +18208,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: 
   variableText: 
 --- !u!114 &1959044368
@@ -18729,6 +18763,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Record
   variableText: 
 --- !u!114 &2043187588
@@ -18899,6 +18934,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.Record
   variableText: 
 --- !u!114 &2060692884
@@ -19152,6 +19188,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
+  _tmpText: {fileID: 0}
   localizationKey: Text.h6
   variableText: 
 --- !u!114 &2067048673

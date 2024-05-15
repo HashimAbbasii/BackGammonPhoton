@@ -13,11 +13,17 @@ namespace Assets.SimpleLocalization.Scripts
     public class LocalizedTextTMP : MonoBehaviour
     {
 
+        public LocalizedTextTMP()
+        {
+            //Debug.Log(name);
+            //_tmpText = GetComponent<TMP_Text>();
+        }
+
         [SerializeField] public TextTypes textType;
 
         [SerializeField] private Color textColor;
 
-        private TMP_Text _tmpText;
+        [SerializeField] private TMP_Text _tmpText;
         [SerializeField] private string localizationKey;
         public string variableText;
 
@@ -33,7 +39,8 @@ namespace Assets.SimpleLocalization.Scripts
 
         private void Awake()
         {
-            _tmpText = GetComponent<TMP_Text>();
+            if (_tmpText == null)
+                _tmpText = GetComponent<TMP_Text>();
         }
 
         public void Start()
