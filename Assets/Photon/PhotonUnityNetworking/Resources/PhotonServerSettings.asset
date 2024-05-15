@@ -62,10 +62,7 @@ MonoBehaviour:
   - SlotAllotmentRPC
   - SlotDeallocateRPC
   - RPCLeaveRoom
-<<<<<<< Updated upstream
-=======
   - LoadScene
->>>>>>> Stashed changes
   DisableAutoOpenWizard: 1
-  ShowSettings: 1
+  ShowSettings: 0
   DevRegionSetOnce: 0
