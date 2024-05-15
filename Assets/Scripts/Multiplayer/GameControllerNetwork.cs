@@ -28,6 +28,8 @@ namespace BackgammonNet.Core
         public GameObject GameOverPanel;
         public GameObject YouWinPanel;
 
+        public CanvasHandlerNetwork canvasHandlerNetwork;
+
         [SerializeField] private Image[] diceImages;
         public List<Sprite> diceFaces = new List<Sprite>();
 
@@ -493,6 +495,8 @@ namespace BackgammonNet.Core
 
             diceTexts[0].text = dices[0].ToString();
             diceTexts[1].text = dices[1].ToString();
+
+            canvasHandlerNetwork.diceResults.SetActive(true);
         }
 
 
@@ -599,7 +603,7 @@ namespace BackgammonNet.Core
             LanguageManager.OnVariableChanged();
         }
 
-        private void NewGame()
+        public void NewGame()
         {
             if (Board.Instance.client)
             {

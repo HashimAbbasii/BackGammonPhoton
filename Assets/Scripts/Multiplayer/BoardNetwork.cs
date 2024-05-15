@@ -34,7 +34,26 @@ namespace BackgammonNet.Core
         private void Awake()
         {
             Instance = this;
+
+            //submitBtns[0].onClick.AddListener(delegate { Accept(0); });
+            //submitBtns[1].onClick.AddListener(delegate { Accept(1); });
         }
+
+
+        public void Accept()
+        {
+            acceptance++;
+            submitBtns[0].gameObject.SetActive(false);
+            submitBtns[1].gameObject.SetActive(false);
+
+            GameControllerNetwork.Instance.canvasHandlerNetwork.diceRollButton.SetActive(true);
+            GameControllerNetwork.Instance.canvasHandlerNetwork.diceResults.SetActive(true);
+
+            //if (client)
+            //    client.Send("CACCPT|acceptance");           // our confirmation of the willingness to start the game
+        }
+
+
 
         private void Start()
         {
@@ -43,7 +62,8 @@ namespace BackgammonNet.Core
             if (PhotonNetwork.IsMasterClient)
             {
                 StartCoroutine(createSlotNetwork());
-                photonView.RPC(nameof(slotButtonOff), RpcTarget.All);
+                //photonView.RPC(nameof(slotButtonOff), RpcTarget.All);
+                slotButtonOff();
                 StartCoroutine(createPawnNetwork());
 
 
@@ -164,10 +184,10 @@ namespace BackgammonNet.Core
 
         #endregion
         #region _SlotButton
-        [PunRPC]
+      //  [PunRPC]
         public void slotButtonOff()
         {
-            submitBtns[0].gameObject.SetActive(false);
+            submitBtns[0].gameObject.SetActive(true);
             submitBtns[1].gameObject.SetActive(false);
         }
 
