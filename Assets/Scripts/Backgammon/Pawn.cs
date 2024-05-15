@@ -2,6 +2,7 @@
 using System;
 using Broniek.Stuff.Sounds;
 using Photon.Pun;
+using BackgammonNet.Lobby;
 
 namespace BackgammonNet.Core
 {
@@ -425,9 +426,14 @@ namespace BackgammonNet.Core
                 OnCompleteTurn(pawnColor);
             }
 
-            else if (moves == 2 && !GameController.GameOver && GameController.isDublet == true)
+
+            if (LobbyManager.AiMode == true)
             {
-                GameController.Instance.CallDublet();
+
+                if (moves == 2 && !GameController.GameOver && GameController.isDublet == true)
+                {
+                    GameController.Instance.CallDublet();
+                }
             }
         }
 
