@@ -6,7 +6,7 @@ using BackgammonNet.Lobby;
 public class LobbySceneManager : MonoBehaviour
 {
     public static LobbySceneManager Instance;
-    private AudioManager _audioManager;
+    public AudioManager _audioManager;
 
     private void Awake()
     {

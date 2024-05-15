@@ -2480,6 +2480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e1a86eb5d8bdca49a1df335f5a881ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _audioManager: {fileID: 890353085}
   connectionPanel: {fileID: 2123360282}
   lobbyCanvas: {fileID: 121226666}
 --- !u!1 &2123360282 stripped
