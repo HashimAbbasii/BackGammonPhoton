@@ -11,6 +11,7 @@ using static UnityEngine.GraphicsBuffer;
 using System;
 using Random = UnityEngine.Random;
 using Assets.SimpleLocalization.Scripts;
+using Photon.Realtime;
 
 namespace BackgammonNet.Core
 {
@@ -643,43 +644,50 @@ namespace BackgammonNet.Core
         private IEnumerator DelayedGoToMainMenu()
         {
 
+            SoundManager.GetSoundEffect(4, 0.25f); // Play sound effect
 
-            //SoundManager.GetSoundEffect(4, 0.25f);
+            // Disconnect from Photon network
+            PhotonNetwork.Disconnect();
 
-            //yield return new WaitForSeconds(0.2f);
-
-            //if (PhotonNetwork.IsMasterClient)
-            //{
-            //    PhotonNetwork.LeaveRoom();
-
-            //    // Wait for the leave room operation to complete
-            //    while (PhotonNetwork.InRoom)
-            //    {
-            //        yield return null;
-            //    }
-            //}
-
-            //// Unload the room scene and load the main menu scene
-            //SceneManager.LoadScene(0);
-
-
-
-            SoundManager.GetSoundEffect(4, 0.25f);
-
-            yield return new WaitForSeconds(0.2f);
-
-            if (PhotonNetwork.IsMasterClient)
+            // Wait until disconnected
+            while (PhotonNetwork.IsConnected)
             {
-                LeaveRoomAndReturnToLobby();
-                //photonView.RPC(nameof(RPCLeaveRoom), RpcTarget.All);
+                yield return null;
             }
-            
-            LobbyManager.Instance.RemoveNetworkParts();
+
+            // Leave the room if currently in one
+            if (PhotonNetwork.InRoom)
+            {
+                PhotonNetwork.LeaveRoom();
+
+                // Wait for leave room operation to complete
+                while (PhotonNetwork.InRoom)
+                {
+                    yield return null;
+                }
+            }
+           // SceneManager.LoadScene(0);
+
+            // Load the main menu scene via RPC
+            //photonView.RPC(nameof(LoadScene), RpcTarget.AllBuffered);
+            // Load the main menu scene
+
+        }
+
+        public override void OnLeftRoom()
+        {
+            // This method is called after the local player leaves the room
+           // SceneManager.LoadScene(0);
+            photonView.RPC(nameof(LoadScene), RpcTarget.AllBuffered);
+        }
+
+        [PunRPC]
+        private void LoadScene()
+        {
             SceneManager.LoadScene(0);
         }
 
-
-        private void LeaveRoomAndReturnToLobby()
+        public  void LeaveRoomAndReturnToLobby()
         {
             // Ensure we're connected to the network
             if (!PhotonNetwork.IsConnected)
@@ -695,15 +703,16 @@ namespace BackgammonNet.Core
         [PunRPC]
         private void RPCLeaveRoom()
         {
+
             // Leave the room
             PhotonNetwork.LeaveRoom();
-        }
-        public override void OnLeftRoom()
-        {
-            Debug.Log("Scene is loaded");
-            // Load the lobby scene after leaving the room
+            while (PhotonNetwork.InRoom)
+            {
+
+            }
             SceneManager.LoadScene(0);
         }
+       
         //---------------- checking the possibility of making a move -----------------------------------------------------------------
 
         public static bool CanMove(int amount)     // detect the situation when it is not possible to make a move
