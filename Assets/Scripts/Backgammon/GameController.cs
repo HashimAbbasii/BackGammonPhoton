@@ -16,9 +16,9 @@ namespace BackgammonNet.Core
 
     public class GameController : MonoBehaviour
     {
+
         private PhotonView _photonView;
 
-       
         public LocalizedTextTMP difficultyTextGameOverPanel;
         public LocalizedTextTMP difficultyTextYouWinPanel;
         public LocalizedTextTMP difficultyTextPausePanel;
@@ -70,7 +70,63 @@ namespace BackgammonNet.Core
 
         public bool diceEnable = true;             // permission to roll the dice (after making moves)
 
-        
+        #region Score
+
+        private int _score;
+        private int _moves;
+        private int _kills;
+        private int _shelter;
+        private int _time;
+
+        public int Score
+        {
+            get => _score;
+            set
+            {
+                _score = 2 * _moves + 20 * _shelter + 10 * _kills - (_time / 30);
+            }
+        }
+
+        public int Moves
+        {
+            get => _moves;
+            set
+            {
+                _moves = value;
+                Score++;
+            }
+        }
+
+        public int Kills
+        {
+            get => _kills;
+            set
+            {
+                _kills = value;
+                Score++;
+            }
+        }
+        public int Shelter
+        {
+            get => _shelter;
+            set
+            {
+                _shelter = value;
+                Score++;
+            }
+        }
+        public int TotalTime
+        {
+            get => _time;
+            set
+            {
+                _time = value;
+                Score++;
+            }
+        }
+
+        #endregion
+
 
         public static GameController Instance { get; set; }
         public static bool GameOver { get; set; }
@@ -1015,6 +1071,13 @@ namespace BackgammonNet.Core
 
             difficultyTextPausePanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
             LanguageManager.OnVariableChanged();
+
+            Board.Instance.isPaused = true;
+        }
+
+        public void ResumeGame()
+        {
+            Board.Instance.isPaused = false;
         }
 
         public  void NewGame()

@@ -73,7 +73,6 @@ public class CanvasHandler : MonoBehaviour
                SystemInfo.operatingSystem.ToLower().Contains("ios");
     }
 
-
     public void ToggleBoolSound()
     {
         Debug.Log("ToggleBoolSound");
@@ -152,8 +151,6 @@ public class CanvasHandler : MonoBehaviour
             fullScreenBtn.image.sprite = OffFullScreenToggle;
         }
     }
-   
-
 
     public void ButtonClicked()
     {

@@ -109,7 +109,7 @@ namespace BackgammonNet.Core
 
         public void Selectimprisoned()
         {
-
+           // GameController.Instance.Kills++;
             //   if (imprisoned && (imprisonedSide[1] > 0 && pawnColor == 1))
 
             Debug.Log("Imprisoned Slot");
@@ -591,6 +591,11 @@ namespace BackgammonNet.Core
 
             //SoundManager.GetSoundEffect(1, 0.2f);
             AudioManager.Instance.PawnPlacement();
+
+            if(GameController.turn == 0 && LobbyManager.AiMode == true)
+            {
+                GameController.Instance.Moves++;
+            }
         }
 
         public void PlaceJail()                   // placing a whipped piece in prison (suspension of introduction to the shelter)
@@ -602,8 +607,14 @@ namespace BackgammonNet.Core
             imprisonedSide[pawn.pawnColor]++;
             shelterSide[pawn.pawnColor] = false;                            // a piece in prison, therefore no entry into the shelter
 
-          //  SoundManager.GetSoundEffect(2, 0.8f);
-            
+            if(GameController.turn == 0 && LobbyManager.AiMode == true)
+            {
+               GameController.Instance.Kills++;
+            }
+
+
+            //  SoundManager.GetSoundEffect(2, 0.8f);
+
         }
 
 
@@ -656,6 +667,11 @@ namespace BackgammonNet.Core
             Slot.slots[slotNo].GetTopPawn(true);            // remove from current slot
             gameObject.transform.localScale = Vector3.zero;
             Destroy(gameObject, 1f);
+
+            if (GameController.turn == 0 && LobbyManager.AiMode == true)
+            {
+                GameController.Instance.Shelter++;
+            }
         }
 
         public bool CheckShelterStage()                   // check if it is possible to bring a given player's pieces into the shelter

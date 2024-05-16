@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Collections;
 using BackgammonNet.Lobby;
+using Assets.SimpleLocalization.Scripts;
 
 namespace BackgammonNet.Core
 {
@@ -10,6 +11,15 @@ namespace BackgammonNet.Core
 
     public class Board : MonoBehaviour
     {
+
+        [Header("Bools")]
+        public bool isPaused;
+
+        private float gameTime;
+
+        [SerializeField] LocalizedTextTMP timeText;
+        [SerializeField] LocalizedTextTMP timeTextPausePanel;
+
         [SerializeField] private Slot slotPrefab;
         [SerializeField] private Pawn pawnPrefab;
         [SerializeField] private Transform slotsContainer;
@@ -96,9 +106,36 @@ namespace BackgammonNet.Core
             GameController.Instance.canvasHandler.diceRollButton.SetActive(true);
             GameController.Instance.canvasHandler.diceResults.SetActive(true);
 
+            StartCoroutine(TimeCalculator());
+
             if (client)
                 client.Send("CACCPT|acceptance");           // our confirmation of the willingness to start the game
         }
+
+
+        IEnumerator TimeCalculator()
+        {
+            while (true)
+            {
+                if (!isPaused)
+                {
+                    gameTime += 1;
+                    UpdateTimeDisplay();
+                }
+                yield return new WaitForSeconds(1);
+            }
+        }
+
+        void UpdateTimeDisplay()
+        {
+            int minutes = Mathf.FloorToInt(gameTime / 60);
+            int seconds = Mathf.FloorToInt(gameTime % 60);
+
+            timeText.variableText = string.Format("{0:00}:{1:00}", minutes, seconds);
+            timeTextPausePanel.variableText = string.Format("{0:00}:{1:00}", minutes, seconds);
+            LanguageManager.OnVariableChanged();
+        }
+
 
         private void Start()
         {
@@ -208,5 +245,7 @@ namespace BackgammonNet.Core
             for (int i = 0; i < amount; i++)
                 go.transform.GetChild(i).gameObject.SetActive(true);
         }
+        
+
     }
 }

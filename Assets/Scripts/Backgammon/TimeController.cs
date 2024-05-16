@@ -66,9 +66,9 @@ namespace BackgammonNet.Core
             int seconds = Mathf.FloorToInt(time % 60);
 
             timeDisplay.text = minutes.ToString("00") + ":" + seconds.ToString("00");
-            timeDisplayPanel.text = minutes.ToString("00") + ":" + seconds.ToString("00");
-            timeDisplayPanel2.text = minutes.ToString("00") + ":" + seconds.ToString("00");
-            timeDisplayPanel3.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+          //  timeDisplayPanel.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+          //  timeDisplayPanel2.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+          //  timeDisplayPanel3.text = minutes.ToString("00") + ":" + seconds.ToString("00");
 
         }
     }
