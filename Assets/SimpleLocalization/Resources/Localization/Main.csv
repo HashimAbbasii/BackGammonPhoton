@@ -43,7 +43,7 @@ Text.Intermediate,Intermediate,Intermedio,Средний,Проміжний,Inte
 Text.GrandMaster,GrandMaster,Gran Maestro,Гроссмейстер,GrandMaster,Grand Maître,Gran Maestro,جراند ماستر,Grão-Mestre,Großmeister
 Text.Name,Name,Nombre,Имя,Ім'я,Nom,Nome,اسم,Nome,Name
 Text.Points,Points,Puntos,Точки,Очки,Points,Punti,نقاط,Pontos,Punkte
-Text.Score,Score,Puntaje,Счет,Оцінка,Score,Punto,نتيجة,Pontuação,Punktzahl
+Text.Score,Score : {0},Puntuación: {0},Оценка: {0},Оцінка: {0},Note : {0},Punteggio: {0},النتيجة : {0},Pontuação: {0},Punktzahl: {0}
 Text.YouWin,YOU WIN,TÚ GANAS,ТЫ ПОБЕДИЛ,ТИ ВИГРАВ,VOUS GAGNEZ,HAI VINTO,فزت,VOCÊ GANHA,DU GEWINNST
 Text.Difficulty,Difficulty,Dificultad,Сложность,Складність,Difficulté,Difficoltà,صعوبة,Dificuldade,Schwierigkeit
 Text.GameOver,GAME OVER,JUEGO TERMINADO,ИГРА ЗАКОНЧЕНА,ГРА ЗАВЕРШЕНА,JEU TERMINÉ,GAME OVER,انتهت اللعبة,GAME OVER,SPIEL VORBEI
