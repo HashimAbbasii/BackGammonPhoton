@@ -251,6 +251,9 @@ namespace BackgammonNet.Core
             //counterTime.text = minutes.ToString("00") + ":" + seconds.ToString("00");
 
             counterTime.text = string.Format("{0:mm\\:ss}", DateTime.Now - startDateTime);
+
+
+            var totalSecondsPassed = (int)((DateTime.Now - startDateTime).TotalSeconds);
         }
         private void TryDeactivateDigit()
         {

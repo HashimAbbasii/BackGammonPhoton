@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Pun.Demo.PunBasics;
 using UnityEngine;
 using System;
+using BackgammonNet.Core;
 
 public class NetworkPlayer : MonoBehaviour
 {
@@ -23,7 +24,7 @@ public class NetworkPlayer : MonoBehaviour
         get => _score;
         set
         {
-            _score = 2 * _moves + 20 * _shelter + 10 * _kills - (_time * 2 / 60);
+            _score = 2 * _moves + 20 * _shelter + 10 * _kills - (_time / 30);
         }
     }
 
@@ -55,7 +56,7 @@ public class NetworkPlayer : MonoBehaviour
             Score++;
         }
     }
-    public int Time
+    public int TotalTime
     {
         get => _time;
         set

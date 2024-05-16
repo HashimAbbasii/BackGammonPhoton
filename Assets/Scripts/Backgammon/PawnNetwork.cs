@@ -422,13 +422,22 @@ namespace BackgammonNet.Core
             slot.PlacePawn(this, pawnColor);             // we remove the piece from the slot that has been occupied so far
 
 
+
             if (!GameControllerNetwork.isDublet)
                 GameControllerNetwork.dices[diceNo] = 0;
-
+            photonView.RPC(nameof(MoveScoreUpdateRPC), RpcTarget.AllBuffered, GameManager.instance.myNetworkPlayer.photonView.ViewID);
             // SoundManager.GetSoundEffect(1, 0.2f);
             AudioManager.Instance.PawnPlacement();
         }
 
+
+
+
+        [PunRPC]
+        public void MoveScoreUpdateRPC(int playerViewID)
+        {
+            PhotonView.Find(playerViewID).GetComponent<NetworkPlayer>().Moves++;
+        }
 
         //......................Call on Rpc Pun..................................//
 
@@ -476,9 +485,18 @@ namespace BackgammonNet.Core
         {
             int boardViewId = BoardNetwork.Instance.photonView.ViewID;
             int index = BoardNetwork.Instance.slots.IndexOf(slot);
+
+            photonView.RPC(nameof(JailScoreUpdateRPC), RpcTarget.AllBuffered, GameManager.instance.myNetworkPlayer.photonView.ViewID);
+
             photonView.RPC(nameof(PlaceJailRPC), RpcTarget.AllBuffered, boardViewId, index);
             Debug.Log("Hello");
            
+        }
+
+        [PunRPC]
+        public void JailScoreUpdateRPC(int playerViewID)
+        {
+            PhotonView.Find(playerViewID).GetComponent<NetworkPlayer>().Kills++;
         }
 
         [PunRPC]
