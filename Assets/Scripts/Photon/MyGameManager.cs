@@ -11,7 +11,7 @@ public class MyGameManager : MonoBehaviour
     public static MyGameManager Instance;
     public LanguageManager languageManager;
     public FullscreenWebGLManager fullScreenWebGLManager;
-
+    public Difficulty botDifficulty = Difficulty.None;
     //public FullscreenWebGLManager fullScreenWebGLManager;
 
 
@@ -63,4 +63,15 @@ public class MyGameManager : MonoBehaviour
 
 
     }
+
+
+}
+
+
+public enum Difficulty
+{
+    None,
+    Beginner,
+    Intermediate,
+    GrandMaster
 }

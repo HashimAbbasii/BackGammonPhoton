@@ -1025,6 +1025,12 @@ namespace BackgammonNet.Core
         private IEnumerator DelayedGoToMainMenu()
         {
             LobbyManager.AiMode = false;
+
+            if (MyGameManager.Instance)
+            {
+                MyGameManager.Instance.botDifficulty = Difficulty.None;
+            }
+
           //  SoundManager.GetSoundEffect(4, 0.25f);
 
             yield return new WaitForSeconds(0.2f);

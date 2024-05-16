@@ -218,6 +218,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
     public void BeginnerDifficulty()
     {
+        MyGameManager.Instance.botDifficulty = Difficulty.Beginner;
+
         difficulty = "Text.Beginner";
         //GameController.Instance.difficultyTextPausePanel.variableText = difficulty.ToString();
         //LanguageManager.OnVariableChanged();
@@ -225,6 +227,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     }
     public void IntermediateDifficulty()
     {
+        MyGameManager.Instance.botDifficulty = Difficulty.Intermediate;
         difficulty = "Text.Intermediate";
         //GameController.Instance.difficultyTextPausePanel.variableText = difficulty.ToString();
        // LanguageManager.OnVariableChanged();
@@ -232,6 +235,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     }
     public void GrandMasterDifficulty()
     {
+        MyGameManager.Instance.botDifficulty = Difficulty.GrandMaster;
         difficulty = "Text.GrandMaster";
         //GameController.Instance.difficultyTextPausePanel.variableText = difficulty.ToString();
         //LanguageManager.OnVariableChanged();
