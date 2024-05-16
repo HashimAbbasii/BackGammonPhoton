@@ -1624,6 +1624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   languageManager: {fileID: 1159882809}
   fullScreenWebGLManager: {fileID: 1159882810}
+  botDifficulty: 0
   offlineScene:
     m_SceneAsset: {fileID: 102900000, guid: bf913cb728b74384ea6dcb89eba002c6, type: 3}
     m_SceneName: Lobby

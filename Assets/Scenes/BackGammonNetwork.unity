@@ -1518,7 +1518,7 @@ MonoBehaviour:
   sidesAgreed: 0
   mainMenuButton: {fileID: 771090461}
   newGameButton: {fileID: 1659085945}
-  gameOverPanel: {fileID: 1405160380}
+  gameOverPanel: {fileID: 772034183}
   newGameInfoPanel: {fileID: 936457536}
   diceButton: {fileID: 451497672}
   turnImages:
