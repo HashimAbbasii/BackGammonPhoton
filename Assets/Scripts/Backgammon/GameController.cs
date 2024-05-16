@@ -547,8 +547,22 @@ namespace BackgammonNet.Core
         public void SelectRandomEnemy()
         {
             //.............SelectRandom Enemy............From the list.....
+            int RandomSelectEnemy = -1;
 
-            int RandomSelectEnemy = Random.Range(0, topEPawns.Count);
+            switch (MyGameManager.Instance.botDifficulty)
+            {
+                case Difficulty.Beginner:
+                    RandomSelectEnemy = 0;
+                    break;
+                case Difficulty.Intermediate:
+                    RandomSelectEnemy = Random.Range(0, topEPawns.Count);
+                    break;
+                case Difficulty.GrandMaster:
+                    RandomSelectEnemy = topEPawns.Count - 1;
+                    break;
+            }
+
+            
         
             randomSelectPawn = topEPawns[RandomSelectEnemy];
             checkExistingPawn.Add(randomSelectPawn);
@@ -564,8 +578,23 @@ namespace BackgammonNet.Core
         public void SelectRandomEnemy2()
         {
             //.............SelectRandom Enemy............From the list.....
+            int RandomSelectEnemy = -1;
 
-            int RandomSelectEnemy = Random.Range(0, topEPawns.Count);
+            switch (MyGameManager.Instance.botDifficulty)
+            {
+                case Difficulty.Beginner:
+                    RandomSelectEnemy = 0;
+                    break;
+                case Difficulty.Intermediate:
+                    RandomSelectEnemy = Random.Range(0, topEPawns.Count);
+                    break;
+                case Difficulty.GrandMaster:
+                    RandomSelectEnemy = topEPawns.Count - 1;
+                    break;
+            }
+
+
+         //   int RandomSelectEnemy = Random.Range(0, topEPawns.Count);
 
             randomSelectPawn2 = topEPawns[RandomSelectEnemy];
             checkExistingPawn.Add(randomSelectPawn2);

@@ -88,15 +88,31 @@ namespace BackgammonNet.Core
                 
             }
             else if (other.CompareTag("Shelter"))
-                if (shelterSide[0] || shelterSide[1])
-                    shelter = true;
+              //  if (photonView.IsMine)
+            //    {
+                    if (shelterSide[0] || shelterSide[1])
+                    {
+                        shelter = true;
+                        photonView.RPC(nameof(UpdateShelterState), RpcTarget.AllBuffered, shelter);
+                    //}
+                }
         }
 
+
+       // private bool shelter = false;
         [PunRPC]
         public void SlotAllotmentRPC(int SlotViewId)
         {
             slot = PhotonView.Find(SlotViewId).GetComponent<SlotNetwork>();
             //slot = slotinfo;
+        }
+
+
+        [PunRPC]
+
+        public void UpdateShelterState(bool newShelterState)
+        {
+            shelter = newShelterState;
         }
 
         private void OnTriggerExit2D(Collider2D other)

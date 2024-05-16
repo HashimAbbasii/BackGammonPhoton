@@ -566,7 +566,7 @@ namespace BackgammonNet.Core
         {
             GameOver = true;
             gameOverPanel.SetActive(true);
-            gameOverPanel.GetComponentInChildren<Text>().text = "Winner: " + (isWhite ? "white" : "red");
+           // gameOverPanel.GetComponentInChildren<Text>().text = "Winner: " + (isWhite ? "white" : "red");
 
             int winner;
 
