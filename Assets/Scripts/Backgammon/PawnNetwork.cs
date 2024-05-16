@@ -115,6 +115,15 @@ namespace BackgammonNet.Core
             shelter = newShelterState;
         }
 
+        [PunRPC]
+
+        public void UpdateShelterStateFalse(bool newShelterState)
+        {
+            shelter = newShelterState;
+        }
+
+
+
         private void OnTriggerExit2D(Collider2D other)
         {
             if (other.CompareTag("Slot"))
@@ -123,7 +132,10 @@ namespace BackgammonNet.Core
                 photonView.RPC(nameof(SlotDeallocateRPC), RpcTarget.AllBuffered, BoardNetwork.Instance.photonView.ViewID, slotNo);
             }
             else if (other.CompareTag("Shelter"))
+            {
                 shelter = false;
+                photonView.RPC(nameof(UpdateShelterStateFalse), RpcTarget.AllBuffered, shelter);
+            }
         }
 
 
@@ -533,19 +545,45 @@ namespace BackgammonNet.Core
 
         private void PlaceInShelter()
         {
-            house.transform.GetChild(rescuedPawns++).gameObject.SetActive(true);
-           // SoundManager.GetSoundEffect(0, 0.3f);
+            //house.transform.GetChild(rescuedPawns++).gameObject.SetActive(true);
+            photonView.RPC(nameof(ActivateHouseChild), RpcTarget.AllBuffered, rescuedPawns);
+            // SoundManager.GetSoundEffect(0, 0.3f);
 
             if (rescuedPawns == 15)
             {
                 OnGameOver(pawnColor == 0);
                 GameControllerNetwork.GameOver = true;
             }
+            //  photonView.RPC(nameof(RemovePawnFromSlot), RpcTarget.AllBuffered);
+            SlotNetwork.slots[slotNo].GetTopPawn(true);
+            photonView.RPC(nameof(ScaleAndDestroyGameObject), RpcTarget.AllBuffered);
+            // SlotNetwork.slots[slotNo].GetTopPawn(true);            // remove from current slot
+            // gameObject.transform.localScale = Vector3.zero;
+           // Destroy(gameObject, 1f);
+        }
 
-            SlotNetwork.slots[slotNo].GetTopPawn(true);            // remove from current slot
+
+        [PunRPC]
+        private void ActivateHouseChild(int childIndex)
+        {
+            house.transform.GetChild(childIndex).gameObject.SetActive(true);
+            rescuedPawns++;
+        }
+
+        [PunRPC]
+        private void RemovePawnFromSlot()
+        {
+            SlotNetwork.slots[slotNo].GetTopPawn(true);
+        }
+
+        [PunRPC]
+        private void ScaleAndDestroyGameObject()
+        {
             gameObject.transform.localScale = Vector3.zero;
             Destroy(gameObject, 1f);
         }
+
+
 
         public bool CheckShelterStage()                   // check if it is possible to bring a given player's pieces into the shelter
         {

@@ -12,6 +12,7 @@ using System;
 using Random = UnityEngine.Random;
 using Assets.SimpleLocalization.Scripts;
 using Photon.Realtime;
+using System.ComponentModel;
 
 namespace BackgammonNet.Core
 {
@@ -564,49 +565,83 @@ namespace BackgammonNet.Core
 
         private void Pawn_OnGameOver(bool isWhite)
         {
-            GameOver = true;
-            gameOverPanel.SetActive(true);
-           // gameOverPanel.GetComponentInChildren<Text>().text = "Winner: " + (isWhite ? "white" : "red");
 
-            int winner;
 
-            if (isWhite)
-            {
-                winner = 0;
-            }
-            else
-            {
-                winner = 1;
-            }
 
-            ActiveGameOver(winner);
+
+            photonView.RPC(nameof(SetGameOverPanelActive), RpcTarget.AllBuffered, true);
+
+            int winner = isWhite ? 0 : 1;
+            photonView.RPC(nameof(ActiveGameOver), RpcTarget.AllBuffered, winner);
+
+
+            #region _Extra
+            // GameOver = true;
+            // gameOverPanel.SetActive(true);
+            //// gameOverPanel.GetComponentInChildren<Text>().text = "Winner: " + (isWhite ? "white" : "red");
+
+            // int winner;
+
+            // if (isWhite)
+            // {
+            //     winner = 0;
+            // }
+            // else
+            // {
+            //     winner = 1;
+            // }
+
+            // ActiveGameOver(winner);
         }
 
-        public void ActiveGameOver(int winner)
+        //public void ActiveGameOver(int winner)
+        //{
+
+        //    if (winner == 0)
+        //    {
+        //        //difficultyTextYouWinPanel.variableText = difficulty;
+        //        //LanguageManager.OnVariableChanged();
+        //        YouWinPanel.gameObject.SetActive(true);
+        //        //difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+        //        // LanguageManager.OnVariableChanged();
+
+        //        AudioManager.Instance.GameWon();
+        //    }
+        //    else
+        //    {
+        //        // difficultyTextGameOverPanel.variableText = difficulty;
+        //        // LanguageManager.OnVariableChanged();
+        //        gameOverPanel.gameObject.SetActive(true);
+        //        //  difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+        //        //  LanguageManager.OnVariableChanged();
+
+        //        AudioManager.Instance.GameLost();
+        //    }
+
+        //}
+        #endregion
+        [PunRPC]
+        private void SetGameOverPanelActive(bool isActive)
         {
+           // gameOverPanel.SetActive(true);
+        }
 
-            if (winner == 0)
+        [PunRPC]
+        private void ActiveGameOver(int winner)
+        {
+            if (winner == int.Parse(PhotonNetwork.NickName))
             {
-                //difficultyTextYouWinPanel.variableText = difficulty;
-                //LanguageManager.OnVariableChanged();
-                YouWinPanel.gameObject.SetActive(true);
-                //difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
-                // LanguageManager.OnVariableChanged();
-
+                YouWinPanel.SetActive(true);
                 AudioManager.Instance.GameWon();
             }
             else
             {
-                // difficultyTextGameOverPanel.variableText = difficulty;
-                // LanguageManager.OnVariableChanged();
-                gameOverPanel.gameObject.SetActive(true);
-                //  difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
-                //  LanguageManager.OnVariableChanged();
-
+                gameOverPanel.SetActive(true);
                 AudioManager.Instance.GameLost();
             }
 
         }
+
 
         public void ActivatePausePanel()
         {
