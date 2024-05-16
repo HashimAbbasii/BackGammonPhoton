@@ -2495,6 +2495,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2428291923147144808, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3957825308760889450, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2582,6 +2586,14 @@ PrefabInstance:
     - target: {fileID: 3957825308760889454, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
       propertyPath: m_Name
       value: Lobby Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 3957825310216825505, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161759486655072732, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0507ec0558de454498803fc643a6a46a, type: 3}
