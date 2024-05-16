@@ -11,8 +11,60 @@ public class NetworkPlayer : MonoBehaviour
     public PhotonView photonView;
 
     public string playerName;
-    
-    
+
+    private int _score;
+    private int _moves;
+    private int _kills;
+    private int _shelter;
+    private int _time;
+
+    public int Score
+    {
+        get => _score;
+        set
+        {
+            _score = 2 * _moves + 20 * _shelter + 10 * _kills - (_time * 2 / 60);
+        }
+    }
+
+    public int Moves
+    {
+        get => _moves;
+        set
+        {
+            _moves = value;
+            Score++;
+        }
+    }
+
+    public int Kills
+    {
+        get => _kills;
+        set
+        {
+            _kills = value;
+            Score++;
+        }
+    }
+    public int Shelter
+    {
+        get => _shelter;
+        set
+        {
+            _shelter = value;
+            Score++;
+        }
+    }
+    public int Time
+    {
+        get => _time;
+        set
+        {
+            _time = value;
+            Score++;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

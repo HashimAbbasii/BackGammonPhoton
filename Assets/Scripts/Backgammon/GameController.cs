@@ -70,6 +70,8 @@ namespace BackgammonNet.Core
 
         public bool diceEnable = true;             // permission to roll the dice (after making moves)
 
+        
+
         public static GameController Instance { get; set; }
         public static bool GameOver { get; set; }
 
@@ -89,7 +91,8 @@ namespace BackgammonNet.Core
             mainMenuButton.onClick.AddListener(GoToMainMenu);
             newGameButton.onClick.AddListener(NewGame);
 
-           
+            
+
             if (LobbyManager.AiMode==true)
             {
                 // Debug.Log("Ai Mode");
@@ -681,7 +684,7 @@ namespace BackgammonNet.Core
                 {
                     //............Call it Again your Ai................//
                     Debug.Log("Call it Again ");
-                    SelectRandomEnemy2();
+                    SelectRandomEnemy();
                 }
             }
                 
