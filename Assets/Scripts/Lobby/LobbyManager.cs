@@ -246,7 +246,7 @@ namespace BackgammonNet.Lobby
                 SceneManager.UnloadSceneAsync(1);
             Canvas1.gameObject.SetActive(false);
             Canvas2.gameObject.SetActive(false);
-            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            SceneManager.LoadScene(1);
             //SceneManager.LoadScene(1);
         }
 
@@ -273,7 +273,7 @@ namespace BackgammonNet.Lobby
             if (SceneManager.sceneCount > 1)
                 SceneManager.UnloadSceneAsync(1);
 
-            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            SceneManager.LoadScene(1);
         }
 
 
