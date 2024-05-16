@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using WebSocketSharp;
+//using WebSocketSharp;
 using Random = UnityEngine.Random;
 
 public class MyLobbyManager : MonoBehaviour
@@ -66,7 +66,9 @@ public class MyLobbyManager : MonoBehaviour
     {
         roomName = rn;
         
-        if (!NetworkManager.Instance.photonRoomManager.myUsername.IsNullOrEmpty())
+        
+       // if (!NetworkManager.Instance.photonRoomManager.myUsername.IsNullOrEmpty())
+       if (!string.IsNullOrEmpty(NetworkManager.Instance.photonRoomManager.myUsername))
             joinPrivateGameButton.interactable = true;
     }
 
@@ -85,7 +87,8 @@ public class MyLobbyManager : MonoBehaviour
 
         createPrivateGameButton.interactable = true;
         randomRoomButton.interactable = true;
-        if (!roomName.IsNullOrEmpty())
+        // if (!roomName.IsNullOrEmpty())
+        if (!string.IsNullOrEmpty(roomName))
             joinPrivateGameButton.interactable = true;
     }
 
