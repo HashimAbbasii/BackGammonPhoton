@@ -431,12 +431,17 @@ namespace BackgammonNet.Core
         }
 
 
-
+       // ..................Code By Hashim Shazad.............................//
 
         [PunRPC]
         public void MoveScoreUpdateRPC(int playerViewID)
         {
             PhotonView.Find(playerViewID).GetComponent<NetworkPlayer>().Moves++;
+        }
+        [PunRPC]
+        public void ShelterScoreUpdateRPC(int playerViewID)
+        {
+            PhotonView.Find(playerViewID).GetComponent<NetworkPlayer>().Shelter++;
         }
 
         //......................Call on Rpc Pun..................................//
@@ -565,6 +570,8 @@ namespace BackgammonNet.Core
         {
             //house.transform.GetChild(rescuedPawns++).gameObject.SetActive(true);
             photonView.RPC(nameof(ActivateHouseChild), RpcTarget.AllBuffered, rescuedPawns);
+            photonView.RPC(nameof(ShelterScoreUpdateRPC), RpcTarget.AllBuffered, GameManager.instance.myNetworkPlayer.photonView.ViewID);
+
             // SoundManager.GetSoundEffect(0, 0.3f);
 
             if (rescuedPawns == 15)
@@ -575,10 +582,12 @@ namespace BackgammonNet.Core
             //  photonView.RPC(nameof(RemovePawnFromSlot), RpcTarget.AllBuffered);
             SlotNetwork.slots[slotNo].GetTopPawn(true);
             photonView.RPC(nameof(ScaleAndDestroyGameObject), RpcTarget.AllBuffered);
+
             // SlotNetwork.slots[slotNo].GetTopPawn(true);            // remove from current slot
             // gameObject.transform.localScale = Vector3.zero;
            // Destroy(gameObject, 1f);
         }
+
 
 
         [PunRPC]
