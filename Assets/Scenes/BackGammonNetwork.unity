@@ -1490,6 +1490,10 @@ MonoBehaviour:
   difficultyTextGameOverPanel: {fileID: 469219223}
   difficultyTextYouWinPanel: {fileID: 749308375}
   difficultyTextPausePanel: {fileID: 1694972541}
+  scoreText: {fileID: 181284156}
+  scoreTextPausePanel: {fileID: 181284156}
+  scoreTextgameOverPausePanel: {fileID: 252547774}
+  scoreTextyouWinPausePanel: {fileID: 1163685850}
   GameOverPanel: {fileID: 772034183}
   YouWinPanel: {fileID: 1091962434}
   YouWinPanelPlayerLeftPanel: {fileID: 900314061}
@@ -1987,7 +1991,7 @@ MonoBehaviour:
   text: 
   tashkeel: 1
   hinduNumbers: 1
-  showText: {fileID: 0}
+  showText: {fileID: 181284157}
 --- !u!114 &181284156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2002,8 +2006,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
-  _tmpText: {fileID: 0}
-  localizationKey: 
+  _tmpText: {fileID: 181284157}
+  localizationKey: Text.Score
   variableText: 
 --- !u!114 &181284157
 MonoBehaviour:

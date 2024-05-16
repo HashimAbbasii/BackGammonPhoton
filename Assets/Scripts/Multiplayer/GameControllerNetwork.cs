@@ -25,6 +25,10 @@ namespace BackgammonNet.Core
         public LocalizedTextTMP difficultyTextGameOverPanel;
         public LocalizedTextTMP difficultyTextYouWinPanel;
         public LocalizedTextTMP difficultyTextPausePanel;
+       // public LocalizedTextTMP scoreText;
+        public LocalizedTextTMP scoreTextPausePanel;
+        public LocalizedTextTMP scoreTextgameOverPausePanel;
+        public LocalizedTextTMP scoreTextyouWinPausePanel;
 
         [Header("Panels")]
         public GameObject GameOverPanel;

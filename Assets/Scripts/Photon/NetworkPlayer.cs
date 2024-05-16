@@ -25,6 +25,19 @@ public class NetworkPlayer : MonoBehaviour
         set
         {
             _score = 2 * _moves + 20 * _shelter + 10 * _kills - (_time / 30);
+           
+
+
+            GameControllerNetwork.Instance.scoreTextPausePanel.variableText = _score.ToString();
+            LanguageManager.OnVariableChanged();
+
+            GameControllerNetwork.Instance.scoreTextgameOverPausePanel.variableText = _score.ToString();
+            LanguageManager.OnVariableChanged();
+
+            GameControllerNetwork.Instance.scoreTextyouWinPausePanel.variableText = _score.ToString();
+            LanguageManager.OnVariableChanged();
+
+
         }
     }
 
