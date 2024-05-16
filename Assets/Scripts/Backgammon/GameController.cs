@@ -1014,7 +1014,7 @@ namespace BackgammonNet.Core
             turn = 0;
             Pawn.InitializePawn();
             SceneManager.UnloadSceneAsync(1);
-            SceneManager.LoadScene(1, LoadSceneMode.Additive);
+            SceneManager.LoadScene(1);
         }
 
         public void GoToMainMenu()     // delete the Backgammon scene and show the Lobby scene main menu
