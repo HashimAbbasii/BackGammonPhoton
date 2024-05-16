@@ -63,9 +63,6 @@ MonoBehaviour:
   - SlotDeallocateRPC
   - RPCLeaveRoom
   - LoadScene
-<<<<<<< Updated upstream
-  - UpdateShelterState
-=======
   - ActivateHouseChild
   - ActiveGameOver
   - RemovePawnFromSlot
@@ -73,7 +70,6 @@ MonoBehaviour:
   - SetGameOverPanelActive
   - UpdateShelterState
   - UpdateShelterStateFalse
->>>>>>> Stashed changes
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0
