@@ -22,7 +22,10 @@ namespace BackgammonNet.Core
         public LocalizedTextTMP difficultyTextGameOverPanel;
         public LocalizedTextTMP difficultyTextYouWinPanel;
         public LocalizedTextTMP difficultyTextPausePanel;
-        public LocalizedTextTMP scoreText;
+
+        public LocalizedTextTMP scoreTextPausePanel;
+        public LocalizedTextTMP gameOverPausePanel;
+        public LocalizedTextTMP youWinPausePanel;
 
 
 
@@ -85,8 +88,10 @@ namespace BackgammonNet.Core
             set
             {
                 _score = 2 * _moves + 20 * _shelter + 10 * _kills - (_time / 30);
-                scoreText.variableText = _score.ToString();
+                scoreTextPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
+
+
             }
         }
 
