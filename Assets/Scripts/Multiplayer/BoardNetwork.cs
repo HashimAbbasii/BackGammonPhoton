@@ -5,6 +5,8 @@ using System.Collections;
 using BackgammonNet.Lobby;
 using Photon.Pun;
 using Unity.VisualScripting;
+using Assets.SimpleLocalization.Scripts;
+using System;
 
 namespace BackgammonNet.Core
 {
@@ -29,6 +31,15 @@ namespace BackgammonNet.Core
 
         public List<SlotNetwork> slots = new ();
 
+        private float gameTime;
+
+        [SerializeField] LocalizedTextTMP timeText;
+        [SerializeField] LocalizedTextTMP timeTextPausePanel;
+        public DateTime startTime;
+
+
+
+
         public static BoardNetwork Instance { get; set; }
                 
         private void Awake()
@@ -51,6 +62,8 @@ namespace BackgammonNet.Core
 
             //if (client)
             //    client.Send("CACCPT|acceptance");           // our confirmation of the willingness to start the game
+
+            startTime = DateTime.Now;
         }
 
 

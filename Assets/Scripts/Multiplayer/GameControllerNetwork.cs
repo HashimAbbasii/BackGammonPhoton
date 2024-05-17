@@ -30,6 +30,12 @@ namespace BackgammonNet.Core
         public LocalizedTextTMP scoreTextgameOverPausePanel;
         public LocalizedTextTMP scoreTextyouWinPausePanel;
 
+        public LocalizedTextTMP timeTextPausePanel;
+        public LocalizedTextTMP timeTextgameOverPausePanel;
+        public LocalizedTextTMP timeTextyouWinPausePanel;
+
+        public DateTime dateTime;
+
         [Header("Panels")]
         public GameObject GameOverPanel;
         public GameObject YouWinPanel;
@@ -77,6 +83,12 @@ namespace BackgammonNet.Core
 
         private bool timeSetOnlyOnce = false;
         public DateTime startDateTime;
+        
+
+       
+        private DateTime endTime;
+        private TimeSpan totalGameTime;
+
 
         public static GameControllerNetwork Instance { get; set; }
         public static bool GameOver { get; set; }
@@ -232,6 +244,9 @@ namespace BackgammonNet.Core
         }
         public bool timeCounter = false;
         public Text counterTime;
+        public Text _counterTime;
+
+
         private void Update()
         {
             if (sidesAgreed == 2)
@@ -244,8 +259,8 @@ namespace BackgammonNet.Core
         }
 
         private float currentTime = 0f;
-        
 
+        public int totalSecondsPassed;
         void UpdateTimeText()
         {
             //Debug.Log("Timer Running");
@@ -257,7 +272,12 @@ namespace BackgammonNet.Core
             counterTime.text = string.Format("{0:mm\\:ss}", DateTime.Now - startDateTime);
 
 
-            var totalSecondsPassed = (int)((DateTime.Now - startDateTime).TotalSeconds);
+            totalSecondsPassed = (int)((DateTime.Now - startDateTime).TotalSeconds);
+
+
+            timeTextPausePanel.variableText = totalSecondsPassed.ToString();
+            LanguageManager.OnVariableChanged();
+
         }
         private void TryDeactivateDigit()
         {
@@ -573,9 +593,6 @@ namespace BackgammonNet.Core
         private void Pawn_OnGameOver(bool isWhite)
         {
 
-
-
-
             photonView.RPC(nameof(SetGameOverPanelActive), RpcTarget.AllBuffered, true);
 
             int winner = isWhite ? 0 : 1;
@@ -640,11 +657,23 @@ namespace BackgammonNet.Core
             {
                 YouWinPanel.SetActive(true);
                 AudioManager.Instance.GameWon();
+
+
+                endTime = DateTime.Now;
+                int _totalGameTime = (int) ((endTime - BoardNetwork.Instance.startTime).TotalSeconds);
+                timeTextyouWinPausePanel.variableText = _totalGameTime.ToString();
+                LanguageManager.OnVariableChanged();
+
             }
             else
             {
                 gameOverPanel.SetActive(true);
                 AudioManager.Instance.GameLost();
+
+                endTime = DateTime.Now;
+                int _totalGameTime = (int)((endTime - BoardNetwork.Instance.startTime).TotalSeconds);
+                timeTextgameOverPausePanel.variableText = _totalGameTime.ToString();
+                LanguageManager.OnVariableChanged();
             }
 
         }
