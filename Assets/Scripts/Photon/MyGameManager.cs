@@ -41,6 +41,7 @@ public class MyGameManager : MonoBehaviour
     public bool isMultiplayer;
     //public LanguageManager languageManager;
     public List<NetworkPlayer> players = new();
+    public List<string> playerNames = new();
 
     //public int boardSize;
     //public int pawnRows;

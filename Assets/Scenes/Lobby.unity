@@ -1798,6 +1798,7 @@ MonoBehaviour:
   playerListItemPrefab: {fileID: 3546963946586361549, guid: eabb9167bf11ee74792577659cae6a88, type: 3}
   playerListItemParent: {fileID: 3957825309650377472}
   PlayButton: {fileID: 3957825309650377471}
+  players: []
   multiPlayerMode: 0
 --- !u!114 &1245191230
 MonoBehaviour:

@@ -226,6 +226,8 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
                 playerListItem.meIndicator.SetActive(false);
             }
             playerListGameObject.Add(p.ActorNumber, playerListItem.gameObject);
+            MyGameManager.Instance.playerNames.Add(playerListItem.playerNameText.text);
+
         }
 
 
@@ -251,6 +253,8 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
             playerListItem.meIndicator.gameObject.SetActive(false);
         }
         playerListGameObject.Add(newPlayer.ActorNumber, playerListItem.gameObject);
+
+        MyGameManager.Instance.playerNames.Add(playerListItem.playerNameText.text);
 
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount > 1)
         {
