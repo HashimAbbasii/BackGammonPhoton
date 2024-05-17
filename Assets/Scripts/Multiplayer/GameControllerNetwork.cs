@@ -667,6 +667,7 @@ namespace BackgammonNet.Core
                 
                 int _totalGameTime = (int) ((endDateTime - startDateTime).TotalSeconds);
                 timeTextyouWinPausePanel.variableText = _totalGameTime.ToString();
+                //scoreTextdefaultYouWinPausePanel.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
                 LanguageManager.OnVariableChanged();
 
             }
@@ -677,6 +678,7 @@ namespace BackgammonNet.Core
 
                 _totalGameTime = (int)((endDateTime - startDateTime).TotalSeconds);
                 timeTextgameOverPausePanel.variableText = _totalGameTime.ToString();
+                //scoreTextdefaultYouWinPausePanel.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
                 LanguageManager.OnVariableChanged();
             }
 
