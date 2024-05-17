@@ -560,29 +560,42 @@ namespace BackgammonNet.Core
         public void SelectRandomEnemy()
         {
             //.............SelectRandom Enemy............From the list.....
-            int RandomSelectEnemy = -1;
 
-            
 
-            switch (MyGameManager.Instance.botDifficulty)
+
+
+            if (Pawn.shelterSide[1])
             {
-                case Difficulty.Beginner:
-                    RandomSelectEnemy = 0;
-                    break;
-                case Difficulty.Intermediate:
-                    RandomSelectEnemy = Random.Range(0, topEPawns.Count);
-                    break;
-                case Difficulty.GrandMaster:
-                    RandomSelectEnemy = topEPawns.Count - 1;
-                    break;
-            }
+                for(int i = 0; i < 6; i++)
+                {
 
-            
-        
-            randomSelectPawn = topEPawns[RandomSelectEnemy];
-            checkExistingPawn.Add(randomSelectPawn);
-            topEPawns.Remove(randomSelectPawn);
-            AiMovesEnemy();
+                }
+            }
+            else
+            {
+                int RandomSelectEnemy = -1;
+
+                switch (MyGameManager.Instance.botDifficulty)
+                {
+                    case Difficulty.Beginner:
+                        RandomSelectEnemy = 0;
+                        break;
+                    case Difficulty.Intermediate:
+                        RandomSelectEnemy = Random.Range(0, topEPawns.Count);
+                        break;
+                    case Difficulty.GrandMaster:
+                        RandomSelectEnemy = topEPawns.Count - 1;
+                        break;
+                }
+
+
+
+                randomSelectPawn = topEPawns[RandomSelectEnemy];
+                checkExistingPawn.Add(randomSelectPawn);
+                topEPawns.Remove(randomSelectPawn);
+                AiMovesEnemy();
+            }
+             
 
            }
         #endregion
