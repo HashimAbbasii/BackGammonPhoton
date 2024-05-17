@@ -130,7 +130,7 @@ namespace BackgammonNet.Core
 
             if (MyPhotonManager.instance.multiPlayerMode == true)
             {
-                StartCoroutine(NetworkButton());
+                //StartCoroutine(NetworkButton());
             }
 
 
@@ -242,12 +242,14 @@ namespace BackgammonNet.Core
             Debug.Log("Human Mode");
             if (Board.Instance.acceptance >= 2)
             {
+                Debug.Log("1 CHECK");
                 canvasHandler.diceRollButton.SetActive(true);
                 canvasHandler.diceResults.SetActive(true);
             }
 
             if (diceEnable && Board.Instance.acceptance >= 2)
             {
+                Debug.Log("2 CHECK");
                 dragEnable = true;
                 diceEnable = false;
 
@@ -890,32 +892,11 @@ namespace BackgammonNet.Core
             if (dices[0] == dices[1])
                 isDublet = true;
 
-            //My Turn or Enemy Turn
-            //if (turn == 1)
-            //{
-            //    AIController.Instance.maxMoves = isDublet ? 4 : 2;
-            //    AIController.Instance.moves = 0;
-            //    AIController.Instance.AITurn();
-            //}
+        
 
 
 
-
-            //if (turn == 1)                                            ///////////////////////////
-            //{
-            //    Debug.Log("--------Enemy turn-----");
-
-            //    var maxMoves = isDublet ? 4 : 2;
-            //    var moves = 0;
-
-            //    while (moves < maxMoves)
-            //    {
-            //        Debug.Log("--------Enemy move----- " + moves);
-            //        AIController.Instance.AITurn();
-            //        moves++;
-            //    }
-            //}
-
+       
 
             if (!CanMove(2))
                 StartCoroutine(ChangeTurn());
