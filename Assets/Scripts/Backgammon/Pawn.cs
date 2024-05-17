@@ -20,7 +20,8 @@ namespace BackgammonNet.Core
         public static int[] imprisonedSide = new int[2];        // Is the mode of taking the pieces of given side out of prison?
         public static bool[] shelterSide = new bool[2];         // Is the mode of introducing the pieces of given side into the shelter?
 
-        public static int endSlotNo;                            // sloty ostatniej ćwiartki najdalsze od schronienia
+        public static int endSlotNo;
+        public int endSlotCheck;
         public static int moves;
 
         public int pawnColor;                                   // The color of this pawn.
@@ -136,7 +137,7 @@ namespace BackgammonNet.Core
                 {
                     if (Slot.slots[25 + sign * GameController.dices[0]].Height() == 1 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() != prisonSlot.IsWhite())
                     {
-                        Debug.Log("JAIL KAR DOOH");
+                        //Debug.Log("JAIL KAR DOOH");
                         var prisonPawn = prisonSlot.GetTopPawn(true);
                        
                         int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
@@ -157,7 +158,7 @@ namespace BackgammonNet.Core
 
                     {
 
-                        Debug.Log("Same Color Slot");
+                      //  Debug.Log("Same Color Slot");
 
                         var prisonPawn = prisonSlot.GetTopPawn(true);
                         int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
@@ -179,7 +180,7 @@ namespace BackgammonNet.Core
                         if (Slot.slots[25 + sign * GameController.dices[1]].Height() > 1 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() != prisonSlot.IsWhite())
                         {
 
-                            Debug.Log("Give the Dice to the Human Player");
+                           // Debug.Log("Give the Dice to the Human Player");
                             CheckShelterStage();
                             CheckShelterAndMore();
 
@@ -187,7 +188,7 @@ namespace BackgammonNet.Core
                         }
                         else
                         {
-                            Debug.Log("Moves According to Dice 1");
+                           // Debug.Log("Moves According to Dice 1");
 
                             var prisonPawn = prisonSlot.GetTopPawn(true);
                             int slot0 = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
@@ -209,7 +210,7 @@ namespace BackgammonNet.Core
 
                 else if (Slot.slots[25 + sign * GameController.dices[0]].Height() == 0)
                 {
-                    Debug.Log("HEIGHT IS Zero");
+                   // Debug.Log("HEIGHT IS Zero");
                     var prisonPawn = prisonSlot.GetTopPawn(true);
                     int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
                     Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
@@ -267,7 +268,7 @@ namespace BackgammonNet.Core
 
                     {
 
-                        Debug.Log("Same Color Slot");
+                       // Debug.Log("Same Color Slot");
 
                         var prisonPawn = Slot.slots[25].GetTopPawn(true);
                         int slot0 = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
@@ -298,7 +299,7 @@ namespace BackgammonNet.Core
 
                 else if (Slot.slots[25 + sign * GameController.dices[1]].Height() == 0)
                 {
-                    Debug.Log("HEIGHT IS Zero");
+                 //   Debug.Log("HEIGHT IS Zero");
                     var prisonPawn = Slot.slots[25].GetTopPawn(true);
                     int slot0 = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
                     Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
@@ -418,8 +419,8 @@ namespace BackgammonNet.Core
 
         public void CheckIfNextTurn()
         {
-            Debug.Log("Moves" + moves);
-            Debug.Log("MaxMoves" + maxMoves);
+           // Debug.Log("Moves" + moves);
+           // Debug.Log("MaxMoves" + maxMoves);
             if (moves == maxMoves && !GameController.GameOver)           // all moves have been made
             {
                 moves = 0;
@@ -491,14 +492,14 @@ namespace BackgammonNet.Core
 
             if (CheckShelterStage())                //---- detection of the mode of introducing the pieces into the shelter
                 shelterSide[pawnColor] = true;
-            Debug.Log("Moves " + moves);
-            Debug.Log("Max Moves" + maxMoves);
+          //  Debug.Log("Moves " + moves);
+          //  Debug.Log("Max Moves" + maxMoves);
             if (++moves < maxMoves)      // after each move
             {
-                Debug.Log("andr aya hain");
+             //   Debug.Log("andr aya hain");
                 if (!GameController.CanMove(1))        // when a move cannot be made
                 {
-                    Debug.Log("andr aya hain For Complete");
+                  //  Debug.Log("andr aya hain For Complete");
                     moves = 0;
                     OnCompleteTurn(pawnColor);
                 }
@@ -677,9 +678,10 @@ namespace BackgammonNet.Core
         public bool CheckShelterStage()                   // check if it is possible to bring a given player's pieces into the shelter
         {
             maxMoves = GameController.isDublet ? 4 : 2;    // four the same movements or two different movements
-
+            //..........Is mein yeah sare shelter slots check karta hain k kon si shlter pr hain means slot ko check kare 
             house = GameObject.Find((pawnColor == 0 ? "White" : "Red") + " House");
             rescuedPawns = house.GetComponentsInChildren<SpriteRenderer>().Length - 1;
+            Debug.Log("Rescued Pawn"+rescuedPawns);
 
             int count = 0;
             int offset = pawnColor == 0 ? 18 : 0;
@@ -688,10 +690,16 @@ namespace BackgammonNet.Core
             for (int i = 1 + offset; i <= 6 + offset; i++)
                 if (Slot.slots[7 * pawnColor - b * i].Height() > 0 && Slot.slots[7 * pawnColor - b * i].IsWhite() == pawnColor)
                 {
+                    Debug.Log("Slot Check"+ Slot.slots[7 * pawnColor - b * i]);   //its Check all the shelter slot whch contain pawns
                     if (count == 0)
+                    {
+
                         endSlotNo = 7 * pawnColor - b * i;
+                        endSlotCheck = endSlotNo;     // its Check End Slot
+                    }
 
                     count += Slot.slots[7 * pawnColor - b * i].Height();
+                    Debug.Log("Count " + count);
                 }
 
             return (count == 15 - rescuedPawns);   // if all the pieces of a given color, remaining on the board, are in the last quadrant

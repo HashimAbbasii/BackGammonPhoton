@@ -75,20 +75,20 @@ public class CanvasHandler : MonoBehaviour
 
     public void ToggleBoolSound()
     {
-        Debug.Log("ToggleBoolSound");
+       // Debug.Log("ToggleBoolSound");
         soundToggle = !soundToggle;
 
         AudioManager.Instance.ToggleVFXSound(!soundToggle);
 
         if (soundToggle)
         {
-            Debug.Log("true");
+          //  Debug.Log("true");
             // VfxSoundToggleAnimator.Play("vfx sound Anim Reverse");
             soundBtn.image.sprite = OffSoundToggle;
         }
         else
         {
-            Debug.Log("false");
+         //   Debug.Log("false");
             // VfxSoundToggleAnimator.Play("vfx sound Anim");
             soundBtn.image.sprite = OnSoundToggle;
         }
@@ -96,14 +96,14 @@ public class CanvasHandler : MonoBehaviour
 
     public void ToggleBoolMusic()
     {
-        Debug.Log("ToggleBoolSound");
+       // Debug.Log("ToggleBoolSound");
         musicToggle = !musicToggle;
 
         AudioManager.Instance.ToggleMusicSound(!musicToggle);
 
         if (musicToggle)
         {
-            Debug.Log("true");
+           // Debug.Log("true");
             //musicSoundToggleAnimator.Play("Music Anim Reverse");
             musicBtn.image.sprite = OffMusicToggle;
         }
