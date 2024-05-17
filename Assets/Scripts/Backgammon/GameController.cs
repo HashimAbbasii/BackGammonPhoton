@@ -47,7 +47,7 @@ namespace BackgammonNet.Core
         public static int[] dices = new int[2];     // recently drawn numbers
         public static bool isDublet;                // whether a doublet was thrown
         public static bool dragEnable;              // is it possible to drag the pieces
-
+        public bool dragEnableCheck;
         [HideInInspector] public bool newTurn;
         [HideInInspector] public int sidesAgreed;   // the current number of players agreeing to continue the game
 
@@ -73,7 +73,7 @@ namespace BackgammonNet.Core
         public List<Pawn> topEPawns = new();
         public List<Pawn> checkExistingPawn = new();
         public List<Pawn> ePawns = new();
-        public bool NetworkTurn=true;
+        //public bool NetworkTurn=true;
 
         public bool diceEnable = true;             // permission to roll the dice (after making moves)
 
@@ -141,19 +141,19 @@ namespace BackgammonNet.Core
             }
         }
 
-        IEnumerator NetworkButton()
-        {
-            diceButton.enabled = false;
-            yield return new WaitForSeconds(2f);
-            if (MyPhotonManager.instance.multiPlayerMode == true)
-            {
-                _photonView.RPC(nameof(SlotButtonDisable), RpcTarget.AllBuffered);
+        //IEnumerator NetworkButton()
+        //{
+        //    diceButton.enabled = false;
+        //    yield return new WaitForSeconds(2f);
+        //    if (MyPhotonManager.instance.multiPlayerMode == true)
+        //    {
+        //        _photonView.RPC(nameof(SlotButtonDisable), RpcTarget.AllBuffered);
                 
 
-                diceButton.onClick.AddListener(GenerateForNetwork);
+        //        diceButton.onClick.AddListener(GenerateForNetwork);
                 
-            }
-        }       
+        //    }
+        //}       
         
         [PunRPC]
 
@@ -374,6 +374,7 @@ namespace BackgammonNet.Core
                 }
                 else
                 {
+                    dragEnableCheck = dragEnable;
                     //  Debug.Log("Ai Turn");
                     _allSlotsInts.Clear();
                     allSlots.Clear();
@@ -560,6 +561,8 @@ namespace BackgammonNet.Core
         {
             //.............SelectRandom Enemy............From the list.....
             int RandomSelectEnemy = -1;
+
+            
 
             switch (MyGameManager.Instance.botDifficulty)
             {
@@ -847,10 +850,10 @@ namespace BackgammonNet.Core
         public void CheckIfTurnChange(int dice0, int dice1)      // Load the values ​​rolled by the opponent's dice.
         {
 
-            if (NetworkTurn == true)
-            {
-                ///.....Check it...........
-            }
+            //if (NetworkTurn == true)
+            //{
+            //    ///.....Check it...........
+            //}
             diceButton.gameObject.SetActive(false);
             isDublet = false;
 
@@ -1238,7 +1241,7 @@ namespace BackgammonNet.Core
         [ContextMenu("Shelter Check")]
         public void ShelterSideMovesTowardHomeAi()
         {
-          //  if (Pawn.shelterSide[1])
+            if (Pawn.shelterSide[1])
             {
                 var slots1to6 = Slot.slots.Where(t => t.slotNo >= 1 && t.slotNo <= 6).ToList();
                 for(int i = 0; i < slots1to6.Count; i++)
