@@ -1493,7 +1493,7 @@ MonoBehaviour:
   scoreTextPausePanel: {fileID: 181284156}
   scoreTextgameOverPausePanel: {fileID: 252547774}
   scoreTextyouWinPausePanel: {fileID: 1163685850}
-  scoreTextdefaultYouWinPausePanel: {fileID: 0}
+  scoreTextdefaultYouWinPausePanel: {fileID: 16438179}
   timeTextPausePanel: {fileID: 506583808}
   timeTextgameOverPausePanel: {fileID: 1127702777}
   timeTextyouWinPausePanel: {fileID: 461777306}
