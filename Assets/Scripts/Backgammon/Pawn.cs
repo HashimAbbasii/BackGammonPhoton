@@ -597,8 +597,10 @@ namespace BackgammonNet.Core
 
             if(GameController.turn == 0 && MyGameManager.AiMode == true)
             {
-                GameController.Instance.Moves++;
+                GameController.Instance.playerScores[0].Moves++;
             }
+
+            
         }
 
         public void PlaceJail()                   // placing a whipped piece in prison (suspension of introduction to the shelter)
@@ -612,7 +614,7 @@ namespace BackgammonNet.Core
 
             if(GameController.turn == 0 && MyGameManager.AiMode == true)
             {
-               GameController.Instance.Kills++;
+               GameController.Instance.playerScores[0].Kills++;
             }
 
 
@@ -674,7 +676,7 @@ namespace BackgammonNet.Core
 
             if (GameController.turn == 0 && MyGameManager.AiMode == true)
             {
-                GameController.Instance.Shelter++;
+                GameController.Instance.playerScores[0].Shelter++;
             }
         }
 

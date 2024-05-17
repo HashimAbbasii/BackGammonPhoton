@@ -9,6 +9,8 @@ using System.Linq;
 using Photon.Pun;
 using static UnityEngine.GraphicsBuffer;
 using Assets.SimpleLocalization.Scripts;
+using System;
+using Random = UnityEngine.Random;
 
 namespace BackgammonNet.Core
 {
@@ -17,6 +19,7 @@ namespace BackgammonNet.Core
     public class GameController : MonoBehaviour
     {
 
+        public List<PlayerScore> playerScores = new();
         private PhotonView _photonView;
 
         public LocalizedTextTMP difficultyTextGameOverPanel;
@@ -73,74 +76,6 @@ namespace BackgammonNet.Core
         public bool NetworkTurn=true;
 
         public bool diceEnable = true;             // permission to roll the dice (after making moves)
-
-        #region Score
-
-        private int _score;
-        private int _moves;
-        private int _kills;
-        private int _shelter;
-        private int _time;
-
-        public int Score
-        {
-            get => _score;
-            set
-            {
-                _score = 2 * _moves + 20 * _shelter + 10 * _kills - (_time / 30);
-                scoreTextPausePanel.variableText = _score.ToString();
-                LanguageManager.OnVariableChanged();
-
-                scoreTextgameOverPausePanel.variableText = _score.ToString();
-                LanguageManager.OnVariableChanged();
-
-                scoreTextyouWinPausePanel.variableText = _score.ToString();
-                LanguageManager.OnVariableChanged();
-
-
-            }
-        }
-
-        public int Moves
-        {
-            get => _moves;
-            set
-            {
-                _moves = value;
-                Score++;
-            }
-        }
-
-        public int Kills
-        {
-            get => _kills;
-            set
-            {
-                _kills = value;
-                Score++;
-            }
-        }
-        public int Shelter
-        {
-            get => _shelter;
-            set
-            {
-                _shelter = value;
-                Score++;
-            }
-        }
-        public int TotalTime
-        {
-            get => _time;
-            set
-            {
-                _time = value;
-                Score++;
-            }
-        }
-
-        #endregion
-
 
         public static GameController Instance { get; set; }
         public static bool GameOver { get; set; }
@@ -1333,4 +1268,78 @@ namespace BackgammonNet.Core
             }
         }
     }
+
+    [Serializable]
+    public class PlayerScore
+    {
+        #region Score
+       
+        private int _score;
+        private int _moves;
+        private int _kills;
+        private int _shelter;
+        private int _time;
+
+        public int Score
+        {
+            get => _score;
+            set
+            {
+                _score = 2 * _moves + 20 * _shelter + 10 * _kills - (_time / 30);
+                GameController.Instance.scoreTextPausePanel.variableText = _score.ToString();
+                LanguageManager.OnVariableChanged();
+
+                GameController.Instance.scoreTextgameOverPausePanel.variableText = _score.ToString();
+                LanguageManager.OnVariableChanged();
+
+                GameController.Instance.scoreTextyouWinPausePanel.variableText = _score.ToString();
+                LanguageManager.OnVariableChanged();
+
+
+            }
+        }
+
+        public int Moves
+        {
+            get => _moves;
+            set
+            {
+                _moves = value;
+                Score++;
+            }
+        }
+
+        public int Kills
+        {
+            get => _kills;
+            set
+            {
+                _kills = value;
+                Score++;
+            }
+        }
+
+        public int Shelter
+        {
+            get => _shelter;
+            set
+            {
+                _shelter = value;
+                Score++;
+            }
+        }
+
+        public int TotalTime
+        {
+            get => _time;
+            set
+            {
+                _time = value;
+                Score++;
+            }
+        }
+
+        #endregion
+    }
 }
+
