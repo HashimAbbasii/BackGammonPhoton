@@ -59,7 +59,7 @@ namespace BackgammonNet.Core
         [SerializeField] private Image[] diceImages;
 
         [SerializeField] private GameObject AiDifficulty;
-
+        [SerializeField] public List<Slot> shelterPawn=new();
         public List<Sprite> diceFaces = new List<Sprite>();
 
 
@@ -163,7 +163,7 @@ namespace BackgammonNet.Core
 
             
 
-            if (LobbyManager.AiMode==true)
+            if (MyGameManager.AiMode==true)
             {
                 // Debug.Log("Ai Mode");
 
@@ -199,7 +199,7 @@ namespace BackgammonNet.Core
             }
 
 
-            if(LobbyManager.AiMode == false)
+            if(MyGameManager.AiMode == false)
             {
                 AiDifficulty.gameObject.SetActive(false);
 
@@ -1012,7 +1012,7 @@ namespace BackgammonNet.Core
             else
 
 
-            if (turn == 1 && LobbyManager.AiMode == true)
+            if (turn == 1 && MyGameManager.AiMode == true)
             {
                 //GenerateForAi();
                 StartCoroutine(TurnChangeDelay());
@@ -1133,7 +1133,7 @@ namespace BackgammonNet.Core
 
         private IEnumerator DelayedGoToMainMenu()
         {
-            LobbyManager.AiMode = false;
+            MyGameManager.AiMode = false;
 
             if (MyGameManager.Instance)
             {
@@ -1160,8 +1160,11 @@ namespace BackgammonNet.Core
                 return CanMoveFromJail(amount, count, sign);
             else                                                // when they are not in jail
             {
-                if (Pawn.shelterSide[turn])                     // when the mode of entering the shelter
+                if (Pawn.shelterSide[turn])
+                {
+                    Debug.Log("Shelter Side");
                     return CanMoveInShelter(value, sign);
+                }                  // when the mode of entering the shelter
                 else if (CanMoveFree(value, sign))    // we go through each slot with white pieces and check if it is possible to make a move from this slot
                     return true;
             }
@@ -1312,6 +1315,20 @@ namespace BackgammonNet.Core
             }
 
             return false;
+        }
+
+        [ContextMenu("Shelter Check")]
+        public void ShelterSideMovesTowardHomeAi()
+        {
+          //  if (Pawn.shelterSide[1])
+            {
+                var slots1to6 = Slot.slots.Where(t => t.slotNo >= 1 && t.slotNo <= 6).ToList();
+                for(int i = 0; i < slots1to6.Count; i++)
+                {
+                    shelterPawn.Add(slots1to6[i]);
+                }
+               
+            }
         }
     }
 }
