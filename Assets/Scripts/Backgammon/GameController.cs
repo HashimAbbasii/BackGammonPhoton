@@ -120,6 +120,12 @@ namespace BackgammonNet.Core
 
         private void Start()
         {
+            for (var i = 0; i < 2; i++)
+            {
+                PlayerScore playerScore = new();
+                playerScores.Add(playerScore);
+            }
+
             if (Board.Instance.client)
                 if (!Board.Instance.isClientWhite)
                     diceButton.gameObject.SetActive(false);

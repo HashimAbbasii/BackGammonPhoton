@@ -596,6 +596,7 @@ namespace BackgammonNet.Core
             {
                 if (GameController.turn == 0 && MyGameManager.AiMode == true)
                 {
+                    Debug.Log("Moves Check" + GameController.Instance.playerScores[0].Moves++);
                     GameController.Instance.playerScores[0].Moves++;
                 }
 
