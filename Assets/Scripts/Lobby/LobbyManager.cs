@@ -267,7 +267,7 @@ namespace BackgammonNet.Lobby
         public void StartGameAi()                             // Start a local game.
         {
             Debug.Log("Ai Mode");
-            AiMode = true;
+            MyGameManager.AiMode = true;
             SwitchMenuView(false, false, false, false,false);
 
             if (SceneManager.sceneCount > 1)
