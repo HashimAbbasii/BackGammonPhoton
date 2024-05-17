@@ -18,6 +18,9 @@ namespace BackgammonNet.Core
 
     public class GameController : MonoBehaviour
     {
+        [Header("PointsScene")]
+        public LocalizedTextTMP player0Points;
+        public LocalizedTextTMP player1Points;
 
         public List<PlayerScore> playerScores = new();
         private PhotonView _photonView;
@@ -1289,8 +1292,11 @@ namespace BackgammonNet.Core
             set
             {
                 _score = 2 * _moves + 20 * _shelter + 10 * _kills - (_time / 30);
+
                 GameController.Instance.scoreTextPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
+
+
 
                 GameController.Instance.scoreTextgameOverPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
