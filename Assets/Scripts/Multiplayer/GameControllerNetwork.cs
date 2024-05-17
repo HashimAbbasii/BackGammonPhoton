@@ -22,21 +22,28 @@ namespace BackgammonNet.Core
     {
         private PhotonView _photonView;
 
+        [Header("DifficultyText")]
         public LocalizedTextTMP difficultyTextGameOverPanel;
         public LocalizedTextTMP difficultyTextYouWinPanel;
         public LocalizedTextTMP difficultyTextPausePanel;
-       // public LocalizedTextTMP scoreText;
+        // public LocalizedTextTMP scoreText;
 
+        [Header("ScoreText")]
         public LocalizedTextTMP scoreTextPausePanel;
         public LocalizedTextTMP scoreTextgameOverPausePanel;
         public LocalizedTextTMP scoreTextyouWinPausePanel;
         public LocalizedTextTMP scoreTextdefaultYouWinPausePanel;
 
-
+        [Header("TimeText")]
         public LocalizedTextTMP timeTextPausePanel;
         public LocalizedTextTMP timeTextgameOverPausePanel;
         public LocalizedTextTMP timeTextyouWinPausePanel;
         public LocalizedTextTMP timeTextdefaultYouWinPausePanel;
+
+
+        [Header("PlayerNames")]
+        public LocalizedTextTMP player0Name;
+        public LocalizedTextTMP player1Name;
 
         public DateTime dateTime;
         public int _totalGameTime;

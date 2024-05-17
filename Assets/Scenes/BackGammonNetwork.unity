@@ -1498,6 +1498,8 @@ MonoBehaviour:
   timeTextgameOverPausePanel: {fileID: 1127702777}
   timeTextyouWinPausePanel: {fileID: 461777306}
   timeTextdefaultYouWinPausePanel: {fileID: 1972619187}
+  player0Name: {fileID: 4631810}
+  player1Name: {fileID: 843637001}
   _totalGameTime: 0
   GameOverPanel: {fileID: 772034183}
   YouWinPanel: {fileID: 1091962434}
