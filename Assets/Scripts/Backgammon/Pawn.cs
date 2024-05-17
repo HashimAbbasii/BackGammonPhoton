@@ -11,9 +11,6 @@ namespace BackgammonNet.Core
 
     public class Pawn : MonoBehaviour
     {
-
-
-
        // public List<>
         public static Pawn instance;
         public static event Action<int> OnCompleteTurn = delegate { };
