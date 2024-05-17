@@ -72,7 +72,7 @@ namespace Assets.SimpleLocalization.Scripts
             }
             else
             {
-                Debug.Log("else");
+               // Debug.Log("else");
                 switch (textType)
                 {
 
@@ -92,7 +92,7 @@ namespace Assets.SimpleLocalization.Scripts
                         _tmpText.font = MyGameManager.Instance.languageManager.normalFont;
                         _tmpText.fontMaterial = MyGameManager.Instance.languageManager.normalMaterial;
                         _tmpText.color = textColor;
-                        Debug.Log("3");
+                      //  Debug.Log("3");
                         break;
                 }
 
