@@ -1493,9 +1493,12 @@ MonoBehaviour:
   scoreTextPausePanel: {fileID: 181284156}
   scoreTextgameOverPausePanel: {fileID: 252547774}
   scoreTextyouWinPausePanel: {fileID: 1163685850}
+  scoreTextdefaultYouWinPausePanel: {fileID: 0}
   timeTextPausePanel: {fileID: 506583808}
   timeTextgameOverPausePanel: {fileID: 1127702777}
   timeTextyouWinPausePanel: {fileID: 461777306}
+  timeTextdefaultYouWinPausePanel: {fileID: 0}
+  _totalGameTime: 0
   GameOverPanel: {fileID: 772034183}
   YouWinPanel: {fileID: 1091962434}
   YouWinPanelPlayerLeftPanel: {fileID: 900314061}
@@ -11200,7 +11203,7 @@ MonoBehaviour:
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
   _tmpText: {fileID: 0}
-  localizationKey: 
+  localizationKey: Text.Time
   variableText: 
 --- !u!114 &1127702778
 MonoBehaviour:

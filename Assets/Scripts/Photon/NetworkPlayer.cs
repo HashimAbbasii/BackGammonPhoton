@@ -37,6 +37,9 @@ public class NetworkPlayer : MonoBehaviour
             GameControllerNetwork.Instance.scoreTextyouWinPausePanel.variableText = _score.ToString();
             LanguageManager.OnVariableChanged();
 
+            GameControllerNetwork.Instance.scoreTextdefaultYouWinPausePanel.variableText = _score.ToString();
+            LanguageManager.OnVariableChanged();
+
 
         }
     }

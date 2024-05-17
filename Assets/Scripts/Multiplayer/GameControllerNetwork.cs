@@ -26,15 +26,20 @@ namespace BackgammonNet.Core
         public LocalizedTextTMP difficultyTextYouWinPanel;
         public LocalizedTextTMP difficultyTextPausePanel;
        // public LocalizedTextTMP scoreText;
+
         public LocalizedTextTMP scoreTextPausePanel;
         public LocalizedTextTMP scoreTextgameOverPausePanel;
         public LocalizedTextTMP scoreTextyouWinPausePanel;
+        public LocalizedTextTMP scoreTextdefaultYouWinPausePanel;
+
 
         public LocalizedTextTMP timeTextPausePanel;
         public LocalizedTextTMP timeTextgameOverPausePanel;
         public LocalizedTextTMP timeTextyouWinPausePanel;
+        public LocalizedTextTMP timeTextdefaultYouWinPausePanel;
 
         public DateTime dateTime;
+        public int _totalGameTime;
 
         [Header("Panels")]
         public GameObject GameOverPanel;
@@ -273,9 +278,9 @@ namespace BackgammonNet.Core
 
 
             totalSecondsPassed = (int)((DateTime.Now - startDateTime).TotalSeconds);
+            string _totalSecondsPassedString = string.Format("{0:mm\\:ss}", totalSecondsPassed);
 
-
-            timeTextPausePanel.variableText = totalSecondsPassed.ToString();
+            timeTextPausePanel.variableText = _totalSecondsPassedString;
             LanguageManager.OnVariableChanged();
 
         }
@@ -671,7 +676,7 @@ namespace BackgammonNet.Core
                 AudioManager.Instance.GameLost();
 
                 endTime = DateTime.Now;
-                int _totalGameTime = (int)((endTime - BoardNetwork.Instance.startTime).TotalSeconds);
+               _totalGameTime = (int)((endTime - BoardNetwork.Instance.startTime).TotalSeconds);
                 timeTextgameOverPausePanel.variableText = _totalGameTime.ToString();
                 LanguageManager.OnVariableChanged();
             }
@@ -761,6 +766,10 @@ namespace BackgammonNet.Core
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
             YouWinPanelPlayerLeftPanel.gameObject.SetActive(true);
+
+            timeTextdefaultYouWinPausePanel.variableText = _totalGameTime.ToString();
+            LanguageManager.OnVariableChanged();
+
             //base.OnPlayerLeftRoom(otherPlayer);
         }
 
