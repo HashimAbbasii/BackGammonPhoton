@@ -3,6 +3,7 @@ using System;
 using Broniek.Stuff.Sounds;
 using Photon.Pun;
 using BackgammonNet.Lobby;
+using System.Collections.Generic;
 
 namespace BackgammonNet.Core
 {
@@ -13,6 +14,7 @@ namespace BackgammonNet.Core
 
 
 
+       // public List<>
         public static Pawn instance;
         public static event Action<int> OnCompleteTurn = delegate { };
         public static event Action<bool> OnGameOver = delegate { };
@@ -428,7 +430,7 @@ namespace BackgammonNet.Core
             }
 
 
-            if (LobbyManager.AiMode == true)
+            if (MyGameManager.AiMode == true)
             {
 
 
@@ -593,7 +595,7 @@ namespace BackgammonNet.Core
             //SoundManager.GetSoundEffect(1, 0.2f);
             AudioManager.Instance.PawnPlacement();
 
-            if(GameController.turn == 0 && LobbyManager.AiMode == true)
+            if(GameController.turn == 0 && MyGameManager.AiMode == true)
             {
                 GameController.Instance.Moves++;
             }
@@ -608,7 +610,7 @@ namespace BackgammonNet.Core
             imprisonedSide[pawn.pawnColor]++;
             shelterSide[pawn.pawnColor] = false;                            // a piece in prison, therefore no entry into the shelter
 
-            if(GameController.turn == 0 && LobbyManager.AiMode == true)
+            if(GameController.turn == 0 && MyGameManager.AiMode == true)
             {
                GameController.Instance.Kills++;
             }
@@ -656,6 +658,7 @@ namespace BackgammonNet.Core
 
         private void PlaceInShelter()
         {
+            //...........it Check the How many pawn in the House.............//
             house.transform.GetChild(rescuedPawns++).gameObject.SetActive(true);
             //SoundManager.GetSoundEffect(0, 0.3f);
 
@@ -669,7 +672,7 @@ namespace BackgammonNet.Core
             gameObject.transform.localScale = Vector3.zero;
             Destroy(gameObject, 1f);
 
-            if (GameController.turn == 0 && LobbyManager.AiMode == true)
+            if (GameController.turn == 0 && MyGameManager.AiMode == true)
             {
                 GameController.Instance.Shelter++;
             }
@@ -678,7 +681,7 @@ namespace BackgammonNet.Core
         public bool CheckShelterStage()                   // check if it is possible to bring a given player's pieces into the shelter
         {
             maxMoves = GameController.isDublet ? 4 : 2;    // four the same movements or two different movements
-            //..........Is mein yeah sare shelter slots check karta hain k kon si shlter pr hain means slot ko check kare 
+            //  ..........Is mein yeah sare shelter slots check karta hain k kon si    shlter pr hain means slot ko check kare .....//
             house = GameObject.Find((pawnColor == 0 ? "White" : "Red") + " House");
             rescuedPawns = house.GetComponentsInChildren<SpriteRenderer>().Length - 1;
             Debug.Log("Rescued Pawn"+rescuedPawns);
@@ -701,7 +704,7 @@ namespace BackgammonNet.Core
                     count += Slot.slots[7 * pawnColor - b * i].Height();
                     Debug.Log("Count " + count);
                 }
-
+            ////................ITS Check k pawn kiny shelter par aye hain..........//
             return (count == 15 - rescuedPawns);   // if all the pieces of a given color, remaining on the board, are in the last quadrant
         }
 

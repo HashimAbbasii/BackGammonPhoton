@@ -9,6 +9,7 @@ public class MyGameManager : MonoBehaviour
     #region Singleton
 
     public static MyGameManager Instance;
+    public static bool AiMode = false;
     public LanguageManager languageManager;
     public FullscreenWebGLManager fullScreenWebGLManager;
     public Difficulty botDifficulty = Difficulty.None;
