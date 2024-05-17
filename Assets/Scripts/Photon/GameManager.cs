@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using System.Linq;
+using BackgammonNet.Core;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
@@ -35,7 +36,25 @@ public class GameManager : MonoBehaviour
             Debug.Log("PhotonView attached to GameObject: " + view.gameObject.name);
             Debug.Log("Owner of PhotonView: " + view.Owner.NickName);
         }
+
+
+
+        GameControllerNetwork.Instance.player0Name.text = MyGameManager.Instance.playerNames[0];
+        GameControllerNetwork.Instance.player1Name.text = MyGameManager.Instance.playerNames[1];
+
+
+        //GameControllerNetwork.Instance.player0Name.variableText = MyGameManager.Instance.playerNames[0];
+        //LanguageManager.OnVariableChanged();
+
+
+
+        //GameControllerNetwork.Instance.player1Name.variableText = MyGameManager.Instance.playerNames[1];
+        //LanguageManager.OnVariableChanged();
+
     }
+
+
+
 
     // Update is called once per frame
     void Update()

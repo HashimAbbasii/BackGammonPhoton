@@ -13,6 +13,7 @@ using Random = UnityEngine.Random;
 using Assets.SimpleLocalization.Scripts;
 using Photon.Realtime;
 using System.ComponentModel;
+using TMPro;
 
 namespace BackgammonNet.Core
 {
@@ -42,8 +43,8 @@ namespace BackgammonNet.Core
 
 
         [Header("PlayerNames")]
-        public LocalizedTextTMP player0Name;
-        public LocalizedTextTMP player1Name;
+        public TextMeshProUGUI player0Name;
+        public TextMeshProUGUI player1Name;
 
         public DateTime dateTime;
         public int _totalGameTime;
