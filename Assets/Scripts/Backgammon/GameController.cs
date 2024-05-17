@@ -304,6 +304,7 @@ namespace BackgammonNet.Core
 
         private void Generate()
         {
+            Debug.Log("Human Mode");
             if (Board.Instance.acceptance >= 2)
             {
                 canvasHandler.diceRollButton.SetActive(true);
@@ -409,6 +410,7 @@ namespace BackgammonNet.Core
         #region _AiModeGeneration
         public void GenerateForAi()
         {
+            Debug.Log("Ai MODE");
             foreach (var slot in Slot.slots)
             {
                 slot.HightlightMe(false);
