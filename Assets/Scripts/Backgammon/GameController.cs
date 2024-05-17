@@ -1303,6 +1303,7 @@ namespace BackgammonNet.Core
 
                 GameController.Instance.scoreTextyouWinPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
+                GameController.Instance.player0Points.variableText= _score.ToString();
 
 
             }
