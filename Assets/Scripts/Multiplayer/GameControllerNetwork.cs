@@ -87,11 +87,9 @@ namespace BackgammonNet.Core
         public bool diceEnable = true;             // permission to roll the dice (after making moves)
 
         private bool timeSetOnlyOnce = false;
-        public DateTime startDateTime;
-        
 
-       
-        private DateTime endTime;
+        public DateTime startDateTime;
+        private DateTime endDateTime;
         private TimeSpan totalGameTime;
 
 
@@ -278,7 +276,7 @@ namespace BackgammonNet.Core
 
 
             totalSecondsPassed = (int)((DateTime.Now - startDateTime).TotalSeconds);
-            string _totalSecondsPassedString = string.Format("{0:mm\\:ss}", totalSecondsPassed);
+            string _totalSecondsPassedString = string.Format("{0:mm\\:ss}", DateTime.Now - startDateTime);
 
             timeTextPausePanel.variableText = _totalSecondsPassedString;
             LanguageManager.OnVariableChanged();
@@ -435,6 +433,9 @@ namespace BackgammonNet.Core
 
             PhotonView.Find(viewID).GetComponent<GameControllerNetwork>().timeCounter = true;
             PhotonView.Find(viewID).GetComponent<GameControllerNetwork>().startDateTime = DateTime.Now;
+
+            Debug.Log("StartTime = " + PhotonView.Find(viewID).GetComponent<GameControllerNetwork>().startDateTime);
+
             PhotonView.Find(viewID).GetComponent<GameControllerNetwork>().timeSetOnlyOnce = true;
         }
 
@@ -658,14 +659,13 @@ namespace BackgammonNet.Core
         [PunRPC]
         private void ActiveGameOver(int winner)
         {
+            endDateTime = DateTime.Now;
             if (winner == int.Parse(PhotonNetwork.NickName))
             {
                 YouWinPanel.SetActive(true);
                 AudioManager.Instance.GameWon();
-
-
-                endTime = DateTime.Now;
-                int _totalGameTime = (int) ((endTime - BoardNetwork.Instance.startTime).TotalSeconds);
+                
+                int _totalGameTime = (int) ((endDateTime - startDateTime).TotalSeconds);
                 timeTextyouWinPausePanel.variableText = _totalGameTime.ToString();
                 LanguageManager.OnVariableChanged();
 
@@ -675,8 +675,7 @@ namespace BackgammonNet.Core
                 gameOverPanel.SetActive(true);
                 AudioManager.Instance.GameLost();
 
-                endTime = DateTime.Now;
-               _totalGameTime = (int)((endTime - BoardNetwork.Instance.startTime).TotalSeconds);
+                _totalGameTime = (int)((endDateTime - startDateTime).TotalSeconds);
                 timeTextgameOverPausePanel.variableText = _totalGameTime.ToString();
                 LanguageManager.OnVariableChanged();
             }
