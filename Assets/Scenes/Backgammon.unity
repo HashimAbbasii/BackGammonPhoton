@@ -1567,6 +1567,7 @@ MonoBehaviour:
   menuToggle: 0
   randomSelectPawn: {fileID: 0}
   randomSelectPawn2: {fileID: 0}
+  dragEnableCheck: 0
   newTurn: 0
   sidesAgreed: 0
   mainMenuButton: {fileID: 76079740}
@@ -1599,7 +1600,6 @@ MonoBehaviour:
   topEPawns: []
   checkExistingPawn: []
   ePawns: []
-  NetworkTurn: 1
   diceEnable: 1
 --- !u!1 &118097724
 GameObject:

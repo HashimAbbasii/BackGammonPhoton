@@ -38,9 +38,12 @@ public class GameManager : MonoBehaviour
         }
 
 
-
-        GameControllerNetwork.Instance.player0Name.text = MyGameManager.Instance.playerNames[0];
-        GameControllerNetwork.Instance.player1Name.text = MyGameManager.Instance.playerNames[1];
+        if(MyGameManager.isNetworkGame == true)
+        {
+            GameControllerNetwork.Instance.player0Name.text = MyGameManager.Instance.playerNames[0];
+            GameControllerNetwork.Instance.player1Name.text = MyGameManager.Instance.playerNames[1];
+        }
+        
 
 
         //GameControllerNetwork.Instance.player0Name.variableText = MyGameManager.Instance.playerNames[0];

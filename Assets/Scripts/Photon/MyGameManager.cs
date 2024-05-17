@@ -10,6 +10,7 @@ public class MyGameManager : MonoBehaviour
 
     public static MyGameManager Instance;
     public static bool AiMode = false;
+    public static bool isNetworkGame = false;
     public LanguageManager languageManager;
     public FullscreenWebGLManager fullScreenWebGLManager;
     public Difficulty botDifficulty = Difficulty.None;

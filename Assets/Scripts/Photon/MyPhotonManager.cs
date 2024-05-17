@@ -354,6 +354,8 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
 
             // Load the scene additively
             PhotonNetwork.LoadLevel(2);
+
+            MyGameManager.isNetworkGame = true;
         }
     }
     #endregion

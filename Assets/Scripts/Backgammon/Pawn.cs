@@ -581,9 +581,9 @@ namespace BackgammonNet.Core
                 PlaceJail();
 
             Slot.slots[slotNo].GetTopPawn(true);                      // we remove the piece from the slot that has been occupied so far
-            //Debug.Log("Pawn after MU Before Parent Local Pos " + transform.localPosition);
-            //Debug.Log("Pawn after MU Before Parent Global Pos " + transform.position);
-            
+                                                                      //Debug.Log("Pawn after MU Before Parent Local Pos " + transform.localPosition);
+                                                                      //Debug.Log("Pawn after MU Before Parent Global Pos " + transform.position);
+
             slot.PlacePawn(this, pawnColor);                          // put a piece in the new slot
 
             if (!GameController.isDublet)
@@ -592,10 +592,32 @@ namespace BackgammonNet.Core
             //SoundManager.GetSoundEffect(1, 0.2f);
             AudioManager.Instance.PawnPlacement();
 
-            if(GameController.turn == 0 && MyGameManager.AiMode == true)
+            if (MyGameManager.AiMode)
             {
-                GameController.Instance.playerScores[0].Moves++;
+                if (GameController.turn == 0 && MyGameManager.AiMode == true)
+                {
+                    GameController.Instance.playerScores[0].Moves++;
+                }
+
+                if (GameController.turn == 1 && MyGameManager.AiMode == true)
+                {
+                    GameController.Instance.playerScores[1].Moves++;
+                }
             }
+
+            else
+            {
+                if (GameController.turn == 0 )
+                {
+                    GameController.Instance.playerScores[0].Moves++;
+                }
+
+                if (GameController.turn == 1 )
+                {
+                    GameController.Instance.playerScores[1].Moves++;
+                }
+            }
+           
 
             
         }
@@ -609,10 +631,34 @@ namespace BackgammonNet.Core
             imprisonedSide[pawn.pawnColor]++;
             shelterSide[pawn.pawnColor] = false;                            // a piece in prison, therefore no entry into the shelter
 
-            if(GameController.turn == 0 && MyGameManager.AiMode == true)
+            if (MyGameManager.AiMode == true)
             {
-               GameController.Instance.playerScores[0].Kills++;
+                if (GameController.turn == 0 && MyGameManager.AiMode == true)
+                {
+                    GameController.Instance.playerScores[0].Kills++;
+                }
+
+                if (GameController.turn == 1 && MyGameManager.AiMode == true)
+                {
+                    GameController.Instance.playerScores[1].Kills++;
+                }
             }
+            else
+            {
+                if (GameController.turn == 0 )
+                {
+                    GameController.Instance.playerScores[0].Kills++;
+                }
+
+                if (GameController.turn == 1 )
+                {
+                    GameController.Instance.playerScores[1].Kills++;
+                }
+            }
+
+           
+
+
 
 
             //  SoundManager.GetSoundEffect(2, 0.8f);
@@ -671,10 +717,30 @@ namespace BackgammonNet.Core
             gameObject.transform.localScale = Vector3.zero;
             Destroy(gameObject, 1f);
 
-            if (GameController.turn == 0 && MyGameManager.AiMode == true)
+            if(MyGameManager.AiMode)
             {
-                GameController.Instance.playerScores[0].Shelter++;
+                if (GameController.turn == 0 && MyGameManager.AiMode == true)
+                {
+                    GameController.Instance.playerScores[0].Shelter++;
+                }
+                if (GameController.turn == 0 && MyGameManager.AiMode == true)
+                {
+                    GameController.Instance.playerScores[1].Shelter++;
+                }
+
             }
+            else
+            {
+                if (GameController.turn == 0 )
+                {
+                    GameController.Instance.playerScores[0].Shelter++;
+                }
+                if (GameController.turn == 0 )
+                {
+                    GameController.Instance.playerScores[1].Shelter++;
+                }
+            }
+           
         }
 
         public bool CheckShelterStage()                   // check if it is possible to bring a given player's pieces into the shelter
