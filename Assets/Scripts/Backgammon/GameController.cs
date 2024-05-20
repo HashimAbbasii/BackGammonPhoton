@@ -73,6 +73,8 @@ namespace BackgammonNet.Core
         [SerializeField] private Image[] diceImages;
 
         [SerializeField] private GameObject AiDifficulty;
+        [SerializeField] private GameObject AiDifficulty2;
+        [SerializeField] private GameObject AiDifficulty3;
         [SerializeField] public List<Slot> shelterPawn=new();
         public List<Sprite> diceFaces = new List<Sprite>();
 
@@ -1128,7 +1130,7 @@ namespace BackgammonNet.Core
         {
             GameOver = true;
             gameOverPanel.SetActive(true);
-            gameOverPanel.GetComponentInChildren<Text>().text = "Winner: " + (isWhite ? "white" : "red");
+           // gameOverPanel.GetComponentInChildren<Text>().text = "Winner: " + (isWhite ? "white" : "red");
 
             int winner;
 
@@ -1147,7 +1149,16 @@ namespace BackgammonNet.Core
         public void ActiveGameOver(int winner)
         {
 
-            if(winner == 0)
+            if (MyGameManager.AiMode == false)
+            {
+                AiDifficulty.gameObject.SetActive(false);
+                AiDifficulty2.gameObject.SetActive(false);
+                AiDifficulty3.gameObject.SetActive(false);
+
+            }
+
+
+            if (winner == 0)
             {
                 //difficultyTextYouWinPanel.variableText = difficulty;
                 //LanguageManager.OnVariableChanged();
