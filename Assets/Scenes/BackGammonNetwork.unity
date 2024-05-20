@@ -15132,6 +15132,8 @@ MonoBehaviour:
   playerPrefab: {fileID: 5289088029853817005, guid: 3de10a8570dbf3c4c8b6fba854d3155b, type: 3}
   myNetworkPlayer: {fileID: 0}
   networkPlayers: []
+  player0Name: {fileID: 4631807}
+  player1Name: {fileID: 843636998}
   WhoAmI: 
 --- !u!114 &1555065883
 MonoBehaviour:

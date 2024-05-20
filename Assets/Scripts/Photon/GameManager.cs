@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using System.Linq;
 using BackgammonNet.Core;
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject playerPrefab;
@@ -13,6 +14,9 @@ public class GameManager : MonoBehaviour
     public List<NetworkPlayer> networkPlayers = new();
     private List<PhotonView> photonViews = new List<PhotonView>();
     public static GameManager instance;
+
+    public TextMeshProUGUI player0Name;
+    public TextMeshProUGUI player1Name;
 
     public string WhoAmI;
 
@@ -38,12 +42,24 @@ public class GameManager : MonoBehaviour
         }
 
 
-        if(MyGameManager.isNetworkGame == true)
-        {
-            GameControllerNetwork.Instance.player0Name.text = MyGameManager.Instance.playerNames[0];
-            GameControllerNetwork.Instance.player1Name.text = MyGameManager.Instance.playerNames[1];
-        }
-        
+        //if(MyGameManager.isNetworkGame == true)
+        //{
+        //    GameControllerNetwork.Instance.player0Name.text = MyGameManager.Instance.playerNames[0];
+        //    GameControllerNetwork.Instance.player1Name.text = MyGameManager.Instance.playerNames[1];
+        //}
+
+
+       // if (PhotonNetwork.IsMasterClient)
+      //  {
+            // Set player names locally
+            player0Name.text = MyGameManager.Instance.playerNames[0];
+            player1Name.text = MyGameManager.Instance.playerNames[1];
+
+            // Synchronize player names across the network
+            photonView.RPC(nameof(UpdatePlayerNames), RpcTarget.AllBuffered,
+                           MyGameManager.Instance.playerNames[0],
+                           MyGameManager.Instance.playerNames[1]);
+      //  }
 
 
         //GameControllerNetwork.Instance.player0Name.variableText = MyGameManager.Instance.playerNames[0];
@@ -54,6 +70,13 @@ public class GameManager : MonoBehaviour
         //GameControllerNetwork.Instance.player1Name.variableText = MyGameManager.Instance.playerNames[1];
         //LanguageManager.OnVariableChanged();
 
+    }
+
+    [PunRPC]
+    void UpdatePlayerNames(string name0, string name1)
+    {
+        player0Name.text = name0;
+        player1Name.text = name1;
     }
 
 
