@@ -14,6 +14,7 @@ namespace BackgammonNet.Core
 
         [Header("Bools")]
         public bool isPaused;
+        public bool isGameOver;
 
         private float gameTime;
 
@@ -120,7 +121,7 @@ namespace BackgammonNet.Core
         {
             while (true)
             {
-                if (!isPaused)
+                if (!isPaused && !isGameOver)
                 {
                     gameTime += 1;
                     UpdateTimeDisplay();

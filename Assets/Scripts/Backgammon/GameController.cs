@@ -1134,6 +1134,7 @@ namespace BackgammonNet.Core
 
         public void ActiveGameOver(int winner)
         {
+            Board.Instance.isGameOver = true;
 
             if (MyGameManager.AiMode == false)
             {
@@ -1455,6 +1456,18 @@ namespace BackgammonNet.Core
 
                 GameController.Instance.scoreTextyouWinPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
+                }
+
+                else if(GameController.turn == 1)
+                {
+                    GameController.Instance.scoreTextPausePanel.variableText = _score.ToString();
+                    LanguageManager.OnVariableChanged();
+
+                    GameController.Instance.scoreTextgameOverPausePanel.variableText = _score.ToString();
+                    LanguageManager.OnVariableChanged();
+
+                    GameController.Instance.scoreTextyouWinPausePanel.variableText = _score.ToString();
+                    LanguageManager.OnVariableChanged();
                 }
 
 
