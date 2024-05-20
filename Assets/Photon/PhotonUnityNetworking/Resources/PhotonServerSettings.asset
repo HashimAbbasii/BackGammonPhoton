@@ -74,6 +74,8 @@ MonoBehaviour:
   - MoveScoreUpdateRPC
   - ShelterScoreUpdateRPC
   - UpdatePlayerNames
+  - ScoreUpdate
+  - ScoreUpdate1
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0

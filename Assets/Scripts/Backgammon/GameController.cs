@@ -1443,6 +1443,7 @@ namespace BackgammonNet.Core
             set
             {
                 _score = 2 * _moves + 20 * _shelter + 10 * _kills - (_time / 30);
+                if (_score < 0) _score = 0;
 
                 if (GameController.turn == 0)
                 {

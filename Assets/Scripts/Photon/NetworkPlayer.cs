@@ -25,7 +25,7 @@ public class NetworkPlayer : MonoBehaviour
         set
         {
             _score = 2 * _moves + 20 * _shelter + 10 * _kills - 2 * _time;
-
+            if (_score < 0 ) _score = 0;
 
 
             GameControllerNetwork.Instance.scoreTextPausePanel.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
@@ -39,11 +39,33 @@ public class NetworkPlayer : MonoBehaviour
 
             GameControllerNetwork.Instance.scoreTextdefaultYouWinPausePanel.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
             LanguageManager.OnVariableChanged();
+            if (GameControllerNetwork.turn == 0)
+            {
+                photonView.RPC(nameof(ScoreUpdate), RpcTarget.AllBuffered);
+            }
+            else
+            {
+                photonView.RPC(nameof(ScoreUpdate1), RpcTarget.AllBuffered);
+            }
 
 
         }
     }
+    [PunRPC]
 
+    public void ScoreUpdate()
+    {
+        GameControllerNetwork.Instance.player0Points.variableText= GameManager.instance.myNetworkPlayer.Score.ToString();
+        LanguageManager.OnVariableChanged();
+    }
+
+    [PunRPC]
+
+    public void ScoreUpdate1()
+    {
+        GameControllerNetwork.Instance.player1Points.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
+        LanguageManager.OnVariableChanged();
+    }
     public int Moves
     {
         get => _moves;
