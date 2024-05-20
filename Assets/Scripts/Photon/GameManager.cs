@@ -55,6 +55,7 @@ public class GameManager : MonoBehaviour
 
         if (MyGameManager.isNetworkGame == true)
         {
+            
             player0Name.text = MyGameManager.Instance.playerNames[0];
             player1Name.text = MyGameManager.Instance.playerNames[1];
 
