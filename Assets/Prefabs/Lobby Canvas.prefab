@@ -5881,7 +5881,7 @@ MonoBehaviour:
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
   _tmpText: {fileID: 0}
-  localizationKey: Text.Beginner
+  localizationKey: Text.ButtonBeginner
   variableText: 
 --- !u!114 &2428145347502496578
 MonoBehaviour:
@@ -16685,7 +16685,7 @@ MonoBehaviour:
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
   _tmpText: {fileID: 0}
-  localizationKey: Text.GrandMaster
+  localizationKey: Text.ButtonGrandMaster
   variableText: 
 --- !u!114 &4801538089361145152
 MonoBehaviour:
@@ -27198,7 +27198,7 @@ MonoBehaviour:
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
   _tmpText: {fileID: 0}
-  localizationKey: Text.Intermediate
+  localizationKey: Text.ButtonIntermediate
   variableText: 
 --- !u!114 &6463807649405250621
 MonoBehaviour:
