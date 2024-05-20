@@ -55,7 +55,7 @@ public class NetworkPlayer : MonoBehaviour
 
     public void ScoreUpdate()
     {
-        GameControllerNetwork.Instance.player0Points.variableText= GameManager.instance.myNetworkPlayer.Score.ToString();
+        GameControllerNetwork.Instance.player0Points.variableText= GameManager.instance.networkPlayers[0].Score.ToString();
         LanguageManager.OnVariableChanged();
     }
 
@@ -63,7 +63,7 @@ public class NetworkPlayer : MonoBehaviour
 
     public void ScoreUpdate1()
     {
-        GameControllerNetwork.Instance.player1Points.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
+        GameControllerNetwork.Instance.player1Points.variableText = GameManager.instance.networkPlayers[1].Score.ToString();
         LanguageManager.OnVariableChanged();
     }
     public int Moves
