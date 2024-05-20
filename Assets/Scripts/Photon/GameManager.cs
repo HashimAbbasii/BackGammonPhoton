@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         if (PhotonNetwork.IsConnectedAndReady)
         {
             PhotonNetwork.Instantiate(playerPrefab.name, transform.position, transform.rotation);
-            
+
         }
         //  CheckHierarchyForPhotonScripts(transform);
         CreateNetworkList();
@@ -49,9 +49,12 @@ public class GameManager : MonoBehaviour
         //}
 
 
-       // if (PhotonNetwork.IsMasterClient)
-      //  {
-            // Set player names locally
+        // if (PhotonNetwork.IsMasterClient)
+        //  {
+        // Set player names locally
+
+        if (MyGameManager.isNetworkGame == true)
+        {
             player0Name.text = MyGameManager.Instance.playerNames[0];
             player1Name.text = MyGameManager.Instance.playerNames[1];
 
@@ -59,7 +62,8 @@ public class GameManager : MonoBehaviour
             photonView.RPC(nameof(UpdatePlayerNames), RpcTarget.AllBuffered,
                            MyGameManager.Instance.playerNames[0],
                            MyGameManager.Instance.playerNames[1]);
-      //  }
+        }
+        //  }
 
 
         //GameControllerNetwork.Instance.player0Name.variableText = MyGameManager.Instance.playerNames[0];
