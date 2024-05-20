@@ -11,6 +11,7 @@ using static UnityEngine.GraphicsBuffer;
 using Assets.SimpleLocalization.Scripts;
 using System;
 using Random = UnityEngine.Random;
+using DG.Tweening;
 
 namespace BackgammonNet.Core
 {
@@ -46,6 +47,8 @@ namespace BackgammonNet.Core
 
         public Pawn randomSelectPawn;
         public Pawn randomSelectPawn2;
+        public Pawn SelectShelterPawn;
+        public Pawn SelectShelterPawn2;
         public static int turn;                     // indicates whose turn it is now
         public static int[] dices = new int[2];     // recently drawn numbers
         public static bool isDublet;                // whether a doublet was thrown
@@ -558,12 +561,137 @@ namespace BackgammonNet.Core
         public void CheckPrisonSlot2()
         {
            // Debug.Log("Check prison Slot");
-            Slot.slots[25].GetTopPawn(false).Selectimprisoned();  //  if (Pawn.imprisoned && Pawn.imprisonedSide[0] > 0 && Pawn.pawnColor == 0)
+            Slot.slots[25].GetTopPawn(false).Selectimprisoned2();  //  if (Pawn.imprisoned && Pawn.imprisonedSide[0] > 0 && Pawn.pawnColor == 0)
 
         }
 
 
         #endregion
+
+
+        //....................For the Shelter Work.................//
+
+
+        #region _ShelterManipulation
+        public void ShelterManipulation()
+        {
+
+            //............................Its For a Dice 1............................//
+            int ShelterSlotChck = GameController.dices[0];
+            //  int sign = SelectShelterPawn.pawnColor == 0 ? 1 : -1;
+
+            if (Slot.slots[ShelterSlotChck].Height() >= 1 && turn == 1)
+            {
+                Debug.Log("height greater 1 and turn equal to 1 Work");
+                SelectShelterPawn = Slot.slots[ShelterSlotChck].GetTopPawn(false);
+                SelectShelterPawn.CheckShelterStage();
+                var finalposition = SelectShelterPawn.house.transform.position;
+                SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
+                SelectShelterPawn.PlaceInShelterAi();
+            }
+
+
+            else if (Slot.slots[ShelterSlotChck].Height() == 0 && turn == 1)
+            {
+                for (int i = 1; i <= 6; i++)
+                {
+                    if (Slot.slots[i].Height() >= 1 && turn == 1)
+                    {
+                        SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
+                        int sign = -1;
+                        int slot0 = SelectShelterPawn.slotNo + sign * GameController.dices[0];
+                        Debug.Log("Shelter Slot" + slot0);
+                        if (slot0 >= 1 && slot0 <= 6 && turn == 1)
+                        {
+                            Debug.Log("Shelter in In between Range");
+                            Slot.slots[SelectShelterPawn.slotNo].GetTopPawn(true);
+                            Slot.slots[slot0].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
+                            break;
+
+                        }
+                        else
+                        {
+                            Debug.Log("Dice value is greater than slot No");
+                            //SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
+                            SelectShelterPawn.CheckShelterStage();
+                            var finalposition = SelectShelterPawn.house.transform.position;
+                            SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
+
+                            SelectShelterPawn.PlaceInShelterAi();
+                            break;
+                        }
+                    }
+                    //       
+                }
+            }
+            SelectShelterPawn.CheckShelterAndMore();
+            SelectShelterPawn.CheckIfNextTurn();
+        }
+
+#endregion
+
+        #region _SecondDiceForShelterStage
+        IEnumerator ShelterSecondDice()
+        {
+            yield return new WaitForSecondsRealtime(2f);
+
+
+            int ShelterSlotChck = GameController.dices[1];
+            // int sign = SelectShelterPawn2.pawnColor == 0 ? 1 : -1;
+
+            if (Slot.slots[ShelterSlotChck].Height() >= 1 && turn == 1)
+            {
+                Debug.Log("height greater 1 and turn equal to 1 Work 2");
+                SelectShelterPawn2 = Slot.slots[ShelterSlotChck].GetTopPawn(false);
+                SelectShelterPawn2.CheckShelterStage();
+                var finalposition = SelectShelterPawn2.house.transform.position;
+                SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
+                SelectShelterPawn2.PlaceInShelterAi();
+            }
+
+
+            else if (Slot.slots[ShelterSlotChck].Height() == 0 && turn == 1)
+            {
+                for (int i = 1; i <= 6; i++)
+                {
+                    if (Slot.slots[i].Height() >= 1 && turn == 1)
+                    {
+                        SelectShelterPawn2 = Slot.slots[i].GetTopPawn(false);
+                        int sign = -1;
+                        int slot0 = SelectShelterPawn2.slotNo + sign * GameController.dices[1];
+                        Debug.Log("Shelter Slot" + slot0);
+                        if (slot0 >= 1 && slot0 <= 6 && turn == 1)
+                        {
+                            Debug.Log("Shelter in In between Range 2");
+                            Slot.slots[SelectShelterPawn2.slotNo].GetTopPawn(true);
+                            Slot.slots[slot0].PlacePawn(SelectShelterPawn2, SelectShelterPawn2.pawnColor);
+                            break;
+
+                        }
+                        else
+                        {
+                            Debug.Log("Dice value 2 is greater than slot No");
+                            //SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
+                            SelectShelterPawn2.CheckShelterStage();
+                            var finalposition = SelectShelterPawn2.house.transform.position;
+                            SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
+                            SelectShelterPawn2.PlaceInShelterAi();
+                            break;
+                        }
+                    }
+                    Debug.Log("Iteration Looop");
+                    //       
+                }
+            }
+            //.................Turn Check..........................//
+            SelectShelterPawn2.CheckShelterAndMore();
+            SelectShelterPawn2.CheckIfNextTurn();
+
+        }
+        #endregion
+
+
+
 
         #region _SelectRandomEnemy
         public void SelectRandomEnemy()
@@ -571,14 +699,11 @@ namespace BackgammonNet.Core
             //.............SelectRandom Enemy............From the list.....
 
 
-
-
-            if (Pawn.shelterSide[1])
+            if (Pawn.shelterSide[1] && MyGameManager.AiMode==true)
             {
-                for(int i = 0; i < 6; i++)
-                {
-
-                }
+                //....................Ai Mode Work Only........................//
+                ShelterManipulation();
+                StartCoroutine(ShelterSecondDice());
             }
             else
             {

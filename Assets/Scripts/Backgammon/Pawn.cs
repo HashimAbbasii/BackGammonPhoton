@@ -29,7 +29,7 @@ namespace BackgammonNet.Core
 
         private Slot slot;                                      // the slot over which the piece being drawn is currently located
         private Vector3 startPos;
-        private GameObject house;
+        public GameObject house;
         private bool isDown;                                    // Is the mouse button pressed?
         public bool imprisoned;                                // a given pawn is in prison
         private bool shelter;                                   // whether the piece is above the shelter area
@@ -142,6 +142,7 @@ namespace BackgammonNet.Core
                         int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
                         TryHighlight(true);
                         Slot.slots[slot0].GetTopPawn(false).PlaceJail();
+                        Slot.slots[slot0].GetTopPawn(true);
                         Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
                         prisonPawn.imprisoned = false;
                         imprisonedSide[pawnColor]--;
@@ -744,7 +745,54 @@ namespace BackgammonNet.Core
            
         }
 
-        public bool CheckShelterStage()                   // check if it is possible to bring a given player's pieces into the shelter
+        //.....................Plce in Shelter Ai........................//
+        public void PlaceInShelterAi()
+        {
+            //......Place In Shelter.............//
+
+            //...........it Check the How many pawn in the House.............//
+            house.transform.GetChild(rescuedPawns++).gameObject.SetActive(true);
+            Debug.Log("Rescued Pawns1" + rescuedPawns);
+            //SoundManager.GetSoundEffect(0, 0.3f);
+
+            if (rescuedPawns == 15)
+            {
+                OnGameOver(pawnColor == 0);
+                GameController.GameOver = true;
+            }
+
+            Slot.slots[slotNo].GetTopPawn(true);            // remove from current slot
+            gameObject.transform.localScale = Vector3.zero;
+            Destroy(gameObject, 1f);
+
+            if (MyGameManager.AiMode)
+            {
+                if (GameController.turn == 0 && MyGameManager.AiMode == true)
+                {
+                    GameController.Instance.playerScores[0].Shelter++;
+                }
+                if (GameController.turn == 0 && MyGameManager.AiMode == true)
+                {
+                    GameController.Instance.playerScores[1].Shelter++;
+                }
+
+            }
+            else
+            {
+                if (GameController.turn == 0)
+                {
+                    GameController.Instance.playerScores[0].Shelter++;
+                }
+                if (GameController.turn == 0)
+                {
+                    GameController.Instance.playerScores[1].Shelter++;
+                }
+            }
+
+        }
+
+
+            public bool CheckShelterStage()                   // check if it is possible to bring a given player's pieces into the shelter
         {
             maxMoves = GameController.isDublet ? 4 : 2;    // four the same movements or two different movements
             //  ..........Is mein yeah sare shelter slots check karta hain k kon si    shlter pr hain means slot ko check kare .....//
