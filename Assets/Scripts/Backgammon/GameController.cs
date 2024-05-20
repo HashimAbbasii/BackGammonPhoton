@@ -12,6 +12,7 @@ using Assets.SimpleLocalization.Scripts;
 using System;
 using Random = UnityEngine.Random;
 using DG.Tweening;
+using TMPro;
 
 namespace BackgammonNet.Core
 {
@@ -22,6 +23,10 @@ namespace BackgammonNet.Core
         [Header("PointsScene")]
         public LocalizedTextTMP player0Points;
         public LocalizedTextTMP player1Points;
+
+        [Header("PLayer Names")]
+        public TextMeshProUGUI player0Name;
+        public TextMeshProUGUI player1Name;
 
         public List<PlayerScore> playerScores = new();
         private PhotonView _photonView;
@@ -151,6 +156,21 @@ namespace BackgammonNet.Core
                 AiDifficulty.gameObject.SetActive(false);
 
             }
+
+
+
+            if(MyGameManager.AiMode == true)
+            {
+                player0Name.text = "Player";
+                player1Name.text = "AI";
+                
+            }
+            else
+            {
+                player0Name.text = "Player 1";
+                player1Name.text = "Player 2";
+            }
+
         }
 
         //IEnumerator NetworkButton()

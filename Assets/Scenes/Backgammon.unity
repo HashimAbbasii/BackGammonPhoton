@@ -1704,6 +1704,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player0Points: {fileID: 1557147916}
   player1Points: {fileID: 726951619}
+  player0Name: {fileID: 1806576943}
+  player1Name: {fileID: 778634007}
   playerScores: []
   difficultyTextGameOverPanel: {fileID: 1142358635}
   difficultyTextYouWinPanel: {fileID: 337328668}
