@@ -1451,17 +1451,17 @@ namespace BackgammonNet.Core
                 LanguageManager.OnVariableChanged();
                 }
 
-                else if(GameController.turn == 1)
-                {
-                    GameController.Instance.scoreTextPausePanel.variableText = _score.ToString();
-                    LanguageManager.OnVariableChanged();
+                //else if(GameController.turn == 1)
+                //{
+                //    GameController.Instance.scoreTextPausePanel.variableText = _score.ToString();
+                //    LanguageManager.OnVariableChanged();
 
-                    GameController.Instance.scoreTextgameOverPausePanel.variableText = _score.ToString();
-                    LanguageManager.OnVariableChanged();
+                //    GameController.Instance.scoreTextgameOverPausePanel.variableText = _score.ToString();
+                //    LanguageManager.OnVariableChanged();
 
-                    GameController.Instance.scoreTextyouWinPausePanel.variableText = _score.ToString();
-                    LanguageManager.OnVariableChanged();
-                }
+                //    GameController.Instance.scoreTextyouWinPausePanel.variableText = _score.ToString();
+                //    LanguageManager.OnVariableChanged();
+                //}
 
 
 
@@ -1476,7 +1476,7 @@ namespace BackgammonNet.Core
                 {
                   
                     GameController.Instance.player1Points.variableText = _score.ToString();
-                    LanguageManager.OnVariableChanged();
+                   LanguageManager.OnVariableChanged();
                 }
 
 
