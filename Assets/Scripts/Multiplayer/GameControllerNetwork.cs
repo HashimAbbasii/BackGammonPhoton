@@ -46,6 +46,10 @@ namespace BackgammonNet.Core
         public TextMeshProUGUI player0Name;
         public TextMeshProUGUI player1Name;
 
+        [Header("PlayerPoints")]
+        public LocalizedTextTMP player0Points;
+        public LocalizedTextTMP player1Points;
+
         public DateTime dateTime;
         public int _totalGameTime;
 
