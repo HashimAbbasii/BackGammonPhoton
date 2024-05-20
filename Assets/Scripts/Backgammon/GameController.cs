@@ -696,7 +696,7 @@ namespace BackgammonNet.Core
         #region _SelectRandomEnemy
         public void SelectRandomEnemy()
         {
-            //.............SelectRandom Enemy............From the list.....
+            //.............SelectRandom Enemy From the list.....
 
 
             if (Pawn.shelterSide[1] && MyGameManager.AiMode==true)
@@ -783,6 +783,7 @@ namespace BackgammonNet.Core
                     //randomSelectPawn.CheckShelterStage();
                     if (Slot.slots[slot0].Height() >= 1 && Slot.slots[slot0].IsWhite() == randomSelectPawn.pawnColor)
                     {
+                        GameController.Instance.playerScores[1].Moves++;
                         Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
                         Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
                         randomSelectPawn.CheckShelterStage();
@@ -795,6 +796,7 @@ namespace BackgammonNet.Core
                     //.............If pawn Slot is Empty or Height ==0...................
                   else  if (Slot.slots[slot0].Height() == 0)
                     {
+                        GameController.Instance.playerScores[1].Moves++;
                         Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
                         Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
                         randomSelectPawn.CheckShelterStage();
@@ -807,6 +809,7 @@ namespace BackgammonNet.Core
 
                   else if (Slot.slots[slot0].Height() == 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
                     {
+                        GameController.Instance.playerScores[1].Kills++;
                         //.......JAIL KAR Dooh...........//
                         Debug.Log("Jail Kar Dooh");
                         Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
@@ -867,6 +870,7 @@ namespace BackgammonNet.Core
                     //randomSelectPawn.CheckShelterStage();
                     if (Slot.slots[slot1].Height() >= 1 && Slot.slots[slot1].IsWhite() == randomSelectPawn2.pawnColor)
                     {
+                        GameController.Instance.playerScores[1].Moves++;
                         Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
                         Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
                         randomSelectPawn2.CheckShelterStage();
@@ -879,6 +883,7 @@ namespace BackgammonNet.Core
                     //.............If pawn Slot is Empty or Height ==0...................
                   else  if (Slot.slots[slot1].Height() == 0)
                     {
+                        GameController.Instance.playerScores[1].Moves++;
                         Debug.Log("Slot is Empty");
                         Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
                         Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
@@ -892,6 +897,7 @@ namespace BackgammonNet.Core
 
                     else if (Slot.slots[slot1].Height() == 1 && Slot.slots[slot1].IsWhite() != randomSelectPawn2.pawnColor)
                     {
+                        GameController.Instance.playerScores[1].Kills++;
                         //.......JAIL KAR Dooh...........//
                         Debug.Log("Jail Kar Dooh");
                         // var TopSelectOff= randomSelectPawn2.slotNo;
@@ -1418,6 +1424,9 @@ namespace BackgammonNet.Core
             {
                 _score = 2 * _moves + 20 * _shelter + 10 * _kills - (_time / 30);
 
+                if (GameController.turn == 0)
+                {
+
                 GameController.Instance.scoreTextPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
 
@@ -1428,7 +1437,23 @@ namespace BackgammonNet.Core
 
                 GameController.Instance.scoreTextyouWinPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
-                GameController.Instance.player0Points.variableText= _score.ToString();
+                }
+
+
+
+                if (GameController.turn == 0)
+                {
+                    Debug.Log("Turn 0");
+                     GameController.Instance.player0Points.variableText= _score.ToString();
+                      LanguageManager.OnVariableChanged();
+
+                }
+                else
+                {
+                    Debug.Log("Turn 1");
+                    GameController.Instance.player1Points.variableText = _score.ToString();
+                    LanguageManager.OnVariableChanged();
+                }
 
 
             }

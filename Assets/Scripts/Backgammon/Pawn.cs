@@ -136,6 +136,7 @@ namespace BackgammonNet.Core
                 {
                     if (Slot.slots[25 + sign * GameController.dices[0]].Height() == 1 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() != prisonSlot.IsWhite())
                     {
+                        GameController.Instance.playerScores[1].Kills++;
                         //Debug.Log("JAIL KAR DOOH");
                         var prisonPawn = prisonSlot.GetTopPawn(true);
                        
@@ -158,8 +159,8 @@ namespace BackgammonNet.Core
 
                     {
 
-                      //  Debug.Log("Same Color Slot");
-
+                        //  Debug.Log("Same Color Slot");
+                        GameController.Instance.playerScores[1].Moves++;
                         var prisonPawn = prisonSlot.GetTopPawn(true);
                         int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
                         var slotHighlight= Slot.slots[25 + sign * GameController.dices[0]].slotNo;
@@ -210,7 +211,8 @@ namespace BackgammonNet.Core
 
                 else if (Slot.slots[25 + sign * GameController.dices[0]].Height() == 0)
                 {
-                   // Debug.Log("HEIGHT IS Zero");
+                    GameController.Instance.playerScores[1].Moves++;
+                    // Debug.Log("HEIGHT IS Zero");
                     var prisonPawn = prisonSlot.GetTopPawn(true);
                     int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
                     Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
@@ -247,6 +249,7 @@ namespace BackgammonNet.Core
                 {
                     if (Slot.slots[25 + sign * GameController.dices[1]].Height() == 1 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() != pawnColor)
                     {
+                        GameController.Instance.playerScores[1].Kills++;
                         Debug.Log("JAIL KAR DOOH");
                         var prisonPawn = Slot.slots[25].GetTopPawn(true);
                         int slot0 = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
@@ -595,6 +598,7 @@ namespace BackgammonNet.Core
 
             if (MyGameManager.AiMode)
             {
+                Debug.Log("Mode Check");
                 if (GameController.turn == 0 && MyGameManager.AiMode == true)
                 {
                     Debug.Log("Moves Check" + GameController.Instance.playerScores[0].Moves++);
@@ -603,6 +607,7 @@ namespace BackgammonNet.Core
 
                 if (GameController.turn == 1 && MyGameManager.AiMode == true)
                 {
+                    Debug.Log("AI CHECK"+GameController.Instance.playerScores[1].Moves++);
                     GameController.Instance.playerScores[1].Moves++;
                 }
             }
@@ -705,6 +710,7 @@ namespace BackgammonNet.Core
 
         private void PlaceInShelter()
         {
+            GameController.Instance.playerScores[0].Shelter++;
             //...........it Check the How many pawn in the House.............//
             house.transform.GetChild(rescuedPawns++).gameObject.SetActive(true);
             //SoundManager.GetSoundEffect(0, 0.3f);
@@ -753,6 +759,7 @@ namespace BackgammonNet.Core
             //...........it Check the How many pawn in the House.............//
             house.transform.GetChild(rescuedPawns++).gameObject.SetActive(true);
             Debug.Log("Rescued Pawns1" + rescuedPawns);
+            GameController.Instance.playerScores[1].Shelter++;
             //SoundManager.GetSoundEffect(0, 0.3f);
 
             if (rescuedPawns == 15)
@@ -765,29 +772,29 @@ namespace BackgammonNet.Core
             gameObject.transform.localScale = Vector3.zero;
             Destroy(gameObject, 1f);
 
-            if (MyGameManager.AiMode)
-            {
-                if (GameController.turn == 0 && MyGameManager.AiMode == true)
-                {
-                    GameController.Instance.playerScores[0].Shelter++;
-                }
-                if (GameController.turn == 0 && MyGameManager.AiMode == true)
-                {
-                    GameController.Instance.playerScores[1].Shelter++;
-                }
+            //if (MyGameManager.AiMode)
+            //{
+            //    if (GameController.turn == 0 && MyGameManager.AiMode == true)
+            //    {
+            //        GameController.Instance.playerScores[0].Shelter++;
+            //    }
+            //    if (GameController.turn == 0 && MyGameManager.AiMode == true)
+            //    {
+            //        GameController.Instance.playerScores[1].Shelter++;
+            //    }
 
-            }
-            else
-            {
-                if (GameController.turn == 0)
-                {
-                    GameController.Instance.playerScores[0].Shelter++;
-                }
-                if (GameController.turn == 0)
-                {
-                    GameController.Instance.playerScores[1].Shelter++;
-                }
-            }
+            //}
+            //else
+            //{
+            //    if (GameController.turn == 0)
+            //    {
+            //        GameController.Instance.playerScores[0].Shelter++;
+            //    }
+            //    if (GameController.turn == 0)
+            //    {
+            //        GameController.Instance.playerScores[1].Shelter++;
+            //    }
+            //}
 
         }
 

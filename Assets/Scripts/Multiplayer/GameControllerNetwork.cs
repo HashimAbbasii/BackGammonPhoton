@@ -269,16 +269,18 @@ namespace BackgammonNet.Core
             TryDeactivateDigit();
         }
 
+        public void InitilizeTime()
+        {
+            startDateTime = DateTime.Now;
+            _timeCount = DateTime.Now;
+        }
+
         private float currentTime = 0f;
+        private DateTime _timeCount;
 
         public int totalSecondsPassed;
         void UpdateTimeText()
         {
-            //Debug.Log("Timer Running");
-            //int minutes = Mathf.FloorToInt(currentTime / 60);
-            //int seconds = Mathf.FloorToInt(currentTime % 60);
-            // counterTime.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-            //counterTime.text = minutes.ToString("00") + ":" + seconds.ToString("00");
 
             counterTime.text = string.Format("{0:mm\\:ss}", DateTime.Now - startDateTime);
 
@@ -286,10 +288,25 @@ namespace BackgammonNet.Core
             totalSecondsPassed = (int)((DateTime.Now - startDateTime).TotalSeconds);
             string _totalSecondsPassedString = string.Format("{0:mm\\:ss}", DateTime.Now - startDateTime);
 
+            if ((DateTime.Now - _timeCount).TotalSeconds >= 30)
+            {
+                AddTimeScore();
+                _timeCount = DateTime.Now;
+            }
+
             timeTextPausePanel.variableText = _totalSecondsPassedString;
             LanguageManager.OnVariableChanged();
 
         }
+
+        public void AddTimeScore()
+        {
+            foreach (var player in GameManager.instance.networkPlayers)
+            {
+                player.TotalTime++;
+            }
+        }
+
         private void TryDeactivateDigit()
         {
             if (dices[0] == 0)
@@ -440,9 +457,8 @@ namespace BackgammonNet.Core
             if (PhotonView.Find(viewID).GetComponent<GameControllerNetwork>().timeSetOnlyOnce) return;
 
             PhotonView.Find(viewID).GetComponent<GameControllerNetwork>().timeCounter = true;
-            PhotonView.Find(viewID).GetComponent<GameControllerNetwork>().startDateTime = DateTime.Now;
 
-            Debug.Log("StartTime = " + PhotonView.Find(viewID).GetComponent<GameControllerNetwork>().startDateTime);
+            PhotonView.Find(viewID).GetComponent<GameControllerNetwork>().InitilizeTime();
 
             PhotonView.Find(viewID).GetComponent<GameControllerNetwork>().timeSetOnlyOnce = true;
         }

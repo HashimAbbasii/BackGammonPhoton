@@ -24,7 +24,7 @@ public class NetworkPlayer : MonoBehaviour
         get => _score;
         set
         {
-            _score = 2 * _moves + 20 * _shelter + 10 * _kills - (_time / 30);
+            _score = 2 * _moves + 20 * _shelter + 10 * _kills - 2 * _time;
 
 
 
