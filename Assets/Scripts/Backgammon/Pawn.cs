@@ -149,6 +149,7 @@ namespace BackgammonNet.Core
                         imprisonedSide[pawnColor]--;
                         CheckShelterStage();
                         CheckShelterAndMore();
+                        CheckIfNextTurn();
                         //  StartCoroutine(SecondDice());
                         StartCoroutine(GameController.Instance.SecondDice());
 
@@ -170,6 +171,7 @@ namespace BackgammonNet.Core
                         imprisonedSide[pawnColor]--;
                         CheckShelterStage();
                         CheckShelterAndMore();
+                        CheckIfNextTurn();
                         StartCoroutine(GameController.Instance.SecondDice());
 
                     }
@@ -178,12 +180,14 @@ namespace BackgammonNet.Core
                     {
                         CheckShelterStage();
                         CheckShelterAndMore();
+                        CheckIfNextTurn();
                         if (Slot.slots[25 + sign * GameController.dices[1]].Height() > 1 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() != prisonSlot.IsWhite())
                         {
 
                            // Debug.Log("Give the Dice to the Human Player");
                             CheckShelterStage();
                             CheckShelterAndMore();
+                            CheckIfNextTurn();
 
 
                         }
@@ -199,6 +203,7 @@ namespace BackgammonNet.Core
                             imprisonedSide[pawnColor]--;
                             CheckShelterStage();
                             CheckShelterAndMore();
+                            CheckIfNextTurn();
                             StartCoroutine(GameController.Instance.SecondDice());
 
 
@@ -221,6 +226,7 @@ namespace BackgammonNet.Core
                     CheckShelterStage();
                     TryHighlight(true);
                     CheckShelterAndMore();
+                    CheckIfNextTurn();
                     StartCoroutine(GameController.Instance.SecondDice());
 
                 }
@@ -247,7 +253,7 @@ namespace BackgammonNet.Core
                // Debug.Log("Height Greater than 1 ");
                 if (Slot.slots[25 + sign * GameController.dices[1]].Height() > 0)
                 {
-                    if (Slot.slots[25 + sign * GameController.dices[1]].Height() == 1 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() != pawnColor)
+                    if (Slot.slots[25 + sign * GameController.dices[1]].Height() == 1 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() != pawnColor)
                     {
                         GameController.Instance.playerScores[1].Kills++;
                         Debug.Log("JAIL KAR DOOH");
@@ -260,7 +266,7 @@ namespace BackgammonNet.Core
                         CheckShelterStage();
                         CheckShelterAndMore();
                         CheckIfNextTurn();
-                        OnCompleteTurn(pawnColor);
+                      //  OnCompleteTurn(pawnColor);
                         //  StartCoroutine(SecondDice());
                         // StartCoroutine(GameController.Instance.SecondDice());
 
@@ -281,7 +287,7 @@ namespace BackgammonNet.Core
                         CheckShelterStage();
                         CheckShelterAndMore();
                         CheckIfNextTurn();
-                        OnCompleteTurn(pawnColor);
+                       // OnCompleteTurn(pawnColor);
                         // StartCoroutine(GameController.Instance.SecondDice());
 
                     }
@@ -291,7 +297,7 @@ namespace BackgammonNet.Core
                         CheckShelterStage();
                         CheckShelterAndMore();
                         CheckIfNextTurn();
-                        OnCompleteTurn(pawnColor);
+                       // OnCompleteTurn(pawnColor);
 
 
                     }
@@ -310,7 +316,8 @@ namespace BackgammonNet.Core
                     imprisonedSide[pawnColor]--;
                     CheckShelterStage();
                     CheckShelterAndMore();
-                    OnCompleteTurn(pawnColor);
+                     CheckIfNextTurn();
+                 //   OnCompleteTurn(pawnColor);
 
 
                 }
