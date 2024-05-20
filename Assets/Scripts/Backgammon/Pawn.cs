@@ -112,7 +112,7 @@ namespace BackgammonNet.Core
            // GameController.Instance.Kills++;
             //   if (imprisoned && (imprisonedSide[1] > 0 && pawnColor == 1))
 
-            Debug.Log("Imprisoned Slot");
+         
 
             int count = 0;
             int sign = GameController.turn == 0 ? 1 : -1;
@@ -475,7 +475,7 @@ namespace BackgammonNet.Core
                // Debug.Log("andr aya hain");
                 if (!GameController.CanMove(1))        // when a move cannot be made
                 {
-                    Debug.Log("andr aya hain For Complete");
+                  
                     moves = 0;
                     OnCompleteTurn(pawnColor);
                 }
@@ -513,14 +513,14 @@ namespace BackgammonNet.Core
         {
             if (slot.slotNo == 0 || slot.slotNo == 25)                  // prison slots
             {
-                Debug.Log("Drag Wrong");
+           
                 transform.position = startPos;
                 return true;
             }
 
             if (slot.Height() > 1 && slot.IsWhite() != pawnColor)     // there is more than one opponent's piece in a slot
             {
-                Debug.Log("tHERE IS NOT MORE THAN ONE SLOT IN THE OPPEONENT");
+            
                 transform.position = startPos;
                 return true;
             }
@@ -601,13 +601,13 @@ namespace BackgammonNet.Core
                 Debug.Log("Mode Check");
                 if (GameController.turn == 0 && MyGameManager.AiMode == true)
                 {
-                    Debug.Log("Moves Check" + GameController.Instance.playerScores[0].Moves++);
+                   
                     GameController.Instance.playerScores[0].Moves++;
                 }
 
                 if (GameController.turn == 1 && MyGameManager.AiMode == true)
                 {
-                    Debug.Log("AI CHECK"+GameController.Instance.playerScores[1].Moves++);
+                   
                     GameController.Instance.playerScores[1].Moves++;
                 }
             }
@@ -668,7 +668,7 @@ namespace BackgammonNet.Core
 
 
 
-            //  SoundManager.GetSoundEffect(2, 0.8f);
+         
 
         }
 
@@ -758,7 +758,7 @@ namespace BackgammonNet.Core
 
             //...........it Check the How many pawn in the House.............//
             house.transform.GetChild(rescuedPawns++).gameObject.SetActive(true);
-            Debug.Log("Rescued Pawns1" + rescuedPawns);
+           
             GameController.Instance.playerScores[1].Shelter++;
             //SoundManager.GetSoundEffect(0, 0.3f);
 
@@ -805,7 +805,7 @@ namespace BackgammonNet.Core
             //  ..........Is mein yeah sare shelter slots check karta hain k kon si    shlter pr hain means slot ko check kare .....//
             house = GameObject.Find((pawnColor == 0 ? "White" : "Red") + " House");
             rescuedPawns = house.GetComponentsInChildren<SpriteRenderer>().Length - 1;
-            Debug.Log("Rescued Pawn"+rescuedPawns);
+        
 
             int count = 0;
             int offset = pawnColor == 0 ? 18 : 0;
@@ -814,7 +814,7 @@ namespace BackgammonNet.Core
             for (int i = 1 + offset; i <= 6 + offset; i++)
                 if (Slot.slots[7 * pawnColor - b * i].Height() > 0 && Slot.slots[7 * pawnColor - b * i].IsWhite() == pawnColor)
                 {
-                    Debug.Log("Slot Check"+ Slot.slots[7 * pawnColor - b * i]);   //its Check all the shelter slot whch contain pawns
+                    //its Check all the shelter slot whch contain pawns
                     if (count == 0)
                     {
 
@@ -823,7 +823,7 @@ namespace BackgammonNet.Core
                     }
 
                     count += Slot.slots[7 * pawnColor - b * i].Height();
-                    Debug.Log("Count " + count);
+                  
                 }
             ////................ITS Check k pawn kiny shelter par aye hain..........//
             return (count == 15 - rescuedPawns);   // if all the pieces of a given color, remaining on the board, are in the last quadrant

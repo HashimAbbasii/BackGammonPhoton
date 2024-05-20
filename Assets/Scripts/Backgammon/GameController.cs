@@ -273,17 +273,17 @@ namespace BackgammonNet.Core
 
         private void Generate()
         {
-            Debug.Log("Human Mode");
+           
             if (Board.Instance.acceptance >= 2)
             {
-                Debug.Log("1 CHECK");
+               
                 canvasHandler.diceRollButton.SetActive(true);
                 canvasHandler.diceResults.SetActive(true);
             }
 
             if (diceEnable && Board.Instance.acceptance >= 2)
             {
-                Debug.Log("2 CHECK");
+               
                 dragEnable = true;
                 diceEnable = false;
 
@@ -381,7 +381,7 @@ namespace BackgammonNet.Core
         #region _AiModeGeneration
         public void GenerateForAi()
         {
-            Debug.Log("Ai MODE");
+           
             foreach (var slot in Slot.slots)
             {
                 slot.HightlightMe(false);
@@ -663,7 +663,7 @@ namespace BackgammonNet.Core
 
             if (Slot.slots[ShelterSlotChck].Height() >= 1 && turn == 1)
             {
-                Debug.Log("height greater 1 and turn equal to 1 Work 2");
+            
                 SelectShelterPawn2 = Slot.slots[ShelterSlotChck].GetTopPawn(false);
                 SelectShelterPawn2.CheckShelterStage();
                 var finalposition = SelectShelterPawn2.house.transform.position;
@@ -681,10 +681,10 @@ namespace BackgammonNet.Core
                         SelectShelterPawn2 = Slot.slots[i].GetTopPawn(false);
                         int sign = -1;
                         int slot0 = SelectShelterPawn2.slotNo + sign * GameController.dices[1];
-                        Debug.Log("Shelter Slot" + slot0);
+                     
                         if (slot0 >= 1 && slot0 <= 6 && turn == 1)
                         {
-                            Debug.Log("Shelter in In between Range 2");
+                         
                             Slot.slots[SelectShelterPawn2.slotNo].GetTopPawn(true);
                             Slot.slots[slot0].PlacePawn(SelectShelterPawn2, SelectShelterPawn2.pawnColor);
                             break;
@@ -692,7 +692,7 @@ namespace BackgammonNet.Core
                         }
                         else
                         {
-                            Debug.Log("Dice value 2 is greater than slot No");
+                           
                             //SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
                             SelectShelterPawn2.CheckShelterStage();
                             var finalposition = SelectShelterPawn2.house.transform.position;
@@ -701,7 +701,7 @@ namespace BackgammonNet.Core
                             break;
                         }
                     }
-                    Debug.Log("Iteration Looop");
+                
                     //       
                 }
             }
@@ -833,7 +833,7 @@ namespace BackgammonNet.Core
                     {
                         GameController.Instance.playerScores[1].Kills++;
                         //.......JAIL KAR Dooh...........//
-                        Debug.Log("Jail Kar Dooh");
+                      
                         Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
                         Slot.slots[slot0].GetTopPawn(false).PlaceJail();
                         Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
@@ -846,7 +846,7 @@ namespace BackgammonNet.Core
 
                     else if(Slot.slots[slot0].Height() > 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
                     {
-                        Debug.Log("Check the Different Color Pawn Height");
+                     
                         if (topEPawns.Count == 0)
                         {
                             //.............. Shift the TURN tO THE HUMAN..................//
@@ -867,7 +867,7 @@ namespace BackgammonNet.Core
                 else
                 {
                     //............Call it Again your Ai................//
-                    Debug.Log("Call it Again ");
+                  
                     SelectRandomEnemy();
                 }
             }
@@ -883,10 +883,10 @@ namespace BackgammonNet.Core
             int sign = randomSelectPawn2.pawnColor == 0 ? 1 : -1;
             int slot1 = randomSelectPawn2.slotNo + sign * GameController.dices[1];
 
-            Debug.Log(randomSelectPawn2.pawnColor);
+         
             if (GameController.turn == randomSelectPawn2.pawnColor)
             {
-                Debug.Log("Turn and Color Same");
+              
                 if (slot1 > 0 && slot1 < 25 && slot1 != randomSelectPawn2.slotNo)
                 {
                     //randomSelectPawn.CheckShelterStage();
@@ -906,7 +906,7 @@ namespace BackgammonNet.Core
                   else  if (Slot.slots[slot1].Height() == 0)
                     {
                         GameController.Instance.playerScores[1].Moves++;
-                        Debug.Log("Slot is Empty");
+                   
                         Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
                         Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
                         randomSelectPawn2.CheckShelterStage();
@@ -921,7 +921,7 @@ namespace BackgammonNet.Core
                     {
                         GameController.Instance.playerScores[1].Kills++;
                         //.......JAIL KAR Dooh...........//
-                        Debug.Log("Jail Kar Dooh");
+                      
                         // var TopSelectOff= randomSelectPawn2.slotNo;
                         Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
                         
@@ -941,7 +941,7 @@ namespace BackgammonNet.Core
                     {
                         if (topEPawns.Count == 0)
                         {
-                            Debug.Log("CompleteTurn1" + turn);
+                          
                             //..............Assign a Dice to the next human player.......................//
 
                             Pawn_OnCompleteTurn(turn);
@@ -956,7 +956,7 @@ namespace BackgammonNet.Core
                             //_allSlotsInts.Clear();
                             //allSlots.Clear();
                           //  topEPawns.Clear();
-                            Debug.Log("Call it Again1 ");
+                          
                             SelectRandomEnemy2();
                         }
 
@@ -965,24 +965,10 @@ namespace BackgammonNet.Core
                 }
                 else
                 {
-                    //............Call it Again your Ai................//
-                    if (topEPawns.Count == 0)
-                    {
-                        Debug.Log("CompleteTurn2" + turn);
-                        //..............Assign a Dice to the next human player.......................//
-
-                       Pawn_OnCompleteTurn(turn);
-                        _allSlotsInts.Clear();
-                          allSlots.Clear();
-                        topEPawns.Clear();
-                        checkExistingPawn.Clear();
-                    }
-                    else
-                    {
-
-                        Debug.Log("Call it Again2 ");
+                   
+                       
                         SelectRandomEnemy2();
-                    }
+                    
                 }
             }
 
@@ -1050,7 +1036,7 @@ namespace BackgammonNet.Core
 
         private IEnumerator DiceThrow(int dice0, int dice1)
         {
-            Debug.Log("--------Dice Throw-----");
+          
 
             for (int i = 0; i < 12; i++)
             {
@@ -1298,7 +1284,7 @@ namespace BackgammonNet.Core
             {
                 if (Pawn.shelterSide[turn])
                 {  //............. when the mode of entering the shelter..................//
-                    Debug.Log("CanMoveInShelter");
+                  
                     return CanMoveInShelter(value, sign);
                 }
                 else if (CanMoveFree(value, sign))
@@ -1315,8 +1301,8 @@ namespace BackgammonNet.Core
         #endregion
         private static bool CanMoveFromJail(int amount, int count, int sign)
         {
-            Debug.Log("Turn" + turn);
-            Debug.Log("PAWN Color" + Pawn.instance.pawnColor);
+        
+         
             int val = turn == 0 ? -1 : 24;
 
             for (int i = 0; i < 2; i++)
@@ -1475,14 +1461,14 @@ namespace BackgammonNet.Core
 
                 if (GameController.turn == 0)
                 {
-                    Debug.Log("Turn 0");
+                  
                      GameController.Instance.player0Points.variableText= _score.ToString();
                       LanguageManager.OnVariableChanged();
 
                 }
                 else
                 {
-                    Debug.Log("Turn 1");
+                  
                     GameController.Instance.player1Points.variableText = _score.ToString();
                     LanguageManager.OnVariableChanged();
                 }
