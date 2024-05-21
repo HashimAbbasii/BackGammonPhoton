@@ -933,7 +933,7 @@ namespace BackgammonNet.Core
                         _allSlotsInts.Clear();
                         allSlots.Clear();
                         topEPawns.Clear();
-                        SlotNumberForAI();
+                       // SlotNumberForAI();
 
 
                     }
