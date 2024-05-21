@@ -1452,6 +1452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da7d70d927e222848ba55a74d829e15c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameOver: 0
   difficultyTextGameOverPanel: {fileID: 469219223}
   difficultyTextYouWinPanel: {fileID: 749308375}
   difficultyTextPausePanel: {fileID: 0}
@@ -14071,7 +14072,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 15.200012, y: 0}
+  m_AnchoredPosition: {x: 55.19995, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &1395325027
@@ -18928,7 +18929,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -19.5, y: 0}
+  m_AnchoredPosition: {x: -59.5, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &1865591902

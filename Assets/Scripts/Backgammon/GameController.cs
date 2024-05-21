@@ -20,6 +20,30 @@ namespace BackgammonNet.Core
 
     public class GameController : MonoBehaviour
     {
+        [Header("PlayerVsPlayerScore GameObjects")]
+        public GameObject playerVsplayerScorePausePanel;
+        public GameObject playerVsplayerScoreGameOverPanel;
+        public GameObject playerVsplayerScoreYouWinPanel;
+
+        public GameObject playerScorePausePanel;
+        public GameObject playeScoreGameOverPanel;
+        public GameObject playerScoreYouWinPanel;
+
+        [Header("PlayerVsPlayerScore Text")]
+        public LocalizedTextTMP scoreTextPlayer1PlayerVsPlayerPausePanel;
+        public LocalizedTextTMP scoreTextPlayer2PlayerVsPlayerPausePanel;
+        public LocalizedTextTMP scoreTextPlayer1VsPlayerGameOverPausePanel;
+        public LocalizedTextTMP scoreTextPlayer2VsPlayerGameOverPausePanel;
+        public LocalizedTextTMP scoreTextPlayer1VsPlayerYouWinPausePanel;
+        public LocalizedTextTMP scoreTextPlayer2VsPlayerYouWinPausePanel;
+
+
+
+        public LocalizedTextTMP scoreTextPausePanel;
+        public LocalizedTextTMP scoreTextgameOverPausePanel;
+        public LocalizedTextTMP scoreTextyouWinPausePanel;
+
+
         [Header("PointsScene")]
         public LocalizedTextTMP player0Points;
         public LocalizedTextTMP player1Points;
@@ -35,9 +59,9 @@ namespace BackgammonNet.Core
         public LocalizedTextTMP difficultyTextYouWinPanel;
         public LocalizedTextTMP difficultyTextPausePanel;
 
-        public LocalizedTextTMP scoreTextPausePanel;
-        public LocalizedTextTMP scoreTextgameOverPausePanel;
-        public LocalizedTextTMP scoreTextyouWinPausePanel;
+        
+
+
 
 
 
@@ -156,6 +180,15 @@ namespace BackgammonNet.Core
             if(MyGameManager.AiMode == false)
             {
                 AiDifficulty.gameObject.SetActive(false);
+                playerVsplayerScorePausePanel.gameObject.SetActive(true);
+                playerVsplayerScoreGameOverPanel.gameObject.SetActive(true);
+                playerVsplayerScoreYouWinPanel.gameObject.SetActive(true);
+
+
+                playerScorePausePanel.gameObject.SetActive(false);
+                playeScoreGameOverPanel.gameObject.SetActive(false);
+                playerScoreYouWinPanel.gameObject.SetActive(false);
+
 
             }
 
@@ -165,8 +198,17 @@ namespace BackgammonNet.Core
             {
                 player0Name.text = "Player";
                 player1Name.text = "AI";
-                
+
+                playerVsplayerScorePausePanel.gameObject.SetActive(false);
+                playerVsplayerScoreGameOverPanel.gameObject.SetActive(false);
+                playerVsplayerScoreYouWinPanel.gameObject.SetActive(false);
+
+                playerScorePausePanel.gameObject.SetActive(true);
+                playeScoreGameOverPanel.gameObject.SetActive(true);
+                playerScoreYouWinPanel.gameObject.SetActive(true);
+
             }
+
             else
             {
                 player0Name.text = "Player 1";
@@ -340,6 +382,10 @@ namespace BackgammonNet.Core
 
         private IEnumerator AnimateTopMenu(bool toggle)
         {
+#if UNITY_ANDROID
+            buttons[2].gameObject.SetActive(false);
+#endif
+
             float elapsedTime = 0;
             float percentageComplete = 0;
 
@@ -1443,41 +1489,46 @@ namespace BackgammonNet.Core
 
                 GameController.Instance.scoreTextPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
-
-
-
                 GameController.Instance.scoreTextgameOverPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
-
                 GameController.Instance.scoreTextyouWinPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
+
+
+                ///////////////////////////////////////////////////////////////////////////////////////////////////
+                GameController.Instance.scoreTextPlayer1PlayerVsPlayerPausePanel.variableText = _score.ToString();
+                LanguageManager.OnVariableChanged();
+                GameController.Instance.scoreTextPlayer1VsPlayerGameOverPausePanel.variableText = _score.ToString();
+                LanguageManager.OnVariableChanged();
+                GameController.Instance.scoreTextPlayer1VsPlayerYouWinPausePanel.variableText = _score.ToString();
+                LanguageManager.OnVariableChanged();
+
+
+                }
+                else if(GameController.turn == 1)
+                {
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////
+                    GameController.Instance.scoreTextPlayer2PlayerVsPlayerPausePanel.variableText = _score.ToString();
+                    LanguageManager.OnVariableChanged();
+                    GameController.Instance.scoreTextPlayer2VsPlayerGameOverPausePanel.variableText = _score.ToString();
+                    LanguageManager.OnVariableChanged();
+                    GameController.Instance.scoreTextPlayer2VsPlayerYouWinPausePanel.variableText = _score.ToString();
+                    LanguageManager.OnVariableChanged();
                 }
 
-                //else if(GameController.turn == 1)
-                //{
-                //    GameController.Instance.scoreTextPausePanel.variableText = _score.ToString();
-                //    LanguageManager.OnVariableChanged();
 
-                //    GameController.Instance.scoreTextgameOverPausePanel.variableText = _score.ToString();
-                //    LanguageManager.OnVariableChanged();
-
-                //    GameController.Instance.scoreTextyouWinPausePanel.variableText = _score.ToString();
-                //    LanguageManager.OnVariableChanged();
-                //}
 
 
 
                 if (GameController.turn == 0)
                 {
                   
-                     GameController.Instance.player0Points.variableText= _score.ToString();
-                      LanguageManager.OnVariableChanged();
-
+                    GameController.Instance.player0Points.variableText= _score.ToString();
+                    LanguageManager.OnVariableChanged();
                 }
                 else
-                {
-                  
-                    GameController.Instance.player1Points.variableText = _score.ToString();
+                {                
+                   GameController.Instance.player1Points.variableText = _score.ToString();
                    LanguageManager.OnVariableChanged();
                 }
 

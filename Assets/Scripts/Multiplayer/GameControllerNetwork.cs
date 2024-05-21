@@ -387,6 +387,10 @@ namespace BackgammonNet.Core
 
         private IEnumerator AnimateTopMenu(bool toggle)
         {
+#if UNITY_ANDROID
+            buttons[2].gameObject.SetActive(false);
+#endif
+
             float elapsedTime = 0;
             float percentageComplete = 0;
 
