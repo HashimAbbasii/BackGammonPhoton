@@ -22,6 +22,7 @@ namespace BackgammonNet.Core
     public class GameControllerNetwork : MonoBehaviourPunCallbacks
     {
         private PhotonView _photonView;
+        public bool isGameOver;
 
         [Header("DifficultyText")]
         public LocalizedTextTMP difficultyTextGameOverPanel;
@@ -186,11 +187,7 @@ namespace BackgammonNet.Core
          
             }
         }
-
-
-       // [PunRPC]
-        
-        
+       // [PunRPC]     
         [PunRPC]
 
         public void DiceEnbleForMaster()
@@ -239,8 +236,6 @@ namespace BackgammonNet.Core
             // Disable the master client's dice button
             diceButton.interactable = false;
         }
-
-
 
         public void ActivateButtons(bool active)
         {
@@ -506,8 +501,6 @@ namespace BackgammonNet.Core
             }
         }
 
-
-
         // #region _CheckifTurnChangeAI
 
         public void CheckifTurnChangeAI(int dice0, int dice1)      // Load the values ​​rolled by the opponent's dice.
@@ -687,15 +680,20 @@ namespace BackgammonNet.Core
         [PunRPC]
         private void ActiveGameOver(int winner)
         {
+            isGameOver = true;
+
             endDateTime = DateTime.Now;
+            int totalGameTimeInSeconds = (int)((endDateTime - startDateTime).TotalSeconds);
+            TimeSpan totalGameTime = TimeSpan.FromSeconds(totalGameTimeInSeconds);
+            string totalGameTimeString = string.Format("{0:mm\\:ss}", totalGameTime);
+
+
             if (winner == int.Parse(PhotonNetwork.NickName))
             {
                 YouWinPanel.SetActive(true);
                 AudioManager.Instance.GameWon();
-                
-                int _totalGameTime = (int) ((endDateTime - startDateTime).TotalSeconds);
-                timeTextyouWinPausePanel.variableText = _totalGameTime.ToString();
-                //scoreTextdefaultYouWinPausePanel.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
+
+                timeTextyouWinPausePanel.variableText = totalGameTimeString;
                 LanguageManager.OnVariableChanged();
 
             }
@@ -704,9 +702,7 @@ namespace BackgammonNet.Core
                 gameOverPanel.SetActive(true);
                 AudioManager.Instance.GameLost();
 
-                _totalGameTime = (int)((endDateTime - startDateTime).TotalSeconds);
-                timeTextgameOverPausePanel.variableText = _totalGameTime.ToString();
-                //scoreTextdefaultYouWinPausePanel.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
+                timeTextgameOverPausePanel.variableText = totalGameTimeString;
                 LanguageManager.OnVariableChanged();
             }
 
@@ -794,12 +790,21 @@ namespace BackgammonNet.Core
 
         public override void OnPlayerLeftRoom(Player otherPlayer)
         {
-            YouWinPanelPlayerLeftPanel.gameObject.SetActive(true);
+            if(!isGameOver)
+            {
+                YouWinPanelPlayerLeftPanel.gameObject.SetActive(true);
+            }
 
-            timeTextdefaultYouWinPausePanel.variableText = _totalGameTime.ToString();
+
+            endDateTime = DateTime.Now;
+            int totalGameTimeInSeconds = (int)((endDateTime - startDateTime).TotalSeconds);
+            TimeSpan totalGameTime = TimeSpan.FromSeconds(totalGameTimeInSeconds);
+            string totalGameTimeString = string.Format("{0:mm\\:ss}", totalGameTime);
+
+
+            timeTextdefaultYouWinPausePanel.variableText = totalGameTimeString;
             LanguageManager.OnVariableChanged();
 
-            //base.OnPlayerLeftRoom(otherPlayer);
         }
 
         public override void OnLeftRoom()
