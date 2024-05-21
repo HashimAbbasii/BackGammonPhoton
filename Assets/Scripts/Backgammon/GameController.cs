@@ -38,6 +38,12 @@ namespace BackgammonNet.Core
         public LocalizedTextTMP scoreTextPlayer2VsPlayerYouWinPausePanel;
 
 
+        [Header("PlayerText Headings GameObjects")]
+        public GameObject playerHeadingPausePanel;
+        public GameObject playerHeadingGameOverPanel;
+        public GameObject playerHeadingYouWinPanel;
+
+
 
         public LocalizedTextTMP scoreTextPausePanel;
         public LocalizedTextTMP scoreTextgameOverPausePanel;
@@ -184,6 +190,9 @@ namespace BackgammonNet.Core
                 playerVsplayerScoreGameOverPanel.gameObject.SetActive(true);
                 playerVsplayerScoreYouWinPanel.gameObject.SetActive(true);
 
+                playerHeadingPausePanel.gameObject.SetActive(true);
+                playerHeadingGameOverPanel.gameObject.SetActive(true);
+                playerHeadingYouWinPanel.gameObject.SetActive(true);
 
                 playerScorePausePanel.gameObject.SetActive(false);
                 playeScoreGameOverPanel.gameObject.SetActive(false);
@@ -206,6 +215,10 @@ namespace BackgammonNet.Core
                 playerScorePausePanel.gameObject.SetActive(true);
                 playeScoreGameOverPanel.gameObject.SetActive(true);
                 playerScoreYouWinPanel.gameObject.SetActive(true);
+
+                playerHeadingPausePanel.gameObject.SetActive(false);
+                playerHeadingGameOverPanel.gameObject.SetActive(false);
+                playerHeadingYouWinPanel.gameObject.SetActive(false);
 
             }
 
