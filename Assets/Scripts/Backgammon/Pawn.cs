@@ -4,6 +4,7 @@ using Broniek.Stuff.Sounds;
 using Photon.Pun;
 using BackgammonNet.Lobby;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 
 namespace BackgammonNet.Core
 {
@@ -39,7 +40,10 @@ namespace BackgammonNet.Core
         [SerializeField] public Sprite whitePawn;
         [SerializeField] public Sprite blackPawn;
 
+        //  public void  Start()
+        //{
 
+        //}
         private void Awake()
         {
             instance = this;
@@ -903,6 +907,8 @@ namespace BackgammonNet.Core
         private void Start()
         {
             movesShow = moves;
+            shelterSide[0] = false;
+            shelterSide[1] = false;
         }
     }
 }

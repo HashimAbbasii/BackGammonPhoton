@@ -113,7 +113,7 @@ namespace BackgammonNet.Core
 
             if (MyGameManager.AiMode==true)
             {
-                // Debug.Log("Ai Mode");
+                 Debug.Log("Ai Mode");
 
                 diceButton.onClick.AddListener(GenerateForAi);
 
@@ -1310,6 +1310,7 @@ namespace BackgammonNet.Core
 
         private static bool CanMoveFree(int value, int sign)
         {
+            Debug.Log("Can Move Free");
             for (int i = 1; i <= 24; i++)
                 if (Slot.slots[i].Height() > 0 && Slot.slots[i].IsWhite() == turn)   // slot with whites
                     for (int j = 0; j < 2; j++)
