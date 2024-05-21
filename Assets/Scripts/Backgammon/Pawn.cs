@@ -649,8 +649,11 @@ namespace BackgammonNet.Core
 
         private void DoCorrectMove(int diceNo)
         {
-            if (slot.Height() == 1 && slot.IsWhite() != pawnColor)   // a slot with one opponent's piece
+            if (slot.Height() == 1 && slot.IsWhite() != pawnColor)
+            {
                 PlaceJail();
+
+            }   // a slot with one opponent's piece
 
             Slot.slots[slotNo].GetTopPawn(true);                      // we remove the piece from the slot that has been occupied so far
                                                                       //Debug.Log("Pawn after MU Before Parent Local Pos " + transform.localPosition);
