@@ -448,7 +448,7 @@ namespace BackgammonNet.Core
 
         IEnumerator delayForSlot()
         {
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.5f);
             SlotNetwork.slots[slotNo].GetTopPawn(true);
             slot.PlacePawn(this, pawnColor);
         }
