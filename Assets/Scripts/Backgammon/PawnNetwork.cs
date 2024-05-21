@@ -375,10 +375,16 @@ namespace BackgammonNet.Core
 
                 int sign = pawnColor == 0 ? 1 : -1;
 
-                if (slot.slotNo == slotNo + sign * GameControllerNetwork.dices[0])   // that it matches the values ​​on the dice
+                if (slot.slotNo == slotNo + sign * GameControllerNetwork.dices[0])
+                {
+                    Debug.Log("Runs1");
                     DoCorrectMove(0);
+                }   // that it matches the values ​​on the dice
                 else if (slot.slotNo == slotNo + sign * GameControllerNetwork.dices[1])
+                {
+                    Debug.Log("Runs2");
                     DoCorrectMove(1);
+                }
                 else                                    // does not agree with the values ​​thrown out
                 {
                     transform.position = startPos;
@@ -407,14 +413,15 @@ namespace BackgammonNet.Core
 
         private void DoCorrectMove(int diceNo)
         {
-          //  var testSlot = PhotonView.Find(slotViewId).GetComponent<SlotNetwork>();
+            //  var testSlot = PhotonView.Find(slotViewId).GetComponent<SlotNetwork>();
             //............yaha p issue hain Hopefuly...................//
             //   int boardViewId=BoardNetwork.Instance.photonView.ViewID;
-
+            //Debug.Log("Run1");
             if (slot.Height() == 1 && slot.IsWhite() != pawnColor)
             {
                 PlaceJail();
                StartCoroutine(delayForSlot());
+                GameControllerNetwork.dices[diceNo] = 0;
                 return;
 
             }   // a slot with one opponent's piece
