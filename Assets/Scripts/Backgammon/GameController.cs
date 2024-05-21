@@ -1135,6 +1135,7 @@ namespace BackgammonNet.Core
         public void ActiveGameOver(int winner)
         {
             Board.Instance.isGameOver = true;
+            MyGameManager.AiMode = false;
 
             if (MyGameManager.AiMode == false)
             {
