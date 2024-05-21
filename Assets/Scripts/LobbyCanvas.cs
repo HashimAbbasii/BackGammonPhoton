@@ -53,9 +53,11 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
         private void Start()
     {
-        //textText.variableText = "Hello Hello";
-       // LanguageManager.OnVariableChanged();
 
+#if UNITY_ANDROID
+        Application.targetFrameRate = 60;
+        fullScreenBtn.gameObject.SetActive(false);
+#endif
     }
 
 
@@ -148,9 +150,6 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
         AudioManager.Instance.ButtonClicked();
     }
 
-
-
-
     public void ToggleBoolSound()
     {
         Debug.Log("ToggleBoolSound");
@@ -214,7 +213,6 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     {
         MyGameManager.Instance.languageManager.LanguageSelect(index);
     }
-
 
     public void BeginnerDifficulty()
     {
