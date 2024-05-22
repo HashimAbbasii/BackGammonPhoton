@@ -29,7 +29,7 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
     public GameObject ConnectingPanel;
     public GameObject Roomlist;
     private Dictionary<string, RoomInfo> roomListData;
-    private Dictionary<string, GameObject> roomListGameObject;
+    public Dictionary<string, GameObject> roomListGameObject;
     private Dictionary<int, GameObject> playerListGameObject;
 
     [Header("Room List Panel")]
@@ -74,27 +74,27 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         ClearRoomList();
-        foreach (RoomInfo rooms in roomList)
+        foreach (RoomInfo room in roomList)
         {
-            Debug.Log("Room Name" + rooms.Name);
-            if (!rooms.IsOpen || !rooms.IsVisible || rooms.RemovedFromList)
+            Debug.Log("Room Name" + room.Name);
+            if (!room.IsOpen || !room.IsVisible || room.RemovedFromList)
 
             {
-                if (roomListData.ContainsKey(rooms.Name))
+                if (roomListData.ContainsKey(room.Name))
                 {
-                    roomListData.Remove(rooms.Name);
+                    roomListData.Remove(room.Name);
                 }
             }
 
             else
             {
-                if (roomListData.ContainsKey(rooms.Name))
+                if (roomListData.ContainsKey(room.Name))
                 {
-                    roomListData[rooms.Name] = rooms;
+                    roomListData[room.Name] = room;
                 }
                 else
                 {
-                    roomListData.Add(rooms.Name, rooms);
+                    roomListData.Add(room.Name, room);
                 }
             }
 
