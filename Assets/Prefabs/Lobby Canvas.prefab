@@ -5641,6 +5641,7 @@ GameObject:
   - component: {fileID: 4980090405335579068}
   - component: {fileID: 1959634208123516118}
   - component: {fileID: 2591297642377705698}
+  - component: {fileID: 1030636013}
   m_Layer: 5
   m_Name: FullScreenBtn
   m_TagString: Untagged
@@ -5762,18 +5763,35 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 2321881972388751544}
-        m_TargetAssemblyTypeName: LobbyCanvas, Assembly-CSharp
-        m_MethodName: ToggleBoolFullScreen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+--- !u!114 &1030636013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3003848869198733608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2321881972388751544}
+          m_TargetAssemblyTypeName: LobbyCanvas, Assembly-CSharp
+          m_MethodName: OnPointerDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &3291786690340777005
 GameObject:
   m_ObjectHideFlags: 0
@@ -8923,6 +8941,8 @@ GameObject:
   - component: {fileID: 3957825308760889452}
   - component: {fileID: 3957825308760889455}
   - component: {fileID: 2321881972388751544}
+  - component: {fileID: 1266451095}
+  - component: {fileID: 1266451094}
   m_Layer: 5
   m_Name: Lobby Canvas
   m_TagString: Untagged
@@ -9046,16 +9066,45 @@ MonoBehaviour:
   FullScreenToggleAnimator: {fileID: 0}
   VfxSoundToggleAnimator: {fileID: 0}
   musicSoundToggleAnimator: {fileID: 0}
-  OnSoundToggle: {fileID: 21300000, guid: c84619f060922324292705de2fd74e34, type: 3}
-  OffSoundToggle: {fileID: 21300000, guid: 40632378c541c884b93f587a93d8886c, type: 3}
-  OnMusicToggle: {fileID: 21300000, guid: d676fbec4c468164bba24691ca031421, type: 3}
-  OffMusicToggle: {fileID: 21300000, guid: 0e38fb7a2ff25b3449dde330b48b7d42, type: 3}
-  OnFullScreenToggle: {fileID: 21300000, guid: 708c3f31cb441d54196087ed83f71f3e, type: 3}
-  OffFullScreenToggle: {fileID: 21300000, guid: 5e6dc3e077cb0434c873c7411d22434c, type: 3}
+  OnSoundToggle: {fileID: 21300000, guid: 40632378c541c884b93f587a93d8886c, type: 3}
+  OffSoundToggle: {fileID: 21300000, guid: c84619f060922324292705de2fd74e34, type: 3}
+  OnMusicToggle: {fileID: 21300000, guid: 0e38fb7a2ff25b3449dde330b48b7d42, type: 3}
+  OffMusicToggle: {fileID: 21300000, guid: d676fbec4c468164bba24691ca031421, type: 3}
+  OnFullScreenToggle: {fileID: 21300000, guid: 5e6dc3e077cb0434c873c7411d22434c, type: 3}
+  OffFullScreenToggle: {fileID: 21300000, guid: 708c3f31cb441d54196087ed83f71f3e, type: 3}
   soundBtn: {fileID: 2304213212485471041}
   musicBtn: {fileID: 1151501120422154241}
   fullScreenBtn: {fileID: 2591297642377705698}
+  fullScreenWebGLManager: {fileID: 1266451095}
   textText: {fileID: 0}
+--- !u!114 &1266451095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3957825308760889454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e8f9c31d1994b4b9108fc896c5d8ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1266451094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3957825308760889454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9b7a87f046b0f40a125b9678e57c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterFullscreenBtn: {fileID: 0}
+  exitFullscreenBtn: {fileID: 0}
+  exitFullscreenToggle: {fileID: 0}
+  fullScreenToggleSlider: {fileID: 0}
 --- !u!1 &3957825308780058297
 GameObject:
   m_ObjectHideFlags: 0
@@ -15637,7 +15686,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 203}
+  m_AnchoredPosition: {x: 0, y: 93}
   m_SizeDelta: {x: 272.42, y: 50}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!222 &3957825310348819475

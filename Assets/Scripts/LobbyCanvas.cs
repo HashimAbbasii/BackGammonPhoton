@@ -19,6 +19,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public bool fullscreenToggle = false;
     public bool soundToggle = false;
     public bool musicToggle = false;
+    private bool isToggle = true;
 
     [Header("Animators")]
     public Animator FullScreenToggleAnimator;
@@ -38,7 +39,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public Button musicBtn;
     public Button fullScreenBtn;
 
-
+    public FullscreenWebGLManager fullScreenWebGLManager;
 
 
     public LocalizedTextTMP textText;
@@ -49,9 +50,31 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     private void Awake()
     {
         Instance = this;
+
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            if (IsRunningOnAndroid())
+            {
+                fullScreenWebGLManager.EnterFullscreen();
+            }
+        }
+
     }
 
-        private void Start()
+    public bool IsRunningOnAndroid()
+    {
+        return SystemInfo.operatingSystem.ToLower().Contains("android");
+
+    }
+
+    public bool IsRunningOniOS()
+    {
+        return SystemInfo.operatingSystem.ToLower().Contains("iphone") ||
+               SystemInfo.operatingSystem.ToLower().Contains("ipad") ||
+               SystemInfo.operatingSystem.ToLower().Contains("ios");
+    }
+
+    private void Start()
     {
 
 #if UNITY_ANDROID
@@ -193,17 +216,33 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
     }
 
-    public void ToggleBoolFullScreen()
-    {
-        fullscreenToggle = !fullscreenToggle;
 
-        if (fullscreenToggle)
+    public void OnPointerDown()
+    {
+        ToggleBoolean();
+        ToggleBoolFullScreen(isToggle);
+    }
+
+    public void ToggleBoolean()
+    {
+        isToggle = !isToggle;
+    }
+
+    public void ToggleBoolFullScreen(bool isToggle)
+    {
+      //  fullscreenToggle = !fullscreenToggle;
+
+        if (isToggle)
         {
+            MyGameManager.Instance.fullScreenWebGLManager.EnterFullscreen();
+
             //FullScreenToggleAnimator.Play("Full Screen Anim");
             fullScreenBtn.image.sprite = OnFullScreenToggle;
         }
         else
         {
+            MyGameManager.Instance.fullScreenWebGLManager.ExitFullscreen();
+
             //FullScreenToggleAnimator.Play("Full Screen Anim Reverse");
             fullScreenBtn.image.sprite = OffFullScreenToggle;
         }

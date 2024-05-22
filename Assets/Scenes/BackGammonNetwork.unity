@@ -1610,6 +1610,8 @@ GameObject:
   - component: {fileID: 135892642}
   - component: {fileID: 135892641}
   - component: {fileID: 135892645}
+  - component: {fileID: 135892646}
+  - component: {fileID: 135892647}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1740,7 +1742,35 @@ MonoBehaviour:
   soundBtn: {fileID: 2133190255}
   musicBtn: {fileID: 942671942}
   fullScreenBtn: {fileID: 1220113288}
-  fullScreenWebGLManager: {fileID: 0}
+  fullScreenWebGLManager: {fileID: 135892646}
+--- !u!114 &135892646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135892640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68e8f9c31d1994b4b9108fc896c5d8ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &135892647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 135892640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e9b7a87f046b0f40a125b9678e57c24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enterFullscreenBtn: {fileID: 0}
+  exitFullscreenBtn: {fileID: 0}
+  exitFullscreenToggle: {fileID: 0}
+  fullScreenToggleSlider: {fileID: 0}
 --- !u!1 &176873942
 GameObject:
   m_ObjectHideFlags: 0

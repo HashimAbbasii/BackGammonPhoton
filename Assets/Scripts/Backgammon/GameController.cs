@@ -20,6 +20,13 @@ namespace BackgammonNet.Core
 
     public class GameController : MonoBehaviour
     {
+        [Header("Winner")]
+        public LocalizedTextTMP winnerTextGameOver;
+        public LocalizedTextTMP winnerTextYouWin;
+        public GameObject winnerGameObjectGameOver;
+        public GameObject winnerGameObjectYouWin;
+
+
         [Header("PlayerVsPlayerScore GameObjects")]
         public GameObject playerVsplayerScorePausePanel;
         public GameObject playerVsplayerScoreGameOverPanel;
@@ -190,6 +197,9 @@ namespace BackgammonNet.Core
                 playerVsplayerScoreGameOverPanel.gameObject.SetActive(true);
                 playerVsplayerScoreYouWinPanel.gameObject.SetActive(true);
 
+                winnerGameObjectGameOver.gameObject.SetActive(true);
+                winnerGameObjectYouWin.gameObject.SetActive(true);
+
                 playerHeadingPausePanel.gameObject.SetActive(true);
                 playerHeadingGameOverPanel.gameObject.SetActive(true);
                 playerHeadingYouWinPanel.gameObject.SetActive(true);
@@ -211,6 +221,9 @@ namespace BackgammonNet.Core
                 playerVsplayerScorePausePanel.gameObject.SetActive(false);
                 playerVsplayerScoreGameOverPanel.gameObject.SetActive(false);
                 playerVsplayerScoreYouWinPanel.gameObject.SetActive(false);
+
+                winnerGameObjectGameOver.gameObject.SetActive(false);
+                winnerGameObjectYouWin.gameObject.SetActive(false);
 
                 playerScorePausePanel.gameObject.SetActive(true);
                 playeScoreGameOverPanel.gameObject.SetActive(true);
@@ -1213,6 +1226,12 @@ namespace BackgammonNet.Core
                 difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
                 LanguageManager.OnVariableChanged();
 
+                winnerTextGameOver.LocalizationKey = "Text.P1Win";
+                LanguageManager.OnVariableChanged();
+
+                winnerTextYouWin.LocalizationKey = "Text.P1Win";
+                LanguageManager.OnVariableChanged();
+
             }
             else
             {
@@ -1220,6 +1239,12 @@ namespace BackgammonNet.Core
                 AudioManager.Instance.GameLost();
 
                 difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+                LanguageManager.OnVariableChanged();
+
+                winnerTextGameOver.LocalizationKey = "Text.P2Win";
+                LanguageManager.OnVariableChanged();
+
+                winnerTextYouWin.LocalizationKey = "Text.P2Win";
                 LanguageManager.OnVariableChanged();
             }
 
