@@ -187,13 +187,15 @@ namespace BackgammonNet.Core
                         CheckShelterStage();
                         CheckShelterAndMore();
                         CheckIfNextTurn();
+
                         if (Slot.slots[25 + sign * GameController.dices[1]].Height() > 1 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() != prisonSlot.IsWhite())
                         {
 
                             Debug.Log("Give the Dice to the Human Player");
                             CheckShelterStage();
                             CheckShelterAndMore();
-                            CheckIfNextTurn();
+                            //CheckIfNextTurn();
+                            OnCompleteTurn(pawnColor);
 
 
                         }
@@ -494,6 +496,7 @@ namespace BackgammonNet.Core
            // Debug.Log("MaxMoves" + maxMoves);
             if (moves == maxMoves && !GameController.GameOver)           // all moves have been made
             {
+                
                 moves = 0;
                 OnCompleteTurn(pawnColor);
             }
