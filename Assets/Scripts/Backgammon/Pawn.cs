@@ -135,7 +135,7 @@ namespace BackgammonNet.Core
             {
 
 
-              //  Debug.Log("Height Greater than 1 ");
+                //  Debug.Log("Height Greater than 1 ");
                 if (Slot.slots[25 + sign * GameController.dices[0]].Height() > 0)
                 {
                     if (Slot.slots[25 + sign * GameController.dices[0]].Height() == 1 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() != prisonSlot.IsWhite())
@@ -144,11 +144,11 @@ namespace BackgammonNet.Core
                         GameController.Instance.playerScores[1].Kills++;
                         //Debug.Log("JAIL KAR DOOH");
                         var prisonPawn = prisonSlot.GetTopPawn(true);
-                       
+
                         int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
                         TryHighlight(true);
                         Slot.slots[slot0].GetTopPawn(false).PlaceJail();
-                       // Slot.slots[slot0].GetTopPawn(true);
+                        // Slot.slots[slot0].GetTopPawn(true);
                         Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
                         prisonPawn.imprisoned = false;
                         imprisonedSide[pawnColor]--;
@@ -169,7 +169,7 @@ namespace BackgammonNet.Core
                         GameController.Instance.playerScores[1].Moves++;
                         var prisonPawn = prisonSlot.GetTopPawn(true);
                         int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
-                        var slotHighlight= Slot.slots[25 + sign * GameController.dices[0]].slotNo;
+                        var slotHighlight = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
                         TryHighlight(true);
                         Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
                         prisonPawn.imprisoned = false;
@@ -194,8 +194,8 @@ namespace BackgammonNet.Core
                             Debug.Log("Give the Dice to the Human Player");
                             CheckShelterStage();
                             CheckShelterAndMore();
-                            //CheckIfNextTurn();
-                            OnCompleteTurn(pawnColor);
+                            CheckIfNextTurn();
+                            return;
 
 
                         }
@@ -216,14 +216,14 @@ namespace BackgammonNet.Core
                                 int slotDice = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
                                 TryHighlight(true);
                                 Slot.slots[slotDice].GetTopPawn(false).PlaceJail();
-                               
+
                                 Slot.slots[slotDice].PlacePawn(prisonSlot1, prisonSlot1.pawnColor);
                                 prisonSlot1.imprisoned = false;
                                 imprisonedSide[pawnColor]--;
                                 CheckShelterStage();
                                 CheckShelterAndMore();
                                 CheckIfNextTurn();
-                             
+
                                 StartCoroutine(GameController.Instance.SecondDice());
 
 
@@ -254,17 +254,17 @@ namespace BackgammonNet.Core
                             }
                             else if (Slot.slots[25 + sign * GameController.dices[1]].Height() == 0)
                             {
-
-                            var prisonPawn = prisonSlot.GetTopPawn(true);
-                            int slot0 = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
-                            Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                            TryHighlight(true);
-                            prisonPawn.imprisoned = false;
-                            imprisonedSide[pawnColor]--;
-                            CheckShelterStage();
-                            CheckShelterAndMore();
-                            CheckIfNextTurn();
-                            StartCoroutine(GameController.Instance.SecondDice());
+                                Debug.Log("Height Equalt to zero");
+                                var prisonPawn = prisonSlot.GetTopPawn(true);
+                                int slot0 = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
+                                Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
+                                TryHighlight(true);
+                                prisonPawn.imprisoned = false;
+                                imprisonedSide[pawnColor]--;
+                                CheckShelterStage();
+                                CheckShelterAndMore();
+                                CheckIfNextTurn();
+                                StartCoroutine(GameController.Instance.SecondDice());
                             }
 
 
@@ -278,7 +278,7 @@ namespace BackgammonNet.Core
                 else if (Slot.slots[25 + sign * GameController.dices[0]].Height() == 0)
                 {
                     GameController.Instance.playerScores[1].Moves++;
-                     Debug.Log("HEIGHT IS Zero or Slot is Empty");
+                    Debug.Log("HEIGHT IS Zero or Slot is Empty");
                     var prisonPawn = prisonSlot.GetTopPawn(true);
                     int slot0 = Slot.slots[25 + sign * GameController.dices[0]].slotNo;
                     Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
@@ -294,6 +294,36 @@ namespace BackgammonNet.Core
 
 
                 //...................... aghr Prison Hu gi hain ................
+            }
+
+        }
+
+
+        [ContextMenu("Test Prison SLOT")]
+
+        public void TestPrisonSlot()
+        {
+            var prisonSlot = Slot.slots[25];
+            int sign = -1;
+            
+            if (Slot.slots[25 + sign * GameController.dices[0]].Height() > 1 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() != prisonSlot.IsWhite())
+            {
+                Debug.Log("Height greater than 1 but opposite color");
+                CheckShelterStage();
+                CheckShelterAndMore();
+                CheckIfNextTurn();
+
+                if (Slot.slots[25 + sign * GameController.dices[1]].Height() > 1 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() != prisonSlot.IsWhite())
+                {
+
+                    Debug.Log("Give the Dice to the Human Player");
+                    CheckShelterStage();
+                    CheckShelterAndMore();
+                    //CheckIfNextTurn();
+                    OnCompleteTurn(pawnColor);
+
+
+                }
             }
 
         }
@@ -508,6 +538,7 @@ namespace BackgammonNet.Core
 
                 if (moves == 2 && !GameController.GameOver && GameController.isDublet == true)
                 {
+                    Debug.Log("Call Dublet");
                     GameController.Instance.CallDublet();
                 }
             }

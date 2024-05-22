@@ -548,9 +548,13 @@ namespace BackgammonNet.Core
 
             if (dices[0] == dices[1])
                 isDublet = true;
+            if (GameController.turn == 1)
+            {
 
+               StartCoroutine(PawnMoveCoroutine());
 
-            StartCoroutine(PawnMoveCoroutine());
+            }
+
 
             //if (!CanMove(2))
             //    StartCoroutine(ChangeTurn());
@@ -1013,10 +1017,10 @@ namespace BackgammonNet.Core
                     {
                         if (topEPawns.Count == 0)
                         {
-                          
+                            randomSelectPawn2.CheckIfNextTurn();
                             //..............Assign a Dice to the next human player.......................//
-
-                            Pawn_OnCompleteTurn(turn);
+                            Debug.Log("Check if not null");
+                           // Pawn_OnCompleteTurn(turn);
                             _allSlotsInts.Clear();
                             allSlots.Clear();
                             topEPawns.Clear();
@@ -1074,7 +1078,7 @@ namespace BackgammonNet.Core
             }
             else
             {
-               // Debug.Log("Normal Moves two");
+               Debug.Log("Normal Moves two");
                 SlotNumberForAI2();
             }
         }
@@ -1146,24 +1150,17 @@ namespace BackgammonNet.Core
 
         public void Pawn_OnCompleteTurn(int isWhiteColor)
         {
+            Debug.Log("Turn Change Occurs");
+            Debug.Log("Turn before" + turn);
             dices[0] = dices[1] = 0;
 
             diceEnable = true;
             dragEnable = false;
 
             turn = 1 - turn;                                                // turn change
-
+            Debug.Log("Turn" + turn);
             turnImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
-            turnImages[1].gameObject.SetActive(isWhiteColor == 0);
-
-            if (Board.Instance.client)      // network game
-            {
-                newTurn = true;
-
-                if (Board.Instance.isClientWhite == (turn == 0 ? true : false))    // if we are white (red) and the turn is white (red)
-                    diceButton.gameObject.SetActive(true);
-            }
-            else
+            turnImages[1].gameObject.SetActive(isWhiteColor == 0);         
 
 
             if (turn == 1 && MyGameManager.AiMode == true)
@@ -1488,7 +1485,40 @@ namespace BackgammonNet.Core
             return false;
         }
 
-        [ContextMenu("Shelter Check")]
+        [ContextMenu("Place on Prison")]
+        public void PlacePrisonOnContext()
+        {
+            Slot.slots[24].GetTopPawn(false).PlaceJail();
+        }
+
+        //public void PrisonTestng()
+        //{
+        //    int sign = -1;
+        //    if (Slot.slots[25 + sign * GameController.dices[0]].Height() > 1 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() != prisonSlot.IsWhite())
+        //    {
+        //        Debug.Log("Height greater than 1 but opposite color");
+        //        Slot.slots[25].CheckShelterStage();
+        //        Slot.slots[25].CheckShelterAndMore();
+        //        CheckIfNextTurn();
+
+        //        if (Slot.slots[25 + sign * GameController.dices[1]].Height() > 1 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() != prisonSlot.IsWhite())
+        //        {
+
+        //            Debug.Log("Give the Dice to the Human Player");
+        //            CheckShelterStage();
+        //            CheckShelterAndMore();
+        //            CheckIfNextTurn();
+        //            OnCompleteTurn(pawnColor);
+
+
+        //        }
+        //    }
+
+
+
+
+
+            [ContextMenu("Shelter Check")]
         public void ShelterSideMovesTowardHomeAi()
         {
             if (Pawn.shelterSide[1])
@@ -1616,5 +1646,9 @@ namespace BackgammonNet.Core
 
         #endregion
     }
+
+
+    
+
 }
 

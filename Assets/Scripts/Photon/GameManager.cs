@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
+        photonView = GetComponent<PhotonView>();
         if (PhotonNetwork.IsConnectedAndReady)
         {
             PhotonNetwork.Instantiate(playerPrefab.name, transform.position, transform.rotation);
