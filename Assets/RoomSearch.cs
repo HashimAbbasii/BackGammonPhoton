@@ -20,16 +20,16 @@ public class RoomSearch : MonoBehaviour
     }
 
 
-    //[ContextMenu("ABC")]
-    //public void FillRooms()
-    //{
-    //    //allRooms = GetComponentsInChildren<RoomEntry>().ToList();
-    //    foreach (var rlgo in MyPhotonManager.instance.roomListGameObject)
-    //    {
-    //        Debug.Log(rlgo.Key);
-    //        Debug.Log(rlgo.Value);
-    //    }
-    //}
+    [ContextMenu("ABC")]
+    public void FillRooms()
+    {
+        //allRooms = GetComponentsInChildren<RoomEntry>().ToList();
+        foreach (var rlgo in MyPhotonManager.instance.roomListGameObject)
+        {
+            Debug.Log(rlgo.Key);
+            Debug.Log(rlgo.Value);
+        }
+    }
 
     void FilterRooms(string searchText)
     {
@@ -50,7 +50,7 @@ public class RoomSearch : MonoBehaviour
                 roomEntry.Value.SetActive(false);
             }
 
-            foreach (var roomEntry in MyPhotonManager.instance.roomListGameObject.Where(t => t.Key.Split("|")[0].Contains(searchText)))
+            foreach (var roomEntry in MyPhotonManager.instance.roomListGameObject.Where(t => t.Key.ToLower().Contains(searchText)))
             {
                 roomEntry.Value.SetActive(true);
             }
