@@ -52,7 +52,7 @@ Text.Difficulty,Difficulty,Dificultad,Сложность,Складність,Di
 Text.GameOver,GAME OVER,JUEGO TERMINADO,ИГРА ЗАКОНЧЕНА,ГРА ЗАВЕРШЕНА,JEU TERMINÉ,GAME OVER,انتهت اللعبة,GAME OVER,SPIEL VORBEI,کھیل ختم
 Text.VsHuman,Vs Human,contra humano,против человека,Проти людини,Contre l'humain,Contro Umano,مقابل الإنسان,Contra Humano,Gegen Mensch,بمقابلہ انسان
 Text.OfflineMode,OFFLINE MODE,MODO OFFLINE,ОФФЛАЙН РЕЖИМ,ОФЛАЙН РЕЖИМ,MODE HORS-LIGNE,MODALITÀ OFFLINE,وضع غير متصل بالشبكة,MODO OFFLINE,OFFLINE-MODUS,آف لائن موڈ
-Text.JoinLobby,JOIN LOBBY,ÚNETE AL LOBBY,ПРИСОЕДИНЯЙТЕСЬ К ЛОББИ,ПРИЄДНУЙТЕСЬ до ЛОБІ,REJOIGNEZ LE LOBBY,ISCRIVITI ALLA LOBBY,انضم إلى الردهة,ENTRAR NO LOBBY,Treten Sie der Lobby bei,لابی میں شامل ہوں۔
+Text.JoinLobby,Join Lobby,Unirse al lobby,Присоединиться к лобби,Приєднатися до лобі,Rejoindre le lobby,Unisciti alla lobby,انضم إلى الردهة,Junte-se ao lobby,Treten Sie der Lobby bei,لابی میں شامل ہوں۔
 Text.Join,JOIN ,UNIRSE,ПРИСОЕДИНИТЬСЯ,ПРИЄДНУЙТЕСЯ,REJOINDRE,GIUNTURA,ينضم,JUNTAR,VERBINDEN,جوائن کریں۔
 Text.Connecting,Connecting...,Conectando...,Подключение...,Підключення...,De liaison...,Collegamento...,توصيل...,Conectando...,Verbinden...,منسلک ہو رہا ہے...
 Text.Lobby,Lobby,Vestíbulo,Лобби,Вестибюль,Hall d'entrée,Atrio,ردهة,Salão,Empfangshalle,لابی
@@ -71,3 +71,5 @@ Text.Player1Text,Player 1,Jugador 1,Игрок 1,Гравець 1,Joueur 1,Gioca
 Text.Player2Text,Player 2,Jugador 2,Игрок 2,Гравець 2,Joueur 2,Giocatore 2,اللاعب 2,Jogador 2,Spieler 2,کھلاڑی 2
 Text.OnlinePlay,Online Play,Juego en línea,Онлайн-игра,Онлайн гра,Jouer en ligne,Gioco in linea,اللعب على الانترنت,Jogo on-line,Online-Spiel,آن لائن کھیلیں
 Text.CreateYourRoom,Create your room,Crea tu habitación,Создайте свою комнату,Створіть свою кімнату,Créez votre chambre,Crea la tua stanza,قم بإنشاء غرفتك,Crie seu quarto,Gestalten Sie Ihr Zimmer,اپنا کمرہ بنائیں
+Text.FindARoom,FInd a room,Encuentra una habitación,НАЙТИ комнату,Знайдіть кімнату,Trouver une chambre,Trova una stanza,ابحث عن غرفة,Encontre um quarto,Finden Sie ein Zimmer,ایک کمرہ تلاش کریں۔
+Text.RoomFind,Find a room that matches your interest,Encuentra una habitación que coincida con tus intereses,"Найдите комнату, которая соответствует вашим интересам","Знайдіть кімнату, яка відповідає вашим інтересам",Trouvez une chambre qui correspond à vos intérêts,Trova una stanza che corrisponda ai tuoi interessi,ابحث عن الغرفة التي تناسب اهتماماتك,Encontre um quarto que corresponda ao seu interesse,"Finden Sie einen Raum, der Ihren Interessen entspricht",ایک کمرہ تلاش کریں جو آپ کی دلچسپی کے مطابق ہو۔
