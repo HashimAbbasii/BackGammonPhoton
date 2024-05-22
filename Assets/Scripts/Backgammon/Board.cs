@@ -106,7 +106,13 @@ namespace BackgammonNet.Core
         {
             acceptance++;
             submitBtns[no].gameObject.SetActive(false);
+            StartCoroutine(nameof(DelayForSlot));
+           
+        }
 
+        IEnumerator DelayForSlot()
+        {
+            yield return new WaitForSecondsRealtime(1f);
             GameController.Instance.canvasHandler.diceRollButton.SetActive(true);
             GameController.Instance.canvasHandler.diceResults.SetActive(true);
 
@@ -115,8 +121,6 @@ namespace BackgammonNet.Core
             if (client)
                 client.Send("CACCPT|acceptance");           // our confirmation of the willingness to start the game
         }
-
-
         IEnumerator TimeCalculator()
         {
             while (true)
