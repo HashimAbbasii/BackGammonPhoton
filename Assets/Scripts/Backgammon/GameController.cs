@@ -417,7 +417,7 @@ namespace BackgammonNet.Core
 
             if (toggle)
             {
-                while (topMenu.spacing < -270f)
+                while (topMenu.spacing < -182.16f) //-270
                 {
                     elapsedTime += Time.deltaTime;
                     percentageComplete = elapsedTime / 1.8f;
@@ -1217,32 +1217,37 @@ namespace BackgammonNet.Core
 
             if (winner == 0)
             {
+                Debug.Log("Player1 win");
+
                 YouWinPanel.gameObject.SetActive(true);
                 AudioManager.Instance.GameWon();
 
-                difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
-                LanguageManager.OnVariableChanged();
-
-                winnerTextGameOver.LocalizationKey = "Text.P1Win";
-                LanguageManager.OnVariableChanged();
-
+                if(MyGameManager.AiMode == true)
+                {
+                    difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+                    LanguageManager.OnVariableChanged();
+                }
+                
                 winnerTextYouWin.LocalizationKey = "Text.P1Win";
                 LanguageManager.OnVariableChanged();
 
             }
             else
             {
+                Debug.Log("Player2 win");
+
                 gameOverPanel.gameObject.SetActive(true);
                 AudioManager.Instance.GameLost();
 
-                difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
-                LanguageManager.OnVariableChanged();
-
+                if (MyGameManager.AiMode == true)
+                {
+                    difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+                    LanguageManager.OnVariableChanged();
+                }
+                   
                 winnerTextGameOver.LocalizationKey = "Text.P2Win";
                 LanguageManager.OnVariableChanged();
 
-                winnerTextYouWin.LocalizationKey = "Text.P2Win";
-                LanguageManager.OnVariableChanged();
             }
 
         }

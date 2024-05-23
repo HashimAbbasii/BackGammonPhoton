@@ -119,7 +119,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 1.0666667, y: 1.0666667}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -137,13 +137,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5f63323d94a10b4f9f9f9cc57e14e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  endSlotCheck: 0
   pawnColor: 0
   slotNo: 0
   pawnNo: 0
+  house: {fileID: 0}
   imprisoned: 0
   maxMoves: 0
-  whitePawn: {fileID: 21300000, guid: de86e3165a1adea42ba7fe678930aa18, type: 3}
-  blackPawn: {fileID: 21300000, guid: 42ef72c58919be64b88e10e2d7bf6940, type: 3}
+  whitePawn: {fileID: 21300000, guid: ac8fb2905491ecb498b681926a94b7ad, type: 3}
+  blackPawn: {fileID: 21300000, guid: 8bbc3fd7cea850e4e9b8ef0b644dc885, type: 3}
   movesShow: 0
 --- !u!114 &3780298561855699858
 MonoBehaviour:

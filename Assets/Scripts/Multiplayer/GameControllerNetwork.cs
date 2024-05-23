@@ -396,7 +396,7 @@ namespace BackgammonNet.Core
 
             if (toggle)
             {
-                while (topMenu.spacing < -270f)
+                while (topMenu.spacing < -250f) //-270
                 {
                     elapsedTime += Time.deltaTime;
                     percentageComplete = elapsedTime / 1.8f;
