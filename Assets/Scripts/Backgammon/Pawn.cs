@@ -12,8 +12,6 @@ namespace BackgammonNet.Core
 
     public class Pawn : MonoBehaviour
     {
-       // public List<>
-        public static Pawn instance;
         public static event Action<int> OnCompleteTurn = delegate { };
         public static event Action<bool> OnGameOver = delegate { };
 
@@ -44,10 +42,7 @@ namespace BackgammonNet.Core
         //{
 
         //}
-        private void Awake()
-        {
-            instance = this;
-        }
+        
         public void SetColorAndHouse(int color)
         {
           
@@ -108,7 +103,11 @@ namespace BackgammonNet.Core
             }
             else
             {
-                if (!imprisoned && ((imprisonedSide[0] > 0 && pawnColor == 0) || (imprisonedSide[1] > 0 && pawnColor == 1))) return;    // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
+                if (!imprisoned && ((imprisonedSide[0] > 0 && pawnColor == 0) || (imprisonedSide[1] > 0 && pawnColor == 1)))
+                {
+                    Debug.Log("Hello");
+                    return;    // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
+                }
 
                 TrySelectPawn();
             }

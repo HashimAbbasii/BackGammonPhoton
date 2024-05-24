@@ -1654,6 +1654,7 @@ MonoBehaviour:
   randomSelectPawn2: {fileID: 0}
   SelectShelterPawn: {fileID: 0}
   SelectShelterPawn2: {fileID: 0}
+  testDrag: 0
   dragEnableCheck: 0
   newTurn: 0
   sidesAgreed: 0

@@ -129,7 +129,9 @@ namespace BackgammonNet.Core
         private void Awake()
         {
            // dragEnable = false;
+
             Instance = this;
+            
             if (MyPhotonManager.instance.multiPlayerMode == true)
             {
                 diceButton.enabled=false;
@@ -1210,6 +1212,8 @@ namespace BackgammonNet.Core
         {
             Board.Instance.isGameOver = true;
             MyGameManager.AiMode = false;
+            dragEnable = false;
+            Pawn.InitializePawn();
 
             if (MyGameManager.AiMode == false)
             {
@@ -1312,7 +1316,9 @@ namespace BackgammonNet.Core
         private IEnumerator DelayedGoToMainMenu()
         {
             MyGameManager.AiMode = false;
-
+            GameController.GameOver = false;
+           GameController.dragEnable = false;
+            Pawn.InitializePawn();
             if (MyGameManager.Instance)
             {
                 MyGameManager.Instance.botDifficulty = Difficulty.None;
@@ -1561,6 +1567,7 @@ namespace BackgammonNet.Core
             set
             {
                 _score = 2 * _moves + 20 * _shelter + 10 * _kills - (_time / 30);
+                
                 if (_score < 0) _score = 0;
 
                 if (GameController.turn == 0)
