@@ -89,7 +89,8 @@ namespace BackgammonNet.Core
         public static int turn;                     // indicates whose turn it is now
         public static int[] dices = new int[2];     // recently drawn numbers
         public static bool isDublet;                // whether a doublet was thrown
-        public static bool dragEnable;              // is it possible to drag the pieces
+        public static bool dragEnable;
+        public bool testDrag;// is it possible to drag the pieces
         public bool dragEnableCheck;
         [HideInInspector] public bool newTurn;
         [HideInInspector] public int sidesAgreed;   // the current number of players agreeing to continue the game
@@ -127,6 +128,7 @@ namespace BackgammonNet.Core
 
         private void Awake()
         {
+           // dragEnable = false;
             Instance = this;
             if (MyPhotonManager.instance.multiPlayerMode == true)
             {
@@ -313,6 +315,7 @@ namespace BackgammonNet.Core
                 LoadGameScene();
 
             TryDeactivateDigit();
+            testDrag = dragEnable;
         }
 
         private void TryDeactivateDigit()

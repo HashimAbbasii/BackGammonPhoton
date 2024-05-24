@@ -81,7 +81,11 @@ namespace BackgammonNet.Core
             //if (GameControllerNetwork.turn != int.Parse(PhotonNetwork.NickName)) return;
 
 
-            if (GameController.GameOver) return;
+            if (GameController.GameOver)
+            {
+                Debug.Log("Game OVER");
+                return;
+            }
             
             if (Board.Instance.client)              // if network game
             {
