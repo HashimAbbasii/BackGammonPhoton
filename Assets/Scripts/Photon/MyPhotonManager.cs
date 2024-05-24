@@ -31,6 +31,7 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
     private Dictionary<string, RoomInfo> roomListData;
     public Dictionary<string, GameObject> roomListGameObject;
     private Dictionary<int, GameObject> playerListGameObject;
+    public TextMeshProUGUI roomCreateReference;
 
     [Header("Room List Panel")]
     public RoomEntry roomListPrefab;
@@ -42,6 +43,8 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
     public RectTransform playerListItemParent;
     public GameObject PlayButton;
     public static MyPhotonManager instance;
+    public TextMeshProUGUI referenceText;
+    public Button loginButton;
 
     //public DateTime startingTime;
     public bool multiPlayerMode = false;
@@ -148,6 +151,13 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
     }
     #region _PhotonCallBack
 
+    public void CheckLoginName(string playerName)
+    {
+        loginButton.interactable = !string.IsNullOrEmpty(playerName);
+    }
+
+
+
     public void BackFromRoomList()
     {
         if (PhotonNetwork.InLobby)
@@ -164,11 +174,32 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         {
             PhotonNetwork.LeaveRoom();
 
+            foreach (var plgo in playerListGameObject)
+            {
+                Destroy(plgo.Value);
+            }
+
+            playerListGameObject.Clear();
+            MyGameManager.Instance.playerNames.Clear();
+            //Destroy(DestroyPurpose);
+
         }
+        referenceText.text = " ".ToString();
         ActiveMyPanel(LobbyPanel.name);
     }
 
-
+    private void Update()
+    {
+        string roomName = roomNameText.text;
+        if (!string.IsNullOrEmpty(roomName))
+        {
+            loginButton.interactable = true;
+        }
+        else
+        {
+            loginButton.interactable = false;
+        }
+    }
 
     public void OnClickRoomCreate()
     {
@@ -176,7 +207,13 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         string roomName = roomNameText.text;
         if (!string.IsNullOrEmpty(roomName))
         {
+            loginButton.interactable = true;
             roomName = roomName + "|" + Random.Range(100000, 1000000);
+            //roomNameText.text=roomName;
+        }
+        else
+        {
+            loginButton.interactable=false;
         }
 
         RoomOptions roomOptions = new RoomOptions();
@@ -189,12 +226,13 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         //base.OnCreatedRoom();
         Debug.Log(PhotonNetwork.CurrentRoom.Name + "is created !");
     }
-
+    public GameObject DestroyPurpose;
     public override void OnJoinedRoom()
     {
         //base.OnCreatedRoom();
         Debug.Log(PhotonNetwork.LocalPlayer.NickName + "Room Joined");
         ActiveMyPanel(InsideRoomPanel.name);
+        
         if (playerListGameObject == null)
         {
             playerListGameObject = new Dictionary<int, GameObject>();
@@ -227,12 +265,28 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
             }
             playerListGameObject.Add(p.ActorNumber, playerListItem.gameObject);
             MyGameManager.Instance.playerNames.Add(playerListItem.playerNameText.text);
+          //  DestroyPurpose= playerListItemPrefab;
+            StartCoroutine(roomname());
 
         }
 
 
     }
-
+    IEnumerator roomname()
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        if (PhotonNetwork.InRoom)
+        {
+            var rif = PhotonNetwork.CurrentRoom.Name.Split("|");
+            string referenceTextassgn = rif[0];
+           // string referenceTextassgn = PhotonNetwork.CurrentRoom.Name;
+            referenceText.text=""+ referenceTextassgn;
+        }
+        else
+        {
+            Debug.Log("Room not created");
+        }
+    }
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         var playerListItem = Instantiate(playerListItemPrefab, playerListItemParent.transform);

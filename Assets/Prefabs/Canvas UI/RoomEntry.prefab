@@ -310,6 +310,7 @@ MonoBehaviour:
   roomNumberText: {fileID: 3654699744893237072}
   roomPlayerAmountText: {fileID: 7314785035446311655}
   joinRoomButton: {fileID: 3204235735493786856}
+  referenceName: {fileID: 0}
 --- !u!1 &2577046863585294083
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class RoomEntry : MonoBehaviour
     public TMP_Text roomNumberText;
     public TMP_Text roomPlayerAmountText;
     public Button joinRoomButton;
+    public TextMeshProUGUI referenceName;
 
     private string roomName;
 
@@ -22,6 +23,9 @@ public class RoomEntry : MonoBehaviour
             }
 
             PhotonNetwork.JoinRoom(roomName);
+
+         //   referenceName.text = GameObject.Find("RoomName").GetComponent<TextMeshProUGUI>().text;
+           // referenceName.text= PhotonNetwork.JoinRoom(roomName).ToString();
         });
     }
 
