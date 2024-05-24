@@ -224,7 +224,7 @@ namespace BackgammonNet.Core
                                 CheckShelterAndMore();
                                 CheckIfNextTurn();
 
-                                StartCoroutine(GameController.Instance.SecondDice());
+                                //StartCoroutine(GameController.Instance.SecondDice());
 
 
 
@@ -247,7 +247,7 @@ namespace BackgammonNet.Core
                                 CheckShelterStage();
                                 CheckShelterAndMore();
                                 CheckIfNextTurn();
-                                StartCoroutine(GameController.Instance.SecondDice());
+                               // StartCoroutine(GameController.Instance.SecondDice());
 
 
 
@@ -264,7 +264,7 @@ namespace BackgammonNet.Core
                                 CheckShelterStage();
                                 CheckShelterAndMore();
                                 CheckIfNextTurn();
-                                StartCoroutine(GameController.Instance.SecondDice());
+                               // StartCoroutine(GameController.Instance.SecondDice());
                             }
 
 

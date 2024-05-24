@@ -20,13 +20,6 @@ namespace BackgammonNet.Core
 
     public class GameController : MonoBehaviour
     {
-        [Header("Winner")]
-        public LocalizedTextTMP winnerTextGameOver;
-        public LocalizedTextTMP winnerTextYouWin;
-        public GameObject winnerGameObjectGameOver;
-        public GameObject winnerGameObjectYouWin;
-
-
         [Header("PlayerVsPlayerScore GameObjects")]
         public GameObject playerVsplayerScorePausePanel;
         public GameObject playerVsplayerScoreGameOverPanel;
@@ -197,9 +190,6 @@ namespace BackgammonNet.Core
                 playerVsplayerScoreGameOverPanel.gameObject.SetActive(true);
                 playerVsplayerScoreYouWinPanel.gameObject.SetActive(true);
 
-                winnerGameObjectGameOver.gameObject.SetActive(true);
-                winnerGameObjectYouWin.gameObject.SetActive(true);
-
                 playerHeadingPausePanel.gameObject.SetActive(true);
                 playerHeadingGameOverPanel.gameObject.SetActive(true);
                 playerHeadingYouWinPanel.gameObject.SetActive(true);
@@ -221,9 +211,6 @@ namespace BackgammonNet.Core
                 playerVsplayerScorePausePanel.gameObject.SetActive(false);
                 playerVsplayerScoreGameOverPanel.gameObject.SetActive(false);
                 playerVsplayerScoreYouWinPanel.gameObject.SetActive(false);
-
-                winnerGameObjectGameOver.gameObject.SetActive(false);
-                winnerGameObjectYouWin.gameObject.SetActive(false);
 
                 playerScorePausePanel.gameObject.SetActive(true);
                 playeScoreGameOverPanel.gameObject.SetActive(true);
@@ -570,6 +557,7 @@ namespace BackgammonNet.Core
             yield return new WaitForSecondsRealtime(1);
             if (!CanMoveAi(2))
             {
+                Debug.LogWarning("Tera issue hain");
                 StartCoroutine(ChangeTurn());
 
             }
@@ -1041,9 +1029,18 @@ namespace BackgammonNet.Core
                 }
                 else
                 {
-                   
-                       
+                    if (topEPawns.Count == 0)
+                    {
+                        randomSelectPawn2.CheckShelterStage();
+                        randomSelectPawn2.CheckShelterAndMore();
+                        randomSelectPawn.CheckIfNextTurn();
+                    }
+                    else
+                    {
                         SelectRandomEnemy2();
+
+                    }
+                       
                     
                 }
             }
@@ -1138,8 +1135,11 @@ namespace BackgammonNet.Core
 
        
 
-            if (!CanMove(2))
+            if (!CanMove(2) && GameController.turn == 0)
+            {
                 StartCoroutine(ChangeTurn());
+
+            }
         }
 
         private IEnumerator ChangeTurn()
@@ -1222,6 +1222,7 @@ namespace BackgammonNet.Core
                 YouWinPanel.gameObject.SetActive(true);
                 AudioManager.Instance.GameWon();
 
+<<<<<<< Updated upstream
                 if(MyGameManager.AiMode == true)
                 {
                     difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
@@ -1229,6 +1230,9 @@ namespace BackgammonNet.Core
                 }
                 
                 winnerTextYouWin.LocalizationKey = "Text.P1Win";
+=======
+                difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+>>>>>>> Stashed changes
                 LanguageManager.OnVariableChanged();
 
             }
@@ -1239,6 +1243,7 @@ namespace BackgammonNet.Core
                 gameOverPanel.gameObject.SetActive(true);
                 AudioManager.Instance.GameLost();
 
+<<<<<<< Updated upstream
                 if (MyGameManager.AiMode == true)
                 {
                     difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
@@ -1248,6 +1253,10 @@ namespace BackgammonNet.Core
                 winnerTextGameOver.LocalizationKey = "Text.P2Win";
                 LanguageManager.OnVariableChanged();
 
+=======
+                difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+                LanguageManager.OnVariableChanged();
+>>>>>>> Stashed changes
             }
 
         }
