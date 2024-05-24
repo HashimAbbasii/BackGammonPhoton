@@ -104,6 +104,7 @@ namespace BackgammonNet.Core
 
         private void Accept(int no)
         {
+            
             acceptance++;
             submitBtns[no].gameObject.SetActive(false);
             StartCoroutine(nameof(DelayForSlot));
@@ -112,7 +113,7 @@ namespace BackgammonNet.Core
 
         IEnumerator DelayForSlot()
         {
-            yield return new WaitForSecondsRealtime(1f);
+            yield return new WaitForSecondsRealtime(1.5f);
             GameController.Instance.canvasHandler.diceRollButton.SetActive(true);
             GameController.Instance.canvasHandler.diceResults.SetActive(true);
 
