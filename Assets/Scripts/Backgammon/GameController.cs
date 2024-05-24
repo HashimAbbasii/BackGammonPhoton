@@ -20,6 +20,12 @@ namespace BackgammonNet.Core
 
     public class GameController : MonoBehaviour
     {
+        [Header("Winner")]
+        public LocalizedTextTMP winnerTextGameOver;
+        public LocalizedTextTMP winnerTextYouWin;
+        public GameObject winnerGameObjectGameOver;
+        public GameObject winnerGameObjectYouWin;
+
         [Header("PlayerVsPlayerScore GameObjects")]
         public GameObject playerVsplayerScorePausePanel;
         public GameObject playerVsplayerScoreGameOverPanel;
@@ -66,10 +72,6 @@ namespace BackgammonNet.Core
         public LocalizedTextTMP difficultyTextPausePanel;
 
         
-
-
-
-
 
         [Header("Panels")]
         public GameObject GameOverPanel;
@@ -1222,7 +1224,6 @@ namespace BackgammonNet.Core
                 YouWinPanel.gameObject.SetActive(true);
                 AudioManager.Instance.GameWon();
 
-<<<<<<< Updated upstream
                 if(MyGameManager.AiMode == true)
                 {
                     difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
@@ -1230,9 +1231,7 @@ namespace BackgammonNet.Core
                 }
                 
                 winnerTextYouWin.LocalizationKey = "Text.P1Win";
-=======
-                difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
->>>>>>> Stashed changes
+
                 LanguageManager.OnVariableChanged();
 
             }
@@ -1243,7 +1242,6 @@ namespace BackgammonNet.Core
                 gameOverPanel.gameObject.SetActive(true);
                 AudioManager.Instance.GameLost();
 
-<<<<<<< Updated upstream
                 if (MyGameManager.AiMode == true)
                 {
                     difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
@@ -1253,10 +1251,6 @@ namespace BackgammonNet.Core
                 winnerTextGameOver.LocalizationKey = "Text.P2Win";
                 LanguageManager.OnVariableChanged();
 
-=======
-                difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
-                LanguageManager.OnVariableChanged();
->>>>>>> Stashed changes
             }
 
         }
