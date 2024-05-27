@@ -1357,6 +1357,7 @@ namespace BackgammonNet.Core
             yield return new WaitForSeconds(0.2f);
 
             LobbyManager.Instance.RemoveNetworkParts();
+            MyGameManager.Instance.SceneShiftPanel();
             SceneManager.LoadScene(0);
         }
 

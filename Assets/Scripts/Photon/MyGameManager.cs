@@ -1,3 +1,4 @@
+using BackgammonNet.Lobby;
 using Photon.Pun;
 using System;
 using System.Collections;
@@ -60,11 +61,15 @@ public class MyGameManager : MonoBehaviour
         }
 
     }
-
-    private void Start()
+    private GameObject menu;
+    public void SceneShiftPanel()
     {
-
-
+        StartCoroutine(MenuMangerPanel());
+    }
+    IEnumerator MenuMangerPanel()
+    {
+        yield return null;
+        LobbyManager.Instance.SwitchMenuView(true, false, false, false, false);
     }
 
 
