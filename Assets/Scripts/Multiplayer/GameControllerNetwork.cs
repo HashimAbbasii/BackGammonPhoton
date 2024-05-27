@@ -802,6 +802,7 @@ namespace BackgammonNet.Core
                 }
             }
             SceneManager.LoadScene(0);
+            LobbyManager.Instance.SwitchMenuView(true, false, false, false, false);
 
             // Load the main menu scene via RPC
             //photonView.RPC(nameof(LoadScene), RpcTarget.AllBuffered);
