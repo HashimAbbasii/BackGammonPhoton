@@ -1157,6 +1157,10 @@ namespace BackgammonNet.Core
                 StartCoroutine(ChangeTurn());
 
             }
+            else if(!CanMove(2) && GameController.turn == 1)
+            {
+                StartCoroutine(ChangeTurn());
+            }
         }
 
         private IEnumerator ChangeTurn()
