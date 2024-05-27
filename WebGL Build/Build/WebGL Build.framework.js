@@ -1165,26 +1165,26 @@ var tempDouble;
 var tempI64;
 
 var ASM_CONSTS = {
- 4219528: function() {
+ 4219672: function() {
   Module["emscripten_get_now_backup"] = performance.now;
  },
- 4219583: function($0) {
+ 4219727: function($0) {
   performance.now = function() {
    return $0;
   };
  },
- 4219631: function($0) {
+ 4219775: function($0) {
   performance.now = function() {
    return $0;
   };
  },
- 4219679: function() {
+ 4219823: function() {
   performance.now = Module["emscripten_get_now_backup"];
  },
- 4219734: function() {
+ 4219878: function() {
   return Module.webglContextAttributes.premultipliedAlpha;
  },
- 4219795: function() {
+ 4219939: function() {
   return Module.webglContextAttributes.preserveDrawingBuffer;
  }
 };
@@ -8839,9 +8839,8 @@ var Browser = {
     h = Math.round(w / Module["forcedAspectRatio"]);
    }
   }
-  var dpr = window.hbxDpr;
   if ((document["fullscreenElement"] || document["mozFullScreenElement"] || document["msFullscreenElement"] || document["webkitFullscreenElement"] || document["webkitCurrentFullScreenElement"]) === canvas.parentNode && typeof screen != "undefined") {
-   var factor = Math.min((screen.width*dpr) / w, (screen.height*dpr) / h);
+   var factor = Math.min(screen.width / w, screen.height / h);
    w = Math.round(w * factor);
    h = Math.round(h * factor);
   }
@@ -8856,8 +8855,13 @@ var Browser = {
    if (canvas.width != wNative) canvas.width = wNative;
    if (canvas.height != hNative) canvas.height = hNative;
    if (typeof canvas.style != "undefined") {
-     if(!canvas.style.getPropertyValue("width").includes("%"))canvas.style.setProperty("width", (w/dpr) + "px", "important");
-     if(!canvas.style.getPropertyValue("height").includes("%"))canvas.style.setProperty("height", (h/dpr) + "px", "important");
+    if (w != wNative || h != hNative) {
+     canvas.style.setProperty("width", w + "px", "important");
+     canvas.style.setProperty("height", h + "px", "important");
+    } else {
+     canvas.style.removeProperty("width");
+     canvas.style.removeProperty("height");
+    }
    }
   }
  },
