@@ -755,7 +755,7 @@ namespace BackgammonNet.Core
 
                 if (GameController.turn == 1 && MyGameManager.AiMode == true)
                 {
-                    GameController.Instance.playerScores[1].Kills++;
+                    //GameController.Instance.playerScores[1].Kills++;
                 }
             }
             else
