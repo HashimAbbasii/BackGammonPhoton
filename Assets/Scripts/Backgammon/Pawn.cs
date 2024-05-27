@@ -818,7 +818,7 @@ namespace BackgammonNet.Core
 
         private void PlaceInShelter()
         {
-            GameController.Instance.playerScores[0].Shelter++;
+            //GameController.Instance.playerScores[0].Shelter++;
             //...........it Check the How many pawn in the House.............//
             house.transform.GetChild(rescuedPawns++).gameObject.SetActive(true);
             //SoundManager.GetSoundEffect(0, 0.3f);
@@ -839,7 +839,7 @@ namespace BackgammonNet.Core
                 {
                     GameController.Instance.playerScores[0].Shelter++;
                 }
-                if (GameController.turn == 0 && MyGameManager.AiMode == true)
+                if (GameController.turn == 1 && MyGameManager.AiMode == true)
                 {
                     GameController.Instance.playerScores[1].Shelter++;
                 }
@@ -851,7 +851,7 @@ namespace BackgammonNet.Core
                 {
                     GameController.Instance.playerScores[0].Shelter++;
                 }
-                if (GameController.turn == 0 )
+                if (GameController.turn == 1 )
                 {
                     GameController.Instance.playerScores[1].Shelter++;
                 }
@@ -867,7 +867,7 @@ namespace BackgammonNet.Core
             //...........it Check the How many pawn in the House.............//
             house.transform.GetChild(rescuedPawns++).gameObject.SetActive(true);
            
-            GameController.Instance.playerScores[1].Shelter++;
+            //GameController.Instance.playerScores[1].Shelter++;
             //SoundManager.GetSoundEffect(0, 0.3f);
 
             if (rescuedPawns == 15)
