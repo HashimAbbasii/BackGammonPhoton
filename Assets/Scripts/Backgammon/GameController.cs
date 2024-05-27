@@ -1256,6 +1256,10 @@ namespace BackgammonNet.Core
                     difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
                     LanguageManager.OnVariableChanged();
                 }
+                else
+                {
+                    winnerGameObjectYouWin.gameObject.SetActive(true);
+                }
                 
                 winnerTextYouWin.LocalizationKey = "Text.P1Win";
 
@@ -1273,6 +1277,10 @@ namespace BackgammonNet.Core
                 {
                     difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
                     LanguageManager.OnVariableChanged();
+                }
+                else
+                {
+                    winnerGameObjectGameOver.gameObject.SetActive(true);
                 }
                    
                 winnerTextGameOver.LocalizationKey = "Text.P2Win";
