@@ -1666,9 +1666,6 @@ MonoBehaviour:
   gameOverPanel: {fileID: 941749382}
   newGameInfoPanel: {fileID: 936457536}
   diceButton: {fileID: 451497672}
-  turnImages:
-  - {fileID: 1072847947}
-  - {fileID: 257620976}
   highlightImages:
   - {fileID: 1641052331}
   - {fileID: 1029264200}
@@ -11309,8 +11306,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.8241, y: -1.5057}
-  m_SizeDelta: {x: 130.342, y: 110.7972}
+  m_AnchoredPosition: {x: 1.1981, y: -1.5057}
+  m_SizeDelta: {x: 129.09, y: 110.7972}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1029264200
 MonoBehaviour:
@@ -17145,8 +17142,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.7175, y: 2.1206}
-  m_SizeDelta: {x: 132.247, y: 137.3217}
+  m_AnchoredPosition: {x: 0.055599213, y: 2.1206}
+  m_SizeDelta: {x: 128.7007, y: 137.3217}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1641052331
 MonoBehaviour:

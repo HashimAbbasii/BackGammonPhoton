@@ -85,7 +85,8 @@ namespace BackgammonNet.Core
         [SerializeField] private GameObject gameOverPanel;
         [SerializeField] private GameObject newGameInfoPanel;
         [SerializeField] private Button diceButton;
-        [SerializeField] private Image[] turnImages;
+       // [SerializeField] private Image[] turnImages;
+        [SerializeField] private Image[] highlightImages;
         [SerializeField] private Text[] diceTexts;
 
 
@@ -138,10 +139,18 @@ namespace BackgammonNet.Core
 
             turn = 0;
 
-            turnImages[0].gameObject.SetActive(turn == 0);
-            turnImages[1].gameObject.SetActive(1 - turn == 0);
+            //turnImages[0].gameObject.SetActive(turn == 0);
+            //turnImages[1].gameObject.SetActive(1 - turn == 0);
 
-            
+            highlightImages[0].gameObject.SetActive(turn == 0);
+            highlightImages[1].gameObject.SetActive(turn == 0);
+            highlightImages[2].gameObject.SetActive(turn == 0);
+
+            highlightImages[3].gameObject.SetActive(1 - turn == 0);
+            highlightImages[4].gameObject.SetActive(1 - turn == 0);
+            highlightImages[5].gameObject.SetActive(1 - turn == 0);
+
+
         }
 
         private void Start()
@@ -592,8 +601,16 @@ namespace BackgammonNet.Core
 
             turn = 1 - turn;                                                // turn change
 
-            turnImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
-            turnImages[1].gameObject.SetActive(isWhiteColor == 0);
+            //turnImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
+            //turnImages[1].gameObject.SetActive(isWhiteColor == 0);
+
+            highlightImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
+            highlightImages[1].gameObject.SetActive(1 - isWhiteColor == 0);
+            highlightImages[2].gameObject.SetActive(1 - isWhiteColor == 0);
+
+            highlightImages[3].gameObject.SetActive(isWhiteColor == 0);
+            highlightImages[4].gameObject.SetActive(isWhiteColor == 0);
+            highlightImages[5].gameObject.SetActive(isWhiteColor == 0);
 
             if (YourTurn())
             {
