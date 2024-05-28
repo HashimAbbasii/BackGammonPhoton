@@ -145,6 +145,7 @@ namespace BackgammonNet.Core
                     {
                         Debug.Log("Place JAIL 1");
                         GameController.Instance.playerScores[1].Kills++;
+                        GameController.Instance.playerScores[1].Moves++;
                         //Debug.Log("JAIL KAR DOOH");
                         var prisonPawn = prisonSlot.GetTopPawn(true);
 
@@ -213,6 +214,8 @@ namespace BackgammonNet.Core
 
 
                                 GameController.Instance.playerScores[1].Kills++;
+                                GameController.Instance.playerScores[1].Moves++;
+
                                 //Debug.Log("JAIL KAR DOOH");
                                 var prisonSlot1 = prisonSlot.GetTopPawn(true);
 
@@ -258,6 +261,7 @@ namespace BackgammonNet.Core
                             else if (Slot.slots[25 + sign * GameController.dices[1]].Height() == 0)
                             {
                                 Debug.Log("Height Equalt to zero");
+                                GameController.Instance.playerScores[1].Moves++;
                                 var prisonPawn = prisonSlot.GetTopPawn(true);
                                 int slot0 = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
                                 Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);

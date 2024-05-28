@@ -1006,6 +1006,7 @@ namespace BackgammonNet.Core
                       
                         // var TopSelectOff= randomSelectPawn2.slotNo;
                         Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
+                        GameController.Instance.playerScores[1].Moves++;
                         
                         Slot.slots[slot1].GetTopPawn(false).PlaceJail();
                         Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
