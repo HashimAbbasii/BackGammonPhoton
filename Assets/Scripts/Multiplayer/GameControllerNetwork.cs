@@ -15,6 +15,7 @@ using Photon.Realtime;
 using System.ComponentModel;
 using TMPro;
 
+
 namespace BackgammonNet.Core
 {
     // Mechanisms of generating two random numbers and checking the possibility of making a move.
@@ -150,7 +151,7 @@ namespace BackgammonNet.Core
             highlightImages[4].gameObject.SetActive(1 - turn == 0);
             highlightImages[5].gameObject.SetActive(1 - turn == 0);
 
-
+            
         }
 
         private void Start()
@@ -828,7 +829,14 @@ namespace BackgammonNet.Core
             LanguageManager.OnVariableChanged();
 
         }
+        public override void OnDisconnected(DisconnectCause cause)
+        {
+            Debug.Log("Disconnected from Photon: " + cause.ToString());
 
+            // Load the main panel scene when disconnected
+            SceneManager.LoadScene(0);
+            MyGameManager.Instance.SceneShiftPanel();
+        }
         public override void OnLeftRoom()
         {
             //YouWinPanel.gameObject.SetActive(true);
