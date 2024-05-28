@@ -6,9 +6,24 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Assets.SimpleLocalization.Scripts;
 using BackgammonNet.Core;
+using System.Runtime.InteropServices;
+using TMPro;
 
 public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
+
+    [Header("TestTexts")]
+    public TextMeshProUGUI testtext;
+    public TextMeshProUGUI testtext2;
+    public TextMeshProUGUI testtext3;
+
+
+
+    [Header("WebGL ScalingElements")]
+    public GameObject LoadingPanel;
+    public GameObject keysParent;
+    public Image keyboardPanelImg;
+    public GameObject keyboardCanvas;
 
 
 
@@ -47,6 +62,23 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
     public static LobbyCanvas Instance { get; set; }
 
+
+#if UNITY_WEBGL
+
+    [DllImport("__Internal")]
+    private static extern void closewindow();
+
+
+
+    public void QuitAndClose()
+    {
+        Application.Quit();
+        closewindow();
+    }
+
+#endif
+
+
     private void Awake()
     {
         Instance = this;
@@ -60,6 +92,135 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
         }
 
     }
+
+    private void Update()
+    {
+        StartCoroutine(RotateCameraAndCanvas());
+    }
+
+
+    public IEnumerator RotateCameraAndCanvas()
+    {
+        float ratio = (Screen.width * 1f / Screen.height);
+        testtext.text = ratio.ToString();
+
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            var width = Screen.width;
+            var height = Screen.height;
+
+            if (width / height < 1)
+            {
+                ratio = (Screen.width * 1f / Screen.height);
+            }
+
+
+
+
+            if (IsRunningOnAndroid() || IsRunningOniOS())
+            {
+              //  keyboardCanvas.gameObject.SetActive(true);
+
+                if (ratio < 1)  //_ratio  Portrait Android/iOS
+                {
+
+                    //RectTransform nextbuttonRectTransform = nextBtn.GetComponent<RectTransform>();         //Next, Random, TimeText Set in Ship Placement Scene
+                    //RectTransform randombuttonRectTransform = randomBtn.GetComponent<RectTransform>();
+                    //RectTransform enemyShipTextRectTransform = enemyShipText.GetComponent<RectTransform>();
+                    //RectTransform playerShipRectTransform = playerShipText.GetComponent<RectTransform>();
+                    //RectTransform topTextRectTransform = topTextLocalization.GetComponent<RectTransform>();
+
+                    //nextbuttonRectTransform.anchoredPosition = new Vector3(-137f, 225f, 0f);
+                    //randombuttonRectTransform.anchoredPosition = new Vector3(134f, 225f, 0f);
+
+                    testtext2.text = " Android | iOS, Portrait ";
+
+
+                    RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
+                    keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);
+                    keysParentRectTransform.localScale = new Vector3(1.06f, 1.42f, 0.71715f);
+                    keysParentRectTransform.localPosition = new Vector2(0.70713f, 110f);
+
+
+                    RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
+                    loadingPanelRectTransform.sizeDelta = new Vector3(1283f, 912.1758f);
+
+                    keyboardPanelImg.gameObject.SetActive(false);
+
+
+
+
+
+                    //playerShipRectTransform.anchoredPosition = new Vector3(-622f, -476f, 0f);     // Positions for WebGl portrait Ship Placement Scene
+                    //playerShipRectTransform.sizeDelta = new Vector2(365f, 70f);
+                    //enemyShipTextRectTransform.anchoredPosition = new Vector3(777.9999f, -467f, 0f);
+                    //enemyShipTextRectTransform.sizeDelta = new Vector2(375f, 70f);
+                }
+
+                else if( ratio >=2) //_ratio  LAndScape Android/iOS
+                {
+                    testtext2.text = " Android | iOS, LandScape ";
+
+                    RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
+                    keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);
+                    keysParentRectTransform.localScale = new Vector3(0.71715f, 0.71715f, 0.71715f);
+                    keysParentRectTransform.localPosition = new Vector2(0.70713f, -0.14143f);
+
+
+                    RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
+                    loadingPanelRectTransform.sizeDelta = new Vector3(1949.1f,1385.721f);
+
+                    keyboardPanelImg.gameObject.SetActive(true);
+
+
+                }
+
+            }
+
+            
+
+            else if(ratio >= 1.55) // WebGL PC
+            {
+                testtext2.text = "WebGL PC";
+
+                RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
+                keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);
+                keysParentRectTransform.localScale = new Vector3(0.71715f, 0.71715f, 0.71715f);
+                keysParentRectTransform.localPosition = new Vector2(0.70713f, -0.14143f);
+
+
+                RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
+                loadingPanelRectTransform.sizeDelta = new Vector3(1949.1f, 1385.721f);
+
+                keyboardCanvas.gameObject.SetActive(false);
+
+
+
+            }
+
+        }
+
+
+        //else
+        //{
+        //    ratio = (Screen.width * 1f / Screen.height);
+        //    var width = Screen.width;
+        //    var height = Screen.height;
+
+        //    if (width / height < 1)
+        //    {
+        //        ratio = (Screen.width * 1f / Screen.height);
+        //        ratio = 1 / ratio;
+        //    }
+
+        //    float _height = (142.147f * (ratio * ratio)) - (761.729f * ratio) + 2054.87f;
+        //}
+
+
+        yield return null;
+    }
+
+
 
     public bool IsRunningOnAndroid()
     {
@@ -139,6 +300,10 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public void onCancelClick()
     {
         MyPhotonManager.instance.onCancelClick();
+
+        MyPhotonManager.instance.userNameText.text = "";
+        MyPhotonManager.instance.roomNameText.text = "";
+        TNVirtualKeyboard.instance.words = "";
     }
 
     public void BackFromRoomList()

@@ -16,9 +16,9 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
     private PhotonView _photonView;    
 
     [Header("Text")]
-    public TMP_InputField userNameText;
+    public InputField userNameText;
 
-    public TMP_InputField roomNameText;
+    public InputField roomNameText;
     public TMP_InputField maxPlayer;
 
     [Header("Panel")]
@@ -74,6 +74,9 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
 
     }
 
+
+    
+
     public override void OnRoomListUpdate(List<RoomInfo> roomList)
     {
         ClearRoomList();
@@ -128,18 +131,14 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
 
     public void OnLoginClick()
     {
-        string name = userNameText.text;
-        if (!string.IsNullOrEmpty(name))
-        {
+       
             PhotonNetwork.LocalPlayer.NickName = name;
             PhotonNetwork.ConnectUsingSettings();
             ActiveMyPanel(ConnectingPanel.name);
+        roomNameText.text = "";
+        TNVirtualKeyboard.instance.words = "";
 
-        }
-        else
-        {
-            Debug.Log("Empty Name");
-        }
+
     }
     public void RoomJoinFromList(string roomName)
     {
@@ -187,7 +186,7 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         referenceText.text = " ".ToString();
         ActiveMyPanel(LobbyPanel.name);
     }
-
+    public Button joinLobbyButton;
     private void Update()
     {
         string roomName = roomNameText.text;
@@ -199,6 +198,26 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         {
             loginButton.interactable = false;
         }
+
+
+        //.................Work For Username..............//
+
+        string name = userNameText.text;
+        if (!string.IsNullOrEmpty(name))
+        {
+            PhotonNetwork.LocalPlayer.NickName = name;
+            joinLobbyButton.interactable = true;
+
+        }
+        else
+        {
+            joinLobbyButton.interactable = false;
+            Debug.Log("Empty Name");
+        }
+
+
+
+
     }
 
     public void OnClickRoomCreate()
