@@ -914,7 +914,8 @@ namespace BackgammonNet.Core
                     {
                         GameController.Instance.playerScores[1].Kills++;
                         //.......JAIL KAR Dooh...........//
-                      
+                        GameController.Instance.playerScores[1].Moves++;
+
                         Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
                         Slot.slots[slot0].GetTopPawn(false).PlaceJail();
                         Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
