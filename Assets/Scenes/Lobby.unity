@@ -245,6 +245,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1245191229}
+        m_TargetAssemblyTypeName: MyPhotonManager, Assembly-CSharp
+        m_MethodName: CLearInputFields
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &43645648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8147,6 +8159,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1723927815}
+        m_TargetAssemblyTypeName: TNVirtualKeyboard, Assembly-CSharp
+        m_MethodName: HideVirtualKeyboard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1220617287
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8309,6 +8333,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865c02d7d2ba56d4ca0ddb4082fa7b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lobbyPanelInputField: {fileID: 488062781}
+  createRoomPanelInputField: {fileID: 2079159812}
   userNameText: {fileID: 488062781}
   roomNameText: {fileID: 2079159812}
   maxPlayer: {fileID: 1693616912}
@@ -9157,6 +9183,30 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1723927815}
+        m_TargetAssemblyTypeName: TNVirtualKeyboard, Assembly-CSharp
+        m_MethodName: HideVirtualKeyboard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1245191229}
+        m_TargetAssemblyTypeName: MyPhotonManager, Assembly-CSharp
+        m_MethodName: CLearInputFields
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10806,6 +10856,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a76a1f445153fed4a9fb3133d90e2ec3, type: 3}
+--- !u!114 &1723927815 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4261787784887655890, guid: a76a1f445153fed4a9fb3133d90e2ec3, type: 3}
+  m_PrefabInstance: {fileID: 1723927814}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08ea2faf7fd1178438278b49f52ff57f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1740717374
 GameObject:
   m_ObjectHideFlags: 0
@@ -11602,6 +11663,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1245191229}
+        m_TargetAssemblyTypeName: MyPhotonManager, Assembly-CSharp
+        m_MethodName: CLearInputFields
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1880191263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12201,6 +12274,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1723927815}
+        m_TargetAssemblyTypeName: TNVirtualKeyboard, Assembly-CSharp
+        m_MethodName: HideVirtualKeyboard
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15438,7 +15523,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -16172,7 +16257,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -0.000038146973}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1868022906464409604
 MonoBehaviour:
@@ -16879,9 +16964,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -17, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!224 &2197778351267613820
 RectTransform:
@@ -19970,6 +20055,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1723927815}
+        m_TargetAssemblyTypeName: TNVirtualKeyboard, Assembly-CSharp
+        m_MethodName: HideVirtualKeyboard
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1245191229}
+        m_TargetAssemblyTypeName: MyPhotonManager, Assembly-CSharp
+        m_MethodName: CLearInputFields
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!222 &3838739985489493686
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -20772,7 +20881,7 @@ MonoBehaviour:
   m_fontSizeMax: 18
   m_fontStyle: 2
   m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -21278,7 +21387,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3957825309514759272
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21914,7 +22023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3957825310001413075
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22058,7 +22167,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -22143,7 +22252,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -80}
+  m_AnchoredPosition: {x: 0, y: -28}
   m_SizeDelta: {x: 493.1459, y: 97.0416}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &3957825310064088498
@@ -22260,7 +22369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3957825310064088501
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22785,8 +22894,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -241.55382, y: -171}
-  m_SizeDelta: {x: 591.5021, y: 43.4725}
+  m_AnchoredPosition: {x: -174, y: -147}
+  m_SizeDelta: {x: 725.7426, y: 53.3385}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3971187354632395790
 CanvasRenderer:
@@ -25593,7 +25702,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6008980531115472801}
   m_HandleRect: {fileID: 1487529871309179972}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -31956,6 +32065,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1645501048718078534}
         m_TargetAssemblyTypeName: LobbyCanvas, Assembly-CSharp
         m_MethodName: DisconnectAndReturn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1245191229}
+        m_TargetAssemblyTypeName: MyPhotonManager, Assembly-CSharp
+        m_MethodName: CLearInputFields
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

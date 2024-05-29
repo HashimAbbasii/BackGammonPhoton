@@ -9,7 +9,7 @@ public class RoomEntry : MonoBehaviour
     public TMP_Text roomNumberText;
     public TMP_Text roomPlayerAmountText;
     public Button joinRoomButton;
-    public TextMeshProUGUI referenceName;
+    public TMP_Text playerName;
 
     private string roomName;
 

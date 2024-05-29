@@ -13,6 +13,12 @@ using AYellowpaper.SerializedCollections;
 
 public class MyPhotonManager : MonoBehaviourPunCallbacks
 {
+    [Header("InputFields")]
+    public InputField lobbyPanelInputField;
+    public InputField createRoomPanelInputField;
+
+
+
     private PhotonView _photonView;    
 
     [Header("Text")]
@@ -119,6 +125,7 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
             var rif = roomitem.Name.Split("|");
             roomListItem.roomNameText.text = rif[0];
             roomListItem.roomNumberText.text = rif[1];
+            roomListItem.playerName.text = rif[2];
             roomListItem.roomPlayerAmountText.text = roomitem.PlayerCount + "/" + roomitem.MaxPlayers;
             roomListItem.joinRoomButton.onClick.AddListener(() => RoomJoinFromList(roomitem.Name));
             roomListGameObject.Add(roomitem.Name, roomListItem.gameObject);
@@ -227,7 +234,7 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         if (!string.IsNullOrEmpty(roomName))
         {
             loginButton.interactable = true;
-            roomName = roomName + "|" + Random.Range(100000, 1000000);
+            roomName = roomName + "|" + Random.Range(100000, 1000000) + "|" + userNameText.text;
             //roomNameText.text=roomName;
         }
         else
@@ -437,5 +444,12 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
     public void MultiplayerModeRPC()
     {
         multiPlayerMode = true;
+    }
+
+
+    public void CLearInputFields()
+    {
+        lobbyPanelInputField.text = "";
+        createRoomPanelInputField.text = "";
     }
 }
