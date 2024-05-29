@@ -11,6 +11,7 @@ using TMPro;
 
 public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
+    public bool OnPointerDownBool = false;
 
     [Header("TestTexts")]
     public TextMeshProUGUI testtext;
@@ -23,6 +24,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public GameObject LoadingPanel;
     public GameObject keysParent;
     public Image keyboardPanelImg;
+    public Image keyboardPanelImg2;
     public GameObject keyboardCanvas;
 
 
@@ -68,7 +70,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     [DllImport("__Internal")]
     private static extern void closewindow();
 
-
+   
 
     public void QuitAndClose()
     {
@@ -77,6 +79,11 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     }
 
 #endif
+
+    public void OnInputFieldClicked()
+    {
+        OnPointerDownBool = true;
+    }
 
 
     private void Awake()
@@ -115,7 +122,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
             }
 
 
-
+#if UNITY_WEBGL
 
             if (IsRunningOnAndroid() || IsRunningOniOS())
             {
@@ -146,6 +153,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     loadingPanelRectTransform.sizeDelta = new Vector3(1283f, 912.1758f);
 
                     keyboardPanelImg.gameObject.SetActive(false);
+                    keyboardPanelImg2.gameObject.SetActive(false);
 
 
 
@@ -170,7 +178,12 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
                     loadingPanelRectTransform.sizeDelta = new Vector3(1949.1f,1385.721f);
 
-                    keyboardPanelImg.gameObject.SetActive(true);
+                    if(OnPointerDownBool)
+                    {
+                        keyboardPanelImg.gameObject.SetActive(true);
+                        keyboardPanelImg2.gameObject.SetActive(true);
+                    }
+                    
 
 
                 }
@@ -197,6 +210,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 
             }
+
+#endif
 
         }
 

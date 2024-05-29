@@ -2763,6 +2763,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1645501048718078534}
+          m_TargetAssemblyTypeName: LobbyCanvas, Assembly-CSharp
+          m_MethodName: OnInputFieldClicked
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &488062785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4512,7 +4524,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -434, y: 0}
+  m_AnchoredPosition: {x: -302, y: 278.00003}
   m_SizeDelta: {x: 322.2126, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &715889399
@@ -7872,6 +7884,7 @@ RectTransform:
   - {fileID: 1755873786}
   - {fileID: 7039829257576332289}
   - {fileID: 3140860946098799499}
+  - {fileID: 1869118891}
   m_Father: {fileID: 1266451092}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8088,7 +8101,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -83}
+  m_AnchoredPosition: {x: 130.00006, y: 177}
   m_SizeDelta: {x: 300, y: 85}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1220617286
@@ -11343,6 +11356,82 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1869118890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1869118891}
+  - component: {fileID: 1869118893}
+  - component: {fileID: 1869118892}
+  m_Layer: 5
+  m_Name: KeyboardBgImg
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1869118891
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869118890}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1206530840}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 562.55}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1869118892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869118890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.80784315}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1869118893
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869118890}
+  m_CullTransparentMesh: 1
 --- !u!1 &1870186941
 GameObject:
   m_ObjectHideFlags: 0
@@ -12440,7 +12529,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 130.00006, y: 278.00003}
   m_SizeDelta: {x: 527.8025, y: 55.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2079159814
@@ -12493,6 +12582,18 @@ MonoBehaviour:
         - m_Target: {fileID: 2079159816}
           m_TargetAssemblyTypeName: vkEnabler, Assembly-CSharp
           m_MethodName: ShowVirtualKeyboard
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1645501048718078534}
+          m_TargetAssemblyTypeName: LobbyCanvas, Assembly-CSharp
+          m_MethodName: OnInputFieldClicked
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -15830,12 +15931,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58fbee9377b5f8146b4d550a9ff31001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  OnPointerDownBool: 0
   testtext: {fileID: 3957825309412422649}
   testtext2: {fileID: 3957825310064088498}
   testtext3: {fileID: 3957825310001413072}
   LoadingPanel: {fileID: 484043918986818149}
   keysParent: {fileID: 142932768}
   keyboardPanelImg: {fileID: 1761525219}
+  keyboardPanelImg2: {fileID: 1869118892}
   keyboardCanvas: {fileID: 1901070874}
   loginButton: {fileID: 1977910734}
   difficulty: 
@@ -22140,7 +22243,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: wwfqwfqf
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -22167,7 +22270,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -22252,7 +22355,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -28}
+  m_AnchoredPosition: {x: 0, y: -104}
   m_SizeDelta: {x: 493.1459, y: 97.0416}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &3957825310064088498
@@ -22895,7 +22998,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: -174, y: -147}
-  m_SizeDelta: {x: 725.7426, y: 53.3385}
+  m_SizeDelta: {x: 739.2109, y: 54.3284}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &3971187354632395790
 CanvasRenderer:
@@ -25702,7 +25805,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6008980531115472801}
   m_HandleRect: {fileID: 1487529871309179972}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -27588,7 +27691,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 900.1787}
+  m_SizeDelta: {x: 800, y: 850}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6118378586357512638
 GameObject:
