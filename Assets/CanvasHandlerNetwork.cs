@@ -30,7 +30,8 @@ public class CanvasHandlerNetwork : MonoBehaviour
     public Button musicBtn;
     public Button fullScreenBtn;
 
-    public static CanvasHandlerNetwork Instance;
+    public static CanvasHandlerNetwork Instance { get; set; }
+
     public FullscreenWebGLManager fullScreenWebGLManager;
 
     private void Awake()
@@ -59,6 +60,42 @@ public class CanvasHandlerNetwork : MonoBehaviour
         Application.targetFrameRate = 60;
 #endif
 
+        AudioManager.Instance.audioMixer.GetFloat("Music", out var mVal);
+        AudioManager.Instance.audioMixer.GetFloat("VFX", out var vVal);
+
+        if (mVal > -40)
+        {
+            //Music is On
+            musicBtn.image.sprite = OnMusicToggle;
+            musicToggle = true;
+
+         
+        }
+        else
+        {
+            //Music is off
+            musicBtn.image.sprite = OffMusicToggle;
+            musicToggle = false;
+
+       
+        }
+
+        if (vVal > -40)
+        {
+            soundBtn.image.sprite = OnSoundToggle;
+            soundToggle = true;
+
+           
+        }
+        else
+        {
+            soundBtn.image.sprite = OffSoundToggle;
+            soundToggle = false;
+
+          
+        }
+
+
     }
 
     public bool IsRunningOnAndroid()
@@ -77,6 +114,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
 
     public void ToggleBoolSound()
     {
+
         Debug.Log("ToggleBoolSound");
         soundToggle = !soundToggle;
 
@@ -86,39 +124,41 @@ public class CanvasHandlerNetwork : MonoBehaviour
         {
             Debug.Log("true");
             // VfxSoundToggleAnimator.Play("vfx sound Anim Reverse");
-            soundBtn.image.sprite = OffSoundToggle;
+            soundBtn.image.sprite = OnSoundToggle;
         }
         else
         {
             Debug.Log("false");
             // VfxSoundToggleAnimator.Play("vfx sound Anim");
-            soundBtn.image.sprite = OnSoundToggle;
+            soundBtn.image.sprite = OffSoundToggle;
         }
     }
 
     public void ToggleBoolMusic()
     {
+
         Debug.Log("ToggleBoolSound");
         musicToggle = !musicToggle;
 
-        AudioManager.Instance.ToggleMusicSound(!musicToggle);
+        AudioManager.Instance.ToggleMusicSound(musicToggle); // !
 
         if (musicToggle)
         {
             Debug.Log("true");
             //musicSoundToggleAnimator.Play("Music Anim Reverse");
-            musicBtn.image.sprite = OffMusicToggle;
+            musicBtn.image.sprite = OnMusicToggle;
         }
         else
         {
             Debug.Log("false");
             //musicSoundToggleAnimator.Play("Music Anim");
-            musicBtn.image.sprite = OnMusicToggle;
+            musicBtn.image.sprite = OffMusicToggle;
         }
 
     }
     public void OnPointerDown()
     {
+
         ToggleBoolean();
         ToggleBoolFullScreen(isToggle);
     }

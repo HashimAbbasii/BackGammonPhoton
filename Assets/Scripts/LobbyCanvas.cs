@@ -98,6 +98,41 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
             }
         }
 
+
+        AudioManager.Instance.audioMixer.GetFloat("Music", out var mVal);
+        AudioManager.Instance.audioMixer.GetFloat("VFX", out var vVal);
+
+        if (mVal > -40)
+        {
+            //Music is On
+            musicBtn.image.sprite = OnMusicToggle;
+            musicToggle = true;
+
+
+        }
+        else
+        {
+            //Music is off
+            musicBtn.image.sprite = OffMusicToggle;
+            musicToggle = false;
+
+
+        }
+
+        if (vVal > -40)
+        {
+
+            soundBtn.image.sprite = OnSoundToggle;
+            soundToggle = true;
+
+        }
+        else
+        {
+            soundBtn.image.sprite = OffSoundToggle;
+            soundToggle = false;
+
+        }
+
     }
 
     private void Update()
@@ -362,15 +397,15 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
         if (soundToggle)
         {
-            Debug.Log("true");
-            // VfxSoundToggleAnimator.Play("vfx sound Anim Reverse");
-            soundBtn.image.sprite = OffSoundToggle;
-        }
-        else
-        {
             Debug.Log("false");
             // VfxSoundToggleAnimator.Play("vfx sound Anim");
             soundBtn.image.sprite = OnSoundToggle;
+        }
+        else
+        {
+            Debug.Log("true");
+            // VfxSoundToggleAnimator.Play("vfx sound Anim Reverse");
+            soundBtn.image.sprite = OffSoundToggle;
         }
     }
 
@@ -383,15 +418,15 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
         if (musicToggle)
         {
-            Debug.Log("true");
-            //musicSoundToggleAnimator.Play("Music Anim Reverse");
-            musicBtn.image.sprite = OffMusicToggle;
-        }
-        else
-        {
             Debug.Log("false");
             //musicSoundToggleAnimator.Play("Music Anim");
             musicBtn.image.sprite = OnMusicToggle;
+        }
+        else
+        {
+            Debug.Log("true");
+            //musicSoundToggleAnimator.Play("Music Anim Reverse");
+            musicBtn.image.sprite = OffMusicToggle;
         }
 
     }

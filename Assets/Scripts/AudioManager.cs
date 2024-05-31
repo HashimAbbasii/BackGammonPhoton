@@ -130,6 +130,8 @@ public class AudioManager : MonoBehaviour
         else
         {
             audioMixer.SetFloat("Music", -80f);
+            
+            
         }
     }
 

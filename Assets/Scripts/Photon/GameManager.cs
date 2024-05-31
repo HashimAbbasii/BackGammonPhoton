@@ -7,6 +7,17 @@ using BackgammonNet.Core;
 using TMPro;
 public class GameManager : MonoBehaviour
 {
+    [Header("Bools")]
+    public bool fullscreenToggle = false;
+    public bool soundToggle = false;
+    public bool musicToggle = false;
+    private bool isToggle = true;
+
+
+
+
+
+
     [SerializeField] private GameObject playerPrefab;
     private PhotonView photonView;
     //public  List<PhotonView> networkgameObjects = new List<PhotonView>();
@@ -84,11 +95,6 @@ public class GameManager : MonoBehaviour
         player0Name.text = name0;
         player1Name.text = name1;
     }
-
-
-
-
-    // Update is called once per frame
     void Update()
     {
         WhoAmI = PhotonNetwork.NickName;
@@ -146,6 +152,9 @@ public class GameManager : MonoBehaviour
             CheckHierarchyForPhotonScripts(child);
         }
     }
+
+
+
 
 
 
