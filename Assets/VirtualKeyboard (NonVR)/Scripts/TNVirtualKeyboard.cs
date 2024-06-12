@@ -2,18 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TNVirtualKeyboard : MonoBehaviour
 {
 	
-	public static TNVirtualKeyboard instance;
+	public static TNVirtualKeyboard Instance;
 	
 	public string words = "";
 	
 	public GameObject vkCanvas;
 	
-	public InputField targetText;
-	public InputField targetText2;
+	public TMP_InputField targetText;
+	public TMP_InputField targetText2;
 	//public InputField targetText2;
 
 	
@@ -21,7 +22,7 @@ public class TNVirtualKeyboard : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        instance = this;
+        Instance = this;
 		HideVirtualKeyboard();
 		
     }

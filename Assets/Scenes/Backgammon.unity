@@ -4182,8 +4182,8 @@ RectTransform:
   m_GameObject: {fileID: 328873799}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 79537290}
   - {fileID: 937397253}
@@ -4194,7 +4194,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: 5.722}
+  m_AnchoredPosition: {x: 10, y: -0.00000333786}
   m_SizeDelta: {x: 100, y: 359.03}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &331301405
@@ -5942,7 +5942,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8.5
+  orthographic size: 8.6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -11028,8 +11028,8 @@ RectTransform:
   m_GameObject: {fileID: 1004383181}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1374598366}
   - {fileID: 954318968}
@@ -11040,7 +11040,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -30, y: 7.15}
+  m_AnchoredPosition: {x: -10, y: 0.000006198883}
   m_SizeDelta: {x: 100, y: 350.55}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!1 &1019630804
@@ -16665,6 +16665,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ffb92d4918598f43aaed0cbf286d857, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fullscreenToggle: 0
+  soundToggle: 0
+  musicToggle: 0
   playerPrefab: {fileID: 5289088029853817005, guid: 3de10a8570dbf3c4c8b6fba854d3155b, type: 3}
   myNetworkPlayer: {fileID: 0}
   networkPlayers: []
