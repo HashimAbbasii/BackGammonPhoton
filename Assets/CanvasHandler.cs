@@ -45,7 +45,7 @@ public class CanvasHandler : MonoBehaviour
     public Button musicBtn;
     public Button fullScreenBtn;
 
-
+    public static GameController Instance { get; set; }
     public static CanvasHandler Instance { get; set; }
     public FullscreenWebGLManager fullScreenWebGLManager;
 
