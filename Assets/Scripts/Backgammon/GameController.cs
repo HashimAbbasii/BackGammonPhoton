@@ -61,8 +61,8 @@ namespace BackgammonNet.Core
         public LocalizedTextTMP player1Points;
 
         [Header("PLayer Names")]
-        public TextMeshProUGUI player0Name;
-        public TextMeshProUGUI player1Name;
+        public LocalizedTextTMP player0Name;
+        public LocalizedTextTMP player1Name;
 
         public List<PlayerScore> playerScores = new();
         private PhotonView _photonView;
@@ -221,8 +221,14 @@ namespace BackgammonNet.Core
 
             if(MyGameManager.AiMode == true)
             {
-                player0Name.text = "Player";
-                player1Name.text = "AI";
+                //player0Name.text = "Player";
+                //player1Name.text = "AI";
+
+                player0Name.LocalizationKey = "Text.Player";
+                LanguageManager.OnVariableChanged();
+
+                player1Name.LocalizationKey = "Text.AI";
+                LanguageManager.OnVariableChanged();
 
                 playerVsplayerScorePausePanel.gameObject.SetActive(false);
                 playerVsplayerScoreGameOverPanel.gameObject.SetActive(false);
@@ -240,8 +246,14 @@ namespace BackgammonNet.Core
 
             else
             {
-                player0Name.text = "Player 1";
-                player1Name.text = "Player 2";
+                //player0Name.text = "Player 1";
+                //player1Name.text = "Player 2";
+
+                player0Name.LocalizationKey = "Text.Player1Text";
+                LanguageManager.OnVariableChanged();
+
+                player1Name.LocalizationKey = "Text.Player2Text";
+                LanguageManager.OnVariableChanged();
             }
 
         }
