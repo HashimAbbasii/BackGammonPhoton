@@ -353,7 +353,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
         MyPhotonManager.instance.userNameText.text = "";
         MyPhotonManager.instance.roomNameText.text = "";
-        TNVirtualKeyboard.instance.words = "";
+        TNVirtualKeyboard.Instance.words = "";
     }
 
     public void BackFromRoomList()

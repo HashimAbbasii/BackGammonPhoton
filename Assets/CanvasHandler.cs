@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Assets.SimpleLocalization.Scripts;
 using System.Runtime.InteropServices;
+using BackgammonNet.Core;
 
 public class CanvasHandler : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class CanvasHandler : MonoBehaviour
     public Button musicBtn;
     public Button fullScreenBtn;
 
-
+    //public static GameController Instance { get; set; }
     public static CanvasHandler Instance { get; set; }
     public FullscreenWebGLManager fullScreenWebGLManager;
 

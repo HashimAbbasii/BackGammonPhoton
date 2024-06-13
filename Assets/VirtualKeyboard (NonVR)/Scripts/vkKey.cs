@@ -20,6 +20,6 @@ public class vkKey : MonoBehaviour
     }
 	
 	public void KeyClick(){
-		TNVirtualKeyboard.instance.KeyPress(k);
+		TNVirtualKeyboard.Instance.KeyPress(k);
 	}
 }
