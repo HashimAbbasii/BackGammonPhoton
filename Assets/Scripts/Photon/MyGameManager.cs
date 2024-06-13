@@ -22,42 +22,57 @@ public class MyGameManager : MonoBehaviour
     public Sprite StoreBlack;
     public  int randomSelect;
     public Sprite[] randomImage;
+    public static bool AiModePawn = false;
+    public bool AiModeTest;
 
     //  public void  Start()
     //{
 
     //}
+    private void Update()
+    {
+        AiModeTest = AiModePawn;
+    }
 
     public void SelectPawn(int pawnSelect)
     {
-        if (pawnSelect == 0)
+        switch (pawnSelect)
         {
-            StoreWhite = whitePawn;
-            StoreBlack = blackPawn;
-        }
-        else if (pawnSelect == 1)
-        {
-            randomSelect=UnityEngine.Random.Range(0, randomImage.Length);
+            case 0:
+                AiModePawn = true;
+                StoreWhite = whitePawn;
+                StoreBlack = blackPawn;
+                break;
 
-            for(int i = 0; i < randomImage.Length; i++)
-            {
-                if (randomSelect == 0)
+            case 1:
                 {
-                    StoreWhite = whitePawn;
-                    StoreBlack = blackPawn;
+                    randomSelect = UnityEngine.Random.Range(0, randomImage.Length);
+
+                    for (int i = 0; i < randomImage.Length; i++)
+                    {
+                        if (randomSelect == 0)
+                        {
+                            AiModePawn = true;
+                            StoreWhite = whitePawn;
+                            StoreBlack = blackPawn;
+                        }
+                        else if (randomSelect == 1)
+                        {
+                            AiModePawn = true;
+                            StoreWhite = blackPawn;
+                            StoreBlack = whitePawn;
+                        }
+                    }
+
+                    break;
+                    //StoreWhite = (UnityEngine.Random.value > 0.5f) ? whitePawn : blackPawn;
                 }
-                else if(randomSelect == 1)
-                {
-                    StoreWhite = blackPawn;
-                    StoreBlack = whitePawn;
-                }
-            }
-            //StoreWhite = (UnityEngine.Random.value > 0.5f) ? whitePawn : blackPawn;
-        }
-        else if (pawnSelect == 2)
-        {
-            StoreWhite = blackPawn;
-            StoreBlack = whitePawn;
+
+            case 2:
+                AiModePawn = true;
+                StoreWhite = blackPawn;
+                StoreBlack = whitePawn;
+                break;
         }
     }
 

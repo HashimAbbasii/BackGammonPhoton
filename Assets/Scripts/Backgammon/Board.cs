@@ -235,6 +235,8 @@ namespace BackgammonNet.Core
                 CreatePawn(13, 1);              // slot 13
                 CreatePawn(19, 0);              // slot 19
             }
+
+            MyGameManager.AiModePawn = false;
         }
 
         private void CreatePawn(int slotNo, int isWhite)        // assign a pawn to the appropriate slot

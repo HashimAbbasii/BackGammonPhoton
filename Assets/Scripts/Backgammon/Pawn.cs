@@ -35,15 +35,28 @@ namespace BackgammonNet.Core
         private int rescuedPawns;                               // the number of pieces of a given color in the shelter
         private int beginSlot;                                  // starting slot number
         public int maxMoves;
-        
-        
+        [SerializeField] public Sprite whitePawn;
+        [SerializeField] public Sprite blackPawn;
+
+
         public void SetColorAndHouse(int color)
         {
-          
-            GetComponent<SpriteRenderer>().sprite = color == 0 ? GetComponent<SpriteRenderer>().sprite = MyGameManager.Instance.StoreWhite : GetComponent<SpriteRenderer>().sprite = MyGameManager.Instance.StoreBlack;
+            if (MyGameManager.AiModePawn == true)
+            {
+            GetComponent<SpriteRenderer>().sprite = color == 0 ? MyGameManager.Instance.StoreWhite : MyGameManager.Instance.StoreBlack;
             //GetComponent<SpriteRenderer>().color = color == 0 ? Color.white : Color.black; // black == red
             house = GameObject.Find((color == 0 ? "White" : "Red") + " House");
             pawnColor = color;
+                //MyGameManager.AiModePawn = false;
+
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().sprite = color == 0 ? whitePawn : blackPawn;
+                house = GameObject.Find((color == 0 ? "White" : "Red") + " House");
+                pawnColor = color;
+            }
+          
         }
 
         //-------- events that carry out dragging a piece

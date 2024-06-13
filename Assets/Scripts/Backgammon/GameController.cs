@@ -126,6 +126,7 @@ namespace BackgammonNet.Core
 
         public static GameController Instance { get; set; }
         public static bool GameOver { get; set; }
+       
 
         private void Awake()
         {
