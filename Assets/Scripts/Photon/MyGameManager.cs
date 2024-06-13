@@ -8,7 +8,7 @@ using UnityEngine;
 public class MyGameManager : MonoBehaviour
 {
     #region Singleton
-
+   
     public static MyGameManager Instance;
     public static bool AiMode = false;
     public static bool isNetworkGame = false;
@@ -16,6 +16,33 @@ public class MyGameManager : MonoBehaviour
     public FullscreenWebGLManager fullScreenWebGLManager;
     public Difficulty botDifficulty = Difficulty.None;
     //public FullscreenWebGLManager fullScreenWebGLManager;
+    [SerializeField] public Sprite whitePawn;
+    [SerializeField] public Sprite blackPawn;
+    public Sprite StoreWhite;
+    public Sprite StoreBlack;
+
+    //  public void  Start()
+    //{
+
+    //}
+
+    public void SelectPawn(int pawnSelect)
+    {
+        if (pawnSelect == 0)
+        {
+            StoreWhite = whitePawn;
+            StoreBlack = blackPawn;
+        }
+        else if (pawnSelect == 1)
+        {
+            StoreWhite = (UnityEngine.Random.value > 0.5f) ? whitePawn : blackPawn;
+        }
+        else
+        {
+            StoreWhite = blackPawn;
+            StoreBlack = blackPawn;
+        }
+    }
 
 
     public void Awake()
