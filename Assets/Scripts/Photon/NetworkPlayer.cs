@@ -113,10 +113,10 @@ public class NetworkPlayer : MonoBehaviour
 
         GameManager.instance.networkPlayers = GameManager.instance.networkPlayers.OrderBy(ch=>ch.photonView.ViewID).ToList();
 
-        foreach (var view in GameManager.instance.networkPlayers.Where(vw => vw.photonView.IsMine))
+        foreach (var myPlayer in GameManager.instance.networkPlayers.Where(vw => vw.photonView.IsMine))
         {
-            PhotonNetwork.NickName = GameManager.instance.networkPlayers.IndexOf(view).ToString();
-            GameManager.instance.myNetworkPlayer = view;
+            PhotonNetwork.NickName = GameManager.instance.networkPlayers.IndexOf(myPlayer).ToString();
+            GameManager.instance.myNetworkPlayer = myPlayer;
         }
 
     }
