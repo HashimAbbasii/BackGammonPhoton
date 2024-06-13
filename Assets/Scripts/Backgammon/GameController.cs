@@ -430,10 +430,10 @@ namespace BackgammonNet.Core
 
             float elapsedTime = 0;
             float percentageComplete = 0;
-
+            //toggle on
             if (toggle)
             {
-                while (topMenu.spacing < -182.16f) //-270
+                while (topMenu.spacing < -182.16f) //-270 -182.16
                 {
                     elapsedTime += Time.deltaTime;
                     percentageComplete = elapsedTime / 1.8f;
@@ -443,9 +443,10 @@ namespace BackgammonNet.Core
                     yield return new WaitForFixedUpdate();
                 }
             }
+            //toggle off
             else
             {
-                while (topMenu.spacing > -580f)
+                while (topMenu.spacing > -480f) //-580
                 {
                     elapsedTime += Time.deltaTime;
                     percentageComplete = elapsedTime / 1.8f;

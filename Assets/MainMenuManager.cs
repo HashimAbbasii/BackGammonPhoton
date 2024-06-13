@@ -57,7 +57,7 @@ public class MainMenuManager : MonoBehaviour
         }
         else
         {
-            while (topMenu.spacing > -580f)
+            while (topMenu.spacing > -480)
             {
                 elapsedTime += Time.deltaTime;
                 percentageComplete = elapsedTime / 1.8f;
