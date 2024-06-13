@@ -295,6 +295,13 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     }
 
 
+    public void SelectPawn(int pawnSelect)
+    {
+        MyGameManager.Instance.SelectPawn(pawnSelect);
+    }
+
+
+
     public void CreateHostRequest()
     {
         LobbyManager.Instance.CreateHostRequest();
