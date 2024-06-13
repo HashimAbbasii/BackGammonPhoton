@@ -20,6 +20,8 @@ public class MyGameManager : MonoBehaviour
     [SerializeField] public Sprite blackPawn;
     public Sprite StoreWhite;
     public Sprite StoreBlack;
+    public  int randomSelect;
+    public Sprite[] randomImage;
 
     //  public void  Start()
     //{
@@ -35,12 +37,27 @@ public class MyGameManager : MonoBehaviour
         }
         else if (pawnSelect == 1)
         {
-            StoreWhite = (UnityEngine.Random.value > 0.5f) ? whitePawn : blackPawn;
+            randomSelect=UnityEngine.Random.Range(0, randomImage.Length);
+
+            for(int i = 0; i < randomImage.Length; i++)
+            {
+                if (randomSelect == 0)
+                {
+                    StoreWhite = whitePawn;
+                    StoreBlack = blackPawn;
+                }
+                else if(randomSelect == 1)
+                {
+                    StoreWhite = blackPawn;
+                    StoreBlack = whitePawn;
+                }
+            }
+            //StoreWhite = (UnityEngine.Random.value > 0.5f) ? whitePawn : blackPawn;
         }
-        else
+        else if (pawnSelect == 2)
         {
             StoreWhite = blackPawn;
-            StoreBlack = blackPawn;
+            StoreBlack = whitePawn;
         }
     }
 

@@ -40,7 +40,7 @@ namespace BackgammonNet.Core
         public void SetColorAndHouse(int color)
         {
           
-         //   GetComponent<SpriteRenderer>().sprite = color == 0 ? GetComponent<SpriteRenderer>().sprite = whitePawn : GetComponent<SpriteRenderer>().sprite = blackPawn;
+            GetComponent<SpriteRenderer>().sprite = color == 0 ? GetComponent<SpriteRenderer>().sprite = MyGameManager.Instance.StoreWhite : GetComponent<SpriteRenderer>().sprite = MyGameManager.Instance.StoreBlack;
             //GetComponent<SpriteRenderer>().color = color == 0 ? Color.white : Color.black; // black == red
             house = GameObject.Find((color == 0 ? "White" : "Red") + " House");
             pawnColor = color;
