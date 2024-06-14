@@ -219,7 +219,7 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         else
         {
             joinLobbyButton.interactable = false;
-            Debug.Log("Empty Name");
+            //Debug.Log("Empty Name");
         }
 
 
