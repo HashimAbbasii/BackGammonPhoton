@@ -6,6 +6,12 @@ using UnityEngine.UI;
 
 public class CanvasHandlerNetwork : MonoBehaviour
 {
+
+    [Header("PlayerObjects")]
+    public RectTransform Player0Object;
+    public RectTransform Player1Object;
+
+
     public GameObject diceRollButton;
     public GameObject diceResults;
 
@@ -96,6 +102,183 @@ public class CanvasHandlerNetwork : MonoBehaviour
         }
 
 
+    }
+    private void Update()
+    {
+        StartCoroutine(RotateCameraAndCanvas());
+    }
+
+    public IEnumerator RotateCameraAndCanvas()
+    {
+
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////  Player 0 , Player 1 adjustment for 600x800
+
+        float screen_ratio = (Screen.width * 1f / Screen.height);
+
+        if (screen_ratio <= 1.5f)
+        {
+            Player0Object.anchoredPosition = new Vector3(0, 0, 0);
+            Player1Object.anchoredPosition = new Vector3(0, 0, 0);
+
+        }
+
+        else if (screen_ratio > 1.5f)
+        {
+            Player0Object.anchoredPosition = new Vector3(15, 0, 0);
+            Player1Object.anchoredPosition = new Vector3(-15, 0, 0);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+        // -------------------------------------------------------- Portrait WEBGL Commented Area-------------------------------------------------------------------------------//
+
+        //float ratio = (Screen.width * 1f / Screen.height);
+        //if (Application.platform == RuntimePlatform.WebGLPlayer)
+        //{
+        //    var width = Screen.width;
+        //    var height = Screen.height;
+
+        //    if (width / height < 1)
+        //    {
+        //        ratio = (Screen.width * 1f / Screen.height);
+        //    }
+
+
+
+
+        //    if (IsRunningOnAndroid() || IsRunningOniOS())
+        //    {
+
+        //        if (ratio < 1)  //_ratio  Portrait Android/iOS
+        //        {
+
+        //            mainCamera.orthographicSize = 20f;
+
+        //            RectTransform buttonsPanelRectTransform = buttonsPanel.GetComponent<RectTransform>();
+        //            buttonsPanelRectTransform.localScale = new Vector3(0.49f, 0.49f, 0.49f);
+
+        //            RectTransform player0RectTransform = player0.GetComponent<RectTransform>();
+        //            player0RectTransform.localPosition = new Vector2(0f, 182f);
+        //            player0RectTransform.localScale = new Vector3(0.52276f, 0.52276f, 0.52276f);
+
+        //            RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
+        //            player1RectTransform.localPosition = new Vector2(0f, -129f);
+        //            player1RectTransform.localScale = new Vector3(0.52276f, 0.52276f, 0.52276f);
+
+        //            RectTransform submissionPanelRectTransform = submissionPanel.GetComponent<RectTransform>();
+        //            submissionPanelRectTransform.localPosition = new Vector2(-87f, 164f);
+        //            submissionPanelRectTransform.localScale = new Vector3(0.7967f, 0.7967f, 0.7967f);
+
+        //            RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
+        //            timerPanelRectTransform.localPosition = new Vector2(0f, 5f);
+        //            timerPanelRectTransform.localScale = new Vector3(0.79671f, 0.79671f, 0.79671f);
+
+
+        //            RectTransform pauseMenuRectTransform = pauseMenu.GetComponent<RectTransform>();
+        //            pauseMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+
+        //            RectTransform tutorialMenuRectTransform = tutorialMenu.GetComponent<RectTransform>();
+        //            tutorialMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+
+        //            RectTransform gameOverMenuRectTransform = gameOverMenu.GetComponent<RectTransform>();
+        //            gameOverMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+
+        //            RectTransform youWinMenuRectTransform = youWinMenu.GetComponent<RectTransform>();
+        //            youWinMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+
+
+        //            RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
+        //            diceButtonRectTransform.localPosition = new Vector2(85f, 5f);
+        //            diceButtonRectTransform.localScale = new Vector3(0.5761739f, 0.5761739f, 0.5761739f);
+
+        //            RectTransform diceResultRectTransform = diceResult.GetComponent<RectTransform>();
+        //            diceResultRectTransform.localPosition = new Vector2(24f, -300f);
+        //            diceResultRectTransform.localScale = new Vector3(0.65534f, 0.65534f, 0.65534f);
+
+
+        //        }
+
+        //        else if (ratio >= 2) //_ratio  LAndScape Android/iOS
+        //        {
+
+
+        //            mainCamera.orthographicSize = 8.5f;
+
+        //            RectTransform buttonsPanelRectTransform = buttonsPanel.GetComponent<RectTransform>();
+        //            buttonsPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+        //            RectTransform player0RectTransform = player0.GetComponent<RectTransform>();
+        //            player0RectTransform.localPosition = new Vector2(30f, 5.722f);
+        //            player0RectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+        //            RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
+        //            player1RectTransform.localPosition = new Vector2(-30f, 7.15f);
+        //            player1RectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+        //            RectTransform submissionPanelRectTransform = submissionPanel.GetComponent<RectTransform>();
+        //            submissionPanelRectTransform.localPosition = new Vector2(-16f, 12f);
+        //            submissionPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+        //            RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
+        //            timerPanelRectTransform.localPosition = new Vector2(0f, 5f);
+        //            timerPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+        //            RectTransform pauseMenuRectTransform = pauseMenu.GetComponent<RectTransform>();
+        //            pauseMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+        //            RectTransform tutorialMenuRectTransform = tutorialMenu.GetComponent<RectTransform>();
+        //            tutorialMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+        //            RectTransform gameOverMenuRectTransform = gameOverMenu.GetComponent<RectTransform>();
+        //            gameOverMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+        //            RectTransform youWinMenuRectTransform = youWinMenu.GetComponent<RectTransform>();
+        //            youWinMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+        //            RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
+        //            diceButtonRectTransform.localPosition = new Vector2(217.5f, 7f);
+        //            diceButtonRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+        //            RectTransform diceResultRectTransform = diceResult.GetComponent<RectTransform>();
+        //            diceResultRectTransform.localPosition = new Vector2(87f, -293f);
+        //            diceResultRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+        //        }
+
+        //    }
+
+
+
+        //    else if (ratio >= 1.55) // WebGL PC
+        //    {
+
+
+        //        //RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
+        //        //keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);
+        //        //keysParentRectTransform.localScale = new Vector3(0.71715f, 0.71715f, 0.71715f);
+        //        //keysParentRectTransform.localPosition = new Vector2(0.70713f, -0.14143f);
+
+
+        //        //RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
+        //        //loadingPanelRectTransform.sizeDelta = new Vector3(1949.1f, 1385.721f);
+
+
+
+
+
+        //    }
+
+        //}
+
+        // -------------------------------------------------------- Portrait WEBGL Commented Area -------------------------------------------------------------------------------//
+
+
+
+        yield return null;
     }
 
     public bool IsRunningOnAndroid()

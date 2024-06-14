@@ -27,6 +27,7 @@ public class LanguageManager : MonoBehaviour
     public TMP_Dropdown LanguageDropdown;
     public List<Sprite> flags;
 
+
     public LanguageEnumerated LanguageEnum
     {
         get => _languageEnum;

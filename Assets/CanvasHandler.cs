@@ -5,9 +5,13 @@ using UnityEngine.UI;
 using Assets.SimpleLocalization.Scripts;
 using System.Runtime.InteropServices;
 using BackgammonNet.Core;
+using TMPro;
 
 public class CanvasHandler : MonoBehaviour
 {
+    [Header("PlayerObjects")]
+    public RectTransform Player0Object;
+    public RectTransform Player1Object;
 
     public GameObject diceRollButton;
     public GameObject diceResults;
@@ -132,14 +136,39 @@ public class CanvasHandler : MonoBehaviour
 
     private void Update()
     {
-        //StartCoroutine(RotateCameraAndCanvas());
+        StartCoroutine(RotateCameraAndCanvas());   
     }
 
 
     public IEnumerator RotateCameraAndCanvas()
     {
-        float ratio = (Screen.width * 1f / Screen.height);
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////  Player 0 , Player 1 adjustment for 600x800
+
+        float screen_ratio = (Screen.width * 1f / Screen.height);
+
+        if(screen_ratio <= 1.5f )
+        {
+            Player0Object.anchoredPosition = new Vector3(1, 0, 0);
+            Player1Object.anchoredPosition = new Vector3(-1, 0, 0);
+
+        }
+
+        else if(screen_ratio > 1.5f)
+        {
+            Player0Object.anchoredPosition = new Vector3(15, 0, 0);
+            Player1Object.anchoredPosition = new Vector3(-15, 0, 0);
+        }
+
+        ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+        // -------------------------------------------------------- Portrait WEBGL Commented Area-------------------------------------------------------------------------------//
+
+        float ratio = (Screen.width * 1f / Screen.height);
         if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
             var width = Screen.width;
@@ -161,23 +190,23 @@ public class CanvasHandler : MonoBehaviour
 
                     mainCamera.orthographicSize = 20f;
 
-                    RectTransform buttonsPanelRectTransform = buttonsPanel.GetComponent<RectTransform>();
-                    buttonsPanelRectTransform.localScale = new Vector3(0.49f, 0.49f, 0.49f);
+                    //RectTransform buttonsPanelRectTransform = buttonsPanel.GetComponent<RectTransform>();
+                   // buttonsPanelRectTransform.localScale = new Vector3(0.49f, 0.49f, 0.49f);
 
                     RectTransform player0RectTransform = player0.GetComponent<RectTransform>();
-                    player0RectTransform.localPosition = new Vector2(0f, 182f);
-                    player0RectTransform.localScale = new Vector3(0.52276f, 0.52276f, 0.52276f);
+                    player0RectTransform.anchoredPosition = new Vector2(0f, 350f);
+                    player0RectTransform.localScale = new Vector3(0.7f, 0.7f, 0.7f);     // 0.52276
 
                     RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
-                    player1RectTransform.localPosition = new Vector2(0f, -129f);
-                    player1RectTransform.localScale = new Vector3(0.52276f, 0.52276f, 0.52276f);
+                    player1RectTransform.anchoredPosition = new Vector2(0f, -300f);                         //-129
+                    player1RectTransform.localScale = new Vector3(0.7f, 0.7f, 0.7f);        //// 0.52276
 
                     RectTransform submissionPanelRectTransform = submissionPanel.GetComponent<RectTransform>();
-                    submissionPanelRectTransform.localPosition = new Vector2(-87f, 164f);
+                    submissionPanelRectTransform.anchoredPosition = new Vector2(-87f, 164f);
                     submissionPanelRectTransform.localScale = new Vector3(0.7967f, 0.7967f, 0.7967f);
 
                     RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
-                    timerPanelRectTransform.localPosition = new Vector2(0f, 5f);
+                    timerPanelRectTransform.anchoredPosition = new Vector2(0f, 5f);
                     timerPanelRectTransform.localScale = new Vector3(0.79671f, 0.79671f, 0.79671f);
 
 
@@ -195,11 +224,11 @@ public class CanvasHandler : MonoBehaviour
 
 
                     RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
-                    diceButtonRectTransform.localPosition = new Vector2(85f, 5f);
+                    diceButtonRectTransform.anchoredPosition = new Vector2(85f, 5f);
                     diceButtonRectTransform.localScale = new Vector3(0.5761739f, 0.5761739f, 0.5761739f);
 
                     RectTransform diceResultRectTransform = diceResult.GetComponent<RectTransform>();
-                    diceResultRectTransform.localPosition = new Vector2(24f, -300f);
+                    diceResultRectTransform.anchoredPosition = new Vector2(24f, -300f);
                     diceResultRectTransform.localScale = new Vector3(0.65534f, 0.65534f, 0.65534f);
 
 
@@ -215,19 +244,19 @@ public class CanvasHandler : MonoBehaviour
                     buttonsPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                     RectTransform player0RectTransform = player0.GetComponent<RectTransform>();
-                    player0RectTransform.localPosition = new Vector2(30f, 5.722f);
-                    player0RectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    player0RectTransform.anchoredPosition = new Vector2(30f, 5.722f);
+                    player0RectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);           //1
 
                     RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
-                    player1RectTransform.localPosition = new Vector2(-30f, 7.15f);
-                    player1RectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    player1RectTransform.anchoredPosition = new Vector2(-30f, 7.15f);
+                    player1RectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);                //1
 
                     RectTransform submissionPanelRectTransform = submissionPanel.GetComponent<RectTransform>();
-                    submissionPanelRectTransform.localPosition = new Vector2(-16f, 12f);
+                    submissionPanelRectTransform.anchoredPosition = new Vector2(-16f, 12f);
                     submissionPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                     RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
-                    timerPanelRectTransform.localPosition = new Vector2(0f, 5f);
+                    timerPanelRectTransform.anchoredPosition = new Vector2(0f, 5f);
                     timerPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                     RectTransform pauseMenuRectTransform = pauseMenu.GetComponent<RectTransform>();
@@ -243,11 +272,11 @@ public class CanvasHandler : MonoBehaviour
                     youWinMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                     RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
-                    diceButtonRectTransform.localPosition = new Vector2(217.5f, 7f);
+                    diceButtonRectTransform.anchoredPosition = new Vector2(217.5f, 7f);
                     diceButtonRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                     RectTransform diceResultRectTransform = diceResult.GetComponent<RectTransform>();
-                    diceResultRectTransform.localPosition = new Vector2(87f, -293f);
+                    diceResultRectTransform.anchoredPosition = new Vector2(87f, -293f);
                     diceResultRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                 }
@@ -277,21 +306,8 @@ public class CanvasHandler : MonoBehaviour
 
         }
 
+        // -------------------------------------------------------- Portrait WEBGL Commented Area -------------------------------------------------------------------------------//
 
-        //else
-        //{
-        //    ratio = (Screen.width * 1f / Screen.height);
-        //    var width = Screen.width;
-        //    var height = Screen.height;
-
-        //    if (width / height < 1)
-        //    {
-        //        ratio = (Screen.width * 1f / Screen.height);
-        //        ratio = 1 / ratio;
-        //    }
-
-        //    float _height = (142.147f * (ratio * ratio)) - (761.729f * ratio) + 2054.87f;
-        //}
 
 
         yield return null;

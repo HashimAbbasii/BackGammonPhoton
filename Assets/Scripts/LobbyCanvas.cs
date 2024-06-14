@@ -13,6 +13,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
     public bool OnPointerDownBool = false;
 
+    
+
     [Header("TestTexts")]
     public TextMeshProUGUI testtext;
     public TextMeshProUGUI testtext2;
@@ -311,6 +313,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     {
         LobbyManager.Instance.StartGame();
         AudioManager.Instance.PlayGameMusic();
+
+
     }
 
     public void StartGameAi()
