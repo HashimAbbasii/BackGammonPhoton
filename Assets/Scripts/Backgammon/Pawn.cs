@@ -43,12 +43,9 @@ namespace BackgammonNet.Core
         {
             if (MyGameManager.AiModePawn == true)
             {
-            GetComponent<SpriteRenderer>().sprite = color == 0 ? MyGameManager.Instance.StoreWhite : MyGameManager.Instance.StoreBlack;
-            //GetComponent<SpriteRenderer>().color = color == 0 ? Color.white : Color.black; // black == red
-            house = GameObject.Find((color == 0 ? "White" : "Red") + " House");
-            pawnColor = color;
-                //MyGameManager.AiModePawn = false;
-
+                GetComponent<SpriteRenderer>().sprite = color == 0 ? MyGameManager.Instance.StoreWhite : MyGameManager.Instance.StoreBlack;
+                house = GameObject.Find((color == 0 ? "White" : "Red") + " House");
+                pawnColor = color;
             }
             else
             {
@@ -56,7 +53,7 @@ namespace BackgammonNet.Core
                 house = GameObject.Find((color == 0 ? "White" : "Red") + " House");
                 pawnColor = color;
             }
-          
+
         }
 
         //-------- events that carry out dragging a piece

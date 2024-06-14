@@ -36,16 +36,19 @@ namespace BackgammonNet.Core
                 spriteRenderer.color = Color.clear;
         }
 
+        public void CreatePawn(Pawn pawn, int isWhite)
+        {
+            pawn.SetColorAndHouse(isWhite);
+        }
+
         public void PlacePawn(Pawn pawn, int isWhite)       // put the last piece from the pawns list in the right place in the slot
         {
-
             pawn.transform.SetParent(pawnsContainer, true);
 
             isModifyingPosition = true;
             pawn.transform.DOLocalMove(new Vector3(0, -0.5f + pawns.Count * placeOffset, 0), 0.5f);
             StartCoroutine(CorrectHeight());
 
-            pawn.SetColorAndHouse(isWhite);
             pawn.slotNo = slotNo;                                   // the slot that the pawn belongs to
             pawn.pawnNo = pawns.Count;                              // the position of the pawn in the slot
             pawns.Add(pawn);

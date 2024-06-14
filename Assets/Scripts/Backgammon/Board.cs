@@ -242,6 +242,7 @@ namespace BackgammonNet.Core
         private void CreatePawn(int slotNo, int isWhite)        // assign a pawn to the appropriate slot
         {
             Pawn pawn = Instantiate(pawnPrefab);
+            Slot.slots[slotNo].CreatePawn(pawn, isWhite);
             Slot.slots[slotNo].PlacePawn(pawn, isWhite);
             GameController.Instance.allPawns.Add(pawn);
             if (isWhite == 1) { GameController.Instance.ePawns.Add(pawn); }
