@@ -59,9 +59,12 @@ namespace Assets.SimpleLocalization.Scripts
         [ContextMenu("Localize")]
         public void Localize()
         {
+            //Debug.Log("Localize");
+
+
             if (MyGameManager.Instance.languageManager.LanguageEnum == LanguageEnumerated.Arabic)
             {
-                Debug.Log("Arabic");
+                //Debug.Log("Arabic");
                 if (TryGetComponent<FixLocalizedText>(out var flt))
                 {
                     _tmpText.font = MyGameManager.Instance.languageManager.arabicFont;
@@ -72,7 +75,8 @@ namespace Assets.SimpleLocalization.Scripts
             }
             else
             {
-               // Debug.Log("else");
+
+                //Debug.Log("else");
                 switch (textType)
                 {
 

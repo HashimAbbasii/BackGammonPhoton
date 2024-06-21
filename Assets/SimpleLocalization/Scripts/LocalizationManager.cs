@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using AYellowpaper.SerializedCollections;
 
 namespace Assets.SimpleLocalization.Scripts
 {
@@ -17,6 +18,10 @@ namespace Assets.SimpleLocalization.Scripts
         public static event Action OnLocalizationChanged = () => { }; 
 
         public static Dictionary<string, Dictionary<string, string>> Dictionary = new();
+        
+ 
+
+
         private static string _language = "English";
 
 		/// <summary>
@@ -110,6 +115,8 @@ namespace Assets.SimpleLocalization.Scripts
         /// </summary>
         public static string Localize(string localizationKey)
         {
+            
+
             if (Dictionary.Count == 0)
             {
                 Read();

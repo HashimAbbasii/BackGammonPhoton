@@ -1344,6 +1344,7 @@ namespace BackgammonNet.Core
 
         private void LoadGameScene()
         {
+            
             Debug.Log("LoadGameScene");
 
             sidesAgreed = 0;

@@ -50,7 +50,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
             }
         }
 
-        LocalizationManager.Read();
+        //LocalizationManager.Read();
 
 
         if (Instance == null)

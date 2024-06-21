@@ -3,12 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Assets.SimpleLocalization.Scripts;
+using AYellowpaper.SerializedCollections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class LanguageManager : MonoBehaviour
 {
+    [SerializeField] public int testIndex;
     [SerializeField] private LanguageEnumerated _languageEnum;
     public static LanguageManager mlanguageManagerInstance { get; set; }
 
@@ -24,9 +26,11 @@ public class LanguageManager : MonoBehaviour
     public Material buttonMaterial;
     public Material arabicMaterial;
 
+
     public TMP_Dropdown LanguageDropdown;
     public List<Sprite> flags;
 
+    public string testLanguage;
 
     public LanguageEnumerated LanguageEnum
     {
@@ -51,9 +55,15 @@ public class LanguageManager : MonoBehaviour
     {
         LanguageEnum = _languageEnum;
     }
+    private void Update()
+    {
+        testLanguage = LocalizationManager.Language;
+    }
 
     public void LanguageSelect(int index)
     {
+        testIndex = index;
+
         switch (index)
         {
             case 0:

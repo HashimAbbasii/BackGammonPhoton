@@ -17,20 +17,20 @@ namespace Assets.SimpleLocalization
 		/// </summary>
 		public void Awake()
 		{
-			LocalizationManager.Read();
+			//LocalizationManager.Read();
 
-			switch (Application.systemLanguage)
-			{
-				case SystemLanguage.German:
-					LocalizationManager.Language = "German";
-					break;
-				case SystemLanguage.Russian:
-					LocalizationManager.Language = "Russian";
-					break;
-				default:
-					LocalizationManager.Language = "English";
-					break;
-			}
+			//switch (Application.systemLanguage)
+			//{
+			//	case SystemLanguage.German:
+			//		LocalizationManager.Language = "German";
+			//		break;
+			//	case SystemLanguage.Russian:
+			//		LocalizationManager.Language = "Russian";
+			//		break;
+			//	default:
+			//		LocalizationManager.Language = "English";
+			//		break;
+			//}
 
 			// This way you can localize and format strings from code.
 			FormattedText.text = LocalizationManager.Localize("Settings.Example.PlayTime", TimeSpan.FromHours(10.5f).TotalHours);

@@ -19,6 +19,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public TextMeshProUGUI testtext;
     public TextMeshProUGUI testtext2;
     public TextMeshProUGUI testtext3;
+    public TMP_Dropdown dropdown;
 
 
 
@@ -290,6 +291,14 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     private void Start()
     {
 
+        MyGameManager.Instance.languageManager.LanguageDropdown = dropdown;
+
+        // LanguageEnum = LanguageEnumerated.German;
+
+
+        int currentIndex = MyGameManager.Instance.languageManager.testIndex;
+        MyGameManager.Instance.languageManager.LanguageSelect(currentIndex);
+
 #if UNITY_ANDROID
         Application.targetFrameRate = 60;
         fullScreenBtn.gameObject.SetActive(false);
@@ -301,8 +310,6 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     {
         MyGameManager.Instance.SelectPawn(pawnSelect);
     }
-
-
 
     public void CreateHostRequest()
     {
