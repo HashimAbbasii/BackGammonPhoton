@@ -32,7 +32,8 @@ public class MyGameManager : MonoBehaviour
     //}
     private void Update()
     {
-        AiModeTest = AiModePawn;
+        //AiModeTest = AiModePawn;
+        AiModeTest = AiMode;
     }
 
     public void SelectPawn(int pawnSelect)

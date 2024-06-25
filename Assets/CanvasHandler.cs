@@ -9,9 +9,15 @@ using TMPro;
 
 public class CanvasHandler : MonoBehaviour
 {
+    [Header("BottomMenuGameObject")]
+    public GameObject BottomMenu;
+
     [Header("PlayerObjects")]
     public RectTransform Player0Object;
     public RectTransform Player1Object;
+
+    public RectTransform Points0Object;
+    public RectTransform Points1Object;
 
     public GameObject diceRollButton;
     public GameObject diceResults;
@@ -45,10 +51,23 @@ public class CanvasHandler : MonoBehaviour
     public Sprite OnFullScreenToggle;
     public Sprite OffFullScreenToggle;
 
+    [Header("BottomButtonSprites")]
+    public Sprite BOnSoundToggle;
+    public Sprite BOffSoundToggle;
+    public Sprite BOnMusicToggle;
+    public Sprite BOffMusicToggle;
+    public Sprite BOnFullScreenToggle;
+    public Sprite BOffFullScreenToggle;
+
     [Header("TopMenuButtons")]
     public Button soundBtn;
     public Button musicBtn;
     public Button fullScreenBtn;
+
+    [Header("BottomMenuButtons")]
+    public Button BsoundBtn;
+    public Button BmusicBtn;
+    public Button BfullScreenBtn;
 
     //public static GameController Instance { get; set; }
     public static CanvasHandler Instance { get; set; }
@@ -103,6 +122,7 @@ public class CanvasHandler : MonoBehaviour
         {
             //Music is On
             musicBtn.image.sprite = OnMusicToggle;
+            BmusicBtn.image.sprite = BOnMusicToggle;
             musicToggle = true;
 
             
@@ -111,6 +131,7 @@ public class CanvasHandler : MonoBehaviour
         {
             //Music is off
             musicBtn.image.sprite = OffMusicToggle;
+            BmusicBtn.image.sprite = BOffMusicToggle;
             musicToggle = false;
 
       
@@ -120,12 +141,14 @@ public class CanvasHandler : MonoBehaviour
         {
             
             soundBtn.image.sprite = OnSoundToggle;
+            BsoundBtn.image.sprite = BOnSoundToggle;
             soundToggle = true;
      
         }
         else
         {
             soundBtn.image.sprite = OffSoundToggle;
+            BsoundBtn.image.sprite = BOffSoundToggle;
             soundToggle = false;
       
         }
@@ -144,21 +167,27 @@ public class CanvasHandler : MonoBehaviour
     {
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////  Player 0 , Player 1 adjustment for 600x800
+        ///
 
-        float screen_ratio = (Screen.width * 1f / Screen.height);
 
-        if(screen_ratio <= 1.5f )
-        {
-            Player0Object.anchoredPosition = new Vector3(1, 0, 0);
-            Player1Object.anchoredPosition = new Vector3(-1, 0, 0);
 
-        }
+        //float screen_ratio = (Screen.width * 1f / Screen.height);
 
-        else if(screen_ratio > 1.5f)
-        {
-            Player0Object.anchoredPosition = new Vector3(15, 0, 0);
-            Player1Object.anchoredPosition = new Vector3(-15, 0, 0);
-        }
+        //if (screen_ratio <= 1.5f)
+        //{
+        //    Player0Object.anchoredPosition = new Vector3(1, 0, 0);
+        //    Player1Object.anchoredPosition = new Vector3(-1, 0, 0);
+
+        //}
+
+        //else if (screen_ratio > 1.5f)
+        //{
+        //    Player0Object.anchoredPosition = new Vector3(15, 0, 0);
+        //    Player1Object.anchoredPosition = new Vector3(-15, 0, 0);
+        //}
+
+
+
 
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -184,6 +213,9 @@ public class CanvasHandler : MonoBehaviour
 
             if (IsRunningOnAndroid() || IsRunningOniOS())
             {
+                BottomMenu.gameObject.SetActive(true);
+                buttonsPanel.gameObject.SetActive(false);
+
 
                 if (ratio < 1)  //_ratio  Portrait Android/iOS
                 {
@@ -191,22 +223,40 @@ public class CanvasHandler : MonoBehaviour
                     mainCamera.orthographicSize = 20f;
 
                     //RectTransform buttonsPanelRectTransform = buttonsPanel.GetComponent<RectTransform>();
-                   // buttonsPanelRectTransform.localScale = new Vector3(0.49f, 0.49f, 0.49f);
+                    // buttonsPanelRectTransform.localScale = new Vector3(0.49f, 0.49f, 0.49f);
+
+
+
 
                     RectTransform player0RectTransform = player0.GetComponent<RectTransform>();
-                    player0RectTransform.anchoredPosition = new Vector2(0f, 350f);
-                    player0RectTransform.localScale = new Vector3(0.7f, 0.7f, 0.7f);     // 0.52276
+                    player0RectTransform.anchoredPosition = new Vector2(134f, 301f);
+                    player0RectTransform.sizeDelta = new Vector2(100f, 600f);
+                    player0RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
+
+                    RectTransform points0RectTransform = Points0Object.GetComponent<RectTransform>();
+                    points0RectTransform.anchoredPosition = new Vector2(253f, 287.9f);
+                    points0RectTransform.sizeDelta = new Vector2(100f, 93.6026f);
+                    points0RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
+
 
                     RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
-                    player1RectTransform.anchoredPosition = new Vector2(0f, -300f);                         //-129
-                    player1RectTransform.localScale = new Vector3(0.7f, 0.7f, 0.7f);        //// 0.52276
+                    player1RectTransform.anchoredPosition = new Vector2(-251f, -305f);                         //-129
+                    player1RectTransform.sizeDelta = new Vector2(100f, 600f);
+                    player1RectTransform.localScale = new Vector3(1f, 1f, 1f);        //// 0.52276
+
+                    RectTransform points1RectTransform = Points1Object.GetComponent<RectTransform>();
+                    points1RectTransform.anchoredPosition = new Vector2(-132.1f,-316.3f);
+                    points1RectTransform.sizeDelta = new Vector2(100f, 93.6026f);
+                    points1RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
+
+
 
                     RectTransform submissionPanelRectTransform = submissionPanel.GetComponent<RectTransform>();
-                    submissionPanelRectTransform.anchoredPosition = new Vector2(-87f, 164f);
+                    submissionPanelRectTransform.anchoredPosition = new Vector2(-103f, 715f);
                     submissionPanelRectTransform.localScale = new Vector3(0.7967f, 0.7967f, 0.7967f);
 
                     RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
-                    timerPanelRectTransform.anchoredPosition = new Vector2(0f, 5f);
+                    timerPanelRectTransform.anchoredPosition = new Vector2(19f, 87f);
                     timerPanelRectTransform.localScale = new Vector3(0.79671f, 0.79671f, 0.79671f);
 
 
@@ -247,9 +297,24 @@ public class CanvasHandler : MonoBehaviour
                     player0RectTransform.anchoredPosition = new Vector2(30f, 5.722f);
                     player0RectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);           //1
 
+                    RectTransform points0RectTransform = Points0Object.GetComponent<RectTransform>();
+                    points0RectTransform.anchoredPosition = new Vector2(20f, -170f);
+                    points0RectTransform.sizeDelta = new Vector2(100f, 93.6f);
+                    points0RectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);     // 0.52276
+
+
+
+
                     RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
                     player1RectTransform.anchoredPosition = new Vector2(-30f, 7.15f);
                     player1RectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);                //1
+
+                    RectTransform points1RectTransform = Points1Object.GetComponent<RectTransform>();
+                    points1RectTransform.anchoredPosition = new Vector2(-20, -168.9f);
+                    points1RectTransform.sizeDelta = new Vector2(100f, 93.6026f);
+                    points1RectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);     // 0.52276
+
+
 
                     RectTransform submissionPanelRectTransform = submissionPanel.GetComponent<RectTransform>();
                     submissionPanelRectTransform.anchoredPosition = new Vector2(-16f, 12f);
@@ -287,7 +352,8 @@ public class CanvasHandler : MonoBehaviour
 
             else if (ratio >= 1.55) // WebGL PC
             {
-
+                BottomMenu.gameObject.SetActive(false);
+                buttonsPanel.gameObject.SetActive(true);
 
                 //RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
                 //keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);
@@ -297,10 +363,6 @@ public class CanvasHandler : MonoBehaviour
 
                 //RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
                 //loadingPanelRectTransform.sizeDelta = new Vector3(1949.1f, 1385.721f);
-
-
-
-
 
             }
 
@@ -339,12 +401,14 @@ public class CanvasHandler : MonoBehaviour
           //  Debug.Log("true");
             // VfxSoundToggleAnimator.Play("vfx sound Anim Reverse");
             soundBtn.image.sprite = OnSoundToggle;
+            BsoundBtn.image.sprite = BOnSoundToggle;
         }
         else
         {
          //   Debug.Log("false");
             // VfxSoundToggleAnimator.Play("vfx sound Anim");
             soundBtn.image.sprite = OffSoundToggle;
+            BsoundBtn.image.sprite = BOffSoundToggle;
         }
     }
 
@@ -361,12 +425,14 @@ public class CanvasHandler : MonoBehaviour
            // Debug.Log("true");
             //musicSoundToggleAnimator.Play("Music Anim Reverse");
             musicBtn.image.sprite = OnMusicToggle;
+            BmusicBtn.image.sprite = BOnMusicToggle;
         }
         else
         {
             Debug.Log("false");
             //musicSoundToggleAnimator.Play("Music Anim");
             musicBtn.image.sprite = OffMusicToggle;
+            BmusicBtn.image.sprite = BOffMusicToggle;
         }
 
     }

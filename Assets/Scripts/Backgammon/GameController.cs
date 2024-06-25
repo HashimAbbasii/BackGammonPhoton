@@ -1250,8 +1250,10 @@ namespace BackgammonNet.Core
 
         public void ActiveGameOver(int winner)
         {
+            Debug.Log("---------------------- ActiveGameOver ------------------------------");
+
             Board.Instance.isGameOver = true;
-            MyGameManager.AiMode = false;
+           // MyGameManager.AiMode = false;
             dragEnable = false;
             Pawn.InitializePawn();
 
@@ -1359,6 +1361,7 @@ namespace BackgammonNet.Core
 
         public void GoToMainMenu()     // delete the Backgammon scene and show the Lobby scene main menu
         {
+            MyGameManager.AiMode = false; 
             StartCoroutine(DelayedGoToMainMenu());
         }
 
