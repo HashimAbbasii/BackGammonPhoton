@@ -408,7 +408,7 @@ namespace BackgammonNet.Core
             {
                 menuToggle = false;
 
-                StopAllCoroutines();
+             //   StopAllCoroutines();
                 StartCoroutine(AnimateTopMenu(false));
             }
             else
@@ -418,7 +418,7 @@ namespace BackgammonNet.Core
                 {
                     button.SetActive(true);
                 }
-                StopAllCoroutines();
+             //   StopAllCoroutines();
                 StartCoroutine(AnimateTopMenu(true));
             }
         }
@@ -436,7 +436,7 @@ namespace BackgammonNet.Core
             {
                 while (topMenu.spacing < 30f) //-270 -182.16
                 {
-                    elapsedTime += Time.deltaTime;
+                    elapsedTime += Time.deltaTime*3;
                     percentageComplete = elapsedTime / 1.8f;
 
                     topMenu.spacing = Mathf.Lerp(topMenu.spacing, 10f, percentageComplete);
@@ -447,12 +447,12 @@ namespace BackgammonNet.Core
             //toggle off
             else
             {
-                while (topMenu.spacing > -480f) //-580
+                while (topMenu.spacing > -470f) //-480
                 {
-                    elapsedTime += Time.deltaTime;
+                    elapsedTime += Time.deltaTime*5;
                     percentageComplete = elapsedTime / 1.8f;
 
-                    topMenu.spacing = Mathf.Lerp(topMenu.spacing, -580f, percentageComplete);
+                    topMenu.spacing = Mathf.Lerp(topMenu.spacing, -570f, percentageComplete); //-580
 
                     yield return new WaitForFixedUpdate();
                 }
