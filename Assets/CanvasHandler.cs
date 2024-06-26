@@ -16,6 +16,9 @@ public class CanvasHandler : MonoBehaviour
     public RectTransform Player0Object;
     public RectTransform Player1Object;
 
+    public GameObject Highlight2P0;
+    public GameObject Highlight2P1;
+
     public RectTransform Points0Object;
     public RectTransform Points1Object;
 
@@ -234,8 +237,8 @@ public class CanvasHandler : MonoBehaviour
                     player0RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
 
                     RectTransform points0RectTransform = Points0Object.GetComponent<RectTransform>();
-                    points0RectTransform.anchoredPosition = new Vector2(253f, 287.9f);
-                    points0RectTransform.sizeDelta = new Vector2(100f, 93.6026f);
+                    points0RectTransform.anchoredPosition = new Vector2(253f, 299.97f);
+                    points0RectTransform.sizeDelta = new Vector2(100f, 115.012f);
                     points0RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
 
 
@@ -252,12 +255,26 @@ public class CanvasHandler : MonoBehaviour
 
 
                     RectTransform submissionPanelRectTransform = submissionPanel.GetComponent<RectTransform>();
-                    submissionPanelRectTransform.anchoredPosition = new Vector2(-103f, 715f);
+                    submissionPanelRectTransform.anchoredPosition = new Vector2(0f, 714f);
+                    submissionPanelRectTransform.sizeDelta = new Vector2(338f, 56f);
                     submissionPanelRectTransform.localScale = new Vector3(0.7967f, 0.7967f, 0.7967f);
 
                     RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
                     timerPanelRectTransform.anchoredPosition = new Vector2(19f, 87f);
                     timerPanelRectTransform.localScale = new Vector3(0.79671f, 0.79671f, 0.79671f);
+
+                    RectTransform highlight2P0RectTransform = Highlight2P0.GetComponent<RectTransform>();
+                    highlight2P0RectTransform.anchoredPosition = new Vector2(1.1981f, -2.7162f);
+                    highlight2P0RectTransform.sizeDelta = new Vector2(129.09f, 133.5543f);
+                    highlight2P0RectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+                    RectTransform highlight2P1RectTransform = Highlight2P1.GetComponent<RectTransform>();
+                    highlight2P1RectTransform.anchoredPosition = new Vector2(-1.011398f, -2.1671f);
+                    highlight2P1RectTransform.sizeDelta = new Vector2(135.54f,145.5049f);
+                    highlight2P1RectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+
+
 
 
                     RectTransform pauseMenuRectTransform = pauseMenu.GetComponent<RectTransform>();
@@ -316,8 +333,24 @@ public class CanvasHandler : MonoBehaviour
 
 
 
+
+                    RectTransform highlight2P0RectTransform = Highlight2P0.GetComponent<RectTransform>();
+                    highlight2P0RectTransform.anchoredPosition = new Vector2(1.1981f, -1.5057f);
+                    highlight2P0RectTransform.sizeDelta = new Vector2(129.09f, 110.7972f);
+                    highlight2P0RectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+                    RectTransform highlight2P1RectTransform = Highlight2P1.GetComponent<RectTransform>();
+                    highlight2P1RectTransform.anchoredPosition = new Vector2(-1.011398f, -2.1671f);
+                    highlight2P1RectTransform.sizeDelta = new Vector2(135.54f, 108.3795f);
+                    highlight2P1RectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+
+
+
+
                     RectTransform submissionPanelRectTransform = submissionPanel.GetComponent<RectTransform>();
-                    submissionPanelRectTransform.anchoredPosition = new Vector2(-16f, 12f);
+                    //submissionPanelRectTransform.anchoredPosition = new Vector2(-16f, 12f);
+                    submissionPanelRectTransform.anchoredPosition = new Vector2(756f, 33f);
                     submissionPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                     RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();

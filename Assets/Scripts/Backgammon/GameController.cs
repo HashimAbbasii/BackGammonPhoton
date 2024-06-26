@@ -1339,7 +1339,13 @@ namespace BackgammonNet.Core
                     newGameButton.interactable = false;     // deactivate after each use
             }
             else
+            {
+                MyGameManager.AiMode = true;
                 LoadGameScene();
+
+            }
+
+
 
             //SoundManager.GetSoundEffect(4, 0.25f);
         }
