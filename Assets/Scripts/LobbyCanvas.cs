@@ -465,7 +465,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     {
       //  fullscreenToggle = !fullscreenToggle;
 
-        if (isToggle)
+        if (!isToggle)
         {
             MyGameManager.Instance.fullScreenWebGLManager.EnterFullscreen();
 

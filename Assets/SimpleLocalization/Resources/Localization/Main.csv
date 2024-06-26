@@ -24,33 +24,33 @@ Text.HostUnReachable,Host Unreachable!,¡Host inalcanzable!,Хост недос�
 Text.RemovedPlayer,Removed player: {0},Jugador eliminado: {0},Удаленный игрок: {0},Видалений гравець: {0},Joueur supprimé : {0},Giocatore rimosso: {0},اللاعب الذي تمت إزالته: {0},Jogador removido: {0},Entfernter Spieler: {0},ہٹا دیا گیا کھلاڑی: {0}
 Text.NewGameRequest,New Game Request,Solicitud de nuevo juego,Запрос на новую игру,Новий запит на гру,Demande de nouveau jeu,Nuova richiesta di gioco,طلب لعبة جديدة,Solicitação de novo jogo,Neue Spielanfrage,نئی گیم کی درخواست
 Text.Human,Human,Humano,Человек,Людина,Humain,Umano,بشر,Humano,Menschlich,انسان
-Text.VsAI,Vs AI,Contra la IA,против ИИ,Проти ШІ,Contre l'IA,Contro l’intelligenza artificiale,مقابل الذكاء الاصطناعي,Contra IA,Gegen KI,بمقابلہ AI
+Text.VsAI,Vs AI,Contra la IA,против ИИ,Проти ШІ,Contre l'IA,Contro l'intelligenza artificiale,مقابل الذكاء الاصطناعي,Contra IA,Gegen KI,بمقابلہ AI
 Text.MultiPlayer,MultiPlayer,Multijugador,Мультиплеер,Мультіплеер,Multijoueur,Multigiocatore,متعددة اللاعبين,Multijogador,Multiplayer,ملٹی پلیئر
 Text.Settings,Settings,Ajustes,Настройки,Налаштування,Paramètres,Impostazioni,إعدادات,Configurações,Einstellungen,ترتیبات
-Text.Tutorial,Tutorial,Tutorial,Руководство,Підручник,Didacticiel,Esercitazione,درس تعليمي,Tutorial,Lernprogramm,ٹیوٹوریل
+Text.Tutorial,TUTORIAL,TUTORIAL,РУКОВОДСТВО,ПІДРУЧНИК,DIDACTICIEL,TUTORIAL,درس تعليمي,TUTORIAL,LERNPROGRAMM,ٹیوٹوریل
 Text.Music,Music,Música,Музыка,музика,Musique,Musica,موسيقى,Música,Musik,موسیقی
 Text.Sound,Sound,Sonido,Звук,Звук,Son,Suono,صوت,Som,Klang,آواز
-Text.Pause,Pause,Pausa,Пауза,Пауза,Pause,Pausa,يوقف,Pausa,Pause,توقف
+Text.Pause,PAUSE,PAUSA,ПАУЗА,ПАУЗА,PAUSE,PAUSA,يوقف,PAUSA,PAUSE,توقف
 Text.Play,PLAY,JUGAR,ИГРАТЬ,ГРАТИ,JOUER,GIOCARE,يلعب,JOGAR,SPIELEN,کھیلیں
 Text.OnlineMode,ONLINE MODE,MODO EN LÍNEA,ОНЛАЙН РЕЖИМ,ОНЛАЙН РЕЖИМ,MODE EN LIGNE,MODALITÀ ONLINE,وضع على شبكة الإنترنت,MODO ONLINE,ONLINEMODUS,آن لائن موڈ
 Text.Sounds,Sounds:,Sonidos:,Звуки:,Звуки:,Des sons:,Suoni:,اصوات:,Sons:,Geräusche:,آوازیں:
 Text.FullScreen,FullScreen:,Pantalla completa:,Полноэкранный:,Повноекранний:,Plein écran:,A schermo intero:,تكبير الشاشة:,Tela cheia:,Ganzer Bildschirm:,مکمل اسکرین یا بڑی اسکرین:
 Text.Language,Language:,Idioma:,Язык:,Мова:,Langue:,Lingua:,لغة:,Linguagem:,Sprache:,زبان:
 Text.Home,HOME,HOGAR,ДОМ,ДІМ,MAISON,CASA,بيت,LAR,HEIM,گھر
-Text.VsComputer,Vs Computer,contra computadora,против компьютера,Проти комп'ютера,Contre ordinateur,Contro il computer,مقابل الكمبيوتر,Contra o computador,Gegen Computer,بمقابلہ کمپیوٹر
+Text.VsComputer,Vs Computer,contra computadora,против компьютера,Проти комп'ютера,Contre l'ordinateur,Contro il computer,مقابل الكمبيوتر,Contra o computador,Gegen Computer,بمقابلہ کمپیوٹر
 Text.PlayComputer,Play Computer,Jugar a la computadora,Играть в компьютер,Гратися на комп'ютері,Jouer à l'ordinateur,Giocare al computer,العب الكمبيوتر,Jogar computador,Computer spielen,کمپیوٹر چلاؤ
 Text.Beginner,Beginner,Principiante,Новичок,Початківець,Débutant,Principiante,مبتدئ,Principiante,Anfänger,شروع
 Text.Intermediate,Intermediate,Intermedio,Средний,Проміжний,Intermédiaire,Intermedio,متوسط,Intermediário,Dazwischenliegend,انٹرمیڈیٹ
-Text.GrandMaster,GrandMaster,Gran Maestro,Гроссмейстер,Складність: гросмейстер,Grand Maître,Gran Maestro,جراند ماستر,Grão-Mestre,Großmeister,گرینڈ ماسٹر
+Text.GrandMaster,Grandmaster,gran maestro,Гроссмейстер,Складність: гросмейстер,Grand maître,Gran Maestro,غراند ماستر,Grão-Mestre,Großmeister,گرینڈ ماسٹر
 Text.ButtonBeginner,Beginner,Principiante,Новичок,Початківець,Débutant,Principiante,مبتدئ,Principiante,Anfänger,شروع
 Text.ButtonIntermediate,Intermediate,Intermedio,Средний,Проміжний,Intermédiaire,Intermedio,متوسط,Intermediário,Dazwischenliegend,انٹرمیڈیٹ
-Text.ButtonGrandMaster,GrandMaster,Gran Maestro,Гроссмейстер,гросмейстер,Grand Maître,Gran Maestro,جراند ماستر,Grão-Mestre,Großmeister,گرینڈ ماسٹر
+Text.ButtonGrandMaster,Grandmaster,gran maestro,Гроссмейстер,гросмейстер,Grand maître,Gran Maestro,غراند ماستر,Grão-Mestre,Großmeister,گرینڈ ماسٹر
 Text.Name,Name,Nombre,Имя,Ім'я,Nom,Nome,اسم,Nome,Name,نام
 Text.Points,Points,Puntos,Точки,Очки,Points,Punti,نقاط,Pontos,Punkte,پوائنٹس
 Text.Score,Score : {0},Puntuación: {0},Оценка: {0},Оцінка: {0},Note : {0},Punteggio: {0},النتيجة : {0},Pontuação: {0},Punktzahl: {0},اسکور: {0}
 Text.JScore,{0},{0},{0},{0},{0},{0},{0},{0},{0},{0}
 Text.ScoreFixed,Score:,Puntaje:,Счет:,Оцінка:,Score:,Punto:,نتيجة:,Pontuação:,Punktzahl:,سکور:
-Text.DifficultyFixed,Difficulty,Dificultad,Сложность,Складність,Difficulté,Difficoltà,صعوبة,Dificuldade,Schwierigkeit,مشکل
+Text.DifficultyFixed,Difficulty:,Dificultad:,Сложность:,Складність:,Difficulté:,Difficoltà:,صعوبة:,Dificuldade:,Schwierigkeit:,مشکل:
 Text.TimeFixed,Time:,Tiempo:,Время:,час:,Temps:,Tempo:,وقت:,Tempo:,Zeit:,وقت:
 Text.YouWin,YOU WIN,TÚ GANAS,ТЫ ПОБЕДИЛ,ТИ ВИГРАВ,VOUS GAGNEZ,HAI VINTO,فزت,VOCÊ GANHA,DU GEWINNST,تم جیت گئے
 Text.Difficulty,Difficulty,Dificultad,Сложность,Складність,Difficulté,Difficoltà,صعوبة,Dificuldade,Schwierigkeit,مشکل
@@ -58,13 +58,13 @@ Text.GameOver,GAME OVER,JUEGO TERMINADO,ИГРА ЗАКОНЧЕНА,ГРА ЗА�
 Text.VsHuman,Vs Human,contra humano,против человека,Проти людини,Contre l'humain,Contro Umano,مقابل الإنسان,Contra Humano,Gegen Mensch,بمقابلہ انسان
 Text.OfflineMode,OFFLINE MODE,MODO OFFLINE,ОФФЛАЙН РЕЖИМ,ОФЛАЙН РЕЖИМ,MODE HORS-LIGNE,MODALITÀ OFFLINE,وضع غير متصل بالشبكة,MODO OFFLINE,OFFLINE-MODUS,آف لائن موڈ
 Text.JoinLobby,Join Lobby,Unirse al lobby,Присоединиться к лобби,Приєднатися до лобі,Rejoindre le lobby,Unisciti alla lobby,انضم إلى الردهة,Junte-se ao lobby,Treten Sie der Lobby bei,لابی میں شامل ہوں۔
-Text.Join,JOIN ,UNIRSE ,ПРИСОЕДИНИТЬСЯ ,ПРИЄДНУЙТЕСЯ ,REJOINDRE ,GIUNTURA ,ينضم ,JUNTAR ,VERBINDEN ,شمولیت 
+Text.Join,JOIN ,UNIRSE ,ПРИСОЕДИНИТЬСЯ ,ПРИЄДНУЙТЕСЯ ,REJOINDRE ,GIUNTURA ,ينضم ,JUNTAR ,VERBINDEN ,جوائن کریں۔ 
 Text.Connecting,Connecting...,Conectando...,Подключение...,Підключення...,De liaison...,Connessione...,توصيل...,Conectando...,Verbinden...,منسلک ہو رہا ہے...
 Text.Lobby,Lobby,Vestíbulo,Лобби,Вестибюль,Hall d'entrée,Atrio,ردهة,Salão,Empfangshalle,لابی
 Text.CreateRoom,Create Room,Crear habitación,Создать комнату,Створити кімнату,Créer une chambre,Crea stanza,إنشاء غرفة,Criar quarto,Platz schaffen,کمرہ بنائیں
 Text.RandomList,Random List,Lista aleatoria,Случайный список,Випадковий список,Liste aléatoire,Elenco casuale,قائمة عشوائية,Lista Aleatória,Zufällige Liste,بے ترتیب فہرست
 Text.RoomName,Room Name,Nombre de la habitación,Название комнаты,Назва кімнати,Nom de la salle,Nome della stanza,اسم الغرفة,Nome da sala,Raumname,کمرے کا نام
-Text.EnterRoomName,Enter Room Name,Ingrese el nombre de la habitación,Введите название комнаты,Введіть назву кімнати,Entrez le nom de la salle,Inserisci il nome della stanza,أدخل اسم الغرفة,Digite o nome da sala,Geben Sie den Raumnamen ein,کمرے کا نام درج کریں۔
+Text.EnterRoomName,Enter Room Name,Ingrese el nombre de la habitación,Введите название комнаты,Введіть назву кімнати,Entrez le nom de la salle,Inserisci il nome della stanza,أدخل اسم الغرفة,Insira o nome da sala,Geben Sie den Raumnamen ein,کمرے کا نام درج کریں۔
 Text.Create,Create,Crear,Создавать,Створити,Créer,Creare,يخلق,Criar,Erstellen,بنانا
 Text.RoomsList,Rooms List,Lista de habitaciones,Список номеров,Список кімнат,Liste des chambres,Elenco stanze,قائمة الغرف,Lista de salas,Zimmerliste,کمروں کی فہرست
 Text.InsideRoom,Inside Room,Habitación interior,Внутренняя комната,Внутрішня кімната,Chambre intérieure,Sala interna,داخل الغرفة,Quarto interno,Im Zimmer,کمرے کے اندر
@@ -77,7 +77,7 @@ Text.Player2Text,Player 2,Jugador 2,Игрок 2,Гравець 2,Joueur 2,Gioca
 Text.OnlinePlay,Online Play,Juego en línea,Онлайн-игра,Онлайн гра,Jouer en ligne,Gioco in linea,اللعب على الانترنت,Jogo on-line,Online-Spiel,آن لائن کھیلیں
 Text.CreateYourRoom,Create your room,Crea tu habitación,Создайте свою комнату,Створіть свою кімнату,Créez votre chambre,Crea la tua stanza,قم بإنشاء غرفتك,Crie seu quarto,Gestalten Sie Ihr Zimmer,اپنا کمرہ بنائیں
 Text.FindARoom,Find a room,encontrar una habitación,Найти комнату,Знайдіть кімнату,Trouver une chambre,Trova una stanza,ابحث عن غرفة,Encontre um quarto,Finden Sie ein Zimmer,ایک کمرہ تلاش کریں۔
-Text.RoomFind,Find a room that matches your interest,Encuentra una habitación que coincida con tus intereses,"Найдите комнату, которая соответствует вашим интересам","Знайдіть кімнату, яка відповідає вашим інтересам",Trouvez une chambre qui correspond à vos intérêts,Trova una stanza che corrisponda ai tuoi interessi,ابحث عن الغرفة التي تناسب اهتماماتك,Encontre um quarto que corresponda ao seu interesse,"Finden Sie einen Raum, der Ihren Interessen entspricht",ایک کمرہ تلاش کریں جو آپ کی دلچسپی کے مطابق ہو۔
+Text.RoomFind,Find a room that matches your interest,Encuentra una habitación que coincida con tus intereses,"Найдите комнату, которая соответствует вашим интересам","Знайдіть кімнату, яка відповідає вашим інтересам",Trouvez une chambre qui correspond à vos intérêts,Trova una stanza che corrisponda ai tuoi interessi,ابحث عن الغرفة التي تناسب اهتماماتك,Encontre um quarto que corresponda ao seu interesse,"Finden Sie einen Raum, der Ihren Interessen entspricht",ایک کمرہ تلاش کریں جو آپ کی دلچسپی سے مماثل ہو۔
 Text.P1Win,Winner: Player 1,Ganador: Jugador 1,Победитель: Игрок 1,Переможець: Гравець 1,Gagnant : Joueur 1,Vincitore: Giocatore 1,الفائز: اللاعب 1,Vencedor: Jogador 1,Gewinner: Spieler 1,فاتح: کھلاڑی 1
 Text.P2Win,Winner: Player 2,Ganador: Jugador 2,Победитель: Игрок 2,Переможець: Гравець 2,Gagnant : Joueur 2,Vincitore: Giocatore 2,الفائز: اللاعب 2,Vencedor: Jogador 2,Gewinner: Spieler 2,فاتح: کھلاڑی 2
 Text.Player,Player,Jugador,Игрок,гравець,Joueur,Giocatore,لاعب,Jogador,Spieler,کھلاڑی
