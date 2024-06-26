@@ -593,6 +593,12 @@ namespace BackgammonNet.Core
                     OnCompleteTurn(pawnColor);
                 }
             }
+            if (moves == maxMoves)
+            {
+                OnCompleteTurn(pawnColor);
+                moves = 0; // Reset moves counter after completing the turn
+            }
+
             //if(moves == 3)
             //{
             //    OnCompleteTurn(pawnColor);
