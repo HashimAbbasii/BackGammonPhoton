@@ -159,7 +159,11 @@ namespace BackgammonNet.Core
             }
             else
             {
+
+                Debug.Log("hUMAN mODE");
                 diceButton.onClick.AddListener(Generate);
+                MyGameManager.HumanMode = true;
+                MyGameManager.AiMode = false;
             }
 
 
@@ -1340,8 +1344,22 @@ namespace BackgammonNet.Core
             }
             else
             {
-                MyGameManager.AiMode = true;
-                LoadGameScene();
+                if (MyGameManager.AiMode==true)
+                {
+                    MyGameManager.AiMode = false;
+                    MyGameManager.HumanMode = false;
+                   LoadGameScene();
+
+                }
+                if (MyGameManager.HumanMode==true)
+                {
+                    MyGameManager.AiMode = false;
+                    MyGameManager.HumanMode = true;
+                    LoadGameScene();
+
+                }
+
+               // MyGameManager.AiMode = true;
 
             }
 
