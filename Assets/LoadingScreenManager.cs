@@ -7,6 +7,8 @@ using TMPro;
 
 public class LoadingScreenManager : MonoBehaviour
 {
+    public GameObject BottomMenu;
+
 
     public Slider progressBar;
     public TextMeshProUGUI progressText;
@@ -29,6 +31,7 @@ public class LoadingScreenManager : MonoBehaviour
             if (progressBar.value == 100)
             {
                 LobbyManager.Instance.SwitchMenuView(true, false, false, false, false);
+                BottomMenu.gameObject.SetActive(true);
 
             }
         }

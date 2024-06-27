@@ -13,7 +13,23 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
     public bool OnPointerDownBool = false;
 
-    
+    [Header("BottomMenuButtons")]
+    public Button BsoundBtn;
+    public Button BmusicBtn;
+
+    [Header("BottomMenuGameObject")]
+    public GameObject BottomMenu;
+    public GameObject buttonsPanel;
+
+    [Header("BottomButtonSprites")]
+    public Sprite BOnSoundToggle;
+    public Sprite BOffSoundToggle;
+    public Sprite BOnMusicToggle;
+    public Sprite BOffMusicToggle;
+
+
+
+
 
     [Header("TestTexts")]
     public TextMeshProUGUI testtext;
@@ -109,6 +125,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
         {
             //Music is On
             musicBtn.image.sprite = OnMusicToggle;
+            BmusicBtn.image.sprite = BOnMusicToggle;
             musicToggle = true;
 
 
@@ -117,6 +134,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
         {
             //Music is off
             musicBtn.image.sprite = OffMusicToggle;
+            BmusicBtn.image.sprite = BOffMusicToggle;
             musicToggle = false;
 
 
@@ -126,12 +144,14 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
         {
 
             soundBtn.image.sprite = OnSoundToggle;
+            BsoundBtn.image.sprite = BOnSoundToggle;
             soundToggle = true;
 
         }
         else
         {
             soundBtn.image.sprite = OffSoundToggle;
+            BsoundBtn.image.sprite = BOffSoundToggle;
             soundToggle = false;
 
         }
@@ -164,7 +184,11 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
             if (IsRunningOnAndroid() || IsRunningOniOS())
             {
-              //  keyboardCanvas.gameObject.SetActive(true);
+                //  keyboardCanvas.gameObject.SetActive(true);
+
+                BottomMenu.gameObject.SetActive(true);
+                buttonsPanel.gameObject.SetActive(false);
+
 
                 if (ratio < 1)  //_ratio  Portrait Android/iOS
                 {
@@ -197,6 +221,20 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 
 
+                    // Botttom Menu Buttons
+
+                    RectTransform BsoundBtnRectTransform = BsoundBtn.GetComponent<RectTransform>();
+                    BsoundBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+
+
+                    RectTransform BmusicBtnRectTransform = BmusicBtn.GetComponent<RectTransform>();
+                    BmusicBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+
+
+                   
+
+
+
                     //playerShipRectTransform.anchoredPosition = new Vector3(-622f, -476f, 0f);     // Positions for WebGl portrait Ship Placement Scene
                     //playerShipRectTransform.sizeDelta = new Vector2(365f, 70f);
                     //enemyShipTextRectTransform.anchoredPosition = new Vector3(777.9999f, -467f, 0f);
@@ -221,7 +259,20 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                         keyboardPanelImg.gameObject.SetActive(true);
                         keyboardPanelImg2.gameObject.SetActive(true);
                     }
-                    
+
+
+
+                    // Botttom Menu Buttons
+
+                    RectTransform BsoundBtnRectTransform = BsoundBtn.GetComponent<RectTransform>();
+                    BsoundBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+
+
+                    RectTransform BmusicBtnRectTransform = BmusicBtn.GetComponent<RectTransform>();
+                    BmusicBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+
+
+
 
 
                 }
@@ -418,12 +469,14 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
             Debug.Log("false");
             // VfxSoundToggleAnimator.Play("vfx sound Anim");
             soundBtn.image.sprite = OnSoundToggle;
+            BsoundBtn.image.sprite = BOnSoundToggle;
         }
         else
         {
             Debug.Log("true");
             // VfxSoundToggleAnimator.Play("vfx sound Anim Reverse");
             soundBtn.image.sprite = OffSoundToggle;
+            BsoundBtn.image.sprite = BOffSoundToggle;
         }
     }
 
@@ -439,12 +492,14 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
             Debug.Log("false");
             //musicSoundToggleAnimator.Play("Music Anim");
             musicBtn.image.sprite = OnMusicToggle;
+            BmusicBtn.image.sprite = BOnMusicToggle;
         }
         else
         {
             Debug.Log("true");
             //musicSoundToggleAnimator.Play("Music Anim Reverse");
             musicBtn.image.sprite = OffMusicToggle;
+            BmusicBtn.image.sprite = BOffMusicToggle;
         }
 
     }
