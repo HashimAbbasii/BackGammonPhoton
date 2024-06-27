@@ -174,20 +174,20 @@ public class CanvasHandler : MonoBehaviour
 
 
 
-        //float screen_ratio = (Screen.width * 1f / Screen.height);
+        float screen_ratio = (Screen.width * 1f / Screen.height);
 
-        //if (screen_ratio <= 1.5f)
-        //{
-        //    Player0Object.anchoredPosition = new Vector3(1, 0, 0);
-        //    Player1Object.anchoredPosition = new Vector3(-1, 0, 0);
+        if (screen_ratio <= 1.5f)
+        {
+            Player0Object.anchoredPosition = new Vector3(1, 0, 0);
+            Player1Object.anchoredPosition = new Vector3(-1, 0, 0);
 
-        //}
+        }
 
-        //else if (screen_ratio > 1.5f)
-        //{
-        //    Player0Object.anchoredPosition = new Vector3(15, 0, 0);
-        //    Player1Object.anchoredPosition = new Vector3(-15, 0, 0);
-        //}
+        else if (screen_ratio > 1.5f)
+        {
+            Player0Object.anchoredPosition = new Vector3(15, 0, 0);
+            Player1Object.anchoredPosition = new Vector3(-15, 0, 0);
+        }
 
 
 
@@ -224,6 +224,7 @@ public class CanvasHandler : MonoBehaviour
                 {
 
                     mainCamera.orthographicSize = 20f;
+                    mainCamera.transform.localPosition = new Vector3(0f, 0f, -100f);
 
                     //RectTransform buttonsPanelRectTransform = buttonsPanel.GetComponent<RectTransform>();
                     // buttonsPanelRectTransform.localScale = new Vector3(0.49f, 0.49f, 0.49f);
@@ -328,7 +329,7 @@ public class CanvasHandler : MonoBehaviour
 
                     RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
                     player1RectTransform.anchoredPosition = new Vector2(-271f, 167.15f);
-                    points0RectTransform.sizeDelta = new Vector2(100f, 600f);
+                    player1RectTransform.sizeDelta = new Vector2(100f, 600f);
                     player1RectTransform.localScale = new Vector3(2f, 2f, 2f);                //1
 
                     RectTransform points1RectTransform = Points1Object.GetComponent<RectTransform>();
