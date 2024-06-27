@@ -1346,12 +1346,12 @@ namespace BackgammonNet.Core
             {
                 if (MyGameManager.AiMode==true)
                 {
-                    MyGameManager.AiMode = false;
+                    MyGameManager.AiMode = true;
                     MyGameManager.HumanMode = false;
                    LoadGameScene();
 
                 }
-                if (MyGameManager.HumanMode==true)
+                else if (MyGameManager.HumanMode==true)
                 {
                     MyGameManager.AiMode = false;
                     MyGameManager.HumanMode = true;
@@ -1386,6 +1386,7 @@ namespace BackgammonNet.Core
         public void GoToMainMenu()     // delete the Backgammon scene and show the Lobby scene main menu
         {
             MyGameManager.AiMode = false; 
+            MyGameManager.HumanMode=false;
             StartCoroutine(DelayedGoToMainMenu());
         }
 
