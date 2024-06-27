@@ -248,8 +248,8 @@ public class CanvasHandler : MonoBehaviour
                     player1RectTransform.localScale = new Vector3(1f, 1f, 1f);        //// 0.52276
 
                     RectTransform points1RectTransform = Points1Object.GetComponent<RectTransform>();
-                    points1RectTransform.anchoredPosition = new Vector2(-132.1f,-316.3f);
-                    points1RectTransform.sizeDelta = new Vector2(100f, 93.6026f);
+                    points1RectTransform.anchoredPosition = new Vector2(-132.1f, -313.8011f);
+                    points1RectTransform.sizeDelta = new Vector2(100f, 106.8258f);
                     points1RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
 
 
@@ -269,8 +269,8 @@ public class CanvasHandler : MonoBehaviour
                     highlight2P0RectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                     RectTransform highlight2P1RectTransform = Highlight2P1.GetComponent<RectTransform>();
-                    highlight2P1RectTransform.anchoredPosition = new Vector2(-1.011398f, -2.1671f);
-                    highlight2P1RectTransform.sizeDelta = new Vector2(135.54f,145.5049f);
+                    highlight2P1RectTransform.anchoredPosition = new Vector2(-1.011398f, -1.766f);
+                    highlight2P1RectTransform.sizeDelta = new Vector2(135.54f, 127.8402f);
                     highlight2P1RectTransform.localScale = new Vector3(1f, 1f, 1f);
 
 
@@ -291,12 +291,13 @@ public class CanvasHandler : MonoBehaviour
 
 
                     RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
-                    diceButtonRectTransform.anchoredPosition = new Vector2(85f, 5f);
+                    diceButtonRectTransform.anchoredPosition = new Vector2(164f, 5f);
+                    diceButtonRectTransform.sizeDelta = new Vector2(98f, 98f);
                     diceButtonRectTransform.localScale = new Vector3(0.5761739f, 0.5761739f, 0.5761739f);
 
                     RectTransform diceResultRectTransform = diceResult.GetComponent<RectTransform>();
-                    diceResultRectTransform.anchoredPosition = new Vector2(24f, -300f);
-                    diceResultRectTransform.localScale = new Vector3(0.65534f, 0.65534f, 0.65534f);
+                    diceResultRectTransform.anchoredPosition = new Vector2(66f, -536f);
+                    diceResultRectTransform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
 
 
                 }
@@ -305,31 +306,35 @@ public class CanvasHandler : MonoBehaviour
                 {
 
 
-                    mainCamera.orthographicSize = 8.5f;
+                    //mainCamera.orthographicSize = 8.5f;
+                    mainCamera.orthographicSize = 7.08f;
+                    mainCamera.transform.localPosition = new Vector3(0f, -0.48f, -100f);
 
-                    RectTransform buttonsPanelRectTransform = buttonsPanel.GetComponent<RectTransform>();
-                    buttonsPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    //RectTransform buttonsPanelRectTransform = buttonsPanel.GetComponent<RectTransform>();
+                    //buttonsPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                     RectTransform player0RectTransform = player0.GetComponent<RectTransform>();
-                    player0RectTransform.anchoredPosition = new Vector2(30f, 5.722f);
-                    player0RectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);           //1
+                    player0RectTransform.anchoredPosition = new Vector2(297f, 165.722f);
+                    player0RectTransform.sizeDelta = new Vector2(100f, 600f);
+                    player0RectTransform.localScale = new Vector3(2f, 2f, 2f);           //1
 
                     RectTransform points0RectTransform = Points0Object.GetComponent<RectTransform>();
-                    points0RectTransform.anchoredPosition = new Vector2(20f, -170f);
+                    points0RectTransform.anchoredPosition = new Vector2(298f, -78f);
                     points0RectTransform.sizeDelta = new Vector2(100f, 93.6f);
-                    points0RectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);     // 0.52276
+                    points0RectTransform.localScale = new Vector3(2f, 2f, 2f);     // 0.52276
 
 
 
 
                     RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
-                    player1RectTransform.anchoredPosition = new Vector2(-30f, 7.15f);
-                    player1RectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);                //1
+                    player1RectTransform.anchoredPosition = new Vector2(-271f, 167.15f);
+                    points0RectTransform.sizeDelta = new Vector2(100f, 600f);
+                    player1RectTransform.localScale = new Vector3(2f, 2f, 2f);                //1
 
                     RectTransform points1RectTransform = Points1Object.GetComponent<RectTransform>();
-                    points1RectTransform.anchoredPosition = new Vector2(-20, -168.9f);
+                    points1RectTransform.anchoredPosition = new Vector2(-269, -74f);
                     points1RectTransform.sizeDelta = new Vector2(100f, 93.6026f);
-                    points1RectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);     // 0.52276
+                    points1RectTransform.localScale = new Vector3(2f, 2f, 2f);     // 0.52276
 
 
 
@@ -350,12 +355,14 @@ public class CanvasHandler : MonoBehaviour
 
                     RectTransform submissionPanelRectTransform = submissionPanel.GetComponent<RectTransform>();
                     //submissionPanelRectTransform.anchoredPosition = new Vector2(-16f, 12f);
-                    submissionPanelRectTransform.anchoredPosition = new Vector2(756f, 33f);
-                    submissionPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    submissionPanelRectTransform.anchoredPosition = new Vector2(913f, 93f);
+                    submissionPanelRectTransform.sizeDelta = new Vector2(338f, 56f);
+                    submissionPanelRectTransform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
 
                     RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
-                    timerPanelRectTransform.anchoredPosition = new Vector2(0f, 5f);
-                    timerPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    timerPanelRectTransform.anchoredPosition = new Vector2(-806f, 92f);
+                    timerPanelRectTransform.sizeDelta = new Vector2(129.5194f, 50f);
+                    timerPanelRectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
                     RectTransform pauseMenuRectTransform = pauseMenu.GetComponent<RectTransform>();
                     pauseMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
@@ -370,12 +377,14 @@ public class CanvasHandler : MonoBehaviour
                     youWinMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                     RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
-                    diceButtonRectTransform.anchoredPosition = new Vector2(217.5f, 7f);
-                    diceButtonRectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    diceButtonRectTransform.anchoredPosition = new Vector2(493f, 24f);
+                    diceButtonRectTransform.sizeDelta = new Vector2(98f, 98f);
+                    diceButtonRectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
                     RectTransform diceResultRectTransform = diceResult.GetComponent<RectTransform>();
-                    diceResultRectTransform.anchoredPosition = new Vector2(87f, -293f);
-                    diceResultRectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    diceResultRectTransform.anchoredPosition = new Vector2(236f, -528f);
+                    diceResultRectTransform.sizeDelta = new Vector2(0f, 0f);
+                    diceResultRectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
                 }
 
