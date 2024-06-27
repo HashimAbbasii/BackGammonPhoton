@@ -572,7 +572,7 @@ namespace BackgammonNet.Core
                 isDublet = true;
             if (GameController.turn == 1)
             {
-
+                Debug.Log("i think so ywah chalta hain");
                StartCoroutine(PawnMoveCoroutine());
 
             }
@@ -951,8 +951,8 @@ namespace BackgammonNet.Core
                         {
                             //.............. Shift the TURN tO THE HUMAN..................//
                             Debug.Log("Turn on First SLOT");
+                           // Pawn_OnCompleteTurn(turn);
                             StartCoroutine(SecondDice());
-                            Pawn_OnCompleteTurn(turn);
 
                         }
                         else
@@ -1043,6 +1043,8 @@ namespace BackgammonNet.Core
                         if (topEPawns.Count == 0)
                         {
                             randomSelectPawn2.CheckIfNextTurn();
+                          //  randomSelectPawn2.OnCompleteTurn();
+
                             //..............Assign a Dice to the next human player.......................//
                             Debug.Log("Check if not null");
                            // Pawn_OnCompleteTurn(turn);
