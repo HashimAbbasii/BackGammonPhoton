@@ -141,6 +141,7 @@ namespace BackgammonNet.Core
             _photonView = GetComponent<PhotonView>();
 
             Pawn.OnCompleteTurn += Pawn_OnCompleteTurn;
+            Pawn.OnCompleteTurnForBlockState += Pawn_OnCompleteTurnForBlockState;
             Pawn.OnGameOver += Pawn_OnGameOver;
             TimeController.OnTimeLimitEnd += Pawn_OnGameOver;
 
@@ -489,31 +490,89 @@ namespace BackgammonNet.Core
 
             if (diceEnable && Board.Instance.acceptance >= 2)
             {
-                
-
-                if (turn == 0)
+                if (preventAiGenertion == false)
                 {
-                  //  Debug.Log("Human Turn");
-                    dragEnable = true;
-                    diceEnable = false;
-                    //SoundManager.GetSoundEffect(4, 0.25f);
-                    AudioManager.Instance.DiceRoll();
-                    CheckIfTurnChange(Random.Range(1,7), Random.Range(1,7));
+                    Debug.Log("Turn HANLE PREVENT");
+                    turn = 0;
+                    preventAiGenertion = true;
+
+                    if (turn == 0)
+                    {
+                        Debug.Log("Human Turn");
+                        dragEnable = true;
+                        diceEnable = false;
+                        //SoundManager.GetSoundEffect(4, 0.25f);
+                        AudioManager.Instance.DiceRoll();
+                        CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
+                    }
+                    else
+                    {
+                        dragEnableCheck = dragEnable;
+                        Debug.Log("Ai Turn");
+                        _allSlotsInts.Clear();
+                        allSlots.Clear();
+                        topEPawns.Clear();
+                        checkExistingPawn.Clear();
+                        //SoundManager.GetSoundEffect(4, 0.25f);
+                        AudioManager.Instance.DiceRoll();
+
+                        CheckifTurnChangeAI(Random.Range(1, 7), Random.Range(1, 7));
+
+                    }
+
+
                 }
-                else
+                if (preventAiGenertion == true)
                 {
-                    dragEnableCheck = dragEnable;
-                    //  Debug.Log("Ai Turn");
-                    _allSlotsInts.Clear();
-                    allSlots.Clear();
-                    topEPawns.Clear();
-                    checkExistingPawn.Clear();
-                    //SoundManager.GetSoundEffect(4, 0.25f);
-                    AudioManager.Instance.DiceRoll();
+                    Debug.Log("Turn HANLE");
+                    if (turn == 0)
+                    {
+                        Debug.Log("Human Turn");
+                        dragEnable = true;
+                        diceEnable = false;
+                        //SoundManager.GetSoundEffect(4, 0.25f);
+                        AudioManager.Instance.DiceRoll();
+                        CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
+                    }
+                    else
+                    {
+                        dragEnableCheck = dragEnable;
+                        Debug.Log("Ai Turn");
+                        _allSlotsInts.Clear();
+                        allSlots.Clear();
+                        topEPawns.Clear();
+                        checkExistingPawn.Clear();
+                        //SoundManager.GetSoundEffect(4, 0.25f);
+                        AudioManager.Instance.DiceRoll();
 
-                    CheckifTurnChangeAI(Random.Range(1,7), Random.Range(1,7));
+                        CheckifTurnChangeAI(Random.Range(1, 7), Random.Range(1, 7));
 
+                    }
                 }
+
+                //if (turn == 0)
+                //{
+                //    Debug.Log("Human Turn");
+                //    dragEnable = true;
+                //    diceEnable = false;
+                //    //SoundManager.GetSoundEffect(4, 0.25f);
+                //    AudioManager.Instance.DiceRoll();
+                //    CheckIfTurnChange(Random.Range(1,7), Random.Range(1,7));
+                //}
+                //else
+                //{
+                //    dragEnableCheck = dragEnable;
+                //     Debug.Log("Ai Turn");
+                //    _allSlotsInts.Clear();
+                //    allSlots.Clear();
+                //    topEPawns.Clear();
+                //    checkExistingPawn.Clear();
+                //    //SoundManager.GetSoundEffect(4, 0.25f);
+                //    AudioManager.Instance.DiceRoll();
+
+                    //    CheckifTurnChangeAI(Random.Range(1,7), Random.Range(1,7));
+
+                    //}
 
 
             }
@@ -570,6 +629,7 @@ namespace BackgammonNet.Core
 
             if (dices[0] == dices[1])
                 isDublet = true;
+              //Debug.Log("Turn Before"+turn);
             if (GameController.turn == 1)
             {
                 Debug.Log("i think so ywah chalta hain");
@@ -589,8 +649,9 @@ namespace BackgammonNet.Core
 
         private IEnumerator PawnMoveCoroutine()
         {
+            Debug.Log("turn Before "+turn);
             yield return new WaitForSecondsRealtime(1);
-            if (!CanMoveAi(2))
+            if (!CanMoveAi(2)&&turn==1)
             {
                 Debug.LogWarning("Tera issue hain");
                 StartCoroutine(ChangeTurn());
@@ -829,6 +890,43 @@ namespace BackgammonNet.Core
             else
             {
                 int RandomSelectEnemy = -1;
+                if (topEPawns.Count != 0)
+                {
+                    switch (MyGameManager.Instance.botDifficulty)
+                    {
+                        case Difficulty.Beginner:
+                            RandomSelectEnemy = 0;
+                            break;
+                        case Difficulty.Intermediate:
+                            RandomSelectEnemy = Random.Range(0, topEPawns.Count);
+                            break;
+                        case Difficulty.GrandMaster:
+                            RandomSelectEnemy = topEPawns.Count - 1;
+                            break;
+                    }
+
+
+
+                    randomSelectPawn = topEPawns[RandomSelectEnemy];
+                    checkExistingPawn.Add(randomSelectPawn);
+                    topEPawns.Remove(randomSelectPawn);
+                    AiMovesEnemy();
+                }
+            }
+             
+
+           }
+        #endregion
+
+
+
+        #region _SelectRandomEnemy
+        public void SelectRandomEnemy2()
+        {
+            if (topEPawns.Count != 0)
+            {
+
+                int RandomSelectEnemy = -1;
 
                 switch (MyGameManager.Instance.botDifficulty)
                 {
@@ -842,48 +940,26 @@ namespace BackgammonNet.Core
                         RandomSelectEnemy = topEPawns.Count - 1;
                         break;
                 }
+                        randomSelectPawn2 = topEPawns[RandomSelectEnemy];
+                        checkExistingPawn.Add(randomSelectPawn2);
+                        topEPawns.Remove(randomSelectPawn2);
 
-
-
-                randomSelectPawn = topEPawns[RandomSelectEnemy];
-                checkExistingPawn.Add(randomSelectPawn);
-                topEPawns.Remove(randomSelectPawn);
-                AiMovesEnemy();
+                        AiMovesEnemy2();
+                
             }
-             
-
-           }
-        #endregion
-
-
-
-        #region _SelectRandomEnemy
-        public void SelectRandomEnemy2()
-        {
-            //.............SelectRandom Enemy............From the list.....
-            int RandomSelectEnemy = -1;
-
-            switch (MyGameManager.Instance.botDifficulty)
+            else
             {
-                case Difficulty.Beginner:
-                    RandomSelectEnemy = 0;
-                    break;
-                case Difficulty.Intermediate:
-                    RandomSelectEnemy = Random.Range(0, topEPawns.Count);
-                    break;
-                case Difficulty.GrandMaster:
-                    RandomSelectEnemy = topEPawns.Count - 1;
-                    break;
+                Debug.Log("Turn Shift");
+                randomSelectPawn2.CheckShelterStage();
+                randomSelectPawn2.CheckShelterAndMore();
+                randomSelectPawn2.CheckIfNextTurn();
+
             }
+            //.............SelectRandom Enemy............From the list.....
 
 
          //   int RandomSelectEnemy = Random.Range(0, topEPawns.Count);
 
-            randomSelectPawn2 = topEPawns[RandomSelectEnemy];
-            checkExistingPawn.Add(randomSelectPawn2);
-            topEPawns.Remove(randomSelectPawn2);
-
-            AiMovesEnemy2();
 
         }
         #endregion
@@ -1168,14 +1244,15 @@ namespace BackgammonNet.Core
             if (dices[0] == dices[1])
                 isDublet = true;
 
-        
 
+            Debug.Log("Turn lazmi bta" + turn);
 
 
        
 
             if (!CanMove(2) && GameController.turn == 0)
             {
+                Debug.Log("GAME cONTROL cHECK");
                 StartCoroutine(ChangeTurn());
 
             }
@@ -1190,9 +1267,61 @@ namespace BackgammonNet.Core
             yield return new WaitForSeconds(2f);
             Pawn_OnCompleteTurn(turn);
         }
-
+        private IEnumerator ChangeTurnForBlockState()
+        {
+            yield return new WaitForSeconds(2f);
+            Pawn_OnCompleteTurn(turn);
+        }
         public void Pawn_OnCompleteTurn(int isWhiteColor)
         {
+
+
+
+            if (preventAiGenertion == true)
+            {
+                Debug.Log("Turn Change Occurs");
+                Debug.Log("Turn before" + turn);
+                dices[0] = dices[1] = 0;
+
+                diceEnable = true;
+                dragEnable = false;
+
+                turn = 1 - turn;                                                // turn change
+                Debug.Log("Turn" + turn);
+                //  turnImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
+                //   turnImages[1].gameObject.SetActive(isWhiteColor == 0);
+
+
+
+                highlightImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
+                highlightImages[1].gameObject.SetActive(1 - isWhiteColor == 0);
+                highlightImages[2].gameObject.SetActive(1 - isWhiteColor == 0);
+
+                highlightImages[3].gameObject.SetActive(isWhiteColor == 0);
+                highlightImages[4].gameObject.SetActive(isWhiteColor == 0);
+                highlightImages[5].gameObject.SetActive(isWhiteColor == 0);
+
+
+                if (turn == 1 && MyGameManager.AiMode == true)
+                {
+                    //GenerateForAi();
+
+                    StartCoroutine(TurnChangeDelay());
+                }
+                else
+                {
+                    diceButton.gameObject.SetActive(true);                // offline game
+
+                }
+            }
+        }
+
+        //..............Handle  A tURN State For the GAME.........................//
+
+        public bool preventAiGenertion=true;
+        public void Pawn_OnCompleteTurnForBlockState(int isWhiteColor)
+        {
+            preventAiGenertion = false;
             Debug.Log("Turn Change Occurs");
             Debug.Log("Turn before" + turn);
             dices[0] = dices[1] = 0;
@@ -1200,10 +1329,10 @@ namespace BackgammonNet.Core
             diceEnable = true;
             dragEnable = false;
 
-            turn = 1 - turn;                                                // turn change
+            turn = 0;                                                // turn change
             Debug.Log("Turn" + turn);
-          //  turnImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
-         //   turnImages[1].gameObject.SetActive(isWhiteColor == 0);
+            //  turnImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
+            //   turnImages[1].gameObject.SetActive(isWhiteColor == 0);
 
 
 
@@ -1216,17 +1345,26 @@ namespace BackgammonNet.Core
             highlightImages[5].gameObject.SetActive(isWhiteColor == 0);
 
 
-            if (turn == 1 && MyGameManager.AiMode == true)
-            {
-                //GenerateForAi();
-                StartCoroutine(TurnChangeDelay());
-            }
-            else
-            {
+            //if (turn == 1 && MyGameManager.AiMode == true)
+            //{
+            //    //GenerateForAi();
+
+            //    StartCoroutine(TurnChangeDelay());
+            //}
+           // else
+            //{
                 diceButton.gameObject.SetActive(true);                // offline game
 
-            }
+            //}
         }
+
+
+
+
+
+
+
+
 
         private IEnumerator TurnChangeDelay()
         {

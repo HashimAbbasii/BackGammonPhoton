@@ -15,6 +15,9 @@ namespace BackgammonNet.Core
         public static event Action<int> OnCompleteTurn = delegate { };
         public static event Action<bool> OnGameOver = delegate { };
 
+
+        public static event Action<int> OnCompleteTurnForBlockState= delegate { };
+
         public static int[] imprisonedSide = new int[2];        // Is the mode of taking the pieces of given side out of prison?
         public static bool[] shelterSide = new bool[2];         // Is the mode of introducing the pieces of given side into the shelter?
 
@@ -194,7 +197,7 @@ namespace BackgammonNet.Core
                         Debug.Log("Height greater than 1 but opposite color");
 
                         CheckShelterStage();
-                      CheckShelterAndMore();
+                        CheckShelterAndMoreForBlockState();
                     //   CheckIfNextTurn();
 
                         if (Slot.slots[25 + sign * GameController.dices[1]].Height() > 1 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() != prisonSlot.IsWhite())
@@ -202,7 +205,8 @@ namespace BackgammonNet.Core
 
                             Debug.Log("Give the Dice to the Human Player");
                             CheckShelterStage();
-                            CheckShelterAndMore();
+                            CheckShelterAndMoreForBlockState();
+                           
                          //   CheckIfNextTurn();
                            
 
@@ -210,77 +214,83 @@ namespace BackgammonNet.Core
                         }
                         else
                         {
-                            Debug.Log("Moves According to Dice 1");
-                            if (Slot.slots[25 + sign * GameController.dices[1]].Height() == 1 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() != prisonSlot.IsWhite())
-                            {
-                                Debug.Log("jail karna hain according to Dice 1");
-
-                                //...................................Dice Jail...................//
-
-
-                                GameController.Instance.playerScores[1].Kills++;
-                                GameController.Instance.playerScores[1].Moves++;
-
-                                //Debug.Log("JAIL KAR DOOH");
-                                var prisonSlot1 = prisonSlot.GetTopPawn(true);
-
-                                int slotDice = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
-                                TryHighlight(true);
-                                Slot.slots[slotDice].GetTopPawn(false).PlaceJail();
-
-                                Slot.slots[slotDice].PlacePawn(prisonSlot1, prisonSlot1.pawnColor);
-                                prisonSlot1.imprisoned = false;
-                                imprisonedSide[pawnColor]--;
-                                CheckShelterStage();
-                                CheckShelterAndMore();
-                              //  CheckIfNextTurn();
-
-                                //StartCoroutine(GameController.Instance.SecondDice());
-
-
-
-
-
-                            }
-
-                            else if (Slot.slots[25 + sign * GameController.dices[1]].Height() > 0 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() == prisonSlot.IsWhite())
-                            {
-                                //...........If same Color Slot ................//
-
-                                GameController.Instance.playerScores[1].Moves++;
-                                var prisonDice = prisonSlot.GetTopPawn(true);
-                                int slotDice = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
-                                var slotHighlight = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
-                                TryHighlight(true);
-                                Slot.slots[slotDice].PlacePawn(prisonDice, prisonDice.pawnColor);
-                                prisonDice.imprisoned = false;
-                                imprisonedSide[pawnColor]--;
-                                CheckShelterStage();
-                                CheckShelterAndMore();
-                              //  CheckIfNextTurn();
-                               // StartCoroutine(GameController.Instance.SecondDice());
-
-
-
-                            }
-                            else if (Slot.slots[25 + sign * GameController.dices[1]].Height() == 0)
-                            {
-                                Debug.Log("Height Equalt to zero");
-                                GameController.Instance.playerScores[1].Moves++;
-                                var prisonPawn = prisonSlot.GetTopPawn(true);
-                                int slot0 = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
-                                Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
-                                TryHighlight(true);
-                                prisonPawn.imprisoned = false;
-                                imprisonedSide[pawnColor]--;
-                                CheckShelterStage();
-                                CheckShelterAndMore();
-                              //  CheckIfNextTurn();
-                               // StartCoroutine(GameController.Instance.SecondDice());
-                            }
-
-
+                            StartCoroutine(GameController.Instance.SecondDice());
                         }
+
+
+                       //else
+                       // {
+                       //     Debug.Log("Moves According to Dice 1");
+                       //     if (Slot.slots[25 + sign * GameController.dices[1]].Height() == 1 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() != prisonSlot.IsWhite())
+                       //     {
+                       //         Debug.Log("jail karna hain according to Dice 1");
+
+                       //         //...................................Dice Jail...................//
+
+
+                       //         GameController.Instance.playerScores[1].Kills++;
+                       //         GameController.Instance.playerScores[1].Moves++;
+
+                       //         //Debug.Log("JAIL KAR DOOH");
+                       //         var prisonSlot1 = prisonSlot.GetTopPawn(true);
+
+                       //         int slotDice = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
+                       //         TryHighlight(true);
+                       //         Slot.slots[slotDice].GetTopPawn(false).PlaceJail();
+
+                       //         Slot.slots[slotDice].PlacePawn(prisonSlot1, prisonSlot1.pawnColor);
+                       //         prisonSlot1.imprisoned = false;
+                       //         imprisonedSide[pawnColor]--;
+                       //         CheckShelterStage();
+                       //         CheckShelterAndMore();
+                       //       //  CheckIfNextTurn();
+
+                       //         //StartCoroutine(GameController.Instance.SecondDice());
+
+
+
+
+
+                       //     }
+
+                       //     else if (Slot.slots[25 + sign * GameController.dices[1]].Height() > 0 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() == prisonSlot.IsWhite())
+                       //     {
+                       //         //...........If same Color Slot ................//
+
+                       //         GameController.Instance.playerScores[1].Moves++;
+                       //         var prisonDice = prisonSlot.GetTopPawn(true);
+                       //         int slotDice = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
+                       //         var slotHighlight = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
+                       //         TryHighlight(true);
+                       //         Slot.slots[slotDice].PlacePawn(prisonDice, prisonDice.pawnColor);
+                       //         prisonDice.imprisoned = false;
+                       //         imprisonedSide[pawnColor]--;
+                       //         CheckShelterStage();
+                       //         CheckShelterAndMore();
+                       //       //  CheckIfNextTurn();
+                       //        // StartCoroutine(GameController.Instance.SecondDice());
+
+
+
+                       //     }
+                       //     else if (Slot.slots[25 + sign * GameController.dices[1]].Height() == 0)
+                       //     {
+                       //         Debug.Log("Height Equalt to zero");
+                       //         GameController.Instance.playerScores[1].Moves++;
+                       //         var prisonPawn = prisonSlot.GetTopPawn(true);
+                       //         int slot0 = Slot.slots[25 + sign * GameController.dices[1]].slotNo;
+                       //         Slot.slots[slot0].PlacePawn(prisonPawn, prisonPawn.pawnColor);
+                       //         TryHighlight(true);
+                       //         prisonPawn.imprisoned = false;
+                       //         imprisonedSide[pawnColor]--;
+                       //         CheckShelterStage();
+                       //         CheckShelterAndMore();
+                       //       //  CheckIfNextTurn();
+                       //        // StartCoroutine(GameController.Instance.SecondDice());
+                       //     }
+
+
+                       // }
                     }
 
 
@@ -606,6 +616,45 @@ namespace BackgammonNet.Core
             //}
         }
 
+
+        public void CheckShelterAndMoreForBlockState()
+        {
+            if (slotNo != 0) TryRemovePawnFromJail();
+            if (slotNo != 25) TryRemovePawnFromJail();
+
+            if (CheckShelterStage())                //---- detection of the mode of introducing the pieces into the shelter
+                shelterSide[pawnColor] = true;
+            // Debug.Log("Moves " + moves);
+            // Debug.Log("Max Moves"+maxMoves);
+
+
+
+            if (++moves < maxMoves)      // after each move
+            {
+                // Debug.Log("andr aya hain");
+                if (!GameController.CanMove(1))        // when a move cannot be made
+                {
+
+                    moves = 0;
+                    OnCompleteTurnForBlockState(pawnColor);
+                }
+            }
+            else if (moves == maxMoves)
+            {
+                OnCompleteTurnForBlockState(pawnColor);
+                moves = 0; // Reset moves counter after completing the turn
+            }
+
+            //if(moves == 3)
+            //{
+            //    OnCompleteTurn(pawnColor);
+            //}
+        }
+
+
+
+
+
         //..............................Set the CheckShelter and More.........................//
 
         public void CheckShelterAndMoreAI()
@@ -924,6 +973,7 @@ namespace BackgammonNet.Core
 
             public bool CheckShelterStage()                   // check if it is possible to bring a given player's pieces into the shelter
         {
+            Debug.Log("Shelter Stage must be Run");
             maxMoves = GameController.isDublet ? 4 : 2;    // four the same movements or two different movements
             //  ..........Is mein yeah sare shelter slots check karta hain k kon si    shlter pr hain means slot ko check kare .....//
             house = GameObject.Find((pawnColor == 0 ? "White" : "Red") + " House");
