@@ -176,20 +176,20 @@ public class CanvasHandler : MonoBehaviour
 
 
 
-        //float screen_ratio = (Screen.width * 1f / Screen.height);
+        float screen_ratio = (Screen.width * 1f / Screen.height);
 
-        //if (screen_ratio <= 1.5f)
-        //{
-        //    Player0Object.anchoredPosition = new Vector3(1, 0, 0);
-        //    Player1Object.anchoredPosition = new Vector3(-1, 0, 0);
+        if (screen_ratio <= 1.5f)
+        {
+            Player0Object.anchoredPosition = new Vector3(1, 0, 0);
+            Player1Object.anchoredPosition = new Vector3(-1, 0, 0);
 
-        //}
+        }
 
-        //else if (screen_ratio > 1.5f)
-        //{
-        //    Player0Object.anchoredPosition = new Vector3(15, 0, 0);
-        //    Player1Object.anchoredPosition = new Vector3(-15, 0, 0);
-        //}
+        else if (screen_ratio > 1.5f)
+        {
+            Player0Object.anchoredPosition = new Vector3(15, 0, 0);
+            Player1Object.anchoredPosition = new Vector3(-15, 0, 0);
+        }
 
 
 
@@ -218,9 +218,12 @@ public class CanvasHandler : MonoBehaviour
 
             if (IsRunningOnAndroid() || IsRunningOniOS())
             {
-                BottomMenu.gameObject.SetActive(true);
-                buttonsPanel.gameObject.SetActive(false);
 
+            
+                    BottomMenu.gameObject.SetActive(true);
+                    buttonsPanel.gameObject.SetActive(false);
+              
+              
 
                 if (ratio < 1)  //_ratio  Portrait Android/iOS
                 {
@@ -230,7 +233,6 @@ public class CanvasHandler : MonoBehaviour
 
                     //RectTransform buttonsPanelRectTransform = buttonsPanel.GetComponent<RectTransform>();
                     // buttonsPanelRectTransform.localScale = new Vector3(0.49f, 0.49f, 0.49f);
-
 
 
 
