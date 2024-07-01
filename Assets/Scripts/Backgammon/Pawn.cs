@@ -165,7 +165,7 @@ namespace BackgammonNet.Core
                         imprisonedSide[pawnColor]--;
                         CheckShelterStage();
                         CheckShelterAndMore();
-                      //  CheckIfNextTurn();
+                        CheckIfNextTurn();
                         //  StartCoroutine(SecondDice());
                         StartCoroutine(GameController.Instance.SecondDice());
 
@@ -187,7 +187,7 @@ namespace BackgammonNet.Core
                         imprisonedSide[pawnColor]--;
                         CheckShelterStage();
                         CheckShelterAndMore();
-                        //CheckIfNextTurn();
+                        CheckIfNextTurn();
                         StartCoroutine(GameController.Instance.SecondDice());
 
                     }
@@ -198,7 +198,7 @@ namespace BackgammonNet.Core
 
                         CheckShelterStage();
                         CheckShelterAndMoreForBlockState();
-                    //   CheckIfNextTurn();
+                      CheckIfNextTurn();
 
                         if (Slot.slots[25 + sign * GameController.dices[1]].Height() > 1 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() != prisonSlot.IsWhite())
                         {
@@ -207,7 +207,7 @@ namespace BackgammonNet.Core
                             CheckShelterStage();
                             CheckShelterAndMoreForBlockState();
                            
-                         //   CheckIfNextTurn();
+                            CheckIfNextTurn();
                            
 
 
