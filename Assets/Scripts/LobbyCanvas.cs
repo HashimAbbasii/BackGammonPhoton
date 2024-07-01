@@ -224,11 +224,11 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     // Botttom Menu Buttons
 
                     RectTransform BsoundBtnRectTransform = BsoundBtn.GetComponent<RectTransform>();
-                    BsoundBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+                    BsoundBtnRectTransform.sizeDelta = new Vector2(80f, 80f);
 
 
                     RectTransform BmusicBtnRectTransform = BmusicBtn.GetComponent<RectTransform>();
-                    BmusicBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+                    BmusicBtnRectTransform.sizeDelta = new Vector2(80f, 80f);
 
 
                    
@@ -265,11 +265,11 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     // Botttom Menu Buttons
 
                     RectTransform BsoundBtnRectTransform = BsoundBtn.GetComponent<RectTransform>();
-                    BsoundBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+                    BsoundBtnRectTransform.sizeDelta = new Vector2(80f, 80f);
 
 
                     RectTransform BmusicBtnRectTransform = BmusicBtn.GetComponent<RectTransform>();
-                    BmusicBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+                    BmusicBtnRectTransform.sizeDelta = new Vector2(80f, 80f);
 
 
 
@@ -283,6 +283,10 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
             else if(ratio >= 1.55) // WebGL PC
             {
+                BottomMenu.gameObject.SetActive(false);
+                buttonsPanel.gameObject.SetActive(true);
+
+
                 testtext2.text = "WebGL PC";
 
                 RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
