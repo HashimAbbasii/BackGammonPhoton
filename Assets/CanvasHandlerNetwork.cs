@@ -6,14 +6,36 @@ using UnityEngine.UI;
 
 public class CanvasHandlerNetwork : MonoBehaviour
 {
+    [Header("BottomMenuGameObject")]
+    public GameObject BottomMenu;
 
     [Header("PlayerObjects")]
     public RectTransform Player0Object;
     public RectTransform Player1Object;
 
+    public GameObject Highlight2P0;
+    public GameObject Highlight2P1;
+
+    public RectTransform Points0Object;
+    public RectTransform Points1Object;
+
 
     public GameObject diceRollButton;
     public GameObject diceResults;
+
+    [Header("WebGL ScalingElements")]
+    public Camera mainCamera;
+    public GameObject buttonsPanel;
+    public GameObject player0;
+    public GameObject player1;
+    public GameObject submissionPanel;
+    public GameObject timerPanel;
+    public GameObject pauseMenu;
+    public GameObject tutorialMenu;
+    public GameObject gameOverMenu;
+    public GameObject youWinMenu;
+    public GameObject diceButton;
+    public GameObject diceResult;
 
 
 
@@ -31,10 +53,27 @@ public class CanvasHandlerNetwork : MonoBehaviour
     public Sprite OnFullScreenToggle;
     public Sprite OffFullScreenToggle;
 
+    [Header("BottomButtonSprites")]
+    public Sprite BOnSoundToggle;
+    public Sprite BOffSoundToggle;
+    public Sprite BOnMusicToggle;
+    public Sprite BOffMusicToggle;
+    public Sprite BOnFullScreenToggle;
+    public Sprite BOffFullScreenToggle;
+
+
+
     [Header("TopMenuButtons")]
     public Button soundBtn;
     public Button musicBtn;
     public Button fullScreenBtn;
+
+    [Header("BottomMenuButtons")]
+    public Button BsoundBtn;
+    public Button BmusicBtn;
+    public Button BfullScreenBtn;
+
+
 
     public static CanvasHandlerNetwork Instance { get; set; }
 
@@ -73,6 +112,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
         {
             //Music is On
             musicBtn.image.sprite = OnMusicToggle;
+            BmusicBtn.image.sprite = BOnMusicToggle;
             musicToggle = true;
 
          
@@ -81,6 +121,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
         {
             //Music is off
             musicBtn.image.sprite = OffMusicToggle;
+            BmusicBtn.image.sprite = BOffMusicToggle;
             musicToggle = false;
 
        
@@ -89,6 +130,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
         if (vVal > -40)
         {
             soundBtn.image.sprite = OnSoundToggle;
+            BsoundBtn.image.sprite = BOnSoundToggle;
             soundToggle = true;
 
            
@@ -96,6 +138,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
         else
         {
             soundBtn.image.sprite = OffSoundToggle;
+            BsoundBtn.image.sprite = BOffSoundToggle;
             soundToggle = false;
 
           
@@ -136,143 +179,242 @@ public class CanvasHandlerNetwork : MonoBehaviour
 
         // -------------------------------------------------------- Portrait WEBGL Commented Area-------------------------------------------------------------------------------//
 
-        //float ratio = (Screen.width * 1f / Screen.height);
-        //if (Application.platform == RuntimePlatform.WebGLPlayer)
-        //{
-        //    var width = Screen.width;
-        //    var height = Screen.height;
+        float ratio = (Screen.width * 1f / Screen.height);
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+        {
+            var width = Screen.width;
+            var height = Screen.height;
 
-        //    if (width / height < 1)
-        //    {
-        //        ratio = (Screen.width * 1f / Screen.height);
-        //    }
-
-
+            if (width / height < 1)
+            {
+                ratio = (Screen.width * 1f / Screen.height);
+            }
 
 
-        //    if (IsRunningOnAndroid() || IsRunningOniOS())
-        //    {
-
-        //        if (ratio < 1)  //_ratio  Portrait Android/iOS
-        //        {
-
-        //            mainCamera.orthographicSize = 20f;
-
-        //            RectTransform buttonsPanelRectTransform = buttonsPanel.GetComponent<RectTransform>();
-        //            buttonsPanelRectTransform.localScale = new Vector3(0.49f, 0.49f, 0.49f);
-
-        //            RectTransform player0RectTransform = player0.GetComponent<RectTransform>();
-        //            player0RectTransform.localPosition = new Vector2(0f, 182f);
-        //            player0RectTransform.localScale = new Vector3(0.52276f, 0.52276f, 0.52276f);
-
-        //            RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
-        //            player1RectTransform.localPosition = new Vector2(0f, -129f);
-        //            player1RectTransform.localScale = new Vector3(0.52276f, 0.52276f, 0.52276f);
-
-        //            RectTransform submissionPanelRectTransform = submissionPanel.GetComponent<RectTransform>();
-        //            submissionPanelRectTransform.localPosition = new Vector2(-87f, 164f);
-        //            submissionPanelRectTransform.localScale = new Vector3(0.7967f, 0.7967f, 0.7967f);
-
-        //            RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
-        //            timerPanelRectTransform.localPosition = new Vector2(0f, 5f);
-        //            timerPanelRectTransform.localScale = new Vector3(0.79671f, 0.79671f, 0.79671f);
+            if (IsRunningOnAndroid() || IsRunningOniOS())
+            {
+                BottomMenu.gameObject.SetActive(true);
+                buttonsPanel.gameObject.SetActive(false);
 
 
-        //            RectTransform pauseMenuRectTransform = pauseMenu.GetComponent<RectTransform>();
-        //            pauseMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+                if (ratio < 1)  //_ratio  Portrait Android/iOS
+                {
 
-        //            RectTransform tutorialMenuRectTransform = tutorialMenu.GetComponent<RectTransform>();
-        //            tutorialMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
-
-        //            RectTransform gameOverMenuRectTransform = gameOverMenu.GetComponent<RectTransform>();
-        //            gameOverMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
-
-        //            RectTransform youWinMenuRectTransform = youWinMenu.GetComponent<RectTransform>();
-        //            youWinMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
-
-
-        //            RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
-        //            diceButtonRectTransform.localPosition = new Vector2(85f, 5f);
-        //            diceButtonRectTransform.localScale = new Vector3(0.5761739f, 0.5761739f, 0.5761739f);
-
-        //            RectTransform diceResultRectTransform = diceResult.GetComponent<RectTransform>();
-        //            diceResultRectTransform.localPosition = new Vector2(24f, -300f);
-        //            diceResultRectTransform.localScale = new Vector3(0.65534f, 0.65534f, 0.65534f);
-
-
-        //        }
-
-        //        else if (ratio >= 2) //_ratio  LAndScape Android/iOS
-        //        {
-
-
-        //            mainCamera.orthographicSize = 8.5f;
-
-        //            RectTransform buttonsPanelRectTransform = buttonsPanel.GetComponent<RectTransform>();
-        //            buttonsPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
-
-        //            RectTransform player0RectTransform = player0.GetComponent<RectTransform>();
-        //            player0RectTransform.localPosition = new Vector2(30f, 5.722f);
-        //            player0RectTransform.localScale = new Vector3(1f, 1f, 1f);
-
-        //            RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
-        //            player1RectTransform.localPosition = new Vector2(-30f, 7.15f);
-        //            player1RectTransform.localScale = new Vector3(1f, 1f, 1f);
-
-        //            RectTransform submissionPanelRectTransform = submissionPanel.GetComponent<RectTransform>();
-        //            submissionPanelRectTransform.localPosition = new Vector2(-16f, 12f);
-        //            submissionPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
-
-        //            RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
-        //            timerPanelRectTransform.localPosition = new Vector2(0f, 5f);
-        //            timerPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
-
-        //            RectTransform pauseMenuRectTransform = pauseMenu.GetComponent<RectTransform>();
-        //            pauseMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
-
-        //            RectTransform tutorialMenuRectTransform = tutorialMenu.GetComponent<RectTransform>();
-        //            tutorialMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
-
-        //            RectTransform gameOverMenuRectTransform = gameOverMenu.GetComponent<RectTransform>();
-        //            gameOverMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
-
-        //            RectTransform youWinMenuRectTransform = youWinMenu.GetComponent<RectTransform>();
-        //            youWinMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
-
-        //            RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
-        //            diceButtonRectTransform.localPosition = new Vector2(217.5f, 7f);
-        //            diceButtonRectTransform.localScale = new Vector3(1f, 1f, 1f);
-
-        //            RectTransform diceResultRectTransform = diceResult.GetComponent<RectTransform>();
-        //            diceResultRectTransform.localPosition = new Vector2(87f, -293f);
-        //            diceResultRectTransform.localScale = new Vector3(1f, 1f, 1f);
-
-        //        }
-
-        //    }
+                    mainCamera.orthographicSize = 20f;
+                    mainCamera.transform.localPosition = new Vector3(0f, 0f, -100f);
 
 
 
-        //    else if (ratio >= 1.55) // WebGL PC
-        //    {
+                    RectTransform player0RectTransform = player0.GetComponent<RectTransform>();
+                    player0RectTransform.anchoredPosition = new Vector2(134f, 301f);
+                    player0RectTransform.sizeDelta = new Vector2(100f, 600f);
+                    player0RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
+
+                    RectTransform points0RectTransform = Points0Object.GetComponent<RectTransform>();
+                    points0RectTransform.anchoredPosition = new Vector2(253f, 299.97f);
+                    points0RectTransform.sizeDelta = new Vector2(100f, 115.012f);
+                    points0RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
 
 
-        //        //RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
-        //        //keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);
-        //        //keysParentRectTransform.localScale = new Vector3(0.71715f, 0.71715f, 0.71715f);
-        //        //keysParentRectTransform.localPosition = new Vector2(0.70713f, -0.14143f);
+                    RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
+                    player1RectTransform.anchoredPosition = new Vector2(-251f, -305f);                         //-129
+                    player1RectTransform.sizeDelta = new Vector2(100f, 600f);
+                    player1RectTransform.localScale = new Vector3(1f, 1f, 1f);        //// 0.52276
+
+                    RectTransform points1RectTransform = Points1Object.GetComponent<RectTransform>();
+                    points1RectTransform.anchoredPosition = new Vector2(-132.1f, -313.8011f);
+                    points1RectTransform.sizeDelta = new Vector2(100f, 106.8258f);
+                    points1RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
 
 
-        //        //RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
-        //        //loadingPanelRectTransform.sizeDelta = new Vector3(1949.1f, 1385.721f);
+
+                    RectTransform submissionPanelRectTransform = submissionPanel.GetComponent<RectTransform>();
+                    submissionPanelRectTransform.anchoredPosition = new Vector2(0f, 714f);
+                    submissionPanelRectTransform.sizeDelta = new Vector2(338f, 56f);
+                    submissionPanelRectTransform.localScale = new Vector3(0.7967f, 0.7967f, 0.7967f);
+
+                    RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
+                    timerPanelRectTransform.anchoredPosition = new Vector2(19f, 87f);
+                    timerPanelRectTransform.localScale = new Vector3(0.79671f, 0.79671f, 0.79671f);
+
+                    RectTransform highlight2P0RectTransform = Highlight2P0.GetComponent<RectTransform>();
+                    highlight2P0RectTransform.anchoredPosition = new Vector2(1.1981f, -2.7162f);
+                    highlight2P0RectTransform.sizeDelta = new Vector2(129.09f, 133.5543f);
+                    highlight2P0RectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+                    RectTransform highlight2P1RectTransform = Highlight2P1.GetComponent<RectTransform>();
+                    highlight2P1RectTransform.anchoredPosition = new Vector2(-1.011398f, -1.766f);
+                    highlight2P1RectTransform.sizeDelta = new Vector2(135.54f, 127.8402f);
+                    highlight2P1RectTransform.localScale = new Vector3(1f, 1f, 1f);
 
 
 
 
 
-        //    }
+                    RectTransform pauseMenuRectTransform = pauseMenu.GetComponent<RectTransform>();
+                    pauseMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
 
-        //}
+                    RectTransform tutorialMenuRectTransform = tutorialMenu.GetComponent<RectTransform>();
+                    tutorialMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+
+                    RectTransform gameOverMenuRectTransform = gameOverMenu.GetComponent<RectTransform>();
+                    gameOverMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+
+                    RectTransform youWinMenuRectTransform = youWinMenu.GetComponent<RectTransform>();
+                    youWinMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+
+
+                    RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
+                    diceButtonRectTransform.anchoredPosition = new Vector2(164f, 5f);
+                    diceButtonRectTransform.sizeDelta = new Vector2(98f, 98f);
+                    diceButtonRectTransform.localScale = new Vector3(0.5761739f, 0.5761739f, 0.5761739f);
+
+                    RectTransform diceResultRectTransform = diceResult.GetComponent<RectTransform>();
+                    diceResultRectTransform.anchoredPosition = new Vector2(66f, -536f);
+                    diceResultRectTransform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+
+                    // Botttom Menu Buttons
+
+                    RectTransform BsoundBtnRectTransform = BsoundBtn.GetComponent<RectTransform>();
+                    BsoundBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+
+
+                    RectTransform BmusicBtnRectTransform = BmusicBtn.GetComponent<RectTransform>();
+                    BmusicBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+
+
+                    RectTransform BfullScreenBtnRectTransform = BfullScreenBtn.GetComponent<RectTransform>();
+                    BfullScreenBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+
+
+
+
+
+                }
+
+                else if (ratio >= 2) //_ratio  LAndScape Android/iOS
+                {
+
+
+                    //mainCamera.orthographicSize = 8.5f;
+                    mainCamera.orthographicSize = 7.08f;
+                    mainCamera.transform.localPosition = new Vector3(0f, -0.48f, -100f);
+
+                    //RectTransform buttonsPanelRectTransform = buttonsPanel.GetComponent<RectTransform>();
+                    //buttonsPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+                    RectTransform player0RectTransform = player0.GetComponent<RectTransform>();
+                    player0RectTransform.anchoredPosition = new Vector2(200f, 165.722f);
+                    player0RectTransform.sizeDelta = new Vector2(100f, 600f);
+                    player0RectTransform.localScale = new Vector3(2f, 2f, 2f);           //1
+
+                    RectTransform points0RectTransform = Points0Object.GetComponent<RectTransform>();
+                    points0RectTransform.anchoredPosition = new Vector2(201f, -78f);
+                    points0RectTransform.sizeDelta = new Vector2(100f, 93.6f);
+                    points0RectTransform.localScale = new Vector3(2f, 2f, 2f);     // 0.52276
+
+
+
+
+                    RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
+                    player1RectTransform.anchoredPosition = new Vector2(-199f, 167.15f);
+                    player1RectTransform.sizeDelta = new Vector2(100f, 600f);
+                    player1RectTransform.localScale = new Vector3(2f, 2f, 2f);                //1
+
+                    RectTransform points1RectTransform = Points1Object.GetComponent<RectTransform>();
+                    points1RectTransform.anchoredPosition = new Vector2(-197, -74f);
+                    points1RectTransform.sizeDelta = new Vector2(100f, 93.6026f);
+                    points1RectTransform.localScale = new Vector3(2f, 2f, 2f);     // 0.52276
+
+
+
+
+                    RectTransform highlight2P0RectTransform = Highlight2P0.GetComponent<RectTransform>();
+                    highlight2P0RectTransform.anchoredPosition = new Vector2(1.1981f, -1.5057f);
+                    highlight2P0RectTransform.sizeDelta = new Vector2(129.09f, 110.7972f);
+                    highlight2P0RectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+                    RectTransform highlight2P1RectTransform = Highlight2P1.GetComponent<RectTransform>();
+                    highlight2P1RectTransform.anchoredPosition = new Vector2(-1.011398f, -2.1671f);
+                    highlight2P1RectTransform.sizeDelta = new Vector2(135.54f, 108.3795f);
+                    highlight2P1RectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+
+
+
+
+                    RectTransform submissionPanelRectTransform = submissionPanel.GetComponent<RectTransform>();
+                    //submissionPanelRectTransform.anchoredPosition = new Vector2(-16f, 12f);
+                    submissionPanelRectTransform.anchoredPosition = new Vector2(913f, 93f);
+                    submissionPanelRectTransform.sizeDelta = new Vector2(338f, 56f);
+                    submissionPanelRectTransform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
+
+                    RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
+                    timerPanelRectTransform.anchoredPosition = new Vector2(-891f, 198f);
+                    timerPanelRectTransform.sizeDelta = new Vector2(129.5194f, 50f);
+                    timerPanelRectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+
+                    RectTransform pauseMenuRectTransform = pauseMenu.GetComponent<RectTransform>();
+                    pauseMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+                    RectTransform tutorialMenuRectTransform = tutorialMenu.GetComponent<RectTransform>();
+                    tutorialMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+                    RectTransform gameOverMenuRectTransform = gameOverMenu.GetComponent<RectTransform>();
+                    gameOverMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+                    RectTransform youWinMenuRectTransform = youWinMenu.GetComponent<RectTransform>();
+                    youWinMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+                    RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
+                    diceButtonRectTransform.anchoredPosition = new Vector2(493f, 24f);
+                    diceButtonRectTransform.sizeDelta = new Vector2(98f, 98f);
+                    diceButtonRectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+
+                    RectTransform diceResultRectTransform = diceResult.GetComponent<RectTransform>();
+                    diceResultRectTransform.anchoredPosition = new Vector2(236f, -528f);
+                    diceResultRectTransform.sizeDelta = new Vector2(0f, 0f);
+                    diceResultRectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+
+
+                    // Botttom Menu Buttons
+
+                    RectTransform BsoundBtnRectTransform = BsoundBtn.GetComponent<RectTransform>();
+                    BsoundBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+
+
+                    RectTransform BmusicBtnRectTransform = BmusicBtn.GetComponent<RectTransform>();
+                    BmusicBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+
+
+                    RectTransform BfullScreenBtnRectTransform = BfullScreenBtn.GetComponent<RectTransform>();
+                    BfullScreenBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+
+                }
+
+            }
+
+
+
+            else if (ratio >= 1.55) // WebGL PC
+            {
+
+                BottomMenu.gameObject.SetActive(false);
+                buttonsPanel.gameObject.SetActive(true);
+
+                //RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
+                //keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);
+                //keysParentRectTransform.localScale = new Vector3(0.71715f, 0.71715f, 0.71715f);
+                //keysParentRectTransform.localPosition = new Vector2(0.70713f, -0.14143f);
+
+
+                //RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
+                //loadingPanelRectTransform.sizeDelta = new Vector3(1949.1f, 1385.721f);
+
+
+            }
+
+        }
 
         // -------------------------------------------------------- Portrait WEBGL Commented Area -------------------------------------------------------------------------------//
 
@@ -308,12 +450,14 @@ public class CanvasHandlerNetwork : MonoBehaviour
             Debug.Log("true");
             // VfxSoundToggleAnimator.Play("vfx sound Anim Reverse");
             soundBtn.image.sprite = OnSoundToggle;
+            BsoundBtn.image.sprite = BOnSoundToggle;
         }
         else
         {
             Debug.Log("false");
             // VfxSoundToggleAnimator.Play("vfx sound Anim");
             soundBtn.image.sprite = OffSoundToggle;
+            BsoundBtn.image.sprite = BOffSoundToggle;
         }
     }
 
@@ -330,12 +474,14 @@ public class CanvasHandlerNetwork : MonoBehaviour
             Debug.Log("true");
             //musicSoundToggleAnimator.Play("Music Anim Reverse");
             musicBtn.image.sprite = OnMusicToggle;
+            BmusicBtn.image.sprite = BOnMusicToggle;
         }
         else
         {
             Debug.Log("false");
             //musicSoundToggleAnimator.Play("Music Anim");
             musicBtn.image.sprite = OffMusicToggle;
+            BmusicBtn.image.sprite = BOffMusicToggle;
         }
 
     }
