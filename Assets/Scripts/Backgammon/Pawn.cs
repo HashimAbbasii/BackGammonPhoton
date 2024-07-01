@@ -973,7 +973,7 @@ namespace BackgammonNet.Core
 
             public bool CheckShelterStage()                   // check if it is possible to bring a given player's pieces into the shelter
         {
-            Debug.Log("Shelter Stage must be Run");
+          //  Debug.Log("Shelter Stage must be Run");
             maxMoves = GameController.isDublet ? 4 : 2;    // four the same movements or two different movements
             //  ..........Is mein yeah sare shelter slots check karta hain k kon si    shlter pr hain means slot ko check kare .....//
             house = GameObject.Find((pawnColor == 0 ? "White" : "Red") + " House");

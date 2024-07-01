@@ -152,7 +152,7 @@ namespace BackgammonNet.Core
 
             if (MyGameManager.AiMode==true)
             {
-                 Debug.Log("Ai Mode");
+              //   Debug.Log("Ai Mode");
 
                 diceButton.onClick.AddListener(GenerateForAi);
 
@@ -524,10 +524,10 @@ namespace BackgammonNet.Core
                 }
                 if (preventAiGenertion == true)
                 {
-                    Debug.Log("Turn HANLE");
+                    //Debug.Log("Turn HANLE");
                     if (turn == 0)
                     {
-                        Debug.Log("Human Turn");
+                      //  Debug.Log("Human Turn");
                         dragEnable = true;
                         diceEnable = false;
                         //SoundManager.GetSoundEffect(4, 0.25f);
@@ -538,7 +538,7 @@ namespace BackgammonNet.Core
                     else
                     {
                         dragEnableCheck = dragEnable;
-                        Debug.Log("Ai Turn");
+                      //  Debug.Log("Ai Turn");
                         _allSlotsInts.Clear();
                         allSlots.Clear();
                         topEPawns.Clear();
@@ -650,11 +650,11 @@ namespace BackgammonNet.Core
 
         private IEnumerator PawnMoveCoroutine()
         {
-            Debug.Log("turn Before "+turn);
+          //  Debug.Log("turn Before "+turn);
             yield return new WaitForSecondsRealtime(1);
             if (!CanMoveAi(2)&&turn==1)
             {
-                Debug.LogWarning("Tera issue hain");
+            //    Debug.LogWarning("Tera issue hain");
                 StartCoroutine(ChangeTurn());
 
             }
@@ -765,7 +765,7 @@ namespace BackgammonNet.Core
 
             if (Slot.slots[ShelterSlotChck].Height() >= 1 && turn == 1)
             {
-                Debug.Log("height greater 1 and turn equal to 1 Work");
+              //  Debug.Log("height greater 1 and turn equal to 1 Work");
                 SelectShelterPawn = Slot.slots[ShelterSlotChck].GetTopPawn(false);
                 SelectShelterPawn.CheckShelterStage();
                 var finalposition = SelectShelterPawn.house.transform.position;
@@ -783,10 +783,10 @@ namespace BackgammonNet.Core
                         SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
                         int sign = -1;
                         int slot0 = SelectShelterPawn.slotNo + sign * GameController.dices[0];
-                        Debug.Log("Shelter Slot" + slot0);
+                     //   Debug.Log("Shelter Slot" + slot0);
                         if (slot0 >= 1 && slot0 <= 6 && turn == 1)
                         {
-                            Debug.Log("Shelter in In between Range");
+                       //     Debug.Log("Shelter in In between Range");
                             Slot.slots[SelectShelterPawn.slotNo].GetTopPawn(true);
                             Slot.slots[slot0].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
                             break;
@@ -794,7 +794,7 @@ namespace BackgammonNet.Core
                         }
                         else
                         {
-                            Debug.Log("Dice value is greater than slot No");
+                         //   Debug.Log("Dice value is greater than slot No");
                             //SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
                             SelectShelterPawn.CheckShelterStage();
                             var finalposition = SelectShelterPawn.house.transform.position;
@@ -1280,15 +1280,15 @@ namespace BackgammonNet.Core
 
             if (preventAiGenertion == true)
             {
-                Debug.Log("Turn Change Occurs");
-                Debug.Log("Turn before" + turn);
+             //  // Debug.Log("Turn Change Occurs");
+           //     Debug.Log("Turn before" + turn);
                 dices[0] = dices[1] = 0;
 
                 diceEnable = true;
                 dragEnable = false;
 
                 turn = 1 - turn;                                                // turn change
-                Debug.Log("Turn" + turn);
+                //Debug.Log("Turn" + turn);
                 //  turnImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
                 //   turnImages[1].gameObject.SetActive(isWhiteColor == 0);
 
@@ -1323,15 +1323,15 @@ namespace BackgammonNet.Core
         public void Pawn_OnCompleteTurnForBlockState(int isWhiteColor)
         {
             preventAiGenertion = false;
-            Debug.Log("Turn Change Occurs");
-            Debug.Log("Turn before" + turn);
+          //  Debug.Log("Turn Change Occurs");
+           // Debug.Log("Turn before" + turn);
             dices[0] = dices[1] = 0;
 
             diceEnable = true;
             dragEnable = false;
 
             turn = 0;                                                // turn change
-            Debug.Log("Turn" + turn);
+//            Debug.Log("Turn" + turn);
             //  turnImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
             //   turnImages[1].gameObject.SetActive(isWhiteColor == 0);
 
@@ -1395,7 +1395,7 @@ namespace BackgammonNet.Core
 
         public void ActiveGameOver(int winner)
         {
-            Debug.Log("---------------------- ActiveGameOver ------------------------------");
+           // Debug.Log("---------------------- ActiveGameOver ------------------------------");
 
             Board.Instance.isGameOver = true;
            // MyGameManager.AiMode = false;
@@ -1435,7 +1435,7 @@ namespace BackgammonNet.Core
             }
             else
             {
-                Debug.Log("Player2 win");
+              //  Debug.Log("Player2 win");
 
                 gameOverPanel.gameObject.SetActive(true);
                 AudioManager.Instance.GameLost();
@@ -1565,7 +1565,7 @@ namespace BackgammonNet.Core
             {
                 if (Pawn.shelterSide[turn])
                 {
-                    Debug.Log("Shelter Side");
+                  //  Debug.Log("Shelter Side");
                     return CanMoveInShelter(value, sign);
                 }                  // when the mode of entering the shelter
                 else if (CanMoveFree(value, sign))    // we go through each slot with white pieces and check if it is possible to make a move from this slot
@@ -1627,7 +1627,7 @@ namespace BackgammonNet.Core
 
         private static bool CanMoveFree(int value, int sign)
         {
-            Debug.Log("Can Move Free");
+        //    Debug.Log("Can Move Free");
             for (int i = 1; i <= 24; i++)
                 if (Slot.slots[i].Height() > 0 && Slot.slots[i].IsWhite() == turn)   // slot with whites
                     for (int j = 0; j < 2; j++)
