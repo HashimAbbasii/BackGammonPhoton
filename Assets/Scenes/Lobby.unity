@@ -12606,10 +12606,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865c02d7d2ba56d4ca0ddb4082fa7b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lobbyPanelInputField: {fileID: 1553292195}
-  createRoomPanelInputField: {fileID: 513026201}
-  userNameText: {fileID: 1553292195}
-  roomNameText: {fileID: 513026201}
+  lobbyPanelInputField: {fileID: 488062781}
+  createRoomPanelInputField: {fileID: 2079159812}
+  userNameText: {fileID: 488062781}
+  roomNameText: {fileID: 2079159812}
   maxPlayer: {fileID: 1693616912}
   LobbyPanel: {fileID: 1221907001}
   PlayerNamePanel: {fileID: 376862429}
@@ -16363,6 +16363,10 @@ PrefabInstance:
     - target: {fileID: 4261787785511809762, guid: a76a1f445153fed4a9fb3133d90e2ec3, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4261787785511809763, guid: a76a1f445153fed4a9fb3133d90e2ec3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 145
       objectReference: {fileID: 0}
     - target: {fileID: 4261787785631890488, guid: a76a1f445153fed4a9fb3133d90e2ec3, type: 3}
       propertyPath: m_IsActive

@@ -14,17 +14,17 @@ using AYellowpaper.SerializedCollections;
 public class MyPhotonManager : MonoBehaviourPunCallbacks
 {
     [Header("InputFields")]
-    public TMP_InputField lobbyPanelInputField;
-    public TMP_InputField createRoomPanelInputField;
+    public InputField lobbyPanelInputField;
+    public InputField createRoomPanelInputField;
 
 
 
     private PhotonView _photonView;    
 
     [Header("Text")]
-    public TMP_InputField userNameText;
+    public InputField userNameText;
 
-    public TMP_InputField roomNameText;
+    public InputField roomNameText;
     public TMP_InputField maxPlayer;
 
     [Header("Panel")]
