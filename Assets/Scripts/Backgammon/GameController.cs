@@ -533,6 +533,7 @@ namespace BackgammonNet.Core
                         //SoundManager.GetSoundEffect(4, 0.25f);
                         AudioManager.Instance.DiceRoll();
                         CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
+                       // CheckIfTurnChange((2), (2));
                     }
                     else
                     {
