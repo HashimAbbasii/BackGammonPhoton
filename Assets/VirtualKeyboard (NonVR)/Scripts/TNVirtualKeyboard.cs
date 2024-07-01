@@ -13,8 +13,8 @@ public class TNVirtualKeyboard : MonoBehaviour
 	
 	public GameObject vkCanvas;
 	
-	public TMP_InputField targetText;
-	public TMP_InputField targetText2;
+	public InputField targetText;
+	public InputField targetText2;
 	//public InputField targetText2;
 
 	

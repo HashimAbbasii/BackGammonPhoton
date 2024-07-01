@@ -4180,7 +4180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &488062780
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4641,7 +4641,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &513026200
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4923,7 +4923,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter name...
+  m_Text: 
 --- !u!222 &542699555
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -11605,7 +11605,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Enter name...
+  m_Text: 
 --- !u!222 &1172586374
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14901,7 +14901,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1553292194
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16307,11 +16307,11 @@ PrefabInstance:
     - target: {fileID: 4261787784887655890, guid: a76a1f445153fed4a9fb3133d90e2ec3, type: 3}
       propertyPath: targetText
       value: 
-      objectReference: {fileID: 1553292195}
+      objectReference: {fileID: 488062781}
     - target: {fileID: 4261787784887655890, guid: a76a1f445153fed4a9fb3133d90e2ec3, type: 3}
       propertyPath: targetText2
       value: 
-      objectReference: {fileID: 513026201}
+      objectReference: {fileID: 2079159812}
     - target: {fileID: 4261787784887655891, guid: a76a1f445153fed4a9fb3133d90e2ec3, type: 3}
       propertyPath: m_Name
       value: NonVRVirtualKeyboard
@@ -18879,7 +18879,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &2079159812
 MonoBehaviour:
   m_ObjectHideFlags: 0

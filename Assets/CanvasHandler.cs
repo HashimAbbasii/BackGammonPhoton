@@ -218,7 +218,6 @@ public class CanvasHandler : MonoBehaviour
 
             if (IsRunningOnAndroid() || IsRunningOniOS())
             {
-
             
                     BottomMenu.gameObject.SetActive(true);
                     buttonsPanel.gameObject.SetActive(false);

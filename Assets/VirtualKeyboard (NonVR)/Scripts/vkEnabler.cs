@@ -21,7 +21,7 @@ public class vkEnabler : MonoBehaviour
 	public void ShowVirtualKeyboard(){
 #if UNITY_WEBGL
         TNVirtualKeyboard.Instance.ShowVirtualKeyboard();
-		TNVirtualKeyboard.Instance.targetText = gameObject.GetComponent<TMP_InputField>();
+		TNVirtualKeyboard.Instance.targetText = gameObject.GetComponent<InputField>();
 #endif
     }
 }
