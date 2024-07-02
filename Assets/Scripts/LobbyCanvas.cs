@@ -16,7 +16,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public GameObject RoomListScrollView;
 
     public GameObject PlayBtnInsideRoomPanel;
-
+    public GameObject keyboardPanel;
 
 
     public bool OnPointerDownBool = false;
@@ -205,13 +205,13 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 
                     RectTransform RoomListSearchBarRectTransform = RoomListSearchBar.GetComponent<RectTransform>();
-            RoomListSearchBarRectTransform.anchoredPosition = new Vector2(0.53596f, -168.99f);
-            RoomListSearchBarRectTransform.sizeDelta = new Vector2(909.05f, 54.3284f);
+            RoomListSearchBarRectTransform.anchoredPosition = new Vector2(-1.4314f, 824f);
+            RoomListSearchBarRectTransform.sizeDelta = new Vector2(905.1232f, 54.3284f);
             RoomListSearchBarRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
             RectTransform RoomListScrollViewRectTransform = RoomListScrollView.GetComponent<RectTransform>();
-            RoomListScrollViewRectTransform.anchoredPosition = new Vector2(0.52646f, 203f);
-            RoomListScrollViewRectTransform.sizeDelta = new Vector2(909.07f, 1195.258f);
+            RoomListScrollViewRectTransform.anchoredPosition = new Vector2(-1.4299f, 300.8922f);
+            RoomListScrollViewRectTransform.sizeDelta = new Vector2(905.12f, 943.9157f);
             RoomListScrollViewRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
 
@@ -261,6 +261,17 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     playBtnInsideRoomPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
 
+                    RectTransform keyboardPanelRectTransform = keyboardPanel.GetComponent<RectTransform>();
+                    keyboardPanelRectTransform.offsetMin = new Vector2(0, keyboardPanelRectTransform.offsetMin.y);
+                    keyboardPanelRectTransform.offsetMax = new Vector2(0, keyboardPanelRectTransform.offsetMax.y);
+                    Vector2 sizeDelta = keyboardPanelRectTransform.sizeDelta;
+                    sizeDelta.y = 201.9893f;
+                    keyboardPanelRectTransform.sizeDelta = sizeDelta;
+                    Vector2 anchoredPosition = keyboardPanelRectTransform.anchoredPosition;
+                    anchoredPosition.y = 145f;
+                    keyboardPanelRectTransform.anchoredPosition = anchoredPosition;
+
+
 
 
 
@@ -276,15 +287,15 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                 {
 
 
-                 RectTransform RoomListSearchBarRectTransform = RoomListSearchBar.GetComponent<RectTransform>();
-            RoomListSearchBarRectTransform.anchoredPosition = new Vector2(-170f, -116f);
-            RoomListSearchBarRectTransform.sizeDelta = new Vector2(739.2109f, 54.3284f);
-            RoomListSearchBarRectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    RectTransform RoomListSearchBarRectTransform = RoomListSearchBar.GetComponent<RectTransform>();
+                    RoomListSearchBarRectTransform.anchoredPosition = new Vector2(-174f, 347f);
+                    RoomListSearchBarRectTransform.sizeDelta = new Vector2(739.2109f, 54.3284f);
+                    RoomListSearchBarRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
-            RectTransform RoomListScrollViewRectTransform = RoomListScrollView.GetComponent<RectTransform>();
-            RoomListScrollViewRectTransform.anchoredPosition = new Vector2(2.6931f, -51f);
-            RoomListScrollViewRectTransform.sizeDelta = new Vector2(1080f, 687.7f);
-            RoomListScrollViewRectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    RectTransform RoomListScrollViewRectTransform = RoomListScrollView.GetComponent<RectTransform>();
+                    RoomListScrollViewRectTransform.anchoredPosition = new Vector2(-3f, -46f);
+                    RoomListScrollViewRectTransform.sizeDelta = new Vector2(1080f, 687.7f);
+                    RoomListScrollViewRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
 
 
@@ -321,6 +332,17 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     playBtnInsideRoomPanelRectTransform.anchoredPosition = new Vector2(0f, 80f);
                     playBtnInsideRoomPanelRectTransform.sizeDelta = new Vector3(300f, 85f);
                     playBtnInsideRoomPanelRectTransform.localScale = new Vector3(0.796f, 0.796f, 0.796f);
+
+
+                    RectTransform keyboardPanelRectTransform = keyboardPanel.GetComponent<RectTransform>();
+                    keyboardPanelRectTransform.offsetMin = new Vector2(0, keyboardPanelRectTransform.offsetMin.y);
+                    keyboardPanelRectTransform.offsetMax = new Vector2(0, keyboardPanelRectTransform.offsetMax.y);
+                    Vector2 sizeDelta = keyboardPanelRectTransform.sizeDelta;
+                    sizeDelta.y = 144.064f;
+                    keyboardPanelRectTransform.sizeDelta = sizeDelta;
+                    Vector2 anchoredPosition = keyboardPanelRectTransform.anchoredPosition;
+                    anchoredPosition.y = 116.0374f;
+                    keyboardPanelRectTransform.anchoredPosition = anchoredPosition;
 
 
                 }

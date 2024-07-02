@@ -7,7 +7,7 @@ using TMPro;
 
 public class RoomSearch : MonoBehaviour
 {
-    public TMP_InputField searchInputField;
+    public InputField searchInputField;
     public Transform scrollContent; 
     public List<RoomEntry> allRooms = new List<RoomEntry>();
 
