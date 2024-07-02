@@ -15,12 +15,14 @@ public class TNVirtualKeyboard : MonoBehaviour
 	
 	public InputField targetText;
 	public InputField targetText2;
+
+	//public InputField targetText3;
 	//public InputField targetText2;
 
-	
-	
-    // Start is called before the first frame update
-    void Start()
+
+
+	// Start is called before the first frame update
+	void Start()
     {
         Instance = this;
 		HideVirtualKeyboard();
@@ -38,12 +40,15 @@ public class TNVirtualKeyboard : MonoBehaviour
 		targetText.text = words;
 		
 		targetText2.text = words;
+		//targetText3.text = words;
+
 	}
 	
 	public void Del(){
 		words = words.Remove(words.Length - 1, 1);
 		targetText.text = words;
 		targetText2.text = words;
+		//targetText3.text = words;
 	}
 	
 	public void ShowVirtualKeyboard(){

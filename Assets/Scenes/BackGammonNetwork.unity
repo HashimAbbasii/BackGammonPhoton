@@ -1922,10 +1922,10 @@ MonoBehaviour:
   player1: {fileID: 1864298233}
   submissionPanel: {fileID: 389019657}
   timerPanel: {fileID: 333450100}
-  pauseMenu: {fileID: 1533936357}
-  tutorialMenu: {fileID: 1501082715}
-  gameOverMenu: {fileID: 772034183}
-  youWinMenu: {fileID: 900314061}
+  pauseMenu: {fileID: 1517043957}
+  tutorialMenu: {fileID: 130337748}
+  gameOverMenu: {fileID: 746125301}
+  youWinMenu: {fileID: 779770159}
   diceButton: {fileID: 451497670}
   diceResult: {fileID: 1874818424}
   fullscreenToggle: 0
@@ -1938,11 +1938,11 @@ MonoBehaviour:
   OnFullScreenToggle: {fileID: 21300000, guid: 5e5077d6382d23f42aa2980b917174cd, type: 3}
   OffFullScreenToggle: {fileID: 21300000, guid: 00eee5e63a2c54d4d959959c6da7112d, type: 3}
   BOnSoundToggle: {fileID: 21300000, guid: c9675b3f28574fd429ee31b4a1ecddf4, type: 3}
-  BOffSoundToggle: {fileID: 0}
-  BOnMusicToggle: {fileID: 0}
-  BOffMusicToggle: {fileID: 0}
-  BOnFullScreenToggle: {fileID: 0}
-  BOffFullScreenToggle: {fileID: 0}
+  BOffSoundToggle: {fileID: 21300000, guid: 0e5f386a07fb34a42b720aff46dc496a, type: 3}
+  BOnMusicToggle: {fileID: 21300000, guid: 6bcd7f830f7662547847f30464ba56d6, type: 3}
+  BOffMusicToggle: {fileID: 21300000, guid: 3adc221c57c3f2540a5d23cba90a1c1c, type: 3}
+  BOnFullScreenToggle: {fileID: 21300000, guid: 5e5077d6382d23f42aa2980b917174cd, type: 3}
+  BOffFullScreenToggle: {fileID: 21300000, guid: 00eee5e63a2c54d4d959959c6da7112d, type: 3}
   soundBtn: {fileID: 2133190255}
   musicBtn: {fileID: 942671942}
   fullScreenBtn: {fileID: 2036278682}
@@ -3437,7 +3437,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 2000, y: -50}
+  m_AnchoredPosition: {x: 405, y: -22.716}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &260373757
@@ -4819,7 +4819,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 400, y: -50}
+  m_AnchoredPosition: {x: 81, y: -22.716}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &350757215
@@ -5146,11 +5146,11 @@ RectTransform:
   m_Father: {fileID: 135892644}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0}
-  m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -16, y: 12}
+  m_AnchorMin: {x: 0.5, y: 0}
+  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchoredPosition: {x: 722, y: 31}
   m_SizeDelta: {x: 266.8485, y: 56.4}
-  m_Pivot: {x: 1, y: 0}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &394922756
 GameObject:
   m_ObjectHideFlags: 0
@@ -18086,7 +18086,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: 0, y: 45.432}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1589567573
 MonoBehaviour:
@@ -22648,7 +22648,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 100}
+  m_SizeDelta: {x: 0, y: 45.4317}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!1 &1985585676
 GameObject:
@@ -23530,7 +23530,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1200, y: -50}
+  m_AnchoredPosition: {x: 243, y: -22.716}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2036278682
