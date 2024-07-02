@@ -11,6 +11,16 @@ using TMPro;
 
 public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
+    [Header("WebGL TopBars")]
+    public GameObject onlinePlay;
+    public GameObject createRoom;
+    public GameObject findRoom;
+    public GameObject difficultyLevel;
+    public GameObject DifficultyText;
+
+
+
+
     [Header("WebGL ScalingElements")]
     public GameObject RoomListSearchBar;
     public GameObject RoomListScrollView;
@@ -192,12 +202,23 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 #if UNITY_WEBGL
 
+          
+
+
+
+
             if (IsRunningOnAndroid() || IsRunningOniOS())
             {
                 //  keyboardCanvas.gameObject.SetActive(true);
 
                 BottomMenu.gameObject.SetActive(true);
                 buttonsPanel.gameObject.SetActive(false);
+
+                onlinePlay.gameObject.SetActive(true);
+                createRoom.gameObject.SetActive(true);
+                findRoom.gameObject.SetActive(true);
+                difficultyLevel.gameObject.SetActive(true);
+                DifficultyText.gameObject.SetActive(true);
 
 
                 if (ratio < 1)  //_ratio  Portrait Android/iOS
