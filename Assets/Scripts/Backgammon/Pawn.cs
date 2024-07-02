@@ -770,7 +770,7 @@ namespace BackgammonNet.Core
 
             if (MyGameManager.AiMode)
             {
-                Debug.Log("Mode Check");
+               // Debug.Log("Mode Check");
                 if (GameController.turn == 0 && MyGameManager.AiMode == true)
                 {
                    

@@ -761,57 +761,165 @@ namespace BackgammonNet.Core
 
             //............................Its For a Dice 1............................//
             int ShelterSlotChck = GameController.dices[0];
-            //  int sign = SelectShelterPawn.pawnColor == 0 ? 1 : -1;
-
-            if (Slot.slots[ShelterSlotChck].Height() >= 1 && turn == 1)
+            if (ShelterSlotChck == 0)
             {
-              //  Debug.Log("height greater 1 and turn equal to 1 Work");
-                SelectShelterPawn = Slot.slots[ShelterSlotChck].GetTopPawn(false);
-                SelectShelterPawn.CheckShelterStage();
-                var finalposition = SelectShelterPawn.house.transform.position;
-                SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
-                SelectShelterPawn.PlaceInShelterAi();
+                ShelterSlotChck = 1;
             }
-
-
-            else if (Slot.slots[ShelterSlotChck].Height() == 0 && turn == 1)
+            // int signShelter = -1;
+            //sint slot0Sheler=
+            for (int i = 6; i >= 1; i--)
             {
-                for (int i = 1; i <= 6; i++)
+                Debug.Log("Shelter Number" + ShelterSlotChck);
+                if (i > ShelterSlotChck)
                 {
                     if (Slot.slots[i].Height() >= 1 && turn == 1)
                     {
-                        SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
-                        int sign = -1;
-                        int slot0 = SelectShelterPawn.slotNo + sign * GameController.dices[0];
-                     //   Debug.Log("Shelter Slot" + slot0);
-                        if (slot0 >= 1 && slot0 <= 6 && turn == 1)
-                        {
-                       //     Debug.Log("Shelter in In between Range");
-                            Slot.slots[SelectShelterPawn.slotNo].GetTopPawn(true);
-                            Slot.slots[slot0].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
-                            break;
+                        Debug.Log("if i is greater than Shelter Number");
+                        SelectShelterPawn = Slot.slots[i].GetTopPawn(true);
+                        // SelectShelterPawn.CheckShelterStage();
+                        SelectShelterPawn.CheckShelterAndMore();
+                        SelectShelterPawn.CheckIfNextTurn();
+                        Slot.slots[ShelterSlotChck].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
 
-                        }
-                        else
-                        {
-                         //   Debug.Log("Dice value is greater than slot No");
-                            //SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
-                            SelectShelterPawn.CheckShelterStage();
-                            var finalposition = SelectShelterPawn.house.transform.position;
-                            SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
-
-                            SelectShelterPawn.PlaceInShelterAi();
-                            break;
-                        }
+                        break;
                     }
-                    //       
+                    else { continue; }
                 }
+                else if (i == ShelterSlotChck)
+                {
+                    if (Slot.slots[i].Height() >= 1 && turn == 1)
+                    {
+                        Debug.Log("if i is Equal Shelter Number");
+                        SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
+                        // SelectShelterPawn.CheckShelterStage();
+                        SelectShelterPawn.CheckShelterAndMore();
+                        SelectShelterPawn.CheckIfNextTurn();
+                        var finalposition = SelectShelterPawn.house.transform.position;
+                        SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
+                        SelectShelterPawn.PlaceInShelterAi();
+                        break;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                else if (i < ShelterSlotChck)
+                {
+                    if (Slot.slots[i].Height() >= 1 && turn == 1)
+                    {
+                        Debug.Log("if i is less than Shelter Number");
+                        SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
+                        // SelectShelterPawn.CheckShelterStage();
+                        SelectShelterPawn.CheckShelterAndMore();
+                        SelectShelterPawn.CheckIfNextTurn();
+                        var finalposition = SelectShelterPawn.house.transform.position;
+                        SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
+                        SelectShelterPawn.PlaceInShelterAi();
+                        break;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+
             }
-            SelectShelterPawn.CheckShelterAndMore();
-            SelectShelterPawn.CheckIfNextTurn();
+
+            //  int sign = SelectShelterPawn.pawnColor == 0 ? 1 : -1;
+            //for(int i = 6; i >= 1; i--)
+            //{
+            //   if (Slot.slots[i].Height()>=1 && turn == 1 )
+            //    {
+            //        if(i> ShelterSlotChck)
+            //        {
+
+            //            SelectShelterPawn=Slot.slots[i].GetTopPawn(true);
+            //            SelectShelterPawn.CheckShelterStage();
+            //            Slot.slots[ShelterSlotChck].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
+
+            //            break;
+
+
+            //        }
+            //        else
+            //        {
+
+            //            for (int j = 6; j >= 1; j--)
+            //            {
+            //                if (Slot.slots[j].Height() >= 1 && turn == 1)
+            //                {
+            //                    SelectShelterPawn.CheckShelterStage();
+            //                    SelectShelterPawn = Slot.slots[i].GetTopPawn(true);
+            //                    var finalposition = SelectShelterPawn.house.transform.position;
+            //                    SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
+            //                    SelectShelterPawn.PlaceInShelterAi();
+            //                    break;
+            //                }
+
+            //            }
+
+            //         //   SelectShelterPawn = Slot.slots[ShelterSlotChck].GetTopPawn(true);
+            //          //  SelectShelterPawn.CheckShelterStage();
+            //            //var finalposition = SelectShelterPawn.house.transform.position;
+            //        //    SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
+
+
+
+            //        }
+
+            //    }
+            //}
+
+            //if (Slot.slots[ShelterSlotChck].Height() >= 1 && turn == 1)
+            //{
+            //  //  Debug.Log("height greater 1 and turn equal to 1 Work");
+            //    SelectShelterPawn = Slot.slots[ShelterSlotChck].GetTopPawn(false);
+            //    SelectShelterPawn.CheckShelterStage();
+            //    var finalposition = SelectShelterPawn.house.transform.position;
+            //    SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
+            //    SelectShelterPawn.PlaceInShelterAi();
+            //}
+
+
+            //else if (Slot.slots[ShelterSlotChck].Height() == 0 && turn == 1)
+            //{
+            //    for (int i = 1; i <= 6; i++)
+            //    {
+            //        if (Slot.slots[i].Height() >= 1 && turn == 1)
+            //        {
+            //            SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
+            //            int sign = -1;
+            //            int slot0 = SelectShelterPawn.slotNo + sign * GameController.dices[0];
+            //         //   Debug.Log("Shelter Slot" + slot0);
+            //            if (slot0 >= 1 && slot0 <= 6 && turn == 1)
+            //            {
+            //           //     Debug.Log("Shelter in In between Range");
+            //                Slot.slots[SelectShelterPawn.slotNo].GetTopPawn(true);
+            //                Slot.slots[slot0].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
+            //                break;
+
+            //            }
+            //            else
+            //            {
+            //             //   Debug.Log("Dice value is greater than slot No");
+            //                //SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
+            //                SelectShelterPawn.CheckShelterStage();
+            //                var finalposition = SelectShelterPawn.house.transform.position;
+            //                SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
+
+            //                SelectShelterPawn.PlaceInShelterAi();
+            //                break;
+            //            }
+            //        }
+            //        //       
+            //    }
+            //}
+            //  SelectShelterPawn.CheckShelterAndMore();
+            // SelectShelterPawn.CheckIfNextTurn();
         }
 
-#endregion
+        #endregion
 
         #region _SecondDiceForShelterStage
         IEnumerator ShelterSecondDice()
@@ -820,55 +928,148 @@ namespace BackgammonNet.Core
 
 
             int ShelterSlotChck = GameController.dices[1];
-            // int sign = SelectShelterPawn2.pawnColor == 0 ? 1 : -1;
-
-            if (Slot.slots[ShelterSlotChck].Height() >= 1 && turn == 1)
+            if (ShelterSlotChck == 0)
             {
-            
-                SelectShelterPawn2 = Slot.slots[ShelterSlotChck].GetTopPawn(false);
-                SelectShelterPawn2.CheckShelterStage();
-                var finalposition = SelectShelterPawn2.house.transform.position;
-                SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
-                SelectShelterPawn2.PlaceInShelterAi();
+                ShelterSlotChck = 1;
             }
-
-
-            else if (Slot.slots[ShelterSlotChck].Height() == 0 && turn == 1)
+            // int sign = SelectShelterPawn2.pawnColor == 0 ? 1 : -1;
+            for (int i = 6; i >= 1; i--)
             {
-                for (int i = 1; i <= 6; i++)
+                Debug.Log("Shelter Number" + ShelterSlotChck);
+                if (i > ShelterSlotChck)
                 {
                     if (Slot.slots[i].Height() >= 1 && turn == 1)
                     {
-                        SelectShelterPawn2 = Slot.slots[i].GetTopPawn(false);
-                        int sign = -1;
-                        int slot0 = SelectShelterPawn2.slotNo + sign * GameController.dices[1];
-                     
-                        if (slot0 >= 1 && slot0 <= 6 && turn == 1)
-                        {
-                         
-                            Slot.slots[SelectShelterPawn2.slotNo].GetTopPawn(true);
-                            Slot.slots[slot0].PlacePawn(SelectShelterPawn2, SelectShelterPawn2.pawnColor);
-                            break;
+                        Debug.Log("Height Greater than 1 to i");
+                        SelectShelterPawn2 = Slot.slots[i].GetTopPawn(true);
+                        SelectShelterPawn2.CheckShelterAndMore();
+                        SelectShelterPawn2.CheckIfNextTurn();
 
-                        }
-                        else
-                        {
-                           
-                            //SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
-                            SelectShelterPawn2.CheckShelterStage();
-                            var finalposition = SelectShelterPawn2.house.transform.position;
-                            SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
-                            SelectShelterPawn2.PlaceInShelterAi();
-                            break;
-                        }
+                        Slot.slots[ShelterSlotChck].PlacePawn(SelectShelterPawn2, SelectShelterPawn2.pawnColor);
+
+                        break;
                     }
-                
-                    //       
+                    else { continue; }
                 }
+                else if (i == ShelterSlotChck)
+                {
+                    if (Slot.slots[i].Height() >= 1 && turn == 1)
+                    {
+                        Debug.Log("if i is Equal Shelter Number");
+                        SelectShelterPawn2 = Slot.slots[i].GetTopPawn(false);
+                        //SelectShelterPawn2.CheckShelterStage();
+                        SelectShelterPawn2.CheckShelterAndMore();
+                        SelectShelterPawn2.CheckIfNextTurn();
+
+                        var finalposition = SelectShelterPawn2.house.transform.position;
+                        SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
+                        SelectShelterPawn2.PlaceInShelterAi();
+                        break;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                else if (i < ShelterSlotChck)
+                {
+                    if (Slot.slots[i].Height() >= 1 && turn == 1)
+                    {
+
+                        Debug.Log("if i is lesss than Shelter Number");
+                        SelectShelterPawn2 = Slot.slots[i].GetTopPawn(false);
+                        //SelectShelterPawn2.CheckShelterStage();
+                        SelectShelterPawn2.CheckShelterAndMore();
+                        SelectShelterPawn2.CheckIfNextTurn();
+
+                        var finalposition = SelectShelterPawn2.house.transform.position;
+                        SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
+                        SelectShelterPawn2.PlaceInShelterAi();
+                        break;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+
             }
+
+            //for (int i = 6; i >= 1; i--)
+            //{
+            //    if (Slot.slots[i].Height() >= 1 && turn == 1)
+            //    {
+            //        if (i > ShelterSlotChck)
+            //        {
+
+            //            SelectShelterPawn2 = Slot.slots[i].GetTopPawn(true);
+            //            SelectShelterPawn2.CheckShelterStage();
+            //            Slot.slots[ShelterSlotChck].PlacePawn(SelectShelterPawn2, SelectShelterPawn2.pawnColor);
+
+            //            Debug.Log("How Much tme its Run" + i);
+            //            break;
+
+
+            //        }
+            //        else
+            //        {
+            //            for (int j = 6; j >= 1; j--)
+            //            {
+            //                if (Slot.slots[j].Height() >= 1 && turn == 1)
+            //                {
+            //                    SelectShelterPawn2.CheckShelterStage();
+            //                    SelectShelterPawn2 = Slot.slots[i].GetTopPawn(true);
+            //                    var finalposition = SelectShelterPawn2.house.transform.position;
+            //                    SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
+            //                    SelectShelterPawn2.PlaceInShelterAi();
+            //                    Debug.Log("How Much tme it Run 2" + i);
+            //                    break;
+            //                }
+
+            //            }
+
+            //        }
+
+            //    }
+            //}
+
+
+            //    else if (Slot.slots[ShelterSlotChck].Height() == 0 && turn == 1)
+            //{
+            //    for (int i = 1; i <= 6; i++)
+            //    {
+            //        if (Slot.slots[i].Height() >= 1 && turn == 1)
+            //        {
+            //            SelectShelterPawn2 = Slot.slots[i].GetTopPawn(false);
+            //            int sign = -1;
+            //            int slot0 = SelectShelterPawn2.slotNo + sign * GameController.dices[1];
+
+            //            if (slot0 >= 1 && slot0 <= 6 && turn == 1)
+            //            {
+
+            //                Slot.slots[SelectShelterPawn2.slotNo].GetTopPawn(true);
+            //                Slot.slots[slot0].PlacePawn(SelectShelterPawn2, SelectShelterPawn2.pawnColor);
+            //                break;
+
+            //            }
+            //            else
+            //            {
+
+            //                //SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
+            //                SelectShelterPawn2.CheckShelterStage();
+            //                var finalposition = SelectShelterPawn2.house.transform.position;
+            //                SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
+            //                SelectShelterPawn2.PlaceInShelterAi();
+            //                break;
+            //            }
+            //        }
+
+            //        //       
+            //    }
+            //}
             //.................Turn Check..........................//
-            SelectShelterPawn2.CheckShelterAndMore();
-            SelectShelterPawn2.CheckIfNextTurn();
+            //  SelectShelterPawn2.CheckShelterAndMore();
+            // SelectShelterPawn2.CheckIfNextTurn();
 
         }
         #endregion
@@ -981,6 +1182,16 @@ namespace BackgammonNet.Core
                     //randomSelectPawn.CheckShelterStage();
                     if (Slot.slots[slot0].Height() >= 1 && Slot.slots[slot0].IsWhite() == randomSelectPawn.pawnColor)
                     {
+
+                        if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
+                        {
+                            //....................Ai Mode Work Only........................//
+                            ShelterManipulation();
+                            StartCoroutine(ShelterSecondDice());
+                        }
+                        else
+                        {
+
                         GameController.Instance.playerScores[1].Moves++;
                         Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
                         Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
@@ -989,11 +1200,22 @@ namespace BackgammonNet.Core
                         Slot.slots[slot0].HightlightMe(true);
                         randomSelectPawn.CheckIfNextTurn();
                         StartCoroutine(SecondDice());
+                        }
                     }
 
                     //.............If pawn Slot is Empty or Height ==0...................
                   else  if (Slot.slots[slot0].Height() == 0)
                     {
+
+                        if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
+                        {
+                            //....................Ai Mode Work Only........................//
+                            ShelterManipulation();
+                            StartCoroutine(ShelterSecondDice());
+                        }
+                        else
+                        {
+
                         GameController.Instance.playerScores[1].Moves++;
                         Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
                         Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
@@ -1002,11 +1224,20 @@ namespace BackgammonNet.Core
                         Slot.slots[slot0].HightlightMe(true);
                         randomSelectPawn.CheckIfNextTurn();
                         StartCoroutine(SecondDice());
+                        }
                     }
 
 
                   else if (Slot.slots[slot0].Height() == 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
                     {
+                        if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
+                        {
+                            //....................Ai Mode Work Only........................//
+                            ShelterManipulation();
+                            StartCoroutine(ShelterSecondDice());
+                        }
+                        else
+                        {
                         GameController.Instance.playerScores[1].Kills++;
                         //.......JAIL KAR Dooh...........//
                         GameController.Instance.playerScores[1].Moves++;
@@ -1019,6 +1250,8 @@ namespace BackgammonNet.Core
                         randomSelectPawn.CheckShelterAndMore();
                         randomSelectPawn.CheckIfNextTurn();
                         StartCoroutine(SecondDice());
+
+                        }
                     }
 
                     else if(Slot.slots[slot0].Height() > 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
@@ -1069,6 +1302,15 @@ namespace BackgammonNet.Core
                     //randomSelectPawn.CheckShelterStage();
                     if (Slot.slots[slot1].Height() >= 1 && Slot.slots[slot1].IsWhite() == randomSelectPawn2.pawnColor)
                     {
+                        if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
+                        {
+                            //....................Ai Mode Work Only........................//
+                            ShelterManipulation();
+                            StartCoroutine(ShelterSecondDice());
+                        }
+                        else
+                        {
+
                         GameController.Instance.playerScores[1].Moves++;
                         Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
                         Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
@@ -1076,12 +1318,22 @@ namespace BackgammonNet.Core
                         randomSelectPawn2.CheckShelterAndMore();
                         Slot.slots[slot1].HightlightMe(true);
                         randomSelectPawn2.CheckIfNextTurn();
+                        }
 
                     }
 
                     //.............If pawn Slot is Empty or Height ==0...................
                   else  if (Slot.slots[slot1].Height() == 0)
                     {
+                        if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
+                        {
+                            //....................Ai Mode Work Only........................//
+                            ShelterManipulation();
+                            StartCoroutine(ShelterSecondDice());
+                        }
+                        else
+                        {
+
                         GameController.Instance.playerScores[1].Moves++;
                    
                         Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
@@ -1090,12 +1342,22 @@ namespace BackgammonNet.Core
                         randomSelectPawn2.CheckShelterAndMore();
                         Slot.slots[slot1].HightlightMe(true);
                         randomSelectPawn2.CheckIfNextTurn();
+                        }
 
                     }
 
 
                     else if (Slot.slots[slot1].Height() == 1 && Slot.slots[slot1].IsWhite() != randomSelectPawn2.pawnColor)
                     {
+                        if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
+                        {
+                            //....................Ai Mode Work Only........................//
+                            ShelterManipulation();
+                            StartCoroutine(ShelterSecondDice());
+                        }
+                        else
+                        {
+
                         GameController.Instance.playerScores[1].Kills++;
                         //.......JAIL KAR Dooh...........//
                       
@@ -1111,6 +1373,7 @@ namespace BackgammonNet.Core
                         _allSlotsInts.Clear();
                         allSlots.Clear();
                         topEPawns.Clear();
+                        }
                        // SlotNumberForAI();
 
 
