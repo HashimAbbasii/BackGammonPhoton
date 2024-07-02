@@ -11,6 +11,14 @@ using TMPro;
 
 public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
+    [Header("WebGL ScalingElements")]
+    public GameObject RoomListSearchBar;
+    public GameObject RoomListScrollView;
+
+    public GameObject PlayBtnInsideRoomPanel;
+
+
+
     public bool OnPointerDownBool = false;
 
     [Header("BottomMenuButtons")]
@@ -180,6 +188,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
             }
 
 
+
+
 #if UNITY_WEBGL
 
             if (IsRunningOnAndroid() || IsRunningOniOS())
@@ -192,6 +202,20 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
                 if (ratio < 1)  //_ratio  Portrait Android/iOS
                 {
+
+
+                    RectTransform RoomListSearchBarRectTransform = RoomListSearchBar.GetComponent<RectTransform>();
+            RoomListSearchBarRectTransform.anchoredPosition = new Vector2(0.53596f, -168.99f);
+            RoomListSearchBarRectTransform.sizeDelta = new Vector2(909.05f, 54.3284f);
+            RoomListSearchBarRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+            RectTransform RoomListScrollViewRectTransform = RoomListScrollView.GetComponent<RectTransform>();
+            RoomListScrollViewRectTransform.anchoredPosition = new Vector2(0.52646f, 203f);
+            RoomListScrollViewRectTransform.sizeDelta = new Vector2(909.07f, 1195.258f);
+            RoomListScrollViewRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+
+
 
                     //RectTransform nextbuttonRectTransform = nextBtn.GetComponent<RectTransform>();         //Next, Random, TimeText Set in Ship Placement Scene
                     //RectTransform randombuttonRectTransform = randomBtn.GetComponent<RectTransform>();
@@ -231,7 +255,12 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     BmusicBtnRectTransform.sizeDelta = new Vector2(80f, 80f);
 
 
-                   
+                    RectTransform playBtnInsideRoomPanelRectTransform = PlayBtnInsideRoomPanel.GetComponent<RectTransform>();
+                    playBtnInsideRoomPanelRectTransform.anchoredPosition = new Vector2(0f, 424f);
+                    playBtnInsideRoomPanelRectTransform.sizeDelta = new Vector3(300f, 85f);
+                    playBtnInsideRoomPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+
 
 
 
@@ -241,8 +270,24 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     //enemyShipTextRectTransform.sizeDelta = new Vector2(375f, 70f);
                 }
 
+
+
                 else if( ratio >=2) //_ratio  LAndScape Android/iOS
                 {
+
+
+                 RectTransform RoomListSearchBarRectTransform = RoomListSearchBar.GetComponent<RectTransform>();
+            RoomListSearchBarRectTransform.anchoredPosition = new Vector2(-170f, -116f);
+            RoomListSearchBarRectTransform.sizeDelta = new Vector2(739.2109f, 54.3284f);
+            RoomListSearchBarRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+            RectTransform RoomListScrollViewRectTransform = RoomListScrollView.GetComponent<RectTransform>();
+            RoomListScrollViewRectTransform.anchoredPosition = new Vector2(2.6931f, -51f);
+            RoomListScrollViewRectTransform.sizeDelta = new Vector2(1080f, 687.7f);
+            RoomListScrollViewRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+
+
                     testtext2.text = " Android | iOS, LandScape ";
 
                     RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
@@ -272,7 +317,10 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     BmusicBtnRectTransform.sizeDelta = new Vector2(80f, 80f);
 
 
-
+                    RectTransform playBtnInsideRoomPanelRectTransform = PlayBtnInsideRoomPanel.GetComponent<RectTransform>();
+                    playBtnInsideRoomPanelRectTransform.anchoredPosition = new Vector2(0f, 80f);
+                    playBtnInsideRoomPanelRectTransform.sizeDelta = new Vector3(300f, 85f);
+                    playBtnInsideRoomPanelRectTransform.localScale = new Vector3(0.796f, 0.796f, 0.796f);
 
 
                 }
@@ -300,6 +348,9 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
                 keyboardCanvas.gameObject.SetActive(false);
 
+
+                
+                
 
 
             }
