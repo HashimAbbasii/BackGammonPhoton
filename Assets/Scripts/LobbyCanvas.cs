@@ -334,15 +334,32 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     playBtnInsideRoomPanelRectTransform.localScale = new Vector3(0.796f, 0.796f, 0.796f);
 
 
-                    RectTransform keyboardPanelRectTransform = keyboardPanel.GetComponent<RectTransform>();
-                    keyboardPanelRectTransform.offsetMin = new Vector2(0, keyboardPanelRectTransform.offsetMin.y);
-                    keyboardPanelRectTransform.offsetMax = new Vector2(0, keyboardPanelRectTransform.offsetMax.y);
-                    Vector2 sizeDelta = keyboardPanelRectTransform.sizeDelta;
-                    sizeDelta.y = 144.064f;
-                    keyboardPanelRectTransform.sizeDelta = sizeDelta;
-                    Vector2 anchoredPosition = keyboardPanelRectTransform.anchoredPosition;
-                    anchoredPosition.y = 116.0374f;
-                    keyboardPanelRectTransform.anchoredPosition = anchoredPosition;
+
+                    if(RoomSearch.roomListActive)
+                    {
+                        RectTransform keyboardPanelRectTransform = keyboardPanel.GetComponent<RectTransform>();
+                        keyboardPanelRectTransform.offsetMin = new Vector2(0, keyboardPanelRectTransform.offsetMin.y);
+                        keyboardPanelRectTransform.offsetMax = new Vector2(0, keyboardPanelRectTransform.offsetMax.y);
+                        Vector2 sizeDelta = keyboardPanelRectTransform.sizeDelta;
+                        sizeDelta.y = 188.07f;
+                        keyboardPanelRectTransform.sizeDelta = sizeDelta;
+                        Vector2 anchoredPosition = keyboardPanelRectTransform.anchoredPosition;
+                        anchoredPosition.y = 120f;
+                        keyboardPanelRectTransform.anchoredPosition = anchoredPosition;
+                    }
+                    else
+                    {
+
+                        RectTransform keyboardPanelRectTransform = keyboardPanel.GetComponent<RectTransform>();
+                        keyboardPanelRectTransform.offsetMin = new Vector2(0, keyboardPanelRectTransform.offsetMin.y);
+                        keyboardPanelRectTransform.offsetMax = new Vector2(0, keyboardPanelRectTransform.offsetMax.y);
+                        Vector2 sizeDelta = keyboardPanelRectTransform.sizeDelta;
+                        sizeDelta.y = 144.064f;
+                        keyboardPanelRectTransform.sizeDelta = sizeDelta;
+                        Vector2 anchoredPosition = keyboardPanelRectTransform.anchoredPosition;
+                        anchoredPosition.y = 116.0374f;
+                        keyboardPanelRectTransform.anchoredPosition = anchoredPosition;
+                    }
 
 
                 }

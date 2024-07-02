@@ -10,8 +10,20 @@ public class RoomSearch : MonoBehaviour
     public InputField searchInputField;
     public Transform scrollContent; 
     public List<RoomEntry> allRooms = new List<RoomEntry>();
+    public static bool roomListActive;
 
 
+    private void Update()
+    {
+        if(gameObject.activeInHierarchy)
+        {
+            roomListActive = true;
+        }
+        else
+        {
+            roomListActive = false;
+        }
+    }
 
     void OnEnable()
     {
