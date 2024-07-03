@@ -742,10 +742,9 @@ namespace BackgammonNet.Core
 
             if (winner == int.Parse(PhotonNetwork.NickName))
             {
-<<<<<<< Updated upstream
-                YouWinPanel.SetActive(true);
+
                 PawnNetwork.InitializePawn();
-=======
+
                 //YouWinPanel.SetActive(true);
 
 #if UNITY_WEBGL
@@ -766,7 +765,7 @@ namespace BackgammonNet.Core
 #endif
 
 
->>>>>>> Stashed changes
+
                 AudioManager.Instance.GameWon();
 
                 timeTextyouWinPausePanel.variableText = totalGameTimeString;
