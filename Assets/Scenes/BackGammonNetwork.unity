@@ -1932,11 +1932,11 @@ MonoBehaviour:
   soundToggle: 0
   musicToggle: 0
   OnSoundToggle: {fileID: 21300000, guid: 72e601dc103f04b40a316ff1518342c9, type: 3}
-  OffSoundToggle: {fileID: 21300000, guid: 0e5f386a07fb34a42b720aff46dc496a, type: 3}
-  OnMusicToggle: {fileID: 21300000, guid: 6bcd7f830f7662547847f30464ba56d6, type: 3}
-  OffMusicToggle: {fileID: 21300000, guid: 3adc221c57c3f2540a5d23cba90a1c1c, type: 3}
-  OnFullScreenToggle: {fileID: 21300000, guid: 5e5077d6382d23f42aa2980b917174cd, type: 3}
-  OffFullScreenToggle: {fileID: 21300000, guid: 00eee5e63a2c54d4d959959c6da7112d, type: 3}
+  OffSoundToggle: {fileID: 21300000, guid: 0624be6102ce09241b50cbf0f61a977a, type: 3}
+  OnMusicToggle: {fileID: 21300000, guid: 1af36d652ec6bef49bf3a4356f856138, type: 3}
+  OffMusicToggle: {fileID: 21300000, guid: 7b52832b115e2eb428ccf7e50c2183b4, type: 3}
+  OnFullScreenToggle: {fileID: 21300000, guid: 83431e62b62d857449a29050a35ddd91, type: 3}
+  OffFullScreenToggle: {fileID: 21300000, guid: 1a3282b9ac5d33b4b89e3d09e1e5fc27, type: 3}
   BOnSoundToggle: {fileID: 21300000, guid: c9675b3f28574fd429ee31b4a1ecddf4, type: 3}
   BOffSoundToggle: {fileID: 21300000, guid: 0e5f386a07fb34a42b720aff46dc496a, type: 3}
   BOnMusicToggle: {fileID: 21300000, guid: 6bcd7f830f7662547847f30464ba56d6, type: 3}

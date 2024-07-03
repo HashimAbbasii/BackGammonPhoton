@@ -17,6 +17,9 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public GameObject findRoom;
     public GameObject difficultyLevel;
     public GameObject DifficultyText;
+    public GameObject LobbyPanelText;
+    public GameObject CreateRoomText;
+    public GameObject FindRoomText;
 
 
 
@@ -294,6 +297,18 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 
 
+                    RectTransform difficultyTextRectTransform = DifficultyText.GetComponent<RectTransform>();
+                    difficultyTextRectTransform.anchoredPosition = new Vector2(0.611f, -37f);
+
+                    RectTransform lobbyPanelTextRectTransform = LobbyPanelText.GetComponent<RectTransform>();
+                    lobbyPanelTextRectTransform.anchoredPosition = new Vector2(0f, 940f);                 ///////////////////////////
+
+                    RectTransform createRoomTextRectTransform = CreateRoomText.GetComponent<RectTransform>();
+                    createRoomTextRectTransform.anchoredPosition = new Vector2(179f, -55f);
+
+                    RectTransform findRoomTextRectTransform = FindRoomText.GetComponent<RectTransform>();
+                    findRoomTextRectTransform.anchoredPosition = new Vector2(134f, -63f);
+
 
 
                     //playerShipRectTransform.anchoredPosition = new Vector3(-622f, -476f, 0f);     // Positions for WebGl portrait Ship Placement Scene
@@ -301,7 +316,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     //enemyShipTextRectTransform.anchoredPosition = new Vector3(777.9999f, -467f, 0f);
                     //enemyShipTextRectTransform.sizeDelta = new Vector2(375f, 70f);
                 }
-
+                                                            
 
 
                 else if( ratio >=2) //_ratio  LAndScape Android/iOS
@@ -381,6 +396,19 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                         anchoredPosition.y = 116.0374f;
                         keyboardPanelRectTransform.anchoredPosition = anchoredPosition;
                     }
+
+
+                    RectTransform difficultyTextRectTransform = DifficultyText.GetComponent<RectTransform>();
+                    difficultyTextRectTransform.anchoredPosition = new Vector2(0.611f, -31f);
+
+                    RectTransform lobbyPanelTextRectTransform = LobbyPanelText.GetComponent<RectTransform>();
+                    lobbyPanelTextRectTransform.anchoredPosition = new Vector2(0f, 363f);
+
+                    RectTransform createRoomTextRectTransform = CreateRoomText.GetComponent<RectTransform>();
+                    createRoomTextRectTransform.anchoredPosition = new Vector2(179f, -55f);
+
+                    RectTransform findRoomTextRectTransform = FindRoomText.GetComponent<RectTransform>();
+                    findRoomTextRectTransform.anchoredPosition = new Vector2(134f, -63f);
 
 
                 }
