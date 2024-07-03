@@ -15,7 +15,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public GameObject tutorialPanel;
     public GameObject tutorialPanelPortrait;
     public GameObject tutorialPanelLandScape;
-
+    public bool tutorialPanelActiveButtonPressed = false;
 
 
     [Header("WebGL TopBars")]
@@ -244,6 +244,12 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
             RoomListScrollViewRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
 
+                   if(tutorialPanelActiveButtonPressed == true)
+                    {
+                        tutorialPanelLandScape.gameObject.SetActive(false);
+                        tutorialPanelPortrait.gameObject.SetActive(true);
+                    }
+                   
 
 
                     //RectTransform nextbuttonRectTransform = nextBtn.GetComponent<RectTransform>();         //Next, Random, TimeText Set in Ship Placement Scene
@@ -333,6 +339,15 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
                 else if( ratio >=2) //_ratio  LAndScape Android/iOS
                 {
+
+
+                    //tutorialPanelPortrait.gameObject.SetActive(false);
+
+                    if (tutorialPanelActiveButtonPressed == true)
+                    {
+                        tutorialPanelLandScape.gameObject.SetActive(true);
+                        tutorialPanelPortrait.gameObject.SetActive(false);
+                    }
 
 
                     RectTransform RoomListSearchBarRectTransform = RoomListSearchBar.GetComponent<RectTransform>();
@@ -729,8 +744,10 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
     public void ActivetutorialPanel()
     {
-        float ratio = (Screen.width * 1f / Screen.height);
+        
 
+        float ratio = (Screen.width * 1f / Screen.height);
+        tutorialPanelActiveButtonPressed = true;
 
 #if UNITY_WEBGL
         if (IsRunningOnAndroid() || IsRunningOniOS())
@@ -738,10 +755,12 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
             if (ratio < 1)  //_ratio  Portrait Android/iOS
             {
                 tutorialPanelPortrait.gameObject.SetActive(true);
+                
             }
             else if (ratio >= 2) //_ratio  LAndScape Android/iOS
             {
                 tutorialPanelLandScape.gameObject.SetActive(true);
+                
             }
            
         }
@@ -752,6 +771,12 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 #endif
     }
+
+    public void closeTutorialPanel()
+    {
+        tutorialPanelActiveButtonPressed  = false;
+    }
+  
 
 
 

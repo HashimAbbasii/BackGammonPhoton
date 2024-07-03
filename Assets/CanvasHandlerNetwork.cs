@@ -292,13 +292,13 @@ public class CanvasHandlerNetwork : MonoBehaviour
                 
 
                     RectTransform YouWinPanelportraitRectTransform =  GameControllerNetwork.Instance.YouWinPanelportrait.GetComponent<RectTransform>();
-                    YouWinPanelportraitRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+                    YouWinPanelportraitRectTransform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
 
                     RectTransform gameOverPanelportraitRectTransform = GameControllerNetwork.Instance.gameOverPanelportrait.GetComponent<RectTransform>();
-                    gameOverPanelportraitRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+                    gameOverPanelportraitRectTransform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
 
                     RectTransform pausePanelportraitRectTransform = GameControllerNetwork.Instance.pausePanelportrait.GetComponent<RectTransform>();
-                    pausePanelportraitRectTransform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
+                    pausePanelportraitRectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
 
 
@@ -413,10 +413,10 @@ public class CanvasHandlerNetwork : MonoBehaviour
 
 
                     RectTransform YouWinPanelportraitRectTransform = GameControllerNetwork.Instance.YouWinPanelportrait.GetComponent<RectTransform>();
-                    YouWinPanelportraitRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+                    YouWinPanelportraitRectTransform.localScale = new Vector3(1f, 1f,1f);
 
                     RectTransform gameOverPanelportraitRectTransform = GameControllerNetwork.Instance.gameOverPanelportrait.GetComponent<RectTransform>();
-                    gameOverPanelportraitRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+                    gameOverPanelportraitRectTransform.localScale = new Vector3(1f, 1f,14f);
 
                     RectTransform pausePanelportraitRectTransform = GameControllerNetwork.Instance.pausePanelportrait.GetComponent<RectTransform>();
                     pausePanelportraitRectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);

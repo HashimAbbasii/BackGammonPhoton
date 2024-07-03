@@ -2340,12 +2340,18 @@ MonoBehaviour:
   difficultyTextYouWinPanel: {fileID: 749308375}
   difficultyTextPausePanel: {fileID: 0}
   scoreTextPausePanel: {fileID: 181284156}
+  scoreTextPausePanelPortrait: {fileID: 1586408208}
   scoreTextgameOverPausePanel: {fileID: 252547774}
+  scoreTextgameOverPausePanelPortrait: {fileID: 720583796}
   scoreTextyouWinPausePanel: {fileID: 1163685850}
+  scoreTextyouWinPausePanelPortrait: {fileID: 1688368693}
   scoreTextdefaultYouWinPausePanel: {fileID: 16438179}
   timeTextPausePanel: {fileID: 506583808}
+  timeTextPausePanelPortrait: {fileID: 1780669416}
   timeTextgameOverPausePanel: {fileID: 1127702777}
+  timeTextgameOverPausePanelPortrait: {fileID: 1192063683}
   timeTextyouWinPausePanel: {fileID: 461777306}
+  timeTextyouWinPausePanelPortrait: {fileID: 754546644}
   timeTextdefaultYouWinPausePanel: {fileID: 1972619187}
   player0Name: {fileID: 4631807}
   player1Name: {fileID: 843636998}
@@ -2354,8 +2360,10 @@ MonoBehaviour:
   _totalGameTime: 0
   GameOverPanel: {fileID: 772034183}
   YouWinPanel: {fileID: 1091962434}
-  YouWinPanelportrait: {fileID: 964259681}
-  gameOverPanelportrait: {fileID: 1955149088}
+  YouWinPanelportrait: {fileID: 805263274}
+  YouWinPanelportraitMain: {fileID: 964259681}
+  gameOverPanelportrait: {fileID: 1171914478}
+  gameOverPanelportraitMain: {fileID: 1955149088}
   YouWinPanelPlayerLeftPanel: {fileID: 900314061}
   pausePanel: {fileID: 1533936357}
   pausePanelportrait: {fileID: 221874351}

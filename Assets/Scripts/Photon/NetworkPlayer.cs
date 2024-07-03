@@ -31,14 +31,31 @@ public class NetworkPlayer : MonoBehaviour
             GameControllerNetwork.Instance.scoreTextPausePanel.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
             LanguageManager.OnVariableChanged();
 
+            GameControllerNetwork.Instance.scoreTextPausePanelPortrait.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
+            LanguageManager.OnVariableChanged();
+
+
+
             GameControllerNetwork.Instance.scoreTextgameOverPausePanel.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
             LanguageManager.OnVariableChanged();
+
+            GameControllerNetwork.Instance.scoreTextgameOverPausePanelPortrait.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
+            LanguageManager.OnVariableChanged();
+
 
             GameControllerNetwork.Instance.scoreTextyouWinPausePanel.variableText = GameManager.instance.myNetworkPlayer.Score.ToString(); ;
             LanguageManager.OnVariableChanged();
 
+            GameControllerNetwork.Instance.scoreTextyouWinPausePanelPortrait.variableText = GameManager.instance.myNetworkPlayer.Score.ToString(); ;
+            LanguageManager.OnVariableChanged();
+
+
             GameControllerNetwork.Instance.scoreTextdefaultYouWinPausePanel.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
             LanguageManager.OnVariableChanged();
+
+            //GameControllerNetwork.Instance.scoreTextdefaultYouWinPausePanelPortrait.variableText = GameManager.instance.myNetworkPlayer.Score.ToString();
+            //LanguageManager.OnVariableChanged();
+
             if (GameControllerNetwork.turn == 0)
             {
                 photonView.RPC(nameof(ScoreUpdate), RpcTarget.AllBuffered);

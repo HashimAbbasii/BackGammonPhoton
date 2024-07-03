@@ -33,15 +33,23 @@ namespace BackgammonNet.Core
 
         [Header("ScoreText")]
         public LocalizedTextTMP scoreTextPausePanel;
+        public LocalizedTextTMP scoreTextPausePanelPortrait;
         public LocalizedTextTMP scoreTextgameOverPausePanel;
+        public LocalizedTextTMP scoreTextgameOverPausePanelPortrait;
         public LocalizedTextTMP scoreTextyouWinPausePanel;
+        public LocalizedTextTMP scoreTextyouWinPausePanelPortrait;
         public LocalizedTextTMP scoreTextdefaultYouWinPausePanel;
+        //public LocalizedTextTMP scoreTextdefaultYouWinPausePanelPortrait;
 
         [Header("TimeText")]
         public LocalizedTextTMP timeTextPausePanel;
+        public LocalizedTextTMP timeTextPausePanelPortrait;
         public LocalizedTextTMP timeTextgameOverPausePanel;
+        public LocalizedTextTMP timeTextgameOverPausePanelPortrait;
         public LocalizedTextTMP timeTextyouWinPausePanel;
+        public LocalizedTextTMP timeTextyouWinPausePanelPortrait;
         public LocalizedTextTMP timeTextdefaultYouWinPausePanel;
+        //public LocalizedTextTMP timeTextdefaultYouWinPausePanelPortrait;
 
 
         [Header("PlayerNames")]
@@ -59,7 +67,11 @@ namespace BackgammonNet.Core
         public GameObject GameOverPanel;
         public GameObject YouWinPanel;
         public GameObject YouWinPanelportrait;
+        public GameObject YouWinPanelportraitMain;
+
         public GameObject gameOverPanelportrait;
+        public GameObject gameOverPanelportraitMain;
+
         public GameObject YouWinPanelPlayerLeftPanel;
         public GameObject pausePanel;
         public GameObject pausePanelportrait;
@@ -312,6 +324,10 @@ namespace BackgammonNet.Core
 
                 timeTextPausePanel.variableText = _totalSecondsPassedString;
                 LanguageManager.OnVariableChanged();
+
+                timeTextPausePanelPortrait.variableText = _totalSecondsPassedString;
+                LanguageManager.OnVariableChanged();
+
             }
         }
 
@@ -750,7 +766,7 @@ namespace BackgammonNet.Core
 #if UNITY_WEBGL
                 if (IsRunningOnAndroid() || IsRunningOniOS())
                 {
-                    YouWinPanelportrait.gameObject.SetActive(true);
+                    YouWinPanelportraitMain.gameObject.SetActive(true);
                 }
                 else
                 {
@@ -771,6 +787,10 @@ namespace BackgammonNet.Core
                 timeTextyouWinPausePanel.variableText = totalGameTimeString;
                 LanguageManager.OnVariableChanged();
 
+                timeTextyouWinPausePanelPortrait.variableText = totalGameTimeString;
+                LanguageManager.OnVariableChanged();
+
+
             }
             else
             {
@@ -779,7 +799,7 @@ namespace BackgammonNet.Core
 #if UNITY_WEBGL
                 if (IsRunningOnAndroid() || IsRunningOniOS())
                 {
-                    gameOverPanelportrait.gameObject.SetActive(true);
+                    gameOverPanelportraitMain.gameObject.SetActive(true);
                 }
                 else
                 {
@@ -799,6 +819,10 @@ namespace BackgammonNet.Core
 
                 timeTextgameOverPausePanel.variableText = totalGameTimeString;
                 LanguageManager.OnVariableChanged();
+
+                timeTextgameOverPausePanelPortrait.variableText = totalGameTimeString;
+                LanguageManager.OnVariableChanged();
+
             }
 
         }
@@ -958,6 +982,9 @@ namespace BackgammonNet.Core
 
             timeTextdefaultYouWinPausePanel.variableText = totalGameTimeString;
             LanguageManager.OnVariableChanged();
+
+            //timeTextdefaultYouWinPausePanelPortrait.variableText = totalGameTimeString;
+            //LanguageManager.OnVariableChanged();
 
         }
         public override void OnDisconnected(DisconnectCause cause)

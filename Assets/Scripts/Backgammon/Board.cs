@@ -20,8 +20,11 @@ namespace BackgammonNet.Core
 
         [SerializeField] LocalizedTextTMP timeText;
         [SerializeField] LocalizedTextTMP timeTextPausePanel;
+        [SerializeField] LocalizedTextTMP timeTextPausePanelportrait;
         [SerializeField] LocalizedTextTMP timeTextGameOverPanel;
+        [SerializeField] LocalizedTextTMP timeTextGameOverPanelportrait;
         [SerializeField] LocalizedTextTMP timeTextYouWinPanel;
+        [SerializeField] LocalizedTextTMP timeTextYouWinPanelportrait;
 
 
         [SerializeField] private Slot slotPrefab;
@@ -144,10 +147,19 @@ namespace BackgammonNet.Core
             timeTextPausePanel.variableText = string.Format("{0:00}:{1:00}", minutes, seconds);
             LanguageManager.OnVariableChanged();
 
+            timeTextPausePanelportrait.variableText = string.Format("{0:00}:{1:00}", minutes, seconds);
+            LanguageManager.OnVariableChanged();
+
             timeTextGameOverPanel.variableText = string.Format("{0:00}:{1:00}", minutes, seconds);
             LanguageManager.OnVariableChanged();
 
+            timeTextGameOverPanelportrait.variableText = string.Format("{0:00}:{1:00}", minutes, seconds);
+            LanguageManager.OnVariableChanged();
+
             timeTextYouWinPanel.variableText = string.Format("{0:00}:{1:00}", minutes, seconds);
+            LanguageManager.OnVariableChanged();
+
+            timeTextYouWinPanelportrait.variableText = string.Format("{0:00}:{1:00}", minutes, seconds);
             LanguageManager.OnVariableChanged();
         }
 

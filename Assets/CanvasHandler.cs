@@ -301,13 +301,13 @@ public class CanvasHandler : MonoBehaviour
 
 
                     RectTransform gameOverPortraitMenuRectTransform =   GameController.Instance.GameOverPanelPortrait.GetComponent<RectTransform>();
-                    gameOverPortraitMenuRectTransform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                    gameOverPortraitMenuRectTransform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
 
                     RectTransform youWinPanelMenuRectTransform = GameController.Instance.YouWinPanelportrait.GetComponent<RectTransform>();
-                    youWinPanelMenuRectTransform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                    youWinPanelMenuRectTransform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
 
                     RectTransform pausepanelPortraitRectTransform = GameController.Instance.pausePanelportrait.GetComponent<RectTransform>();
-                    pausepanelPortraitRectTransform.localScale = new Vector3(0.8f, 0.8f, 0.8f);
+                    pausepanelPortraitRectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
 
 
@@ -454,7 +454,7 @@ public class CanvasHandler : MonoBehaviour
                     youWinPanelMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                     RectTransform pausepanelPortraitRectTransform = GameController.Instance.pausePanelportrait.GetComponent<RectTransform>();
-                    pausepanelPortraitRectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    pausepanelPortraitRectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
 
 

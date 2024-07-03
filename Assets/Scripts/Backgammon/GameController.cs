@@ -22,7 +22,9 @@ namespace BackgammonNet.Core
     {
         [Header("Winner")]
         public LocalizedTextTMP winnerTextGameOver;
+        public LocalizedTextTMP winnerTextGameOverPortrait;
         public LocalizedTextTMP winnerTextYouWin;
+        public LocalizedTextTMP winnerTextYouWinPortrait;
         public GameObject winnerGameObjectGameOver;
         public GameObject winnerGameObjectYouWin;
 
@@ -52,8 +54,11 @@ namespace BackgammonNet.Core
 
 
         public LocalizedTextTMP scoreTextPausePanel;
+        public LocalizedTextTMP scoreTextPausePanelPortrait;
         public LocalizedTextTMP scoreTextgameOverPausePanel;
+        public LocalizedTextTMP scoreTextgameOverPausePanelPortrait;
         public LocalizedTextTMP scoreTextyouWinPausePanel;
+        public LocalizedTextTMP scoreTextyouWinPausePanelPortrait;
 
 
         [Header("PointsScene")]
@@ -68,16 +73,23 @@ namespace BackgammonNet.Core
         private PhotonView _photonView;
 
         public LocalizedTextTMP difficultyTextGameOverPanel;
+        public LocalizedTextTMP difficultyTextGameOverPanelPortrait;
         public LocalizedTextTMP difficultyTextYouWinPanel;
+        public LocalizedTextTMP difficultyTextYouWinPanelPortrait;
         public LocalizedTextTMP difficultyTextPausePanel;
+        public LocalizedTextTMP difficultyTextPausePanelPortrait;
 
-        
+
 
         [Header("Panels")]
         public GameObject GameOverPanel;
         public GameObject YouWinPanel;
         public GameObject GameOverPanelPortrait;
+        public GameObject GameOverPanelPortraitMain;
+
         public GameObject YouWinPanelportrait;
+        public GameObject YouWinPanelportraitMain;
+
         public GameObject pausePanel;
         public GameObject pausePanelportrait;
 
@@ -115,6 +127,12 @@ namespace BackgammonNet.Core
         [SerializeField] private GameObject AiDifficulty;
         [SerializeField] private GameObject AiDifficulty2;
         [SerializeField] private GameObject AiDifficulty3;
+
+        [SerializeField] private GameObject AiDifficultyP;
+        [SerializeField] private GameObject AiDifficulty2P;
+        [SerializeField] private GameObject AiDifficulty3P;
+
+
         [SerializeField] public List<Slot> shelterPawn=new();
         public List<Sprite> diceFaces = new List<Sprite>();
 
@@ -285,6 +303,7 @@ namespace BackgammonNet.Core
             if(MyGameManager.AiMode == false)
             {
                 AiDifficulty.gameObject.SetActive(false);
+                AiDifficultyP.gameObject.SetActive(false);
                 playerVsplayerScorePausePanel.gameObject.SetActive(true);
                 playerVsplayerScoreGameOverPanel.gameObject.SetActive(true);
                 playerVsplayerScoreYouWinPanel.gameObject.SetActive(true);
@@ -1810,8 +1829,11 @@ namespace BackgammonNet.Core
             if (MyGameManager.AiMode == false)
             {
                 AiDifficulty.gameObject.SetActive(false);
+                AiDifficultyP.gameObject.SetActive(false);
                 AiDifficulty2.gameObject.SetActive(false);
+                AiDifficulty2P.gameObject.SetActive(false);
                 AiDifficulty3.gameObject.SetActive(false);
+                AiDifficulty3P.gameObject.SetActive(false);
 
             }
 
@@ -1824,7 +1846,7 @@ namespace BackgammonNet.Core
 #if UNITY_WEBGL
                 if (IsRunningOnAndroid() || IsRunningOniOS())
                 {
-                    YouWinPanelportrait.gameObject.SetActive(true);
+                    YouWinPanelportraitMain.gameObject.SetActive(true);
                 }
                 else
                 {
@@ -1845,6 +1867,9 @@ namespace BackgammonNet.Core
                 {
                     difficultyTextYouWinPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
                     LanguageManager.OnVariableChanged();
+
+                    difficultyTextYouWinPanelPortrait.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+                    LanguageManager.OnVariableChanged();
                 }
                 else
                 {
@@ -1852,7 +1877,9 @@ namespace BackgammonNet.Core
                 }
                 
                 winnerTextYouWin.LocalizationKey = "Text.P1Win";
+                LanguageManager.OnVariableChanged();
 
+                winnerTextYouWinPortrait.LocalizationKey = "Text.P1Win";
                 LanguageManager.OnVariableChanged();
 
             }
@@ -1866,7 +1893,7 @@ namespace BackgammonNet.Core
 #if UNITY_WEBGL
                 if (IsRunningOnAndroid() || IsRunningOniOS())
                 {
-                    GameOverPanelPortrait.gameObject.SetActive(true);
+                    GameOverPanelPortraitMain.gameObject.SetActive(true);
                 }
                 else
                 {
@@ -1887,6 +1914,9 @@ namespace BackgammonNet.Core
                 {
                     difficultyTextGameOverPanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
                     LanguageManager.OnVariableChanged();
+
+                    difficultyTextGameOverPanelPortrait.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+                    LanguageManager.OnVariableChanged();
                 }
                 else
                 {
@@ -1894,6 +1924,9 @@ namespace BackgammonNet.Core
                 }
                    
                 winnerTextGameOver.LocalizationKey = "Text.P2Win";
+                LanguageManager.OnVariableChanged();
+
+                winnerTextGameOverPortrait.LocalizationKey = "Text.P2Win";
                 LanguageManager.OnVariableChanged();
 
             }
@@ -1914,7 +1947,15 @@ namespace BackgammonNet.Core
 #if UNITY_WEBGL
             if (IsRunningOnAndroid() || IsRunningOniOS())
             {
-                pausePanelportrait.gameObject.SetActive(true);
+                 if (MyGameManager.AiMode == true)
+                {
+                    pausePanelportrait.gameObject.SetActive(true);
+                }
+                else
+                {
+                    pausePanel.gameObject.SetActive(true);
+                }
+                        
             }
             else
             {
@@ -1938,6 +1979,12 @@ namespace BackgammonNet.Core
             difficultyTextPausePanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
             LanguageManager.OnVariableChanged();
 
+            difficultyTextPausePanelPortrait.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+            LanguageManager.OnVariableChanged();
+
+
+
+
             Board.Instance.isPaused = true;
         }
 
@@ -1945,12 +1992,12 @@ namespace BackgammonNet.Core
         {
             Board.Instance.isPaused = false;
 
-            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(0).gameObject.SetActive(false);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(0).gameObject.SetActive(true);
             CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(1).gameObject.SetActive(true);
-            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(false);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(true);
 
-            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(true);
-            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(false);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(false);
 
 
             pausePanelportrait.gameObject.SetActive(false);
@@ -2280,14 +2327,26 @@ namespace BackgammonNet.Core
 
                 GameController.Instance.scoreTextPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
-                GameController.Instance.scoreTextgameOverPausePanel.variableText = _score.ToString();
-                LanguageManager.OnVariableChanged();
-                GameController.Instance.scoreTextyouWinPausePanel.variableText = _score.ToString();
+
+                    GameController.Instance.scoreTextPausePanelPortrait.variableText = _score.ToString();
+                    LanguageManager.OnVariableChanged();
+
+                    GameController.Instance.scoreTextgameOverPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
 
+                    GameController.Instance.scoreTextgameOverPausePanelPortrait.variableText = _score.ToString();
+                    LanguageManager.OnVariableChanged();
 
-                ///////////////////////////////////////////////////////////////////////////////////////////////////
-                GameController.Instance.scoreTextPlayer1PlayerVsPlayerPausePanel.variableText = _score.ToString();
+
+                    GameController.Instance.scoreTextyouWinPausePanel.variableText = _score.ToString();
+                LanguageManager.OnVariableChanged();
+
+                    GameController.Instance.scoreTextyouWinPausePanelPortrait.variableText = _score.ToString();
+                    LanguageManager.OnVariableChanged();
+
+
+                    ///////////////////////////////////////////////////////////////////////////////////////////////////
+                    GameController.Instance.scoreTextPlayer1PlayerVsPlayerPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
                 GameController.Instance.scoreTextPlayer1VsPlayerGameOverPausePanel.variableText = _score.ToString();
                 LanguageManager.OnVariableChanged();
