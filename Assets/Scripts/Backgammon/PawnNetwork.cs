@@ -148,41 +148,65 @@ namespace BackgammonNet.Core
 
         private void OnMouseDown()
         {
-            if (GameControllerNetwork.turn != int.Parse(PhotonNetwork.NickName)) return;
+            Debug.Log("Photon Turn" + PhotonNetwork.NickName);
+            Debug.Log("Your Photon turn" + GameController.turn);
 
-            if (GameControllerNetwork.turn != pawnColor) return;
+            if (GameControllerNetwork.turn != int.Parse(PhotonNetwork.NickName))
+            {
 
-            if (GameControllerNetwork.GameOver) return;
+                return;
+            }
 
-            if (BoardNetwork.Instance.client)              // if network game
+            if (GameControllerNetwork.turn != pawnColor)
+            {
+                return;
+            }
+
+            if (GameControllerNetwork.GameOver)
+            {
+                return;
+            }
+
+            if (BoardNetwork.Instance.client) // if network game
             {
                 if (BoardNetwork.Instance.isClientWhite)
                 {
-                    if (pawnColor != 0) return;
+                    if (pawnColor != 0)
+                    {
+                        return;
+                    }
 
-                    if (!imprisoned && imprisonedSide[pawnColor] > 0) return;     // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
+                    if (!imprisoned && imprisonedSide[pawnColor] > 0)
+                    {
+                        return; // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
+                    }
 
                     TrySelectPawn();
                 }
                 else
                 {
-                    if (pawnColor != 1) return;
+                    if (pawnColor != 1)
+                    {
+                        return;
+                    }
 
-                    if (!imprisoned && imprisonedSide[pawnColor] > 0) return;     // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
+                    if (!imprisoned && imprisonedSide[pawnColor] > 0)
+                    {
+                        return; // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
+                    }
 
                     TrySelectPawn();
                 }
             }
             else
             {
-                if (!imprisoned && ((imprisonedSide[0] > 0 && pawnColor == 0) || (imprisonedSide[1] > 0 && pawnColor == 1))) return;    // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
-                
+                if (!imprisoned && ((imprisonedSide[0] > 0 && pawnColor == 0) || (imprisonedSide[1] > 0 && pawnColor == 1)))
+                {
+                    return; // in a situation of imprisonment, do not allow unrestricted pieces to be dragged
+                }
+
                 TrySelectPawn();
-
-
-
             }
-
 
         }
 
@@ -644,9 +668,12 @@ namespace BackgammonNet.Core
 
         public static void InitializePawn()
         {
+            GameController.turn = 0;
             moves = 0;
             imprisonedSide = new int[2];
             shelterSide = new bool[2];
+            MyGameManager.Instance.playerNames.Clear();
+
         }
     }
 }

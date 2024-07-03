@@ -169,6 +169,7 @@ namespace BackgammonNet.Core
                 StartCoroutine(NetworkButton());
             
             }
+            Debug.Log("Your Turn is"+turn);
         }
 
         private bool YourTurn()
@@ -710,11 +711,13 @@ namespace BackgammonNet.Core
             int totalGameTimeInSeconds = (int)((endDateTime - startDateTime).TotalSeconds);
             TimeSpan totalGameTime = TimeSpan.FromSeconds(totalGameTimeInSeconds);
             string totalGameTimeString = string.Format("{0:mm\\:ss}", totalGameTime);
+            PawnNetwork.InitializePawn();
 
 
             if (winner == int.Parse(PhotonNetwork.NickName))
             {
                 YouWinPanel.SetActive(true);
+                PawnNetwork.InitializePawn();
                 AudioManager.Instance.GameWon();
 
                 timeTextyouWinPausePanel.variableText = totalGameTimeString;
@@ -781,7 +784,7 @@ namespace BackgammonNet.Core
 
         private IEnumerator DelayedGoToMainMenu()
         {
-
+            PawnNetwork.InitializePawn();
           //  SoundManager.GetSoundEffect(4, 0.25f); // Play sound effect
 
             // Disconnect from Photon network
