@@ -166,6 +166,7 @@ namespace BackgammonNet.Core
                         CheckShelterStage();
                         CheckShelterAndMore();
                         CheckIfNextTurn();
+                        
                         //  StartCoroutine(SecondDice());
                         StartCoroutine(GameController.Instance.SecondDice());
 
@@ -198,7 +199,7 @@ namespace BackgammonNet.Core
 
                         CheckShelterStage();
                         CheckShelterAndMoreForBlockState();
-                      CheckIfNextTurn();
+                         CheckIfNextTurn();
 
                         if (Slot.slots[25 + sign * GameController.dices[1]].Height() > 1 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() != prisonSlot.IsWhite())
                         {
@@ -379,6 +380,10 @@ namespace BackgammonNet.Core
                         imprisonedSide[pawnColor]--;
                         CheckShelterStage();
                         CheckShelterAndMore();
+                        if (GameController.isDublet == true)
+                        {
+                            GameController.Instance.GenerateForAi();
+                        }
                     //    CheckIfNextTurn();
                       //  OnCompleteTurn(pawnColor);
                         //  StartCoroutine(SecondDice());
@@ -400,8 +405,12 @@ namespace BackgammonNet.Core
                         imprisonedSide[pawnColor]--;
                         CheckShelterStage();
                         CheckShelterAndMore();
-                    //    CheckIfNextTurn();
-                       // OnCompleteTurn(pawnColor);
+                        if (GameController.isDublet == true)
+                        {
+                            GameController.Instance.GenerateForAi();
+                        }
+                        //    CheckIfNextTurn();
+                        // OnCompleteTurn(pawnColor);
                         // StartCoroutine(GameController.Instance.SecondDice());
 
                     }
@@ -411,8 +420,12 @@ namespace BackgammonNet.Core
                         Debug.Log("Not same Color For Dice 1");
                         CheckShelterStage();
                         CheckShelterAndMore();
-                      //  CheckIfNextTurn();
-                   //    // OnCompleteTurn(pawnColor);
+                        if (GameController.isDublet == true)
+                        {
+                            GameController.Instance.GenerateForAi();
+                        }
+                        //  CheckIfNextTurn();
+                        //    // OnCompleteTurn(pawnColor);
 
 
                     }
@@ -431,8 +444,12 @@ namespace BackgammonNet.Core
                     imprisonedSide[pawnColor]--;
                     CheckShelterStage();
                     CheckShelterAndMore();
-                 //    CheckIfNextTurn();
-                 //   OnCompleteTurn(pawnColor);
+                    if (GameController.isDublet == true)
+                    {
+                        GameController.Instance.GenerateForAi();
+                    }
+                    //    CheckIfNextTurn();
+                    //   OnCompleteTurn(pawnColor);
 
 
                 }

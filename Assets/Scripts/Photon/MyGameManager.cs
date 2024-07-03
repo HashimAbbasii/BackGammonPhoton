@@ -26,6 +26,7 @@ public class MyGameManager : MonoBehaviour
     public Sprite[] randomImage;
     public static bool AiModePawn = false;
     public bool AiModeTest;
+    public static int houseColorDetermince;
 
     //  public void  Start()
     //{
@@ -52,6 +53,7 @@ public class MyGameManager : MonoBehaviour
                 AiModePawn = true;
                 StoreWhite = whitePawn;
                 StoreBlack = blackPawn;
+                houseColorDetermince = 0;
                 break;
 
             case 1:
@@ -73,7 +75,7 @@ public class MyGameManager : MonoBehaviour
                             StoreBlack = whitePawn;
                         }
                     }
-
+                    houseColorDetermince = 1;
                     break;
                     //StoreWhite = (UnityEngine.Random.value > 0.5f) ? whitePawn : blackPawn;
                 }
@@ -82,6 +84,7 @@ public class MyGameManager : MonoBehaviour
                 AiModePawn = true;
                 StoreWhite = blackPawn;
                 StoreBlack = whitePawn;
+                houseColorDetermince = 2;
                 break;
         }
     }

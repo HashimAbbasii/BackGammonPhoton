@@ -86,6 +86,7 @@ namespace BackgammonNet.Core
         public Pawn randomSelectPawn2;
         public Pawn SelectShelterPawn;
         public Pawn SelectShelterPawn2;
+        public Pawn pawnGoes;
         public static int turn;                     // indicates whose turn it is now
         public static int[] dices = new int[2];     // recently drawn numbers
         public static bool isDublet;                // whether a doublet was thrown
@@ -126,7 +127,8 @@ namespace BackgammonNet.Core
 
         public static GameController Instance { get; set; }
         public static bool GameOver { get; set; }
-       
+        public GameObject[] whiteHouseColor;
+        public GameObject[] blackHouseColor;
 
         private void Awake()
         {
@@ -183,8 +185,64 @@ namespace BackgammonNet.Core
 
         }
 
+        public void WhiteHouseChoose()
+        {
+            for(int i = 0;i< whiteHouseColor.Length; i++)
+            {
+                whiteHouseColor[i].GetComponent<SpriteRenderer>().color=new Color(255,255,255);
+            }
+            for (int i = 0; i < blackHouseColor.Length; i++)
+            {
+                blackHouseColor[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+            }
+        }
+        public void BlackHouseChoose()
+        {
+            for (int i = 0; i < whiteHouseColor.Length; i++)
+            {
+                whiteHouseColor[i].GetComponent<SpriteRenderer>().color = new Color(0, 0, 0);
+            }
+            for (int i = 0; i < blackHouseColor.Length; i++)
+            {
+                blackHouseColor[i].GetComponent<SpriteRenderer>().color = new Color(255, 255, 255);
+            }
+        }
+
+        public void RandomSelectHouse()
+        {
+            int randomSelectColor = Random.Range(0, 2);
+            if(randomSelectColor == 0)
+            {
+                WhiteHouseChoose();
+            }
+            else
+            
+            {
+                BlackHouseChoose();
+            }
+        }
+
+
+
         private void Start()
         {
+            if (MyGameManager.houseColorDetermince == 0)
+            {
+                WhiteHouseChoose();
+                MyGameManager.houseColorDetermince = 0;
+
+            }
+            else if(MyGameManager.houseColorDetermince == 2)
+            {
+                BlackHouseChoose();
+                MyGameManager.houseColorDetermince = 0;
+            }
+            else
+            {
+                RandomSelectHouse();
+                MyGameManager.houseColorDetermince = 0;
+            }
+
             for (var i = 0; i < 2; i++)
             {
                 PlayerScore playerScore = new();
@@ -339,8 +397,15 @@ namespace BackgammonNet.Core
             TimeController.OnTimeLimitEnd -= Pawn_OnGameOver;
         }
 
+        public int d0;
+        public int d1;
+        public int HouseColorChoose;
         private void Update()
         {
+            HouseColorChoose=MyGameManager.houseColorDetermince;
+            d0 = dices[0];
+            d1 = dices[1];
+
             if (sidesAgreed == 2)
                 LoadGameScene();
 
@@ -615,8 +680,8 @@ namespace BackgammonNet.Core
 
             for (int i = 0; i < 12; i++)
             {
-                diceImages[0].sprite = diceFaces[Random.Range(1, 7)];
-                diceImages[1].sprite = diceFaces[Random.Range(1, 7)];
+                diceImages[0].sprite = diceFaces[1];
+                diceImages[1].sprite = diceFaces[1];
                 yield return new WaitForSeconds(0.05f);
             }
 
@@ -652,7 +717,7 @@ namespace BackgammonNet.Core
         {
           //  Debug.Log("turn Before "+turn);
             yield return new WaitForSecondsRealtime(1);
-            if (!CanMoveAi(2)&&turn==1)
+            if (!CanMoveAi(2) && turn==1)
             {
             //    Debug.LogWarning("Tera issue hain");
                 StartCoroutine(ChangeTurn());
@@ -761,10 +826,10 @@ namespace BackgammonNet.Core
 
             //............................Its For a Dice 1............................//
             int ShelterSlotChck = GameController.dices[0];
-            if (ShelterSlotChck == 0)
-            {
-                ShelterSlotChck = 1;
-            }
+            //if (ShelterSlotChck == 0)
+            //{
+            //    ShelterSlotChck = 1;
+            //}
             // int signShelter = -1;
             //sint slot0Sheler=
             for (int i = 6; i >= 1; i--)
@@ -774,14 +839,33 @@ namespace BackgammonNet.Core
                 {
                     if (Slot.slots[i].Height() >= 1 && turn == 1)
                     {
+                        int calculateSlot = i - ShelterSlotChck;
                         Debug.Log("if i is greater than Shelter Number");
+
                         SelectShelterPawn = Slot.slots[i].GetTopPawn(true);
                         // SelectShelterPawn.CheckShelterStage();
-                        SelectShelterPawn.CheckShelterAndMore();
-                        SelectShelterPawn.CheckIfNextTurn();
-                        Slot.slots[ShelterSlotChck].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
 
-                        break;
+                        if (calculateSlot == 0)
+                        {
+                            var finalposition = SelectShelterPawn.house.transform.position;
+                            SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
+                            SelectShelterPawn.PlaceInShelterAi();
+                            SelectShelterPawn.CheckShelterAndMore();
+                            SelectShelterPawn.CheckIfNextTurn();
+                            break;
+                        }
+                        else
+                        {
+
+                            Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
+                            SelectShelterPawn.CheckShelterAndMore();
+                            SelectShelterPawn.CheckIfNextTurn();
+
+                            break;
+
+
+                           
+                        }
                     }
                     else { continue; }
                 }
@@ -928,10 +1012,12 @@ namespace BackgammonNet.Core
 
 
             int ShelterSlotChck = GameController.dices[1];
-            if (ShelterSlotChck == 0)
-            {
-                ShelterSlotChck = 1;
-            }
+            //nt signForShelter=
+
+            //if (ShelterSlotChck == 0)
+            //{
+            //    ShelterSlotChck = 1;
+            //}
             // int sign = SelectShelterPawn2.pawnColor == 0 ? 1 : -1;
             for (int i = 6; i >= 1; i--)
             {
@@ -941,13 +1027,35 @@ namespace BackgammonNet.Core
                     if (Slot.slots[i].Height() >= 1 && turn == 1)
                     {
                         Debug.Log("Height Greater than 1 to i");
+                        int calculateSlot = i - ShelterSlotChck;
+
                         SelectShelterPawn2 = Slot.slots[i].GetTopPawn(true);
-                        SelectShelterPawn2.CheckShelterAndMore();
-                        SelectShelterPawn2.CheckIfNextTurn();
+                       // pawnGoes = Slot.slots[ShelterSlotChck].GetTopPawn(false);
+                       
+                        if (calculateSlot == 0)
+                        {
+                            var finalposition = SelectShelterPawn2.house.transform.position;
+                            SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
+                            SelectShelterPawn.PlaceInShelterAi();
+                            SelectShelterPawn2.CheckShelterAndMore();
+                            SelectShelterPawn2.CheckIfNextTurn();
+                            break;
+                        }
+                        else
+                        {
 
-                        Slot.slots[ShelterSlotChck].PlacePawn(SelectShelterPawn2, SelectShelterPawn2.pawnColor);
+                            Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn2, SelectShelterPawn2.pawnColor);
+                            SelectShelterPawn.CheckShelterAndMore();
+                            SelectShelterPawn.CheckIfNextTurn();
+                            break;
 
-                        break;
+
+                            
+                        }
+
+
+
+
                     }
                     else { continue; }
                 }
