@@ -298,7 +298,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
                     gameOverPanelportraitRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
 
                     RectTransform pausePanelportraitRectTransform = GameControllerNetwork.Instance.pausePanelportrait.GetComponent<RectTransform>();
-                    pausePanelportraitRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+                    pausePanelportraitRectTransform.localScale = new Vector3(1.4f, 1.4f, 1.4f);
 
 
 
@@ -413,13 +413,13 @@ public class CanvasHandlerNetwork : MonoBehaviour
 
 
                     RectTransform YouWinPanelportraitRectTransform = GameControllerNetwork.Instance.YouWinPanelportrait.GetComponent<RectTransform>();
-                    YouWinPanelportraitRectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    YouWinPanelportraitRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
 
                     RectTransform gameOverPanelportraitRectTransform = GameControllerNetwork.Instance.gameOverPanelportrait.GetComponent<RectTransform>();
-                    gameOverPanelportraitRectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    gameOverPanelportraitRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
 
                     RectTransform pausePanelportraitRectTransform = GameControllerNetwork.Instance.pausePanelportrait.GetComponent<RectTransform>();
-                    pausePanelportraitRectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    pausePanelportraitRectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
 
 
 

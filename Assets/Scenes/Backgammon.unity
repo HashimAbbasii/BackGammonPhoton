@@ -2509,10 +2509,10 @@ MonoBehaviour:
   difficultyTextPausePanel: {fileID: 1097259423}
   GameOverPanel: {fileID: 941749382}
   YouWinPanel: {fileID: 443383487}
-  GameOverPanelPortrait: {fileID: 0}
-  YouWinPanelportrait: {fileID: 0}
-  pausePanel: {fileID: 0}
-  pausePanelportrait: {fileID: 0}
+  GameOverPanelPortrait: {fileID: 1472381580}
+  YouWinPanelportrait: {fileID: 158595242}
+  pausePanel: {fileID: 888024918}
+  pausePanelportrait: {fileID: 1596284492}
   canvasHandler: {fileID: 135892645}
   topMenu: {fileID: 331301407}
   buttons:
@@ -18868,7 +18868,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 640.3386, y: -22.716}
+  m_AnchoredPosition: {x: 60, y: -22.716}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1061518069
@@ -26286,7 +26286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1067.2311, y: -22.716}
+  m_AnchoredPosition: {x: 100, y: -22.716}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1547869926
@@ -28735,7 +28735,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1659490736
 RectTransform:
   m_ObjectHideFlags: 0
@@ -37960,7 +37960,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 213.44621, y: -22.716}
+  m_AnchoredPosition: {x: 20, y: -22.716}
   m_SizeDelta: {x: 40, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2101734348
