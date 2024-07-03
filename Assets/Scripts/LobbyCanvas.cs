@@ -741,7 +741,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
             }
             else if (ratio >= 2) //_ratio  LAndScape Android/iOS
             {
-                tutorialPanelLandScape.gameObject.SetActive(true);
+                tutorialPanelPortrait.gameObject.SetActive(true);
             }
            
         }

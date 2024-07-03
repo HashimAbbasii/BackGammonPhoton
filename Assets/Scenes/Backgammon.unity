@@ -3022,18 +3022,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bottomMenuVerticalLayoutgroup: {fileID: 2117560385}
   BottomMenu: {fileID: 1744961593}
-  Player0Object: {fileID: 1004383182}
-  Player1Object: {fileID: 328873800}
-  Highlight2P0: {fileID: 1493430701}
-  Highlight2P1: {fileID: 1029264198}
-  Points0Object: {fileID: 49016973}
-  Points1Object: {fileID: 32366115}
+  Player0Object: {fileID: 328873800}
+  Player1Object: {fileID: 1004383182}
+  Highlight2P0: {fileID: 1029264198}
+  Highlight2P1: {fileID: 1493430701}
+  Points0Object: {fileID: 32366115}
+  Points1Object: {fileID: 49016973}
   diceRollButton: {fileID: 451497670}
   diceResults: {fileID: 1874818424}
   mainCamera: {fileID: 519420031}
   buttonsPanel: {fileID: 831735928}
-  player0: {fileID: 1004383181}
-  player1: {fileID: 328873799}
+  player0: {fileID: 328873799}
+  player1: {fileID: 1004383181}
   submissionPanel: {fileID: 389019657}
   timerPanel: {fileID: 333450100}
   pauseMenu: {fileID: 888024918}
