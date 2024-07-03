@@ -2509,10 +2509,10 @@ MonoBehaviour:
   difficultyTextPausePanel: {fileID: 1097259423}
   GameOverPanel: {fileID: 941749382}
   YouWinPanel: {fileID: 443383487}
-  GameOverPanelPortrait: {fileID: 1749661112}
-  YouWinPanelportrait: {fileID: 1157792577}
-  pausePanel: {fileID: 1983442714}
-  pausePanelportrait: {fileID: 1596284492}
+  GameOverPanelPortrait: {fileID: 0}
+  YouWinPanelportrait: {fileID: 0}
+  pausePanel: {fileID: 0}
+  pausePanelportrait: {fileID: 0}
   canvasHandler: {fileID: 135892645}
   topMenu: {fileID: 331301407}
   buttons:
@@ -2567,8 +2567,38 @@ MonoBehaviour:
   checkExistingPawn: []
   ePawns: []
   diceEnable: 1
-  whiteHouseColor: []
-  blackHouseColor: []
+  whiteHouseColor:
+  - {fileID: 1832180750}
+  - {fileID: 2062691158}
+  - {fileID: 956859466}
+  - {fileID: 1662983473}
+  - {fileID: 1373159743}
+  - {fileID: 1152442684}
+  - {fileID: 537876544}
+  - {fileID: 2120844166}
+  - {fileID: 190039504}
+  - {fileID: 1034628619}
+  - {fileID: 606029047}
+  - {fileID: 76429348}
+  - {fileID: 1884865228}
+  - {fileID: 951333676}
+  - {fileID: 1771648271}
+  blackHouseColor:
+  - {fileID: 2138064216}
+  - {fileID: 83307540}
+  - {fileID: 1196195972}
+  - {fileID: 1865591902}
+  - {fileID: 1242971479}
+  - {fileID: 215606325}
+  - {fileID: 1303166811}
+  - {fileID: 1506777538}
+  - {fileID: 1652851128}
+  - {fileID: 1774521917}
+  - {fileID: 270568186}
+  - {fileID: 735188046}
+  - {fileID: 1615687909}
+  - {fileID: 193876569}
+  - {fileID: 1985585676}
   d0: 0
   d1: 0
   HouseColorChoose: 0
