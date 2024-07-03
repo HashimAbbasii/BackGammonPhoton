@@ -19,7 +19,8 @@ namespace BackgammonNet.Core
         public static int[] imprisonedSide = new int[2];        // Is the mode of taking the pieces of given side out of prison?
         public static bool[] shelterSide = new bool[2];         // Is the mode of introducing the pieces of given side into the shelter?
 
-        public static int endSlotNo;                            // sloty ostatniej ćwiartki najdalsze od schronienia
+        public static int endSlotNo;
+        public int endSlotCheck;// sloty ostatniej ćwiartki najdalsze od schronienia
         public static int moves;
 
         public int pawnColor;                                   // The color of this pawn.
@@ -150,6 +151,7 @@ namespace BackgammonNet.Core
         {
             Debug.Log("Photon Turn" + PhotonNetwork.NickName);
             Debug.Log("Your Photon turn" + GameController.turn);
+            Debug.Log("gameOver" + GameController.GameOver);
 
             if (GameControllerNetwork.turn != int.Parse(PhotonNetwork.NickName))
             {
@@ -658,7 +660,11 @@ namespace BackgammonNet.Core
                 if (SlotNetwork.slots[7 * pawnColor - b * i].Height() > 0 && SlotNetwork.slots[7 * pawnColor - b * i].IsWhite() == pawnColor)
                 {
                     if (count == 0)
+                    {
                         endSlotNo = 7 * pawnColor - b * i;
+                        endSlotCheck = endSlotNo;
+
+                    }
 
                     count += SlotNetwork.slots[7 * pawnColor - b * i].Height();
                 }

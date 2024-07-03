@@ -777,6 +777,23 @@ namespace BackgammonNet.Core
             SceneManager.LoadScene(1, LoadSceneMode.Additive);
         }
 
+
+        private void LoadGameSceneForNewGame()
+        {
+            Debug.Log("LoadGameScene");
+
+            sidesAgreed = 0;
+            GameOver = false;
+            isDublet = false;
+            dragEnable = false;
+            turn = 0;
+           // PawnNetwork.InitializePawn();
+           // SceneManager.UnloadSceneAsync(1);
+           // SceneManager.LoadScene(1, LoadSceneMode.Additive);
+        }
+
+
+
         public void GoToMainMenu()     // delete the Backgammon scene and show the Lobby scene main menu
         {
             StartCoroutine(DelayedGoToMainMenu());
@@ -785,6 +802,7 @@ namespace BackgammonNet.Core
         private IEnumerator DelayedGoToMainMenu()
         {
             PawnNetwork.InitializePawn();
+            LoadGameSceneForNewGame();
           //  SoundManager.GetSoundEffect(4, 0.25f); // Play sound effect
 
             // Disconnect from Photon network
