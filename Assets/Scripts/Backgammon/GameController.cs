@@ -76,6 +76,11 @@ namespace BackgammonNet.Core
         [Header("Panels")]
         public GameObject GameOverPanel;
         public GameObject YouWinPanel;
+        public GameObject GameOverPanelPortrait;
+        public GameObject YouWinPanelportrait;
+        public GameObject pausePanel;
+        public GameObject pausePanelportrait;
+
 
         public CanvasHandler canvasHandler;
         public HorizontalLayoutGroup topMenu;
@@ -129,6 +134,20 @@ namespace BackgammonNet.Core
         public static bool GameOver { get; set; }
         public GameObject[] whiteHouseColor;
         public GameObject[] blackHouseColor;
+
+        public bool IsRunningOnAndroid()
+        {
+            return SystemInfo.operatingSystem.ToLower().Contains("android");
+
+        }
+
+        public bool IsRunningOniOS()
+        {
+            return SystemInfo.operatingSystem.ToLower().Contains("iphone") ||
+                   SystemInfo.operatingSystem.ToLower().Contains("ipad") ||
+                   SystemInfo.operatingSystem.ToLower().Contains("ios");
+        }
+
 
         private void Awake()
         {
@@ -1766,7 +1785,22 @@ namespace BackgammonNet.Core
 
         public void ActiveGameOver(int winner)
         {
-           // Debug.Log("---------------------- ActiveGameOver ------------------------------");
+
+
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(0).gameObject.SetActive(false);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(1).gameObject.SetActive(false);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(false);
+
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(true);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
+
+
+
+
+
+
+
+            // Debug.Log("---------------------- ActiveGameOver ------------------------------");
 
             Board.Instance.isGameOver = true;
            // MyGameManager.AiMode = false;
@@ -1786,7 +1820,25 @@ namespace BackgammonNet.Core
             {
                 Debug.Log("Player1 win");
 
-                YouWinPanel.gameObject.SetActive(true);
+
+#if UNITY_WEBGL
+                if (IsRunningOnAndroid() || IsRunningOniOS())
+                {
+                    YouWinPanelportrait.gameObject.SetActive(true);
+                }
+                else
+                {
+                    YouWinPanel.gameObject.SetActive(true);
+                }
+
+
+#else
+
+    YouWinPanel.gameObject.SetActive(true);
+
+
+#endif
+
                 AudioManager.Instance.GameWon();
 
                 if(MyGameManager.AiMode == true)
@@ -1808,7 +1860,27 @@ namespace BackgammonNet.Core
             {
               //  Debug.Log("Player2 win");
 
-                gameOverPanel.gameObject.SetActive(true);
+                //gameOverPanel.gameObject.SetActive(true);
+
+
+#if UNITY_WEBGL
+                if (IsRunningOnAndroid() || IsRunningOniOS())
+                {
+                    GameOverPanelPortrait.gameObject.SetActive(true);
+                }
+                else
+                {
+                    gameOverPanel.gameObject.SetActive(true);
+                }
+
+
+#else
+
+    gameOverPanel.gameObject.SetActive(true);
+
+
+#endif
+
                 AudioManager.Instance.GameLost();
 
                 if (MyGameManager.AiMode == true)
@@ -1830,6 +1902,38 @@ namespace BackgammonNet.Core
 
         public void ActivatePausePanel()
         {
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(0).gameObject.SetActive(false);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(1).gameObject.SetActive(true);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(false);
+
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(true);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
+
+
+            //pausePanel.gameObject.SetActive(true);
+#if UNITY_WEBGL
+            if (IsRunningOnAndroid() || IsRunningOniOS())
+            {
+                pausePanelportrait.gameObject.SetActive(true);
+            }
+            else
+            {
+                pausePanel.gameObject.SetActive(true);
+            }
+
+
+
+
+
+#else
+
+    pausePanel.gameObject.SetActive(true);
+
+
+#endif
+
+
+
 
             difficultyTextPausePanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
             LanguageManager.OnVariableChanged();
@@ -1840,6 +1944,17 @@ namespace BackgammonNet.Core
         public void ResumeGame()
         {
             Board.Instance.isPaused = false;
+
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(0).gameObject.SetActive(false);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(1).gameObject.SetActive(true);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(false);
+
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(true);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
+
+
+            pausePanelportrait.gameObject.SetActive(false);
+
         }
 
         public  void NewGame()

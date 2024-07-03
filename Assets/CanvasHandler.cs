@@ -9,6 +9,9 @@ using TMPro;
 
 public class CanvasHandler : MonoBehaviour
 {
+    [Header("BottomMenuVerticalLayoutgroup")]
+    public HorizontalLayoutGroup bottomMenuVerticalLayoutgroup;
+
     [Header("BottomMenuGameObject")]
     public GameObject BottomMenu;
 
@@ -74,6 +77,10 @@ public class CanvasHandler : MonoBehaviour
     public Button BmusicBtn;
     public Button BfullScreenBtn;
 
+    public Button BPauseBtn;
+    public Button BreloadBtn;
+    public Button BexitBtn;
+
     //public static GameController Instance { get; set; }
     public static CanvasHandler Instance { get; set; }
     public FullscreenWebGLManager fullScreenWebGLManager;
@@ -93,6 +100,17 @@ public class CanvasHandler : MonoBehaviour
 
 #endif
 
+
+    private void Start()
+    {
+
+        bottomMenuVerticalLayoutgroup.transform.GetChild(0).gameObject.SetActive(true);
+        bottomMenuVerticalLayoutgroup.transform.GetChild(1).gameObject.SetActive(true);
+        bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(true);
+
+        bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(false);
+        bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(false);
+    }
 
     private void Awake()
     {
@@ -281,6 +299,28 @@ public class CanvasHandler : MonoBehaviour
 
 
 
+
+                    RectTransform gameOverPortraitMenuRectTransform =   GameController.Instance.GameOverPanelPortrait.GetComponent<RectTransform>();
+                    gameOverPortraitMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+
+                    RectTransform youWinPanelMenuRectTransform = GameController.Instance.YouWinPanelportrait.GetComponent<RectTransform>();
+                    youWinPanelMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+
+                    RectTransform pausepanelPortraitRectTransform = GameController.Instance.pausePanelportrait.GetComponent<RectTransform>();
+                    pausepanelPortraitRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+
+
+
+
+
+
+
+
+
+
+
+
+
                     RectTransform pauseMenuRectTransform = pauseMenu.GetComponent<RectTransform>();
                     pauseMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
 
@@ -306,15 +346,24 @@ public class CanvasHandler : MonoBehaviour
                     // Botttom Menu Buttons
 
                     RectTransform BsoundBtnRectTransform = BsoundBtn.GetComponent<RectTransform>();
-                    BsoundBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+                    BsoundBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
 
 
                     RectTransform BmusicBtnRectTransform = BmusicBtn.GetComponent<RectTransform>();
-                    BmusicBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+                    BmusicBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
 
 
                     RectTransform BfullScreenBtnRectTransform = BfullScreenBtn.GetComponent<RectTransform>();
-                    BfullScreenBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+                    BfullScreenBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+
+                    RectTransform BpauseBtnRectTransform = BPauseBtn.GetComponent<RectTransform>();
+                    BpauseBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+
+                    RectTransform BreloadBtnRectTransform = BreloadBtn.GetComponent<RectTransform>();
+                    BreloadBtnRectTransform.sizeDelta = new Vector2(60f,60f);
+
+                    RectTransform BexitBtnRectTransform = BexitBtn.GetComponent<RectTransform>();
+                    BexitBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
 
 
 
@@ -396,6 +445,29 @@ public class CanvasHandler : MonoBehaviour
                     RectTransform youWinMenuRectTransform = youWinMenu.GetComponent<RectTransform>();
                     youWinMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
+
+
+                    RectTransform gameOverPortraitMenuRectTransform = GameController.Instance.GameOverPanelPortrait.GetComponent<RectTransform>();
+                    gameOverPortraitMenuRectTransform.localScale = new Vector3(1f, 1f,1f);
+
+                    RectTransform youWinPanelMenuRectTransform = GameController.Instance.YouWinPanelportrait.GetComponent<RectTransform>();
+                    youWinPanelMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+                    RectTransform pausepanelPortraitRectTransform = GameController.Instance.pausePanelportrait.GetComponent<RectTransform>();
+                    pausepanelPortraitRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+
+
+
+
+
+
+
+
+
+
+
+
                     RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
                     diceButtonRectTransform.anchoredPosition = new Vector2(493f, 24f);
                     diceButtonRectTransform.sizeDelta = new Vector2(98f, 98f);
@@ -419,6 +491,15 @@ public class CanvasHandler : MonoBehaviour
 
                     RectTransform BfullScreenBtnRectTransform = BfullScreenBtn.GetComponent<RectTransform>();
                     BfullScreenBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+
+                    RectTransform BpauseBtnRectTransform = BPauseBtn.GetComponent<RectTransform>();
+                    BpauseBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+
+                    RectTransform BreloadBtnRectTransform = BreloadBtn.GetComponent<RectTransform>();
+                    BreloadBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+
+                    RectTransform BexitBtnRectTransform = BexitBtn.GetComponent<RectTransform>();
+                    BexitBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
 
 
 

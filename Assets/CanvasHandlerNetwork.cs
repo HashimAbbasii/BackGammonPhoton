@@ -1,4 +1,5 @@
 using Assets.SimpleLocalization.Scripts;
+using BackgammonNet.Core;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,8 +7,12 @@ using UnityEngine.UI;
 
 public class CanvasHandlerNetwork : MonoBehaviour
 {
+    [Header("BottomMenuVerticalLayoutgroup")]
+    public HorizontalLayoutGroup bottomMenuVerticalLayoutgroup;
+
     [Header("BottomMenuGameObject")]
     public GameObject BottomMenu;
+
 
     [Header("PlayerObjects")]
     public RectTransform Player0Object;
@@ -71,6 +76,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
     [Header("BottomMenuButtons")]
     public Button BsoundBtn;
     public Button BmusicBtn;
+    
     public Button BfullScreenBtn;
 
 
@@ -78,6 +84,17 @@ public class CanvasHandlerNetwork : MonoBehaviour
     public static CanvasHandlerNetwork Instance { get; set; }
 
     public FullscreenWebGLManager fullScreenWebGLManager;
+
+    private void Start()
+    {
+
+        bottomMenuVerticalLayoutgroup.transform.GetChild(0).gameObject.SetActive(true);
+        bottomMenuVerticalLayoutgroup.transform.GetChild(1).gameObject.SetActive(true);
+        bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(true);
+
+        bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(false);
+        bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(false);
+    }
 
     private void Awake()
     {
@@ -270,6 +287,24 @@ public class CanvasHandlerNetwork : MonoBehaviour
                     youWinMenuRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
 
 
+
+
+                
+
+                    RectTransform YouWinPanelportraitRectTransform =  GameControllerNetwork.Instance.YouWinPanelportrait.GetComponent<RectTransform>();
+                    YouWinPanelportraitRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+
+                    RectTransform gameOverPanelportraitRectTransform = GameControllerNetwork.Instance.gameOverPanelportrait.GetComponent<RectTransform>();
+                    gameOverPanelportraitRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+
+                    RectTransform pausePanelportraitRectTransform = GameControllerNetwork.Instance.pausePanelportrait.GetComponent<RectTransform>();
+                    pausePanelportraitRectTransform.localScale = new Vector3(0.49614f, 0.49614f, 0.49614f);
+
+
+
+
+
+
                     RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
                     diceButtonRectTransform.anchoredPosition = new Vector2(164f, 5f);
                     diceButtonRectTransform.sizeDelta = new Vector2(98f, 98f);
@@ -282,15 +317,17 @@ public class CanvasHandlerNetwork : MonoBehaviour
                     // Botttom Menu Buttons
 
                     RectTransform BsoundBtnRectTransform = BsoundBtn.GetComponent<RectTransform>();
-                    BsoundBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+                    BsoundBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
 
 
                     RectTransform BmusicBtnRectTransform = BmusicBtn.GetComponent<RectTransform>();
-                    BmusicBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+                    BmusicBtnRectTransform.sizeDelta = new Vector2(60f,60f);
+
+                    
 
 
                     RectTransform BfullScreenBtnRectTransform = BfullScreenBtn.GetComponent<RectTransform>();
-                    BfullScreenBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+                    BfullScreenBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
 
 
 
@@ -372,6 +409,21 @@ public class CanvasHandlerNetwork : MonoBehaviour
                     RectTransform youWinMenuRectTransform = youWinMenu.GetComponent<RectTransform>();
                     youWinMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
+
+
+
+                    RectTransform YouWinPanelportraitRectTransform = GameControllerNetwork.Instance.YouWinPanelportrait.GetComponent<RectTransform>();
+                    YouWinPanelportraitRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+                    RectTransform gameOverPanelportraitRectTransform = GameControllerNetwork.Instance.gameOverPanelportrait.GetComponent<RectTransform>();
+                    gameOverPanelportraitRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+                    RectTransform pausePanelportraitRectTransform = GameControllerNetwork.Instance.pausePanelportrait.GetComponent<RectTransform>();
+                    pausePanelportraitRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+
+
+
                     RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
                     diceButtonRectTransform.anchoredPosition = new Vector2(493f, 24f);
                     diceButtonRectTransform.sizeDelta = new Vector2(98f, 98f);
@@ -386,15 +438,17 @@ public class CanvasHandlerNetwork : MonoBehaviour
                     // Botttom Menu Buttons
 
                     RectTransform BsoundBtnRectTransform = BsoundBtn.GetComponent<RectTransform>();
-                    BsoundBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+                    BsoundBtnRectTransform.sizeDelta = new Vector2(70f,70f);
 
 
                     RectTransform BmusicBtnRectTransform = BmusicBtn.GetComponent<RectTransform>();
-                    BmusicBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+                    BmusicBtnRectTransform.sizeDelta = new Vector2(70f, 70f);
+
+                   
 
 
                     RectTransform BfullScreenBtnRectTransform = BfullScreenBtn.GetComponent<RectTransform>();
-                    BfullScreenBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+                    BfullScreenBtnRectTransform.sizeDelta = new Vector2(70f, 70f);
 
                 }
 
@@ -493,8 +547,11 @@ public class CanvasHandlerNetwork : MonoBehaviour
     }
     public void OnPointerDown()
     {
+        
 
         ToggleBoolean();
+        Debug.Log("Pointer Down" + isToggle);
+
         ToggleBoolFullScreen(isToggle);
     }
 
@@ -507,9 +564,11 @@ public class CanvasHandlerNetwork : MonoBehaviour
     {
         // fullscreenToggle = !fullscreenToggle;
 
+        Debug.Log("ToggleBoolFullScreen" + isToggle);
+
         if (istoggle)
         {
-
+            Debug.Log("istoggle");
             MyGameManager.Instance.fullScreenWebGLManager.EnterFullscreen();
 
             //FullScreenR.gameObject.SetActive(true);
@@ -519,6 +578,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
         }
         else
         {
+            Debug.Log("else");
 
             MyGameManager.Instance.fullScreenWebGLManager.ExitFullscreen();
 

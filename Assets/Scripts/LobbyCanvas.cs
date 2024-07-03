@@ -11,6 +11,13 @@ using TMPro;
 
 public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
+    [Header("TutorialPanels")]
+    public GameObject tutorialPanel;
+    public GameObject tutorialPanelPortrait;
+    public GameObject tutorialPanelLandScape;
+
+
+
     [Header("WebGL TopBars")]
     public GameObject onlinePlay;
     public GameObject createRoom;
@@ -20,8 +27,6 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public GameObject LobbyPanelText;
     public GameObject CreateRoomText;
     public GameObject FindRoomText;
-
-
 
 
     [Header("WebGL ScalingElements")]
@@ -37,6 +42,9 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     [Header("BottomMenuButtons")]
     public Button BsoundBtn;
     public Button BmusicBtn;
+    public Button TutorialBtn;
+    public Button LanguageBtn;
+
 
     [Header("BottomMenuGameObject")]
     public GameObject BottomMenu;
@@ -47,9 +55,6 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public Sprite BOffSoundToggle;
     public Sprite BOnMusicToggle;
     public Sprite BOffMusicToggle;
-
-
-
 
 
     [Header("TestTexts")]
@@ -279,6 +284,13 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     BmusicBtnRectTransform.sizeDelta = new Vector2(80f, 80f);
 
 
+                    RectTransform BtutorialBtnRectTransform = TutorialBtn.GetComponent<RectTransform>();
+                    BtutorialBtnRectTransform.sizeDelta = new Vector2(80f, 80f);
+
+                    RectTransform BlangBtnRectTransform = LanguageBtn.GetComponent<RectTransform>();
+                    BlangBtnRectTransform.sizeDelta = new Vector2(80f, 80f);
+
+
                     RectTransform playBtnInsideRoomPanelRectTransform = PlayBtnInsideRoomPanel.GetComponent<RectTransform>();
                     playBtnInsideRoomPanelRectTransform.anchoredPosition = new Vector2(0f, 424f);
                     playBtnInsideRoomPanelRectTransform.sizeDelta = new Vector3(300f, 85f);
@@ -324,13 +336,13 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 
                     RectTransform RoomListSearchBarRectTransform = RoomListSearchBar.GetComponent<RectTransform>();
-                    RoomListSearchBarRectTransform.anchoredPosition = new Vector2(-174f, 347f);
+                    RoomListSearchBarRectTransform.anchoredPosition = new Vector2(-174f, 301f);
                     RoomListSearchBarRectTransform.sizeDelta = new Vector2(739.2109f, 54.3284f);
                     RoomListSearchBarRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                     RectTransform RoomListScrollViewRectTransform = RoomListScrollView.GetComponent<RectTransform>();
-                    RoomListScrollViewRectTransform.anchoredPosition = new Vector2(-3f, -46f);
-                    RoomListScrollViewRectTransform.sizeDelta = new Vector2(1080f, 687.7f);
+                    RoomListScrollViewRectTransform.anchoredPosition = new Vector2(-3f, -68f);
+                    RoomListScrollViewRectTransform.sizeDelta = new Vector2(1080f, 662.0298f);
                     RoomListScrollViewRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
 
@@ -362,6 +374,12 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
                     RectTransform BmusicBtnRectTransform = BmusicBtn.GetComponent<RectTransform>();
                     BmusicBtnRectTransform.sizeDelta = new Vector2(80f, 80f);
+
+                    RectTransform BtutorialBtnRectTransform = TutorialBtn.GetComponent<RectTransform>();
+                    BtutorialBtnRectTransform.sizeDelta = new Vector2(80f, 80f);
+
+                    RectTransform BlangBtnRectTransform = LanguageBtn.GetComponent<RectTransform>();
+                    BlangBtnRectTransform.sizeDelta = new Vector2(80f, 80f);
 
 
                     RectTransform playBtnInsideRoomPanelRectTransform = PlayBtnInsideRoomPanel.GetComponent<RectTransform>();
@@ -708,6 +726,34 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
         //GameController.Instance.difficultyTextPausePanel.variableText = difficulty.ToString();
         //LanguageManager.OnVariableChanged();
     }
+
+    public void ActivetutorialPanel()
+    {
+        float ratio = (Screen.width * 1f / Screen.height);
+
+
+#if UNITY_WEBGL
+        if (IsRunningOnAndroid() || IsRunningOniOS())
+        {
+            if (ratio < 1)  //_ratio  Portrait Android/iOS
+            {
+                tutorialPanelPortrait.gameObject.SetActive(true);
+            }
+            else if (ratio >= 2) //_ratio  LAndScape Android/iOS
+            {
+                tutorialPanelLandScape.gameObject.SetActive(true);
+            }
+           
+        }
+#else
+
+       tutorialPanel.gameObject.SetActive(true);
+
+
+#endif
+    }
+
+
 
 
 }

@@ -58,7 +58,11 @@ namespace BackgammonNet.Core
         [Header("Panels")]
         public GameObject GameOverPanel;
         public GameObject YouWinPanel;
+        public GameObject YouWinPanelportrait;
+        public GameObject gameOverPanelportrait;
         public GameObject YouWinPanelPlayerLeftPanel;
+        public GameObject pausePanel;
+        public GameObject pausePanelportrait;
 
         public CanvasHandlerNetwork canvasHandlerNetwork;
 
@@ -702,9 +706,31 @@ namespace BackgammonNet.Core
            // gameOverPanel.SetActive(true);
         }
 
+        public bool IsRunningOnAndroid()
+        {
+            return SystemInfo.operatingSystem.ToLower().Contains("android");
+
+        }
+
+        public bool IsRunningOniOS()
+        {
+            return SystemInfo.operatingSystem.ToLower().Contains("iphone") ||
+                   SystemInfo.operatingSystem.ToLower().Contains("ipad") ||
+                   SystemInfo.operatingSystem.ToLower().Contains("ios");
+        }
+
         [PunRPC]
         private void ActiveGameOver(int winner)
         {
+
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(0).gameObject.SetActive(false);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(1).gameObject.SetActive(false);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(false);
+
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(true);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
+
+
             isGameOver = true;
 
             endDateTime = DateTime.Now;
@@ -716,8 +742,31 @@ namespace BackgammonNet.Core
 
             if (winner == int.Parse(PhotonNetwork.NickName))
             {
+<<<<<<< Updated upstream
                 YouWinPanel.SetActive(true);
                 PawnNetwork.InitializePawn();
+=======
+                //YouWinPanel.SetActive(true);
+
+#if UNITY_WEBGL
+                if (IsRunningOnAndroid() || IsRunningOniOS())
+                {
+                    YouWinPanelportrait.gameObject.SetActive(true);
+                }
+                else
+                {
+                    YouWinPanel.gameObject.SetActive(true);
+                }
+
+#else
+
+    YouWinPanel.gameObject.SetActive(true);
+
+
+#endif
+
+
+>>>>>>> Stashed changes
                 AudioManager.Instance.GameWon();
 
                 timeTextyouWinPausePanel.variableText = totalGameTimeString;
@@ -726,7 +775,27 @@ namespace BackgammonNet.Core
             }
             else
             {
-                gameOverPanel.SetActive(true);
+                //gameOverPanel.SetActive(true);
+
+#if UNITY_WEBGL
+                if (IsRunningOnAndroid() || IsRunningOniOS())
+                {
+                    gameOverPanelportrait.gameObject.SetActive(true);
+                }
+                else
+                {
+                    gameOverPanel.gameObject.SetActive(true);
+                }
+
+
+#else
+
+    gameOverPanel.gameObject.SetActive(true);
+
+
+#endif
+
+
                 AudioManager.Instance.GameLost();
 
                 timeTextgameOverPausePanel.variableText = totalGameTimeString;
@@ -738,11 +807,51 @@ namespace BackgammonNet.Core
 
         public void ActivatePausePanel()
         {
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(0).gameObject.SetActive(false);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(1).gameObject.SetActive(true);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(false);
+
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(true);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
+
+
+#if UNITY_WEBGL
+            if (IsRunningOnAndroid() || IsRunningOniOS())
+            {
+                pausePanelportrait.gameObject.SetActive(true);
+            }
+            else
+            {
+                pausePanel.gameObject.SetActive(true);
+            }
+
+
+#else
+
+    pausePanel.gameObject.SetActive(true);
+
+
+#endif
+
+
             // difficultyTextPausePanel.variableText = difficulty;
             // LanguageManager.OnVariableChanged();
 
-          //  difficultyTextPausePanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
-           // LanguageManager.OnVariableChanged();
+            //  difficultyTextPausePanel.LocalizationKey = LobbyCanvas.Instance.difficulty.ToString();
+            // LanguageManager.OnVariableChanged();
+        }
+
+        public void ResumeGame()
+        {
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(0).gameObject.SetActive(false);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(1).gameObject.SetActive(true);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(false);
+
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(true);
+            CanvasHandler.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
+
+            
+            pausePanelportrait.gameObject.SetActive(false);
         }
 
         public void NewGame()
