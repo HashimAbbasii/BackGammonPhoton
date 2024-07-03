@@ -290,22 +290,24 @@ namespace BackgammonNet.Core
         public int totalSecondsPassed;
         void UpdateTimeText()
         {
-
-            counterTime.text = string.Format("{0:mm\\:ss}", DateTime.Now - startDateTime);
-
-
-            totalSecondsPassed = (int)((DateTime.Now - startDateTime).TotalSeconds);
-            string _totalSecondsPassedString = string.Format("{0:mm\\:ss}", DateTime.Now - startDateTime);
-
-            if ((DateTime.Now - _timeCount).TotalSeconds >= 30)
+            if (isGameOver == false)
             {
-                AddTimeScore();
-                _timeCount = DateTime.Now;
+
+                counterTime.text = string.Format("{0:mm\\:ss}", DateTime.Now - startDateTime);
+
+
+                totalSecondsPassed = (int)((DateTime.Now - startDateTime).TotalSeconds);
+                string _totalSecondsPassedString = string.Format("{0:mm\\:ss}", DateTime.Now - startDateTime);
+
+                if ((DateTime.Now - _timeCount).TotalSeconds >= 30)
+                {
+                    AddTimeScore();
+                    _timeCount = DateTime.Now;
+                }
+
+                timeTextPausePanel.variableText = _totalSecondsPassedString;
+                LanguageManager.OnVariableChanged();
             }
-
-            timeTextPausePanel.variableText = _totalSecondsPassedString;
-            LanguageManager.OnVariableChanged();
-
         }
 
         public void AddTimeScore()
