@@ -620,7 +620,7 @@ namespace BackgammonNet.Core
                     //SoundManager.GetSoundEffect(4, 0.25f);
                     AudioManager.Instance.DiceRoll();
 
-                    CheckifTurnChangeAI(Random.Range(1, 7), Random.Range(1, 7));
+                    CheckifTurnChangeAI(2, 2);
                 }
 
             }
@@ -2223,12 +2223,15 @@ namespace BackgammonNet.Core
             int value = turn == 0 ? 24 : -1;
 
             if (Pawn.imprisonedSide[turn] > 0)                  // while they are in jail
+            {
+                Debug.Log("CanMoveFromJail = " + CanMoveFromJail(amount, count, sign))
                 return CanMoveFromJail(amount, count, sign);
+            }
             else                                                // when they are not in jail
             {
                 if (Pawn.shelterSide[turn])
                 {
-                  //  Debug.Log("Shelter Side");
+                    //  Debug.Log("Shelter Side");
                     return CanMoveInShelter(value, sign);
                 }                  // when the mode of entering the shelter
                 else if (CanMoveFree(value, sign))    // we go through each slot with white pieces and check if it is possible to make a move from this slot
@@ -2280,10 +2283,17 @@ namespace BackgammonNet.Core
          
             int val = turn == 0 ? -1 : 24;
 
+            Debug.Log("Turn = " + turn);
+
             for (int i = 0; i < 2; i++)
                 if (dices[i] != 0)
                     if (Slot.slots[(val + 1) + sign * dices[i]].Height() > 1 && Slot.slots[(val + 1) + sign * dices[i]].IsWhite() != turn)
                         count++;
+
+            Debug.Log("count = " + count);
+            Debug.Log("amount = " + amount);
+            Debug.Log("sign = " + sign);
+
 
             return !(count == amount);
         }
