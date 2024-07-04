@@ -662,8 +662,8 @@ namespace BackgammonNet.Core
 
             for (int i = 0; i < 12; i++)
             {
-                diceImages[0].sprite = diceFaces[i];
-                diceImages[1].sprite = diceFaces[i];
+                diceImages[0].sprite = diceFaces[0];
+                diceImages[1].sprite = diceFaces[0];
                 yield return new WaitForSeconds(0.05f);
             }
 
