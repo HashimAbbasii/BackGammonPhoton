@@ -22,7 +22,7 @@ public class MyGameManager : MonoBehaviour
     [SerializeField] public Sprite blackPawn;
     public Sprite StoreWhite;
     public Sprite StoreBlack;
-    public  int randomSelect;
+    public int randomSelect;
     public Sprite[] randomImage;
     public static bool AiModePawn = false;
     public bool AiModeTest;
@@ -62,17 +62,19 @@ public class MyGameManager : MonoBehaviour
 
                     for (int i = 0; i < randomImage.Length; i++)
                     {
-                        if (randomSelect == 0)
+                        switch (randomSelect)
                         {
-                            AiModePawn = true;
-                            StoreWhite = whitePawn;
-                            StoreBlack = blackPawn;
-                        }
-                        else if (randomSelect == 1)
-                        {
-                            AiModePawn = true;
-                            StoreWhite = blackPawn;
-                            StoreBlack = whitePawn;
+                            case 0:
+                                AiModePawn = true;
+                                StoreWhite = whitePawn;
+                                StoreBlack = blackPawn;
+                                break;
+
+                            case 1:
+                                AiModePawn = true;
+                                StoreWhite = blackPawn;
+                                StoreBlack = whitePawn;
+                                break;
                         }
                     }
                     houseColorDetermince = 1;
