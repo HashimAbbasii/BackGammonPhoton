@@ -459,14 +459,14 @@ namespace BackgammonNet.Core
         private void TryDeactivateDigit()
         {
             if (dices[0] == 0)
-                diceTexts[0].color = new Color(diceTexts[0].color.r, diceTexts[0].color.g, diceTexts[0].color.b, 0.3f);
+                diceImages[0].color = new Color(diceImages[0].color.r, diceImages[0].color.g, diceImages[0].color.b, 0.3f);
             else
-                diceTexts[0].color = Color.black;
+                diceImages[0].color = Color.white;
 
             if (dices[1] == 0)
-                diceTexts[1].color = new Color(diceTexts[1].color.r, diceTexts[1].color.g, diceTexts[1].color.b, 0.3f);
+                diceImages[1].color = new Color(diceImages[1].color.r, diceImages[1].color.g, diceImages[1].color.b, 0.3f);
             else
-                diceTexts[1].color = Color.black;
+                diceImages[1].color = Color.white;
         }
 
         private void Generate()
