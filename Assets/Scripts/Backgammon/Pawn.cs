@@ -186,7 +186,7 @@ namespace BackgammonNet.Core
                     // If Ai has to get out using First Dice at opposite color and can not kill
                     else if (Slot.slots[25 + sign * GameController.dices[0]].Height() > 1 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() != prisonSlot.IsWhite())
                     {
-                        CheckShelterStage();
+                          CheckShelterStage();
                         if (CheckShelterAndMore())
                         {
                             return;
@@ -628,10 +628,12 @@ namespace BackgammonNet.Core
            
             if (++moves < maxMoves)      // after each move
             {
-               // Debug.Log("andr aya hain");
+                Debug.Log("Moves" + moves);
+                // Debug.Log("andr aya hain");
                 if (!GameController.CanMove(1))        // when a move cannot be made
                 {
-                  
+                    //Debug.Log("Moves" + moves);
+                    Debug.Log("Can not Move anything");
                     moves = 0;
                     OnCompleteTurn(pawnColor);
                     return true;
@@ -640,6 +642,7 @@ namespace BackgammonNet.Core
 
             if (moves >= maxMoves)
             {
+                Debug.Log("Moves" + moves);
                 moves = 0; // Reset moves counter after completing the turn
                 OnCompleteTurn(pawnColor);
                 return true;
