@@ -238,6 +238,9 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                 DifficultyText.gameObject.SetActive(true);
 
 
+                LobbyPanelText.gameObject.SetActive(false);
+
+
                 if (ratio < 1)  //_ratio  Portrait Android/iOS
                 {
 
@@ -327,14 +330,14 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     RectTransform difficultyTextRectTransform = DifficultyText.GetComponent<RectTransform>();
                     difficultyTextRectTransform.anchoredPosition = new Vector2(0.611f, -37f);
 
-                    RectTransform lobbyPanelTextRectTransform = LobbyPanelText.GetComponent<RectTransform>();
-                    lobbyPanelTextRectTransform.anchoredPosition = new Vector2(0f, 940f);                 ///////////////////////////
+                    //RectTransform lobbyPanelTextRectTransform = LobbyPanelText.GetComponent<RectTransform>();
+                    //lobbyPanelTextRectTransform.anchoredPosition = new Vector2(0f, 940f);                 ///////////////////////////
 
                     RectTransform createRoomTextRectTransform = CreateRoomText.GetComponent<RectTransform>();
                     createRoomTextRectTransform.anchoredPosition = new Vector2(179f, -55f);
 
                     RectTransform findRoomTextRectTransform = FindRoomText.GetComponent<RectTransform>();
-                    findRoomTextRectTransform.anchoredPosition = new Vector2(134f, -63f);
+                    findRoomTextRectTransform.anchoredPosition = new Vector2(134f, -44f);
 
 
 
@@ -445,7 +448,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                         sizeDelta.y = 144.064f;
                         keyboardPanelRectTransform.sizeDelta = sizeDelta;
                         Vector2 anchoredPosition = keyboardPanelRectTransform.anchoredPosition;
-                        anchoredPosition.y = 116.0374f;
+                        anchoredPosition.y = 124f;
                         keyboardPanelRectTransform.anchoredPosition = anchoredPosition;
                     }
 
@@ -453,8 +456,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     RectTransform difficultyTextRectTransform = DifficultyText.GetComponent<RectTransform>();
                     difficultyTextRectTransform.anchoredPosition = new Vector2(0.611f, -31f);
 
-                    RectTransform lobbyPanelTextRectTransform = LobbyPanelText.GetComponent<RectTransform>();
-                    lobbyPanelTextRectTransform.anchoredPosition = new Vector2(0f, 363f);
+                    //RectTransform lobbyPanelTextRectTransform = LobbyPanelText.GetComponent<RectTransform>();
+                    //lobbyPanelTextRectTransform.anchoredPosition = new Vector2(0f, 363f);
 
                     RectTransform createRoomTextRectTransform = CreateRoomText.GetComponent<RectTransform>();
                     createRoomTextRectTransform.anchoredPosition = new Vector2(179f, -55f);
@@ -484,6 +487,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
             {
                 BottomMenu.gameObject.SetActive(false);
                 buttonsPanel.gameObject.SetActive(true);
+
+                LobbyPanelText.gameObject.SetActive(true);
 
 
                 testtext2.text = "WebGL PC";
