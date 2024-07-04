@@ -745,7 +745,7 @@ namespace BackgammonNet.Core
 
             CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(false);
             CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
-            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(false);
+            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(5).gameObject.SetActive(false);
 
 
             isGameOver = true;
@@ -837,7 +837,7 @@ namespace BackgammonNet.Core
 
             CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(false);
             CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
-            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
+            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(5).gameObject.SetActive(true);
 
 
 #if UNITY_WEBGL
