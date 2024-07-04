@@ -2224,7 +2224,7 @@ namespace BackgammonNet.Core
 
             if (Pawn.imprisonedSide[turn] > 0)                  // while they are in jail
             {
-                Debug.Log("CanMoveFromJail = " + CanMoveFromJail(amount, count, sign))
+                Debug.Log("CanMoveFromJail = " + CanMoveFromJail(amount, count, sign));
                 return CanMoveFromJail(amount, count, sign);
             }
             else                                                // when they are not in jail
