@@ -904,8 +904,8 @@ namespace BackgammonNet.Core
 
             //...........it Check the How many pawn in the House.............//
             house.transform.GetChild(rescuedPawns++).gameObject.SetActive(true);
-           
-            //GameController.Instance.playerScores[1].Shelter++;
+
+            GameController.Instance.playerScores[1].Shelter++;
             //SoundManager.GetSoundEffect(0, 0.3f);
 
             if (rescuedPawns == 15)
@@ -946,7 +946,7 @@ namespace BackgammonNet.Core
 
 
             public bool CheckShelterStage()                   // check if it is possible to bring a given player's pieces into the shelter
-        {
+             {
           //  Debug.Log("Shelter Stage must be Run");
             maxMoves = GameController.isDublet ? 4 : 2;    // four the same movements or two different movements
             //  ..........Is mein yeah sare shelter slots check karta hain k kon si    shlter pr hain means slot ko check kare .....//

@@ -855,9 +855,9 @@ namespace BackgammonNet.Core
                         {
                             var finalposition = SelectShelterPawn.house.transform.position;
                             SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
-                            SelectShelterPawn.PlaceInShelterAi();
                             
 
+                            SelectShelterPawn.PlaceInShelterAi();
                             if (SelectShelterPawn.CheckShelterAndMore())
                             {
                                 return;
