@@ -156,6 +156,8 @@ namespace BackgammonNet.Core
         public GameObject[] whiteHouseColor;
         public GameObject[] blackHouseColor;
 
+        //public bool preventAiGenertion=true;
+
         public bool IsRunningOnAndroid()
         {
             return SystemInfo.operatingSystem.ToLower().Contains("android");
@@ -183,7 +185,7 @@ namespace BackgammonNet.Core
             _photonView = GetComponent<PhotonView>();
 
             Pawn.OnCompleteTurn += Pawn_OnCompleteTurn;
-            Pawn.OnCompleteTurnForBlockState += Pawn_OnCompleteTurnForBlockState;
+            //Pawn.OnCompleteTurnForBlockState += Pawn_OnCompleteTurnForBlockState;
             Pawn.OnGameOver += Pawn_OnGameOver;
             TimeController.OnTimeLimitEnd += Pawn_OnGameOver;
 
@@ -436,6 +438,7 @@ namespace BackgammonNet.Core
         private void OnDestroy()
         {
             Pawn.OnCompleteTurn -= Pawn_OnCompleteTurn;
+            //Pawn.OnCompleteTurnForBlockState -= Pawn_OnCompleteTurnForBlockState;
             Pawn.OnGameOver -= Pawn_OnGameOver;
             TimeController.OnTimeLimitEnd -= Pawn_OnGameOver;
         }
@@ -598,91 +601,27 @@ namespace BackgammonNet.Core
 
             if (diceEnable && Board.Instance.acceptance >= 2)
             {
-                if (preventAiGenertion == false)
+                if (turn == 0)
                 {
-                    Debug.Log("Turn HANLE PREVENT");
-                    turn = 0;
-                    preventAiGenertion = true;
-
-                    if (turn == 0)
-                    {
-                        Debug.Log("Human Turn");
-                        dragEnable = true;
-                        diceEnable = false;
-                        //SoundManager.GetSoundEffect(4, 0.25f);
-                        AudioManager.Instance.DiceRoll();
-                        CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
-                    }
-                    else
-                    {
-                        dragEnableCheck = dragEnable;
-                        Debug.Log("Ai Turn");
-                        _allSlotsInts.Clear();
-                        allSlots.Clear();
-                        topEPawns.Clear();
-                        checkExistingPawn.Clear();
-                        //SoundManager.GetSoundEffect(4, 0.25f);
-                        AudioManager.Instance.DiceRoll();
-
-                        CheckifTurnChangeAI(Random.Range(1, 7), Random.Range(1, 7));
-
-                    }
-
-
+                    Debug.Log("Human Turn");
+                    dragEnable = true;
+                    diceEnable = false;
+                    //SoundManager.GetSoundEffect(4, 0.25f);
+                    AudioManager.Instance.DiceRoll();
+                    CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
                 }
-                if (preventAiGenertion == true)
+                else
                 {
-                    //Debug.Log("Turn HANLE");
-                    if (turn == 0)
-                    {
-                      //  Debug.Log("Human Turn");
-                        dragEnable = true;
-                        diceEnable = false;
-                        //SoundManager.GetSoundEffect(4, 0.25f);
-                        AudioManager.Instance.DiceRoll();
-                        CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
-                       // CheckIfTurnChange((2), (2));
-                    }
-                    else
-                    {
-                        dragEnableCheck = dragEnable;
-                      //  Debug.Log("Ai Turn");
-                        _allSlotsInts.Clear();
-                        allSlots.Clear();
-                        topEPawns.Clear();
-                        checkExistingPawn.Clear();
-                        //SoundManager.GetSoundEffect(4, 0.25f);
-                        AudioManager.Instance.DiceRoll();
+                    dragEnableCheck = dragEnable;
+                    _allSlotsInts.Clear();
+                    allSlots.Clear();
+                    topEPawns.Clear();
+                    checkExistingPawn.Clear();
+                    //SoundManager.GetSoundEffect(4, 0.25f);
+                    AudioManager.Instance.DiceRoll();
 
-                        CheckifTurnChangeAI(Random.Range(1, 7), Random.Range(1, 7));
-
-                    }
+                    CheckifTurnChangeAI(Random.Range(1, 7), Random.Range(1, 7));
                 }
-
-                //if (turn == 0)
-                //{
-                //    Debug.Log("Human Turn");
-                //    dragEnable = true;
-                //    diceEnable = false;
-                //    //SoundManager.GetSoundEffect(4, 0.25f);
-                //    AudioManager.Instance.DiceRoll();
-                //    CheckIfTurnChange(Random.Range(1,7), Random.Range(1,7));
-                //}
-                //else
-                //{
-                //    dragEnableCheck = dragEnable;
-                //     Debug.Log("Ai Turn");
-                //    _allSlotsInts.Clear();
-                //    allSlots.Clear();
-                //    topEPawns.Clear();
-                //    checkExistingPawn.Clear();
-                //    //SoundManager.GetSoundEffect(4, 0.25f);
-                //    AudioManager.Instance.DiceRoll();
-
-                    //    CheckifTurnChangeAI(Random.Range(1,7), Random.Range(1,7));
-
-                    //}
-
 
             }
         }
@@ -723,8 +662,8 @@ namespace BackgammonNet.Core
 
             for (int i = 0; i < 12; i++)
             {
-                diceImages[0].sprite = diceFaces[1];
-                diceImages[1].sprite = diceFaces[1];
+                diceImages[0].sprite = diceFaces[i];
+                diceImages[1].sprite = diceFaces[i];
                 yield return new WaitForSeconds(0.05f);
             }
 
@@ -738,17 +677,12 @@ namespace BackgammonNet.Core
 
             if (dices[0] == dices[1])
                 isDublet = true;
-              //Debug.Log("Turn Before"+turn);
+
             if (GameController.turn == 1)
             {
-                Debug.Log("i think so ywah chalta hain");
                StartCoroutine(PawnMoveCoroutine());
-
             }
 
-
-            //if (!CanMove(2))
-            //    StartCoroutine(ChangeTurn());
         }
 
         public void CallDublet()
@@ -760,29 +694,31 @@ namespace BackgammonNet.Core
         {
           //  Debug.Log("turn Before "+turn);
             yield return new WaitForSecondsRealtime(1);
-            if (!CanMoveAi(2) && turn==1)
+            if (!CanMoveAi(2) && turn == 1)
             {
-            //    Debug.LogWarning("Tera issue hain");
+                //    Debug.LogWarning("Tera issue hain");
                 StartCoroutine(ChangeTurn());
 
             }
-
-            _allSlotsInts.Clear();
-            allSlots.Clear();
-            topEPawns.Clear();
-            checkExistingPawn.Clear();
-
-            if (Slot.slots[25].Height() > 0)
+            else
             {
-                //........Prison Slot...............//
+                _allSlotsInts.Clear();
+                allSlots.Clear();
+                topEPawns.Clear();
+                checkExistingPawn.Clear();
 
-                CheckPrisonSlot();
-            }
-            else if (!GameController.GameOver)
-            {
-                // Debug.Log("Normal Movement");
-                //   CheckPrisonSlot();
-                SlotNumberForAI();
+                if (Slot.slots[25].Height() > 0)
+                {
+                    //........Prison Slot...............//
+
+                    CheckPrisonSlot();
+                }
+                else if (!GameController.GameOver)
+                {
+                    // Debug.Log("Normal Movement");
+                    //   CheckPrisonSlot();
+                    SlotNumberForAI();
+                }
             }
         }
 
@@ -920,7 +856,13 @@ namespace BackgammonNet.Core
                             var finalposition = SelectShelterPawn.house.transform.position;
                             SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
                             SelectShelterPawn.PlaceInShelterAi();
-                            SelectShelterPawn.CheckShelterAndMore();
+                            
+
+                            if (SelectShelterPawn.CheckShelterAndMore())
+                            {
+                                return;
+                            }
+
                             SelectShelterPawn.CheckIfNextTurn();
                             break;
                         }
@@ -931,6 +873,7 @@ namespace BackgammonNet.Core
                                 //Slot.slots[i].GetTopPawn(true);
                                 Slot.slots[calculateSlot].GetTopPawn(false).PlaceJail();
                                 Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
+                                break;
                             }
                             else if (Slot.slots[calculateSlot].IsWhite()==0 && Slot.slots[calculateSlot].Height() > 1)
                             {
@@ -938,8 +881,14 @@ namespace BackgammonNet.Core
                             }
 
                             Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
-                            SelectShelterPawn.CheckShelterAndMore();
+
+                            if (SelectShelterPawn.CheckShelterAndMore())
+                            {
+                                return;
+                            }
+
                             SelectShelterPawn.CheckIfNextTurn();
+                           
 
                             break;
 
@@ -956,11 +905,17 @@ namespace BackgammonNet.Core
                         Debug.Log("if i is Equal Shelter Number");
                         SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
                         // SelectShelterPawn.CheckShelterStage();
-                        SelectShelterPawn.CheckShelterAndMore();
-                        SelectShelterPawn.CheckIfNextTurn();
                         var finalposition = SelectShelterPawn.house.transform.position;
                         SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
                         SelectShelterPawn.PlaceInShelterAi();
+
+                        if (SelectShelterPawn.CheckShelterAndMore())
+                        {
+                            return;
+                        }
+
+                        SelectShelterPawn.CheckIfNextTurn();
+
                         break;
                     }
                     else
@@ -975,11 +930,17 @@ namespace BackgammonNet.Core
                         Debug.Log("if i is less than Shelter Number");
                         SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
                         // SelectShelterPawn.CheckShelterStage();
-                        SelectShelterPawn.CheckShelterAndMore();
-                        SelectShelterPawn.CheckIfNextTurn();
                         var finalposition = SelectShelterPawn.house.transform.position;
                         SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
                         SelectShelterPawn.PlaceInShelterAi();
+
+                        if (SelectShelterPawn.CheckShelterAndMore())
+                        {
+                            return;
+                        }
+
+                        SelectShelterPawn.CheckIfNextTurn();
+
                         break;
                     }
                     else
@@ -1092,13 +1053,7 @@ namespace BackgammonNet.Core
 
 
             int ShelterSlotChck = GameController.dices[1];
-            //nt signForShelter=
-
-            //if (ShelterSlotChck == 0)
-            //{
-            //    ShelterSlotChck = 1;
-            //}
-            // int sign = SelectShelterPawn2.pawnColor == 0 ? 1 : -1;
+            
             for (int i = 6; i >= 1; i--)
             {
                 Debug.Log("Shelter Number" + ShelterSlotChck);
@@ -1116,8 +1071,12 @@ namespace BackgammonNet.Core
                         {
                             var finalposition = SelectShelterPawn2.house.transform.position;
                             SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
-                            SelectShelterPawn.PlaceInShelterAi();
-                            SelectShelterPawn2.CheckShelterAndMore();
+                            SelectShelterPawn2.PlaceInShelterAi();
+                            if (SelectShelterPawn2.CheckShelterAndMore())
+                            {
+                                yield break;
+                            }
+
                             SelectShelterPawn2.CheckIfNextTurn();
                             break;
                         }
@@ -1125,8 +1084,14 @@ namespace BackgammonNet.Core
                         {
 
                             Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn2, SelectShelterPawn2.pawnColor);
-                            SelectShelterPawn.CheckShelterAndMore();
-                            SelectShelterPawn.CheckIfNextTurn();
+
+                            if (SelectShelterPawn2.CheckShelterAndMore())
+                            {
+                                yield break;
+                            }
+
+                            SelectShelterPawn2.CheckIfNextTurn();
+
                             break;
 
 
@@ -1146,12 +1111,16 @@ namespace BackgammonNet.Core
                         Debug.Log("if i is Equal Shelter Number");
                         SelectShelterPawn2 = Slot.slots[i].GetTopPawn(false);
                         //SelectShelterPawn2.CheckShelterStage();
-                        SelectShelterPawn2.CheckShelterAndMore();
-                        SelectShelterPawn2.CheckIfNextTurn();
 
                         var finalposition = SelectShelterPawn2.house.transform.position;
                         SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
                         SelectShelterPawn2.PlaceInShelterAi();
+                        if (SelectShelterPawn2.CheckShelterAndMore())
+                        {
+                            yield break;
+                        }
+
+                        SelectShelterPawn2.CheckIfNextTurn();
                         break;
                     }
                     else
@@ -1167,12 +1136,16 @@ namespace BackgammonNet.Core
                         Debug.Log("if i is lesss than Shelter Number");
                         SelectShelterPawn2 = Slot.slots[i].GetTopPawn(false);
                         //SelectShelterPawn2.CheckShelterStage();
-                        SelectShelterPawn2.CheckShelterAndMore();
-                        SelectShelterPawn2.CheckIfNextTurn();
 
                         var finalposition = SelectShelterPawn2.house.transform.position;
                         SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
                         SelectShelterPawn2.PlaceInShelterAi();
+                        if (SelectShelterPawn2.CheckShelterAndMore())
+                        {
+                            yield break;
+                        }
+
+                        SelectShelterPawn2.CheckIfNextTurn();
                         break;
                     }
                     else
@@ -1183,81 +1156,6 @@ namespace BackgammonNet.Core
 
             }
 
-            //for (int i = 6; i >= 1; i--)
-            //{
-            //    if (Slot.slots[i].Height() >= 1 && turn == 1)
-            //    {
-            //        if (i > ShelterSlotChck)
-            //        {
-
-            //            SelectShelterPawn2 = Slot.slots[i].GetTopPawn(true);
-            //            SelectShelterPawn2.CheckShelterStage();
-            //            Slot.slots[ShelterSlotChck].PlacePawn(SelectShelterPawn2, SelectShelterPawn2.pawnColor);
-
-            //            Debug.Log("How Much tme its Run" + i);
-            //            break;
-
-
-            //        }
-            //        else
-            //        {
-            //            for (int j = 6; j >= 1; j--)
-            //            {
-            //                if (Slot.slots[j].Height() >= 1 && turn == 1)
-            //                {
-            //                    SelectShelterPawn2.CheckShelterStage();
-            //                    SelectShelterPawn2 = Slot.slots[i].GetTopPawn(true);
-            //                    var finalposition = SelectShelterPawn2.house.transform.position;
-            //                    SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
-            //                    SelectShelterPawn2.PlaceInShelterAi();
-            //                    Debug.Log("How Much tme it Run 2" + i);
-            //                    break;
-            //                }
-
-            //            }
-
-            //        }
-
-            //    }
-            //}
-
-
-            //    else if (Slot.slots[ShelterSlotChck].Height() == 0 && turn == 1)
-            //{
-            //    for (int i = 1; i <= 6; i++)
-            //    {
-            //        if (Slot.slots[i].Height() >= 1 && turn == 1)
-            //        {
-            //            SelectShelterPawn2 = Slot.slots[i].GetTopPawn(false);
-            //            int sign = -1;
-            //            int slot0 = SelectShelterPawn2.slotNo + sign * GameController.dices[1];
-
-            //            if (slot0 >= 1 && slot0 <= 6 && turn == 1)
-            //            {
-
-            //                Slot.slots[SelectShelterPawn2.slotNo].GetTopPawn(true);
-            //                Slot.slots[slot0].PlacePawn(SelectShelterPawn2, SelectShelterPawn2.pawnColor);
-            //                break;
-
-            //            }
-            //            else
-            //            {
-
-            //                //SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
-            //                SelectShelterPawn2.CheckShelterStage();
-            //                var finalposition = SelectShelterPawn2.house.transform.position;
-            //                SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
-            //                SelectShelterPawn2.PlaceInShelterAi();
-            //                break;
-            //            }
-            //        }
-
-            //        //       
-            //    }
-            //}
-            //.................Turn Check..........................//
-            //  SelectShelterPawn2.CheckShelterAndMore();
-            // SelectShelterPawn2.CheckIfNextTurn();
 
         }
         #endregion
@@ -1365,7 +1263,11 @@ namespace BackgammonNet.Core
             {
                 Debug.Log("Turn Shift");
                 randomSelectPawn2.CheckShelterStage();
-                randomSelectPawn2.CheckShelterAndMore();
+                if (randomSelectPawn2.CheckShelterAndMore())
+                {
+                    return;
+                }
+
                 randomSelectPawn2.CheckIfNextTurn();
 
             }
@@ -1408,9 +1310,13 @@ namespace BackgammonNet.Core
                         Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
                         Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
                         randomSelectPawn.CheckShelterStage();
-                        randomSelectPawn.CheckShelterAndMore();
-                        Slot.slots[slot0].HightlightMe(true);
-                        randomSelectPawn.CheckIfNextTurn();
+                            if (randomSelectPawn.CheckShelterAndMore())
+                            {
+                                return;
+                            }
+
+                            randomSelectPawn.CheckIfNextTurn();
+                            Slot.slots[slot0].HightlightMe(true);
                         StartCoroutine(SecondDice());
                         }
                     }
@@ -1432,9 +1338,13 @@ namespace BackgammonNet.Core
                         Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
                         Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
                         randomSelectPawn.CheckShelterStage();
-                        randomSelectPawn.CheckShelterAndMore();
-                        Slot.slots[slot0].HightlightMe(true);
-                        randomSelectPawn.CheckIfNextTurn();
+                            if (randomSelectPawn.CheckShelterAndMore())
+                            {
+                                return;
+                            }
+
+                            randomSelectPawn.CheckIfNextTurn();
+                            Slot.slots[slot0].HightlightMe(true);
                         StartCoroutine(SecondDice());
                         }
                     }
@@ -1459,9 +1369,13 @@ namespace BackgammonNet.Core
                         Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
 
                         randomSelectPawn.CheckShelterStage();
-                        randomSelectPawn.CheckShelterAndMore();
-                        randomSelectPawn.CheckIfNextTurn();
-                        StartCoroutine(SecondDice());
+                            if (randomSelectPawn.CheckShelterAndMore())
+                            {
+                                return;
+                            }
+
+                            randomSelectPawn.CheckIfNextTurn();
+                            StartCoroutine(SecondDice());
 
                         }
                     }
@@ -1474,7 +1388,11 @@ namespace BackgammonNet.Core
                             //.............. Shift the TURN tO THE HUMAN..................//
                             Debug.Log("Turn on First SLOT");
                             randomSelectPawn.CheckShelterStage();
-                            randomSelectPawn.CheckShelterAndMore();
+                            if (randomSelectPawn.CheckShelterAndMore())
+                            {
+                                return;
+                            }
+
                             randomSelectPawn.CheckIfNextTurn();
                             // Pawn_OnCompleteTurn(turn);
                             StartCoroutine(SecondDice());
@@ -1536,9 +1454,13 @@ namespace BackgammonNet.Core
                             Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
                             Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
                             randomSelectPawn.CheckShelterStage();
-                            randomSelectPawn.CheckShelterAndMore();
-                            Slot.slots[slot0].HightlightMe(true);
+                            if (randomSelectPawn.CheckShelterAndMore())
+                            {
+                                yield break;
+                            }
+
                             randomSelectPawn.CheckIfNextTurn();
+                            Slot.slots[slot0].HightlightMe(true);
                          //   StartCoroutine(SecondDice());
                         }
                     }
@@ -1559,11 +1481,15 @@ namespace BackgammonNet.Core
                             GameController.Instance.playerScores[1].Moves++;
                             Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
                             Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
-                            randomSelectPawn.CheckShelterStage();
-                            randomSelectPawn.CheckShelterAndMore();
                             Slot.slots[slot0].HightlightMe(true);
+                            randomSelectPawn.CheckShelterStage();
+                            if (randomSelectPawn.CheckShelterAndMore())
+                            {
+                                yield break;
+                            }
+
                             randomSelectPawn.CheckIfNextTurn();
-                         //   StartCoroutine(SecondDice());
+                            //   StartCoroutine(SecondDice());
                         }
                     }
 
@@ -1587,9 +1513,13 @@ namespace BackgammonNet.Core
                             Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
 
                             randomSelectPawn.CheckShelterStage();
-                            randomSelectPawn.CheckShelterAndMore();
+                            if (randomSelectPawn.CheckShelterAndMore())
+                            {
+                                yield break;
+                            }
+
                             randomSelectPawn.CheckIfNextTurn();
-                           // StartCoroutine(SecondDice());
+                            // StartCoroutine(SecondDice());
 
                         }
                     }
@@ -1602,7 +1532,11 @@ namespace BackgammonNet.Core
                             //.............. Shift the TURN tO THE HUMAN..................//
                             Debug.Log("Turn on First SLOT");
                             randomSelectPawn.CheckShelterStage();
-                            randomSelectPawn.CheckShelterAndMore();
+                            if (randomSelectPawn.CheckShelterAndMore())
+                            {
+                                yield break;
+                            }
+
                             randomSelectPawn.CheckIfNextTurn();
                             // Pawn_OnCompleteTurn(turn);
                             //  StartCoroutine(SecondDice());
@@ -1655,10 +1589,14 @@ namespace BackgammonNet.Core
                         GameController.Instance.playerScores[1].Moves++;
                         Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
                         Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
-                        randomSelectPawn2.CheckShelterStage();
-                        randomSelectPawn2.CheckShelterAndMore();
                         Slot.slots[slot1].HightlightMe(true);
-                        randomSelectPawn2.CheckIfNextTurn();
+                        randomSelectPawn2.CheckShelterStage();
+                            if (randomSelectPawn2.CheckShelterAndMore())
+                            {
+                                return;
+                            }
+
+                            randomSelectPawn2.CheckIfNextTurn();
                         }
 
                     }
@@ -1679,10 +1617,14 @@ namespace BackgammonNet.Core
                    
                         Slot.slots[randomSelectPawn2.slotNo].GetTopPawn(true);
                         Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
-                        randomSelectPawn2.CheckShelterStage();
-                        randomSelectPawn2.CheckShelterAndMore();
                         Slot.slots[slot1].HightlightMe(true);
-                        randomSelectPawn2.CheckIfNextTurn();
+                        randomSelectPawn2.CheckShelterStage();
+                            if (randomSelectPawn2.CheckShelterAndMore())
+                            {
+                                return;
+                            }
+
+                            randomSelectPawn2.CheckIfNextTurn();
                         }
 
                     }
@@ -1709,9 +1651,13 @@ namespace BackgammonNet.Core
                         Slot.slots[slot1].GetTopPawn(false).PlaceJail();
                         Slot.slots[slot1].PlacePawn(randomSelectPawn2, randomSelectPawn2.pawnColor);
                         randomSelectPawn2.CheckShelterStage();
-                        randomSelectPawn2.CheckShelterAndMore();
-                        randomSelectPawn2.CheckIfNextTurn();
-                        _allSlotsInts.Clear();
+                            if (randomSelectPawn2.CheckShelterAndMore())
+                            {
+                                return;
+                            }
+
+                            randomSelectPawn2.CheckIfNextTurn();
+                            _allSlotsInts.Clear();
                         allSlots.Clear();
                         topEPawns.Clear();
                         }
@@ -1723,8 +1669,13 @@ namespace BackgammonNet.Core
                     {
                         if (topEPawns.Count == 0)
                         {
+                            if (randomSelectPawn2.CheckShelterAndMore())
+                            {
+                                return;
+                            }
+
                             randomSelectPawn2.CheckIfNextTurn();
-                          //  randomSelectPawn2.OnCompleteTurn();
+                            //  randomSelectPawn2.OnCompleteTurn();
 
                             //..............Assign a Dice to the next human player.......................//
                             Debug.Log("Check if not null");
@@ -1752,8 +1703,12 @@ namespace BackgammonNet.Core
                     if (topEPawns.Count == 0)
                     {
                         randomSelectPawn2.CheckShelterStage();
-                        randomSelectPawn2.CheckShelterAndMore();
-                        randomSelectPawn.CheckIfNextTurn();
+                        if (randomSelectPawn2.CheckShelterAndMore())
+                        {
+                            return;
+                        }
+
+                        randomSelectPawn2.CheckIfNextTurn();
                     }
                     else
                     {
@@ -1795,7 +1750,7 @@ namespace BackgammonNet.Core
             }
             else
             {
-               Debug.Log("Normal Moves two");
+                Debug.Log("Normal Moves two");
                 SlotNumberForAI2();
             }
         }
@@ -1872,74 +1827,21 @@ namespace BackgammonNet.Core
             yield return new WaitForSeconds(2f);
             Pawn_OnCompleteTurn(turn);
         }
-        private IEnumerator ChangeTurnForBlockState()
-        {
-            yield return new WaitForSeconds(2f);
-            Pawn_OnCompleteTurn(turn);
-        }
+
         public void Pawn_OnCompleteTurn(int isWhiteColor)
         {
-
-
-
-            if (preventAiGenertion == true)
-            {
-             //  // Debug.Log("Turn Change Occurs");
-           //     Debug.Log("Turn before" + turn);
-                dices[0] = dices[1] = 0;
-
-                diceEnable = true;
-                dragEnable = false;
-
-                turn = 1 - turn;                                                // turn change
-                //Debug.Log("Turn" + turn);
-                //  turnImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
-                //   turnImages[1].gameObject.SetActive(isWhiteColor == 0);
-
-
-
-                highlightImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
-                highlightImages[1].gameObject.SetActive(1 - isWhiteColor == 0);
-                highlightImages[2].gameObject.SetActive(1 - isWhiteColor == 0);
-
-                highlightImages[3].gameObject.SetActive(isWhiteColor == 0);
-                highlightImages[4].gameObject.SetActive(isWhiteColor == 0);
-                highlightImages[5].gameObject.SetActive(isWhiteColor == 0);
-
-
-                if (turn == 1 && MyGameManager.AiMode == true)
-                {
-                    //GenerateForAi();
-
-                    StartCoroutine(TurnChangeDelay());
-                }
-                else
-                {
-                    diceButton.gameObject.SetActive(true);                // offline game
-
-                }
-            }
-        }
-
-        //..............Handle  A tURN State For the GAME.........................//
-
-        public bool preventAiGenertion=true;
-        public void Pawn_OnCompleteTurnForBlockState(int isWhiteColor)
-        {
-            preventAiGenertion = false;
-          //  Debug.Log("Turn Change Occurs");
-           // Debug.Log("Turn before" + turn);
+            //  // Debug.Log("Turn Change Occurs");
+            //     Debug.Log("Turn before" + turn);
             dices[0] = dices[1] = 0;
+            Pawn.moves = 0;
 
             diceEnable = true;
             dragEnable = false;
 
-            turn = 0;                                                // turn change
-//            Debug.Log("Turn" + turn);
-            //  turnImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
-            //   turnImages[1].gameObject.SetActive(isWhiteColor == 0);
-
-
+            turn = 1 - turn;                                                // turn change
+                                                                            //Debug.Log("Turn" + turn);
+                                                                            //  turnImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
+                                                                            //   turnImages[1].gameObject.SetActive(isWhiteColor == 0);
 
             highlightImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
             highlightImages[1].gameObject.SetActive(1 - isWhiteColor == 0);
@@ -1950,25 +1852,44 @@ namespace BackgammonNet.Core
             highlightImages[5].gameObject.SetActive(isWhiteColor == 0);
 
 
-            //if (turn == 1 && MyGameManager.AiMode == true)
-            //{
-            //    //GenerateForAi();
+            if (turn == 1 && MyGameManager.AiMode == true)
+            {
+                //GenerateForAi();
 
-            //    StartCoroutine(TurnChangeDelay());
-            //}
-           // else
-            //{
+                StartCoroutine(TurnChangeDelay());
+            }
+            else
+            {
                 diceButton.gameObject.SetActive(true);                // offline game
 
-            //}
+            }
         }
 
+        //..............Handle  A tURN State For the GAME.........................//
 
 
+        //public void Pawn_OnCompleteTurnForBlockState(int isWhiteColor)
+        //{
+        //    preventAiGenertion = false;
 
+        //    dices[0] = dices[1] = 0;
 
+        //    diceEnable = true;
+        //    dragEnable = false;
 
+        //    turn = 0;
 
+        //    highlightImages[0].gameObject.SetActive(1 - isWhiteColor == 0);
+        //    highlightImages[1].gameObject.SetActive(1 - isWhiteColor == 0);
+        //    highlightImages[2].gameObject.SetActive(1 - isWhiteColor == 0);
+
+        //    highlightImages[3].gameObject.SetActive(isWhiteColor == 0);
+        //    highlightImages[4].gameObject.SetActive(isWhiteColor == 0);
+        //    highlightImages[5].gameObject.SetActive(isWhiteColor == 0);
+
+        //    diceButton.gameObject.SetActive(true);                // offline game
+
+        //}
 
 
         private IEnumerator TurnChangeDelay()
