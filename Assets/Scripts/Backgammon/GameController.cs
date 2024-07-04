@@ -620,7 +620,7 @@ namespace BackgammonNet.Core
                     //SoundManager.GetSoundEffect(4, 0.25f);
                     AudioManager.Instance.DiceRoll();
 
-                    CheckifTurnChangeAI(2, 2);
+                    CheckifTurnChangeAI(Random.Range(1, 7), Random.Range(1, 7));
                 }
 
             }
