@@ -95,6 +95,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
 
         bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(false);
         bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(false);
+        bottomMenuVerticalLayoutgroup.transform.GetChild(5).gameObject.SetActive(false);
     }
 
     private void Awake()

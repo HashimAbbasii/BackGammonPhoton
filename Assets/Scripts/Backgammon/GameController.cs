@@ -2009,6 +2009,14 @@ namespace BackgammonNet.Core
 
             pausePanelportrait.gameObject.SetActive(false);
 
+            if (MyGameManager.AiMode == false)
+            {
+                pausePanel.gameObject.SetActive(false);
+
+            }
+
+
+
         }
 
         public  void NewGame()
