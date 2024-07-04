@@ -21,6 +21,7 @@ namespace BackgammonNet.Core
     public class GameController : MonoBehaviour
     {
         [Header("Winner")]
+        public int colorStatus;
         public LocalizedTextTMP winnerTextGameOver;
         public LocalizedTextTMP winnerTextGameOverPortrait;
         public LocalizedTextTMP winnerTextYouWin;
@@ -116,6 +117,7 @@ namespace BackgammonNet.Core
 
 
         [SerializeField] private Button mainMenuButton;
+
         [SerializeField] private Button newGameButton;
         [SerializeField] private GameObject gameOverPanel;
         [SerializeField] private GameObject newGameInfoPanel;
@@ -248,14 +250,16 @@ namespace BackgammonNet.Core
 
         public void RandomSelectHouse()
         {
-            int randomSelectColor = Random.Range(0, 2);
+            int randomSelectColor = MyGameManager.Instance.randomSelect;
+            
             if(randomSelectColor == 0)
             {
+                Debug.Log("RANDOM 1");
                 WhiteHouseChoose();
             }
             else
-            
             {
+                Debug.Log("Random 2");
                 BlackHouseChoose();
             }
         }
@@ -804,11 +808,38 @@ namespace BackgammonNet.Core
             {
                 topEPawns.Add(allSlots[i].GetTopPawn(false));
             }
-
             SelectRandomEnemy();
         }
 
+
+
+        //...............Random Select For Two...........//
+
+
+
+
+
         #endregion
+        public void SlotNumberForBlockState()
+        {
+
+            for (int i = 0; i < ePawns.Count; i++)
+            {
+                Pawn pawn = ePawns[i];
+                if (!_allSlotsInts.Contains(ePawns[i].slotNo))
+                {
+                    _allSlotsInts.Add(ePawns[i].slotNo);
+                    allSlots.Add(Slot.slots[ePawns[i].slotNo]);
+                }
+            }
+
+            for (int i = 0; i < allSlots.Count; i++)
+            {
+                topEPawns.Add(allSlots[i].GetTopPawn(false));
+            }
+
+            RandomSelectForBlock();
+        }
 
         public void SlotNumberForAI2()
         {
@@ -895,6 +926,16 @@ namespace BackgammonNet.Core
                         }
                         else
                         {
+                            if (Slot.slots[calculateSlot].IsWhite() == 0 && Slot.slots[calculateSlot].Height()==1)
+                            {
+                                //Slot.slots[i].GetTopPawn(true);
+                                Slot.slots[calculateSlot].GetTopPawn(false).PlaceJail();
+                                Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
+                            }
+                            else if (Slot.slots[calculateSlot].IsWhite()==0 && Slot.slots[calculateSlot].Height() > 1)
+                            {
+                                //................YAHA SY KHAAM KARNA HAIN..............//
+                            }
 
                             Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
                             SelectShelterPawn.CheckShelterAndMore();
@@ -1267,7 +1308,31 @@ namespace BackgammonNet.Core
            }
         #endregion
 
+        public void RandomSelectForBlock()
+        {
+            int RandomSelectEnemy = -1;
+            if (topEPawns.Count != 0)
+            {
+                switch (MyGameManager.Instance.botDifficulty)
+                {
+                    case Difficulty.Beginner:
+                        RandomSelectEnemy = 0;
+                        break;
+                    case Difficulty.Intermediate:
+                        RandomSelectEnemy = Random.Range(0, topEPawns.Count);
+                        break;
+                    case Difficulty.GrandMaster:
+                        RandomSelectEnemy = topEPawns.Count - 1;
+                        break;
+                }
 
+
+
+                randomSelectPawn = topEPawns[RandomSelectEnemy];
+                checkExistingPawn.Add(randomSelectPawn);
+                topEPawns.Remove(randomSelectPawn);
+            }
+        }
 
         #region _SelectRandomEnemy
         public void SelectRandomEnemy2()
@@ -1408,7 +1473,10 @@ namespace BackgammonNet.Core
                         {
                             //.............. Shift the TURN tO THE HUMAN..................//
                             Debug.Log("Turn on First SLOT");
-                           // Pawn_OnCompleteTurn(turn);
+                            randomSelectPawn.CheckShelterStage();
+                            randomSelectPawn.CheckShelterAndMore();
+                            randomSelectPawn.CheckIfNextTurn();
+                            // Pawn_OnCompleteTurn(turn);
                             StartCoroutine(SecondDice());
 
                         }
@@ -1431,6 +1499,132 @@ namespace BackgammonNet.Core
                 
         }
         #endregion
+
+
+        public void AIMovesForBlock()
+        {
+            StartCoroutine(AIMovesForBlockCorountine());
+        }
+
+        IEnumerator  AIMovesForBlockCorountine()
+        {
+            yield return new WaitForSecondsRealtime(1.5f);
+            int sign = randomSelectPawn.pawnColor == 0 ? 1 : -1;
+            // Debug.Log("SlotNo" + randomSelectPawn.slotNo);
+            int slot0 = randomSelectPawn.slotNo + sign * GameController.dices[0];
+            int slot1 = randomSelectPawn.slotNo + sign * GameController.dices[1];
+            //  Debug.Log("turn" + turn);
+
+            if (GameController.turn == randomSelectPawn.pawnColor)
+            {
+                if (slot0 > 0 && slot0 < 25 && slot0 != randomSelectPawn.slotNo)
+                {
+                    //randomSelectPawn.CheckShelterStage();
+                    if (Slot.slots[slot0].Height() >= 1 && Slot.slots[slot0].IsWhite() == randomSelectPawn.pawnColor)
+                    {
+
+                        if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
+                        {
+                            //....................Ai Mode Work Only........................//
+                            ShelterManipulation();
+                            StartCoroutine(ShelterSecondDice());
+                        }
+                        else
+                        {
+
+                            GameController.Instance.playerScores[1].Moves++;
+                            Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
+                            Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+                            randomSelectPawn.CheckShelterStage();
+                            randomSelectPawn.CheckShelterAndMore();
+                            Slot.slots[slot0].HightlightMe(true);
+                            randomSelectPawn.CheckIfNextTurn();
+                         //   StartCoroutine(SecondDice());
+                        }
+                    }
+
+                    //.............If pawn Slot is Empty or Height ==0...................
+                    else if (Slot.slots[slot0].Height() == 0)
+                    {
+
+                        if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
+                        {
+                            //....................Ai Mode Work Only........................//
+                            ShelterManipulation();
+                            StartCoroutine(ShelterSecondDice());
+                        }
+                        else
+                        {
+
+                            GameController.Instance.playerScores[1].Moves++;
+                            Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
+                            Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+                            randomSelectPawn.CheckShelterStage();
+                            randomSelectPawn.CheckShelterAndMore();
+                            Slot.slots[slot0].HightlightMe(true);
+                            randomSelectPawn.CheckIfNextTurn();
+                         //   StartCoroutine(SecondDice());
+                        }
+                    }
+
+
+                    else if (Slot.slots[slot0].Height() == 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
+                    {
+                        if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
+                        {
+                            //....................Ai Mode Work Only........................//
+                            ShelterManipulation();
+                            StartCoroutine(ShelterSecondDice());
+                        }
+                        else
+                        {
+                            GameController.Instance.playerScores[1].Kills++;
+                            //.......JAIL KAR Dooh...........//
+                            GameController.Instance.playerScores[1].Moves++;
+
+                            Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
+                            Slot.slots[slot0].GetTopPawn(false).PlaceJail();
+                            Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+
+                            randomSelectPawn.CheckShelterStage();
+                            randomSelectPawn.CheckShelterAndMore();
+                            randomSelectPawn.CheckIfNextTurn();
+                           // StartCoroutine(SecondDice());
+
+                        }
+                    }
+
+                    else if (Slot.slots[slot0].Height() > 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
+                    {
+
+                        if (topEPawns.Count == 0)
+                        {
+                            //.............. Shift the TURN tO THE HUMAN..................//
+                            Debug.Log("Turn on First SLOT");
+                            randomSelectPawn.CheckShelterStage();
+                            randomSelectPawn.CheckShelterAndMore();
+                            randomSelectPawn.CheckIfNextTurn();
+                            // Pawn_OnCompleteTurn(turn);
+                            //  StartCoroutine(SecondDice());
+
+                        }
+                        else
+                        {
+
+                            SelectRandomEnemy();
+
+                        }
+                    }
+
+                }
+                else
+                {
+                    //............Call it Again your Ai................//
+
+                    SelectRandomEnemy();
+                }
+            }
+        }
 
 
         #region _AIEnemyMoves
