@@ -195,7 +195,7 @@ public class CanvasHandler : MonoBehaviour
 
 
         float screen_ratio = (Screen.width * 1f / Screen.height);
-
+        
         if (screen_ratio <= 1.5f)
         {
             Player0Object.anchoredPosition = new Vector3(1, 0, 0);
@@ -229,6 +229,7 @@ public class CanvasHandler : MonoBehaviour
             if (width / height < 1)
             {
                 ratio = (Screen.width * 1f / Screen.height);
+                Debug.Log("Ratio" + ratio);
             }
 
 

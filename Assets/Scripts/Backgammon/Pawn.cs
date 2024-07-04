@@ -382,7 +382,7 @@ namespace BackgammonNet.Core
                         CheckShelterAndMore();
                         if (GameController.isDublet == true)
                         {
-                            GameController.Instance.GenerateForAi();
+                            GameController.Instance.CallDublet();
                         }
                     //    CheckIfNextTurn();
                       //  OnCompleteTurn(pawnColor);
@@ -407,7 +407,7 @@ namespace BackgammonNet.Core
                         CheckShelterAndMore();
                         if (GameController.isDublet == true)
                         {
-                            GameController.Instance.GenerateForAi();
+                            GameController.Instance.CallDublet();
                         }
                         //    CheckIfNextTurn();
                         // OnCompleteTurn(pawnColor);
@@ -422,7 +422,7 @@ namespace BackgammonNet.Core
                         CheckShelterAndMore();
                         if (GameController.isDublet == true)
                         {
-                            GameController.Instance.GenerateForAi();
+                            GameController.Instance.CallDublet();
                         }
                         //  CheckIfNextTurn();
                         //    // OnCompleteTurn(pawnColor);
@@ -446,7 +446,7 @@ namespace BackgammonNet.Core
                     CheckShelterAndMore();
                     if (GameController.isDublet == true)
                     {
-                        GameController.Instance.GenerateForAi();
+                        GameController.Instance.CallDublet();
                     }
                     //    CheckIfNextTurn();
                     //   OnCompleteTurn(pawnColor);

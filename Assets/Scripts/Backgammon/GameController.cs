@@ -85,6 +85,7 @@ namespace BackgammonNet.Core
         public GameObject GameOverPanel;
         public GameObject YouWinPanel;
         public GameObject GameOverPanelPortrait;
+
         public GameObject GameOverPanelPortraitMain;
 
         public GameObject YouWinPanelportrait;
@@ -875,7 +876,7 @@ namespace BackgammonNet.Core
                 Debug.Log("Shelter Number" + ShelterSlotChck);
                 if (i > ShelterSlotChck)
                 {
-                    if (Slot.slots[i].Height() >= 1 && turn == 1)
+                    if (Slot.slots[i].Height() >= 1 && turn == 1 && Slot.slots[i].IsWhite() == 1)
                     {
                         int calculateSlot = i - ShelterSlotChck;
                         Debug.Log("if i is greater than Shelter Number");
@@ -909,7 +910,7 @@ namespace BackgammonNet.Core
                 }
                 else if (i == ShelterSlotChck)
                 {
-                    if (Slot.slots[i].Height() >= 1 && turn == 1)
+                    if (Slot.slots[i].Height() >= 1 && turn == 1 && Slot.slots[i].IsWhite()==0)
                     {
                         Debug.Log("if i is Equal Shelter Number");
                         SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
@@ -928,7 +929,7 @@ namespace BackgammonNet.Core
                 }
                 else if (i < ShelterSlotChck)
                 {
-                    if (Slot.slots[i].Height() >= 1 && turn == 1)
+                    if (Slot.slots[i].Height() >= 1 && turn == 1 && Slot.slots[i].IsWhite() == 1)
                     {
                         Debug.Log("if i is less than Shelter Number");
                         SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
@@ -1062,7 +1063,7 @@ namespace BackgammonNet.Core
                 Debug.Log("Shelter Number" + ShelterSlotChck);
                 if (i > ShelterSlotChck)
                 {
-                    if (Slot.slots[i].Height() >= 1 && turn == 1)
+                    if (Slot.slots[i].Height() >= 1 && turn == 1 && Slot.slots[i].IsWhite() == 1)
                     {
                         Debug.Log("Height Greater than 1 to i");
                         int calculateSlot = i - ShelterSlotChck;
@@ -1099,7 +1100,7 @@ namespace BackgammonNet.Core
                 }
                 else if (i == ShelterSlotChck)
                 {
-                    if (Slot.slots[i].Height() >= 1 && turn == 1)
+                    if (Slot.slots[i].Height() >= 1 && turn == 1 && Slot.slots[i].IsWhite() == 1)
                     {
                         Debug.Log("if i is Equal Shelter Number");
                         SelectShelterPawn2 = Slot.slots[i].GetTopPawn(false);
@@ -1119,7 +1120,7 @@ namespace BackgammonNet.Core
                 }
                 else if (i < ShelterSlotChck)
                 {
-                    if (Slot.slots[i].Height() >= 1 && turn == 1)
+                    if (Slot.slots[i].Height() >= 1 && turn == 1 && Slot.slots[i].IsWhite() == 1)
                     {
 
                         Debug.Log("if i is lesss than Shelter Number");
@@ -1802,6 +1803,7 @@ namespace BackgammonNet.Core
             ActiveGameOver(winner);
         }
 
+       /// [ContextMenu("Game Over")]
         public void ActiveGameOver(int winner)
         {
 
@@ -1850,13 +1852,14 @@ namespace BackgammonNet.Core
                 }
                 else
                 {
+                 Debug.Log("portrait");
                     YouWinPanel.gameObject.SetActive(true);
                 }
 
 
 #else
 
-    YouWinPanel.gameObject.SetActive(true);
+                YouWinPanel.gameObject.SetActive(true);
 
 
 #endif
@@ -1885,7 +1888,7 @@ namespace BackgammonNet.Core
             }
             else
             {
-              //  Debug.Log("Player2 win");
+                //  Debug.Log("Player2 win");
 
                 //gameOverPanel.gameObject.SetActive(true);
 
@@ -1897,13 +1900,14 @@ namespace BackgammonNet.Core
                 }
                 else
                 {
+                Debug.Log("portrait gameover");
                     gameOverPanel.gameObject.SetActive(true);
                 }
 
 
 #else
 
-    gameOverPanel.gameObject.SetActive(true);
+                gameOverPanel.gameObject.SetActive(true);
 
 
 #endif
