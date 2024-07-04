@@ -11,6 +11,12 @@ using TMPro;
 
 public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
+
+    [Header("OnlinePlayButtons")]
+    public GameObject createRoomBtn;
+    public GameObject roomListRoomBtn;
+
+
     public GameObject BackgroundCanvas;
 
 
@@ -332,6 +338,16 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 
 
+
+                    RectTransform createRoomBtnRectTransform = createRoomBtn.GetComponent<RectTransform>();
+                    createRoomBtnRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+
+
+
+                    RectTransform roomListRoomBtnRectTransform = roomListRoomBtn.GetComponent<RectTransform>();
+                    roomListRoomBtnRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
                     //playerShipRectTransform.anchoredPosition = new Vector3(-622f, -476f, 0f);     // Positions for WebGl portrait Ship Placement Scene
                     //playerShipRectTransform.sizeDelta = new Vector2(365f, 70f);
                     //enemyShipTextRectTransform.anchoredPosition = new Vector3(777.9999f, -467f, 0f);
@@ -445,6 +461,17 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
                     RectTransform findRoomTextRectTransform = FindRoomText.GetComponent<RectTransform>();
                     findRoomTextRectTransform.anchoredPosition = new Vector2(134f, -63f);
+
+
+
+                    RectTransform createRoomBtnRectTransform = createRoomBtn.GetComponent<RectTransform>();
+                    createRoomBtnRectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+
+
+
+                    RectTransform roomListRoomBtnRectTransform = roomListRoomBtn.GetComponent<RectTransform>();
+                    roomListRoomBtnRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
 
                 }
