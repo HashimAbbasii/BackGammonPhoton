@@ -878,9 +878,10 @@ namespace BackgammonNet.Core
                             else if (Slot.slots[calculateSlot].IsWhite()==0 && Slot.slots[calculateSlot].Height() > 1)
                             {
                                 //................YAHA SY KHAAM KARNA HAIN..............//
+                                //Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
+
                             }
 
-                            Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
 
                             if (SelectShelterPawn.CheckShelterAndMore())
                             {
@@ -1824,7 +1825,7 @@ namespace BackgammonNet.Core
 
         private IEnumerator ChangeTurn()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             Pawn_OnCompleteTurn(turn);
         }
 
@@ -2255,7 +2256,7 @@ namespace BackgammonNet.Core
             if (Pawn.imprisonedSide[turn] > 0)
             {
                 //................When You are in the Jail.............//
-                Debug.Log("Can Move from Jail");
+                Debug.Log("CanMoveFromJail = " + CanMoveFromJail(amount, count, sign));
                 return CanMoveFromJail(amount, count, sign);
             }
             else                                                // when they are not in jail

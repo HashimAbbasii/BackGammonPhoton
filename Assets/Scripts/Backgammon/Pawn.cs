@@ -582,7 +582,7 @@ namespace BackgammonNet.Core
         {
            // Debug.Log("Moves" + moves);
            // Debug.Log("MaxMoves" + maxMoves);
-            if (moves == maxMoves && !GameController.GameOver)           // all moves have been made
+            if (moves >= maxMoves && !GameController.GameOver)           // all moves have been made
             {
                 
                 moves = 0;
