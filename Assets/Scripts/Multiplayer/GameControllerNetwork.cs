@@ -743,8 +743,9 @@ namespace BackgammonNet.Core
             CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(1).gameObject.SetActive(false);
             CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(false);
 
-            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(true);
+            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(false);
             CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
+            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(false);
 
 
             isGameOver = true;
@@ -831,10 +832,11 @@ namespace BackgammonNet.Core
         public void ActivatePausePanel()
         {
             CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(0).gameObject.SetActive(false);
-            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(1).gameObject.SetActive(true);
+            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(1).gameObject.SetActive(false);
             CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(false);
 
-            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(true);
+            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(false);
+            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
             CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
 
 
@@ -851,7 +853,7 @@ namespace BackgammonNet.Core
 
 #else
 
-    pausePanel.gameObject.SetActive(true);
+            pausePanel.gameObject.SetActive(true);
 
 
 #endif
@@ -866,14 +868,15 @@ namespace BackgammonNet.Core
 
         public void ResumeGame()
         {
-            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(0).gameObject.SetActive(false);
+            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(0).gameObject.SetActive(true);
             CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(1).gameObject.SetActive(true);
-            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(false);
+            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(2).gameObject.SetActive(true);
 
-            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(true);
-            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(true);
+            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(false);
+            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(false);
+            CanvasHandlerNetwork.Instance.bottomMenuVerticalLayoutgroup.transform.GetChild(5).gameObject.SetActive(false);
 
-            
+
             pausePanelportrait.gameObject.SetActive(false);
         }
 

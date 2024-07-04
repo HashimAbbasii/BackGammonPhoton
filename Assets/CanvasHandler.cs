@@ -80,6 +80,7 @@ public class CanvasHandler : MonoBehaviour
     public Button BPauseBtn;
     public Button BreloadBtn;
     public Button BexitBtn;
+    public Button BresumeBtn;
 
     //public static GameController Instance { get; set; }
     public static CanvasHandler Instance { get; set; }
@@ -110,6 +111,7 @@ public class CanvasHandler : MonoBehaviour
 
         bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(false);
         bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(false);
+        bottomMenuVerticalLayoutgroup.transform.GetChild(5).gameObject.SetActive(false);
     }
 
     private void Awake()
@@ -366,6 +368,9 @@ public class CanvasHandler : MonoBehaviour
                     RectTransform BexitBtnRectTransform = BexitBtn.GetComponent<RectTransform>();
                     BexitBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
 
+                    RectTransform BresumeBtnRectTransform = BresumeBtn.GetComponent<RectTransform>();
+                    BresumeBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+
 
 
 
@@ -501,6 +506,9 @@ public class CanvasHandler : MonoBehaviour
 
                     RectTransform BexitBtnRectTransform = BexitBtn.GetComponent<RectTransform>();
                     BexitBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+
+                    RectTransform BresumeBtnRectTransform = BresumeBtn.GetComponent<RectTransform>();
+                    BresumeBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
 
 
 

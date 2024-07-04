@@ -78,6 +78,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
     public Button BmusicBtn;
     
     public Button BfullScreenBtn;
+    public Button BresumeScreenBtn;
 
 
 
@@ -317,17 +318,20 @@ public class CanvasHandlerNetwork : MonoBehaviour
                     // Botttom Menu Buttons
 
                     RectTransform BsoundBtnRectTransform = BsoundBtn.GetComponent<RectTransform>();
-                    BsoundBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+                    BsoundBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
 
 
                     RectTransform BmusicBtnRectTransform = BmusicBtn.GetComponent<RectTransform>();
-                    BmusicBtnRectTransform.sizeDelta = new Vector2(60f,60f);
+                    BmusicBtnRectTransform.sizeDelta = new Vector2(40f,40f);
 
                     
 
 
                     RectTransform BfullScreenBtnRectTransform = BfullScreenBtn.GetComponent<RectTransform>();
-                    BfullScreenBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+                    BfullScreenBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
+
+                    RectTransform BresumeBtnRectTransform = BresumeScreenBtn.GetComponent<RectTransform>();
+                    BresumeBtnRectTransform.sizeDelta = new Vector2(40f, 40f);
 
 
 
@@ -438,17 +442,20 @@ public class CanvasHandlerNetwork : MonoBehaviour
                     // Botttom Menu Buttons
 
                     RectTransform BsoundBtnRectTransform = BsoundBtn.GetComponent<RectTransform>();
-                    BsoundBtnRectTransform.sizeDelta = new Vector2(70f,70f);
+                    BsoundBtnRectTransform.sizeDelta = new Vector2(60f,60f);
 
 
                     RectTransform BmusicBtnRectTransform = BmusicBtn.GetComponent<RectTransform>();
-                    BmusicBtnRectTransform.sizeDelta = new Vector2(70f, 70f);
+                    BmusicBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
 
                    
 
 
                     RectTransform BfullScreenBtnRectTransform = BfullScreenBtn.GetComponent<RectTransform>();
-                    BfullScreenBtnRectTransform.sizeDelta = new Vector2(70f, 70f);
+                    BfullScreenBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
+
+                    RectTransform BresumeBtnRectTransform = BresumeScreenBtn.GetComponent<RectTransform>();
+                    BresumeBtnRectTransform.sizeDelta = new Vector2(60f, 60f);
 
                 }
 
