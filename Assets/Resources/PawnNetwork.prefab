@@ -138,6 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   photonView: {fileID: -749466965310162608}
+  endSlotCheck: 0
   pawnColor: 0
   slotNo: 0
   pawnNo: 0

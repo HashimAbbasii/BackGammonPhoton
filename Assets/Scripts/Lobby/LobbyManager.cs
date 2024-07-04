@@ -13,6 +13,9 @@ namespace BackgammonNet.Lobby
 
     public class LobbyManager : MonoBehaviour
     {
+        public GameObject LoadingCanvas;
+
+
         public static LobbyManager Instance { get; set; }
         public static string clientName;
 
@@ -238,11 +241,21 @@ namespace BackgammonNet.Lobby
         //---- operation of the initial menu buttons ----------------------------------------------------------
         public GameObject Canvas1;
         public GameObject Canvas2;
+
+        public GameObject mainCamera;
+        public GameObject switchCamera;
+
         public void StartGame()                             // Start a local game.
         {
-          //  SwitchMenuView(false, false, false, false);
+            //  SwitchMenuView(false, false, false, false);
 
-            if(SceneManager.sceneCount > 1)
+            LoadingCanvas.gameObject.SetActive(true);
+
+
+            //mainCamera.SetActive(false);
+            //switchCamera.SetActive(true);
+
+            if (SceneManager.sceneCount > 1)
                 SceneManager.UnloadSceneAsync(1);
             Canvas1.gameObject.SetActive(false);
             Canvas2.gameObject.SetActive(false);

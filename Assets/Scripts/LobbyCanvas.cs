@@ -11,6 +11,9 @@ using TMPro;
 
 public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
+    public GameObject BackgroundCanvas;
+
+
     [Header("TutorialPanels")]
     public GameObject tutorialPanel;
     public GameObject tutorialPanelPortrait;
@@ -553,6 +556,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
     public void StartGameAi()
     {
+        BackgroundCanvas.gameObject.SetActive(true);
+
         LobbyManager.Instance.StartGameAi();
         AudioManager.Instance.PlayGameMusic();
     }
@@ -613,6 +618,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
     public void OnClickPlayButton()
     {
+        BackgroundCanvas.gameObject.SetActive(true);
+
         MyPhotonManager.instance.OnClickPlayButton();
         AudioManager.Instance.PlayGameMusic();
     }

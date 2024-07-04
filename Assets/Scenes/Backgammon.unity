@@ -7298,7 +7298,7 @@ MonoBehaviour:
   text: 
   tashkeel: 1
   hinduNumbers: 1
-  showText: {fileID: 0}
+  showText: {fileID: 337328669}
 --- !u!114 &337328668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7313,7 +7313,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
-  _tmpText: {fileID: 0}
+  _tmpText: {fileID: 337328669}
   localizationKey: 
   variableText: 
 --- !u!114 &337328669
@@ -9557,7 +9557,7 @@ MonoBehaviour:
   text: 
   tashkeel: 1
   hinduNumbers: 1
-  showText: {fileID: 0}
+  showText: {fileID: 482612900}
 --- !u!114 &482612899
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9572,7 +9572,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
-  _tmpText: {fileID: 0}
+  _tmpText: {fileID: 482612900}
   localizationKey: Text.Difficulty
   variableText: 
 --- !u!114 &482612900
@@ -20881,7 +20881,7 @@ MonoBehaviour:
   text: 
   tashkeel: 1
   hinduNumbers: 1
-  showText: {fileID: 0}
+  showText: {fileID: 1142358636}
 --- !u!114 &1142358635
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20896,7 +20896,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
-  _tmpText: {fileID: 0}
+  _tmpText: {fileID: 1142358636}
   localizationKey: Text.Difficulty
   variableText: 
 --- !u!114 &1142358636
@@ -36613,7 +36613,7 @@ MonoBehaviour:
   text: 
   tashkeel: 1
   hinduNumbers: 1
-  showText: {fileID: 0}
+  showText: {fileID: 2003651575}
 --- !u!114 &2003651574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36628,7 +36628,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textType: 2
   textColor: {r: 1, g: 1, b: 1, a: 1}
-  _tmpText: {fileID: 0}
+  _tmpText: {fileID: 2003651575}
   localizationKey: 
   variableText: 
 --- !u!114 &2003651575
