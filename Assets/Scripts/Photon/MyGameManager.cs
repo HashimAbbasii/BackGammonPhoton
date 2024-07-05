@@ -43,6 +43,14 @@ public class MyGameManager : MonoBehaviour
     {
         //AiModeTest = AiModePawn;
         AiModeTest = AiMode;
+
+        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        {
+            fullScreenWebGLManager.EnterFullscreen();
+            
+        }
+
+
     }
 
     public void SelectPawn(int pawnSelect)
@@ -136,6 +144,8 @@ public class MyGameManager : MonoBehaviour
 
     }
     private GameObject menu;
+
+    
     public void SceneShiftPanel()
     {
         StartCoroutine(MenuMangerPanel());
