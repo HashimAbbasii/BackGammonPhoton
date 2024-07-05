@@ -953,6 +953,9 @@ namespace BackgammonNet.Core
                                 Debug.Log("calculateSlot jail");
                                 Slot.slots[calculateSlot].GetTopPawn(false).PlaceJail();
                                 Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
+                                SelectShelterPawn.CheckShelterAndMore();
+
+                                SelectShelterPawn.CheckIfNextTurn();
                                 break;
                             }
                             else if (Slot.slots[calculateSlot].IsWhite() != SelectShelterPawn.pawnColor && Slot.slots[calculateSlot].Height() > 1)
@@ -1134,7 +1137,7 @@ namespace BackgammonNet.Core
                 Debug.Log("Shelter Number" + ShelterSlotChck);
                 if (i > ShelterSlotChck)
                 {
-                    if (Slot.slots[i].Height() >= 1 && turn == 1 && Slot.slots[i].IsWhite() == 1)
+                    if (Slot.slots[i].Height() >= 1 && turn == 1)
                     {
                         Debug.Log("Height Greater than 1 to i");
                         int calculateSlot = i - ShelterSlotChck;
@@ -1177,7 +1180,7 @@ namespace BackgammonNet.Core
                 }
                 else if (i == ShelterSlotChck)
                 {
-                    if (Slot.slots[i].Height() >= 1 && turn == 1 && Slot.slots[i].IsWhite() == 1)
+                    if (Slot.slots[i].Height() >= 1 && turn == 1)
                     {
                         Debug.Log("if i is Equal Shelter Number");
                         SelectShelterPawn2 = Slot.slots[i].GetTopPawn(false);
@@ -1199,7 +1202,7 @@ namespace BackgammonNet.Core
                 }
                 else if (i < ShelterSlotChck)
                 {
-                    if (Slot.slots[i].Height() >= 1 && turn == 1 && Slot.slots[i].IsWhite() == 1)
+                    if (Slot.slots[i].Height() >= 1 && turn == 1 )
                     {
 
                         Debug.Log("if i is lesss than Shelter Number");
