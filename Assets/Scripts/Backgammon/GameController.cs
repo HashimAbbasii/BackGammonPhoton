@@ -22,6 +22,8 @@ namespace BackgammonNet.Core
     {
         [Header("Winner")]
         public int colorStatus;
+        private List<Pawn> pawns;
+
         public LocalizedTextTMP winnerTextGameOver;
         public LocalizedTextTMP winnerTextGameOverPortrait;
         public LocalizedTextTMP winnerTextYouWin;
@@ -155,7 +157,7 @@ namespace BackgammonNet.Core
         public static bool GameOver { get; set; }
         public GameObject[] whiteHouseColor;
         public GameObject[] blackHouseColor;
-
+        private Coroutine keepChecking;
         //public bool preventAiGenertion=true;
 
         public bool IsRunningOnAndroid()
@@ -170,6 +172,70 @@ namespace BackgammonNet.Core
                    SystemInfo.operatingSystem.ToLower().Contains("ipad") ||
                    SystemInfo.operatingSystem.ToLower().Contains("ios");
         }
+
+        public void StartChecking()
+        {
+          
+            
+               keepChecking = StartCoroutine(CheckFinalPoint());
+            
+        }
+        private IEnumerator CheckFinalPoint()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(5f);
+                if (!CanMoveAnyPawn())
+                {
+                   OnCompleteTurn();
+                    yield break;
+                }
+            }
+        }
+
+        private void OnCompleteTurn()
+        {
+            Pawn_OnCompleteTurn(turn);
+            // Handle turn completion logic here
+            // For example, switch the turn to the next player
+            Debug.Log("Turn complete. Switching to next player.");
+        }
+
+        public bool CanMoveAnyPawn()
+        {
+            // Check if any pawn can move
+            foreach (var pawn in pawns)
+            {
+                if (CanMove(1))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void StopChecking()
+        {
+            if (keepChecking != null)
+            {
+                StopCoroutine(keepChecking);
+                keepChecking = null;
+            }
+        }
+
+
+        //private IEnumerator CheckFinalPoint()
+        //{
+        //    while (true)
+        //    {
+        //        yield return new WaitForSeconds(3f);
+        //        if (!CanMoveAnyPawn())
+        //        {
+        //            OnCompleteTurn(pawnColor);
+        //            yield break;
+        //        }
+        //    }
+        //}
 
 
         private void Awake()
@@ -270,6 +336,8 @@ namespace BackgammonNet.Core
 
         private void Start()
         {
+            pawns = new List<Pawn>(FindObjectsOfType<Pawn>());
+           
             if (MyGameManager.houseColorDetermince == 0)
             {
                 WhiteHouseChoose();
@@ -492,6 +560,7 @@ namespace BackgammonNet.Core
                 AudioManager.Instance.DiceRoll();
 
                 CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
+                //StartChecking();
                 //CheckIfTurnChange(1, 2);
 
                 if (Board.Instance.client)      // network game
@@ -583,11 +652,12 @@ namespace BackgammonNet.Core
         //.....................AiModeGeneration ...........................//
         //....................Prevent a  Doublet...........................//
 
+        //public Coroutine keepChecking;
 
         #region _AiModeGeneration
         public void GenerateForAi()
         {
-           
+
             foreach (var slot in Slot.slots)
             {
                 slot.HightlightMe(false);
@@ -609,6 +679,9 @@ namespace BackgammonNet.Core
                     //SoundManager.GetSoundEffect(4, 0.25f);
                     AudioManager.Instance.DiceRoll();
                     CheckIfTurnChange(Random.Range(1, 7), Random.Range(1, 7));
+                    StartChecking();
+
+
                 }
                 else
                 {
@@ -621,6 +694,7 @@ namespace BackgammonNet.Core
                     AudioManager.Instance.DiceRoll();
 
                     CheckifTurnChangeAI(Random.Range(1, 7), Random.Range(1, 7));
+                    StartChecking();
                 }
 
             }
@@ -853,45 +927,45 @@ namespace BackgammonNet.Core
 
                         if (calculateSlot == 0)
                         {
+                            Debug.Log("calculateSlot == 0");
                             var finalposition = SelectShelterPawn.house.transform.position;
                             SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
                             
 
-                            SelectShelterPawn.PlaceInShelterAi();
-                            if (SelectShelterPawn.CheckShelterAndMore())
-                            {
-                                return;
-                            }
+                            SelectShelterPawn.CheckShelterAndMore();
+                            
+                              
+                            
 
                             SelectShelterPawn.CheckIfNextTurn();
+                            SelectShelterPawn.PlaceInShelterAi();
                             break;
                         }
                         else
                         {
-                            if (Slot.slots[calculateSlot].IsWhite() == 0 && Slot.slots[calculateSlot].Height()==1)
+                            if (Slot.slots[calculateSlot].IsWhite() != SelectShelterPawn.pawnColor && Slot.slots[calculateSlot].Height()==1)
                             {
                                 //Slot.slots[i].GetTopPawn(true);
+                                Debug.Log("calculateSlot jail");
                                 Slot.slots[calculateSlot].GetTopPawn(false).PlaceJail();
                                 Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
                                 break;
                             }
-                            else if (Slot.slots[calculateSlot].IsWhite()==0 && Slot.slots[calculateSlot].Height() > 1)
+                            else if (Slot.slots[calculateSlot].IsWhite() != SelectShelterPawn.pawnColor && Slot.slots[calculateSlot].Height() > 1)
                             {
                                 //................YAHA SY KHAAM KARNA HAIN..............//
+                                Debug.Log("Opposite COLOR");
+                                SelectShelterPawn.CheckShelterAndMore();
+                            
+                               SelectShelterPawn.CheckIfNextTurn();
                                 //Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
+                               break;
+
 
                             }
 
 
-                            if (SelectShelterPawn.CheckShelterAndMore())
-                            {
-                                return;
-                            }
-
-                            SelectShelterPawn.CheckIfNextTurn();
                            
-
-                            break;
 
 
                            
@@ -908,14 +982,12 @@ namespace BackgammonNet.Core
                         // SelectShelterPawn.CheckShelterStage();
                         var finalposition = SelectShelterPawn.house.transform.position;
                         SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
-                        SelectShelterPawn.PlaceInShelterAi();
 
-                        if (SelectShelterPawn.CheckShelterAndMore())
-                        {
-                            return;
-                        }
+                        SelectShelterPawn.CheckShelterAndMore();
+                        
 
                         SelectShelterPawn.CheckIfNextTurn();
+                        SelectShelterPawn.PlaceInShelterAi();
 
                         break;
                     }
@@ -933,14 +1005,12 @@ namespace BackgammonNet.Core
                         // SelectShelterPawn.CheckShelterStage();
                         var finalposition = SelectShelterPawn.house.transform.position;
                         SelectShelterPawn.transform.DOLocalMove(finalposition, 0.5f);
-                        SelectShelterPawn.PlaceInShelterAi();
 
-                        if (SelectShelterPawn.CheckShelterAndMore())
-                        {
-                            return;
-                        }
+                        SelectShelterPawn.CheckShelterAndMore();
+                        
 
                         SelectShelterPawn.CheckIfNextTurn();
+                        SelectShelterPawn.PlaceInShelterAi();
 
                         break;
                     }
@@ -1072,13 +1142,11 @@ namespace BackgammonNet.Core
                         {
                             var finalposition = SelectShelterPawn2.house.transform.position;
                             SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
-                            SelectShelterPawn2.PlaceInShelterAi();
-                            if (SelectShelterPawn2.CheckShelterAndMore())
-                            {
-                                yield break;
-                            }
+                            SelectShelterPawn2.CheckShelterAndMore();
+                           
 
                             SelectShelterPawn2.CheckIfNextTurn();
+                            SelectShelterPawn2.PlaceInShelterAi();
                             break;
                         }
                         else
@@ -1086,10 +1154,8 @@ namespace BackgammonNet.Core
 
                             Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn2, SelectShelterPawn2.pawnColor);
 
-                            if (SelectShelterPawn2.CheckShelterAndMore())
-                            {
-                                yield break;
-                            }
+                            SelectShelterPawn2.CheckShelterAndMore();
+                            
 
                             SelectShelterPawn2.CheckIfNextTurn();
 
@@ -1115,13 +1181,11 @@ namespace BackgammonNet.Core
 
                         var finalposition = SelectShelterPawn2.house.transform.position;
                         SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
-                        SelectShelterPawn2.PlaceInShelterAi();
-                        if (SelectShelterPawn2.CheckShelterAndMore())
-                        {
-                            yield break;
-                        }
+                        SelectShelterPawn2.CheckShelterAndMore();
+                        
 
                         SelectShelterPawn2.CheckIfNextTurn();
+                        SelectShelterPawn2.PlaceInShelterAi();
                         break;
                     }
                     else
@@ -1140,13 +1204,11 @@ namespace BackgammonNet.Core
 
                         var finalposition = SelectShelterPawn2.house.transform.position;
                         SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
-                        SelectShelterPawn2.PlaceInShelterAi();
-                        if (SelectShelterPawn2.CheckShelterAndMore())
-                        {
-                            yield break;
-                        }
+                        SelectShelterPawn2.CheckShelterAndMore();
+                       
 
                         SelectShelterPawn2.CheckIfNextTurn();
+                        SelectShelterPawn2.PlaceInShelterAi();
                         break;
                     }
                     else
@@ -1835,6 +1897,8 @@ namespace BackgammonNet.Core
             //     Debug.Log("Turn before" + turn);
             dices[0] = dices[1] = 0;
             Pawn.moves = 0;
+
+            if (keepChecking != null) { StopCoroutine(keepChecking); }
 
             diceEnable = true;
             dragEnable = false;

@@ -5,6 +5,7 @@ using Photon.Pun;
 using BackgammonNet.Lobby;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using System.Collections;
 
 namespace BackgammonNet.Core
 {
@@ -41,6 +42,21 @@ namespace BackgammonNet.Core
         [SerializeField] public Sprite whitePawn;
         [SerializeField] public Sprite blackPawn;
 
+        public Coroutine keepChecking;
+
+        public IEnumerator CheckFinalPoint()
+        {
+            while (true)
+            {
+                yield return new WaitForSeconds(3f);
+                if (!GameController.CanMove(1))        // when a move cannot be made
+                {
+                    moves = 0;
+                    OnCompleteTurn(pawnColor);
+                    yield break;
+                }
+            }
+        }
 
         public void SetColorAndHouse(int color)
         {
@@ -287,7 +303,7 @@ namespace BackgammonNet.Core
 
                         }
 
-                        // If Ai has to get out using Second Dice at opposite color and can not kill
+                        // If Ai has to get out using Second Dice at empty space
                         else if (Slot.slots[25 + sign * GameController.dices[1]].Height() == 0)
                         {
                             Debug.Log("Height Equalt to zero");
@@ -332,7 +348,7 @@ namespace BackgammonNet.Core
 
                 }
 
-
+                // If Ai has to get out using first Dice at empty space
                 else if (Slot.slots[25 + sign * GameController.dices[0]].Height() == 0)
                 {
                     GameController.Instance.playerScores[1].Moves++;
@@ -619,8 +635,11 @@ namespace BackgammonNet.Core
 
         public bool CheckShelterAndMore()
         {
-            if (slotNo != 0) TryRemovePawnFromJail();
-            if (slotNo != 25) TryRemovePawnFromJail();
+            if (GameController.turn != 1 || MyGameManager.AiMode != true)
+            {
+                if (slotNo != 0) TryRemovePawnFromJail();
+                if (slotNo != 25) TryRemovePawnFromJail();
+            }
 
             if (CheckShelterStage())                //---- detection of the mode of introducing the pieces into the shelter
                 shelterSide[pawnColor] = true;
