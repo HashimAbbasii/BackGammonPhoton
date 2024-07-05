@@ -917,7 +917,7 @@ namespace BackgammonNet.Core
                 Debug.Log("Shelter Number" + ShelterSlotChck);
                 if (i > ShelterSlotChck)
                 {
-                    if (Slot.slots[i].Height() >= 1 && turn == 1 && Slot.slots[i].IsWhite() == 1)
+                    if (Slot.slots[i].Height() >= 1 && turn == 1)
                     {
                         int calculateSlot = i - ShelterSlotChck;
                         Debug.Log("if i is greater than Shelter Number");
@@ -941,9 +941,16 @@ namespace BackgammonNet.Core
                             SelectShelterPawn.PlaceInShelterAi();
                             break;
                         }
+                        else if (calculateSlot > 0)
+                        {
+                            Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn, SelectShelterPawn.pawnColor);
+                            SelectShelterPawn.CheckShelterAndMore();
+                            SelectShelterPawn.CheckIfNextTurn();
+                            break;
+                        }
                         else
                         {
-                            if (Slot.slots[calculateSlot].Height() == 0)
+                            if (Slot.slots[i].Height() == 0)
                             {
                                 continue;
                             }
@@ -1005,7 +1012,7 @@ namespace BackgammonNet.Core
                 }
                 else if (i < ShelterSlotChck)
                 {
-                    if (Slot.slots[i].Height() >= 1 && turn == 1 && Slot.slots[i].IsWhite() == 1)
+                    if (Slot.slots[i].Height() >= 1 && turn == 1 )
                     {
                         Debug.Log("if i is less than Shelter Number");
                         SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
@@ -1159,6 +1166,8 @@ namespace BackgammonNet.Core
                         else
                         {
 
+                            // .........For the JAIL Slot................//
+
                             Slot.slots[calculateSlot].PlacePawn(SelectShelterPawn2, SelectShelterPawn2.pawnColor);
 
                             SelectShelterPawn2.CheckShelterAndMore();
@@ -1205,17 +1214,18 @@ namespace BackgammonNet.Core
                     if (Slot.slots[i].Height() >= 1 && turn == 1 )
                     {
 
-                        Debug.Log("if i is lesss than Shelter Number");
+                        Debug.Log("if i is less than Shelter Number");
                         SelectShelterPawn2 = Slot.slots[i].GetTopPawn(false);
-                        //SelectShelterPawn2.CheckShelterStage();
-
+                        // SelectShelterPawn.CheckShelterStage();
                         var finalposition = SelectShelterPawn2.house.transform.position;
                         SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
+
                         SelectShelterPawn2.CheckShelterAndMore();
-                       
+
 
                         SelectShelterPawn2.CheckIfNextTurn();
                         SelectShelterPawn2.PlaceInShelterAi();
+
                         break;
                     }
                     else
