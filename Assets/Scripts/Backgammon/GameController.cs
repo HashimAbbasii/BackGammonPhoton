@@ -781,7 +781,7 @@ namespace BackgammonNet.Core
                 topEPawns.Clear();
                 checkExistingPawn.Clear();
 
-                if (Slot.slots[25].Height() > 0)
+                if (Slot.slots[25].Height() > 0 && turn==1)
                 {
                     //........Prison Slot...............//
 
@@ -915,7 +915,7 @@ namespace BackgammonNet.Core
             for (int i = 6; i >= 1; i--)
             {
                 Debug.Log("Shelter Number" + ShelterSlotChck);
-                if (i > ShelterSlotChck)
+                if (i >= ShelterSlotChck)
                 {
                     if (Slot.slots[i].Height() >= 1 && turn == 1)
                     {
@@ -989,7 +989,7 @@ namespace BackgammonNet.Core
                 }
                 else if (i == ShelterSlotChck)
                 {
-                    if (Slot.slots[i].Height() >= 1 && turn == 1 && Slot.slots[i].IsWhite()==0)
+                    if (Slot.slots[i].Height() >= 1 && turn == 1)
                     {
                         Debug.Log("if i is Equal Shelter Number");
                         SelectShelterPawn = Slot.slots[i].GetTopPawn(false);
@@ -1214,9 +1214,9 @@ namespace BackgammonNet.Core
                     if (Slot.slots[i].Height() >= 1 && turn == 1 )
                     {
 
-                        Debug.Log("if i is less than Shelter Number");
+                        Debug.Log("if i is less than Shelter2 Number");
                         SelectShelterPawn2 = Slot.slots[i].GetTopPawn(false);
-                        // SelectShelterPawn.CheckShelterStage();
+                     //   SelectShelterPawn.CheckShelterStage();
                         var finalposition = SelectShelterPawn2.house.transform.position;
                         SelectShelterPawn2.transform.DOLocalMove(finalposition, 0.5f);
 
