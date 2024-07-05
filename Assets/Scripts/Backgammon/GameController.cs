@@ -943,7 +943,11 @@ namespace BackgammonNet.Core
                         }
                         else
                         {
-                            if (Slot.slots[calculateSlot].IsWhite() != SelectShelterPawn.pawnColor && Slot.slots[calculateSlot].Height()==1)
+                            if (Slot.slots[calculateSlot].Height() == 0)
+                            {
+                                continue;
+                            }
+                            else if (Slot.slots[calculateSlot].IsWhite() != SelectShelterPawn.pawnColor && Slot.slots[calculateSlot].Height()==1)
                             {
                                 //Slot.slots[i].GetTopPawn(true);
                                 Debug.Log("calculateSlot jail");
