@@ -202,13 +202,6 @@ namespace BackgammonNet.Core
                     // If Ai has to get out using First Dice at opposite color and can not kill
                     else if (Slot.slots[25 + sign * GameController.dices[0]].Height() > 1 && Slot.slots[25 + sign * GameController.dices[0]].IsWhite() != prisonSlot.IsWhite())
                     {
-                          CheckShelterStage();
-                        if (CheckShelterAndMore())
-                        {
-                            return;
-                        }
-
-                        CheckIfNextTurn();
 
                         // If Ai has to get out using Second Dice at opposite color and can kill
                         if (Slot.slots[25 + sign * GameController.dices[1]].Height() == 1 && Slot.slots[25 + sign * GameController.dices[1]].IsWhite() != prisonSlot.IsWhite())
@@ -343,6 +336,14 @@ namespace BackgammonNet.Core
                             //  CheckIfNextTurn();
                             // StartCoroutine(GameController.Instance.SecondDice());
                         }
+
+                        CheckShelterStage();
+                        if (CheckShelterAndMore())
+                        {
+                            return;
+                        }
+                        CheckIfNextTurn();
+
                     }
 
 
