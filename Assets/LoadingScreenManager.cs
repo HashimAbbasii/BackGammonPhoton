@@ -31,7 +31,7 @@ public class LoadingScreenManager : MonoBehaviour
             if (progressBar.value == 100)
             {
                 LobbyManager.Instance.SwitchMenuView(true, false, false, false, false);
-                BottomMenu.gameObject.SetActive(true);
+               // BottomMenu.gameObject.SetActive(true);
 
             }
         }

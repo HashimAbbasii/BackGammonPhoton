@@ -2616,7 +2616,6 @@ MonoBehaviour:
   d0: 0
   d1: 0
   HouseColorChoose: 0
-  preventAiGenertion: 1
 --- !u!1 &118097724
 GameObject:
   m_ObjectHideFlags: 0
@@ -8846,7 +8845,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 383, y: 7}
-  m_SizeDelta: {x: 108, y: 108}
+  m_SizeDelta: {x: 88, y: 88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &451497672
 MonoBehaviour:
