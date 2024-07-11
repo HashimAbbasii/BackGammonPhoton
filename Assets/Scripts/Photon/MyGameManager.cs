@@ -44,13 +44,36 @@ public class MyGameManager : MonoBehaviour
         //AiModeTest = AiModePawn;
         AiModeTest = AiMode;
 
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        float ratio = (Screen.width * 1f / Screen.height);
+        if (IsRunningOnAndroid() || IsRunningOniOS())
         {
-            fullScreenWebGLManager.EnterFullscreen();
-            
+            if (ratio < 1 || ratio >= 2)
+            {
+                fullScreenWebGLManager.EnterFullscreen();
+            }
         }
 
 
+        //    if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        //{
+        //    fullScreenWebGLManager.EnterFullscreen();
+            
+        //}
+
+
+    }
+
+    public bool IsRunningOnAndroid()
+    {
+        return SystemInfo.operatingSystem.ToLower().Contains("android");
+
+    }
+
+    public bool IsRunningOniOS()
+    {
+        return SystemInfo.operatingSystem.ToLower().Contains("iphone") ||
+               SystemInfo.operatingSystem.ToLower().Contains("ipad") ||
+               SystemInfo.operatingSystem.ToLower().Contains("ios");
     }
 
     public void SelectPawn(int pawnSelect)

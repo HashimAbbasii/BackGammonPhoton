@@ -51,6 +51,7 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
     public static MyPhotonManager instance;
     public TextMeshProUGUI referenceText;
     public Button loginButton;
+    public Button loginButtonP;
 
     //public DateTime startingTime;
     public bool multiPlayerMode = false;
@@ -160,6 +161,7 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
     public void CheckLoginName(string playerName)
     {
         loginButton.interactable = !string.IsNullOrEmpty(playerName);
+        loginButtonP.interactable = !string.IsNullOrEmpty(playerName);
     }
 
 
@@ -200,10 +202,12 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         if (!string.IsNullOrEmpty(roomName))
         {
             loginButton.interactable = true;
+            loginButtonP.interactable = true;
         }
         else
         {
             loginButton.interactable = false;
+            loginButtonP.interactable = false;
         }
 
 
@@ -234,12 +238,14 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         if (!string.IsNullOrEmpty(roomName))
         {
             loginButton.interactable = true;
+            loginButtonP.interactable = true;
             roomName = roomName + "|" + Random.Range(100000, 1000000) + "|" + userNameText.text;
             //roomNameText.text=roomName;
         }
         else
         {
             loginButton.interactable=false;
+            loginButtonP.interactable = false;
         }
 
         RoomOptions roomOptions = new RoomOptions();

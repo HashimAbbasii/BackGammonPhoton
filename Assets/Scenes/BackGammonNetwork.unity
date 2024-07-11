@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -22.4}
+  m_AnchoredPosition: {x: -0.000010172526, y: -5.9999933}
   m_SizeDelta: {x: 101.099976, y: 30.8036}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &4631807
@@ -314,6 +314,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &16438179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -937,6 +938,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &49977578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,6 +1110,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &58908271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1676,6 +1679,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &100685390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1926,6 +1930,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &105170190
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2134,6 +2139,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &112546529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2637,12 +2643,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f56d475fc32164a96c39bf9c2c4041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player0BGImg: {fileID: 1651084067}
+  player0ProfileImg: {fileID: 1335790689}
+  player1BGImg: {fileID: 1414998775}
+  player1ProfileImg: {fileID: 1863409392}
+  nameText0: {fileID: 4631805}
+  nameText1: {fileID: 843636996}
+  pointsStatic0: {fileID: 527355599}
+  pointsStatic1: {fileID: 1251349911}
+  pointsVar0: {fileID: 663972417}
+  pointsVar1: {fileID: 1075689698}
   bottomMenuVerticalLayoutgroup: {fileID: 1589567573}
   BottomMenu: {fileID: 1980118264}
   Player0Object: {fileID: 1389819191}
   Player1Object: {fileID: 1864298234}
   Highlight2P0: {fileID: 543263699}
+  Highlight1P0: {fileID: 1351073011}
   Highlight2P1: {fileID: 1767855522}
+  Highlight1P1: {fileID: 802240621}
   Points0Object: {fileID: 452883302}
   Points1Object: {fileID: 481812176}
   diceRollButton: {fileID: 451497670}
@@ -2921,6 +2939,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 181284157}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &181284156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3627,6 +3646,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &205508557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4267,6 +4287,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &233365731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4619,6 +4640,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &252547774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5162,6 +5184,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &270028786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5417,6 +5440,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &276427072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5809,6 +5833,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &300773336
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5981,6 +6006,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &321154275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6399,6 +6425,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &346463228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7205,6 +7232,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &396784798
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7677,6 +7705,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 416737940}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &416737939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7847,6 +7876,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &418591389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8245,6 +8275,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &446068547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8615,6 +8646,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &461777306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8785,6 +8817,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &469219223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9256,6 +9289,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &506583808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9513,7 +9547,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.003921569, g: 0.21568628, b: 0.12156863, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -9527,7 +9561,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 500
   field of view: 60
   orthographic: 1
   orthographic size: 8.6
@@ -9631,7 +9665,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 12.500001}
+  m_AnchoredPosition: {x: 0, y: 32.934807}
   m_SizeDelta: {x: 0, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &527355601
@@ -9747,6 +9781,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &527355604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10629,6 +10664,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 579842382}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &579842381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11778,6 +11814,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &648592092
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12065,7 +12102,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -14.8}
+  m_AnchoredPosition: {x: 0, y: -7.376588}
   m_SizeDelta: {x: 0, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &663972419
@@ -12084,6 +12121,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &663972420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12488,6 +12526,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &720583796
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12658,6 +12697,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &729692536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12807,8 +12847,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 17.716, y: 1.1380005}
-  m_SizeDelta: {x: 97.329, y: 37.6424}
+  m_AnchoredPosition: {x: 16.478, y: -0.3753109}
+  m_SizeDelta: {x: 93.4381, y: 34.616}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &731887328
 MonoBehaviour:
@@ -13149,6 +13189,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &735387345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13515,6 +13556,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &749308375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14052,6 +14094,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &754546644
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15020,6 +15063,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &788164720
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15663,11 +15707,11 @@ RectTransform:
   m_Father: {fileID: 1864298234}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 1, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -29.2}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: -0.000015258789, y: -6}
   m_SizeDelta: {x: 101.9, y: 43.1206}
-  m_Pivot: {x: 1, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &843636998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15897,6 +15941,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &878689181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16113,18 +16158,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 917361256}
-  m_LocalRotation: {x: -0, y: -0, z: 0.09403196, w: 0.9955692}
+  m_LocalRotation: {x: -0, y: -0, z: 0.016494492, w: 0.999864}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 333450101}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 10.791}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 1.89}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -18.7, y: -3.8225002}
-  m_SizeDelta: {x: 60, y: 60}
+  m_AnchoredPosition: {x: -24.6, y: 0.29999924}
+  m_SizeDelta: {x: 69.4657, y: 69.4657}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &917361258
 MonoBehaviour:
@@ -16878,6 +16923,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &974115880
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17239,6 +17285,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1016049268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17934,7 +17981,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -26.4234}
+  m_AnchoredPosition: {x: 0, y: -19}
   m_SizeDelta: {x: 0, y: 28.8468}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075689700
@@ -17953,6 +18000,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1075689701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18282,6 +18330,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1101067342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18754,6 +18803,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1127702777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19234,6 +19284,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1143814120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19566,6 +19617,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1163685850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20022,6 +20074,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1190379694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20192,6 +20245,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1192063683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20729,8 +20783,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.300003, y: 1.7}
-  m_SizeDelta: {x: 141.5344, y: 141.7236}
+  m_AnchoredPosition: {x: 0.29999924, y: 0.0157}
+  m_SizeDelta: {x: 111.2199, y: 108.137}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1221086792
 MonoBehaviour:
@@ -20865,6 +20919,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1229664464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21171,6 +21226,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1235986386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21373,6 +21429,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1248840319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21524,7 +21581,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 9.565193}
+  m_AnchoredPosition: {x: 0, y: 30}
   m_SizeDelta: {x: 0, y: 30.8696}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1251349913
@@ -21640,6 +21697,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1251349916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21789,6 +21847,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1257940331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22035,6 +22094,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1267556101
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22557,8 +22617,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -21.8, y: 56}
-  m_SizeDelta: {x: 150, y: 100}
+  m_AnchoredPosition: {x: 8.3, y: 64.650154}
+  m_SizeDelta: {x: 81.4502, y: 79.9347}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1335790691
 MonoBehaviour:
@@ -22580,7 +22640,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3a45c8d0a4fd9e4459af8bd9f0f4c54c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3a94e5510006b204d869483375a9639a, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22709,8 +22769,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 133.4489, y: 133.4489}
+  m_AnchoredPosition: {x: 0.40000153, y: 0.4}
+  m_SizeDelta: {x: 109.8972, y: 109.8972}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1352006735
 MonoBehaviour:
@@ -22806,6 +22866,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1354650240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22976,6 +23037,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1367153806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24492,6 +24554,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1502957167
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24987,6 +25050,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1519204822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25248,6 +25312,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1527275015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25533,6 +25598,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1551209326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25703,6 +25769,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1553633692
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26166,6 +26233,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 1586408209}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1586408208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27707,6 +27775,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1688368693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28099,6 +28168,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1718286226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28273,6 +28343,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1720313050
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28705,6 +28776,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1730509461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29020,6 +29092,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1737847902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29434,6 +29507,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1777414777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29723,6 +29797,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1780669416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30578,8 +30653,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 47.3}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: -8.5, y: 63.4}
+  m_SizeDelta: {x: 83.2865, y: 83.2865}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1863409394
 MonoBehaviour:
@@ -30742,6 +30817,107 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1866532662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1866532666}
+  - component: {fileID: 1866532665}
+  - component: {fileID: 1866532664}
+  - component: {fileID: 1866532663}
+  m_Layer: 5
+  m_Name: Canvas (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1866532663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866532662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!114 &1866532664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866532662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+  m_PresetInfoIsWorld: 0
+--- !u!223 &1866532665
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866532662}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 1
+  m_Camera: {fileID: 519420031}
+  m_PlaneDistance: 250
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &1866532666
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866532662}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2006627603}
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
 --- !u!1 &1869731389
 GameObject:
   m_ObjectHideFlags: 0
@@ -30853,8 +31029,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 2.1477966, y: 0.38186646}
-  m_SizeDelta: {x: -4.2957, y: -0.764}
+  m_AnchoredPosition: {x: 2.1477966, y: -3.6518}
+  m_SizeDelta: {x: -4.2957, y: -8.8313}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1872620943
 MonoBehaviour:
@@ -31249,6 +31425,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1913691012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31780,6 +31957,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1947352809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32403,6 +32581,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &1972619187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32970,6 +33149,82 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &2006627602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2006627603}
+  - component: {fileID: 2006627605}
+  - component: {fileID: 2006627604}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2006627603
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006627602}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1866532666}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2006627604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006627602}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: eb8015ca7523f6045805309e7afb03fe, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &2006627605
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006627602}
+  m_CullTransparentMesh: 1
 --- !u!1 &2017521536
 GameObject:
   m_ObjectHideFlags: 0
@@ -33026,6 +33281,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &2017521539
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33436,6 +33692,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &2030793933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34545,6 +34802,7 @@ MonoBehaviour:
   tashkeel: 1
   hinduNumbers: 1
   showText: {fileID: 0}
+  showTextLegacy: {fileID: 0}
 --- !u!114 &2111291348
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using ArabicSupport;
 using Assets.SimpleLocalization.Scripts;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FixLocalizedText : MonoBehaviour
 {
@@ -12,15 +13,30 @@ public class FixLocalizedText : MonoBehaviour
     public bool hinduNumbers = true;
 
     public TMP_Text showText;
-	
+    public Text showTextLegacy;
+
     // Use this for initialization
     private void Awake ()
     {
-        showText = GetComponent<TMP_Text>();
+        if (GetComponent<TMP_Text>())
+        {
+            showText = GetComponent<TMP_Text>();
+        }
+        else if (GetComponent<Text>())
+        {
+            showTextLegacy = GetComponent<Text>();
+        }
     }
 	
     public void FixText()
     {
-        showText.text = ArabicFixer.Fix(text, tashkeel, hinduNumbers);
+        if (showText != null)
+        {
+            showText.text = ArabicFixer.Fix(text, tashkeel, hinduNumbers);
+        }
+        else if (showTextLegacy != null)
+        {
+            showTextLegacy.text = ArabicFixer.Fix(text, tashkeel, hinduNumbers);
+        }
     }
 }
