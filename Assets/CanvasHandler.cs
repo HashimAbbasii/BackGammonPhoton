@@ -136,6 +136,9 @@ public class CanvasHandler : MonoBehaviour
         bottomMenuVerticalLayoutgroup.transform.GetChild(3).gameObject.SetActive(false);
         bottomMenuVerticalLayoutgroup.transform.GetChild(4).gameObject.SetActive(false);
         bottomMenuVerticalLayoutgroup.transform.GetChild(5).gameObject.SetActive(false);
+
+
+       
     }
 
     private void Awake()
@@ -220,20 +223,20 @@ public class CanvasHandler : MonoBehaviour
 
 
 
-        //float screen_ratio = (Screen.width * 1f / Screen.height);
+        float screen_ratio = (Screen.width * 1f / Screen.height);
 
-        //if (screen_ratio <= 1.5f)
-        //{
-        //    Player0Object.anchoredPosition = new Vector3(1, 0, 0);
-        //    Player1Object.anchoredPosition = new Vector3(-1, 0, 0);
+        if (screen_ratio <= 1.5f)
+        {
+            Player0Object.anchoredPosition = new Vector3(1, 0, 0);
+            Player1Object.anchoredPosition = new Vector3(-1, 0, 0);
 
-        //}
+        }
 
-        //else if (screen_ratio > 1.5f)
-        //{
-        //    Player0Object.anchoredPosition = new Vector3(15, 0, 0);
-        //    Player1Object.anchoredPosition = new Vector3(-15, 0, 0);
-        //}
+        else if (screen_ratio > 1.5f)
+        {
+            Player0Object.anchoredPosition = new Vector3(15, 0, 0);
+            Player1Object.anchoredPosition = new Vector3(-15, 0, 0);
+        }
 
 
 
@@ -366,10 +369,31 @@ public class CanvasHandler : MonoBehaviour
                     highlight2P1RectTransform.sizeDelta = new Vector2(139.58f, 117.5537f);
                     highlight2P1RectTransform.localScale = new Vector3(1f, 1f, 1f);
 
+                    /////////////////////////////////////////////////////////////////////////////////////////////
+
                     RectTransform highlight1P1RectTransform = Highlight1P1.GetComponent<RectTransform>();
-                    highlight1P1RectTransform.anchoredPosition = new Vector2(-18.681f, -7.274f);
-                    highlight1P1RectTransform.sizeDelta = new Vector2(-18.681f, -3.11325f);
-                    highlight1P1RectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    highlight1P1RectTransform.offsetMin = new Vector2(-18.68f, -7.350752f);
+                    highlight1P1RectTransform.offsetMax = new Vector2(19.9292f, 7.793348f);
+
+
+
+
+
+
+
+
+
+                    //RectTransform highlight1P1RectTransform = Highlight1P1.GetComponent<RectTransform>();
+                    //highlight1P1RectTransform.anchoredPosition = new Vector2(-18.681f, -7.274f);
+                    //highlight1P1RectTransform.sizeDelta = new Vector2(-18.681f, -3.11325f);
+                    //highlight1P1RectTransform.localScale = new Vector3(1f, 1f, 1f);
+
+
+
+
+
+
+
 
                     //Vector3(-49.9999924, 2.08039856, 0)
 

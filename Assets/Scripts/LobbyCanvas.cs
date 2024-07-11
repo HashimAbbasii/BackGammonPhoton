@@ -11,6 +11,11 @@ using TMPro;
 
 public class LobbyCanvas : MonoBehaviourPunCallbacks
 {
+    [Header("new values")]
+    public GameObject roomNameGO;
+    public GameObject InputFieldCreateRoomGO;
+    public GameObject EnterNameTextGO;
+
 
     [Header("PortraitWebGLElement")]
     public GameObject connectP;
@@ -27,7 +32,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public GameObject createRoomPanelGameObject;
 
     public GameObject roomListGameobject;
-    public GameObject topBarDifficultyLevelGameObject;
+    //public GameObject topBarDifficultyLevelGameObject;
     public GameObject difficultyLevelBackGameObject;
 
     public GameObject choiceDifficultyLevelGameObject;
@@ -37,6 +42,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
     public GameObject buttonsDifficultyLevelGameObjectP;
 
     public GameObject CreateRoomBack;
+    public GameObject lobbyPanelBack;
+    public GameObject roomListBack;
 
 
 
@@ -232,7 +239,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
         float ratio = (Screen.width * 1f / Screen.height);
         testtext.text = ratio.ToString();
 
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
+       if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
             var width = Screen.width;
             var height = Screen.height;
@@ -319,7 +326,59 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
             RoomListScrollViewRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
 
-                   if(tutorialPanelActiveButtonPressed == true)
+
+                    RectTransform createRoomRectTransform = createRoom.GetComponent<RectTransform>(); //////////
+                    createRoomRectTransform.anchoredPosition = new Vector2(0f, -74f);
+
+
+                    
+                     RectTransform lobbyPanelBackRectTransform = lobbyPanelBack.GetComponent<RectTransform>(); //////////
+                    lobbyPanelBackRectTransform.anchoredPosition = new Vector2(32f, -101f);
+
+                    
+                        RectTransform CreateRoomBackRectTransform = CreateRoomBack.GetComponent<RectTransform>(); //////////
+                    CreateRoomBackRectTransform.anchoredPosition = new Vector2(38f, -89f);
+
+
+                    RectTransform roomListBackRectTransform = roomListBack.GetComponent<RectTransform>(); //////////
+                    roomListBackRectTransform.anchoredPosition = new Vector2(29f, -95f);
+
+
+                    
+                         RectTransform difficultyLevelRectTransform = difficultyLevel.GetComponent<RectTransform>(); //////////
+                    difficultyLevelRectTransform.anchoredPosition = new Vector2(0f, -71f);
+
+
+
+                    RectTransform roomNameGORectTransform = roomNameGO.GetComponent<RectTransform>(); //////////
+                    roomNameGORectTransform.anchoredPosition = new Vector2(0f, -158f);
+
+
+                    RectTransform connectPRectTransform = connectP.GetComponent<RectTransform>(); //////////
+                    connectPRectTransform.anchoredPosition = new Vector2(10.208f, -415f);
+
+                    RectTransform localPlayPRectTransform = localPlayP.GetComponent<RectTransform>(); //////////
+                    localPlayPRectTransform.anchoredPosition = new Vector2(10.208f, -279.06f);
+
+
+                    RectTransform InputFieldCreateRoomGORectTransform = InputFieldCreateRoomGO.GetComponent<RectTransform>(); //////////
+                    InputFieldCreateRoomGORectTransform.anchoredPosition = new Vector2(150.96f, 284.4f);
+                    InputFieldCreateRoomGORectTransform.sizeDelta = new Vector2(569.73f, 88.95f);
+
+                    RectTransform EnterNameTextGORectTransform = EnterNameTextGO.GetComponent<RectTransform>(); //////////
+                    EnterNameTextGORectTransform.anchoredPosition = new Vector2(-306.755f, 284.48f);
+                    EnterNameTextGORectTransform.sizeDelta = new Vector2(312.701f, 88.956f);
+
+                
+                    
+                    
+                    
+                    
+                    RectTransform createRoomBtnGameObjectPRectTransform = createRoomBtnGameObjectP.GetComponent<RectTransform>(); //////////
+                    createRoomBtnGameObjectPRectTransform.anchoredPosition = new Vector2(75.1268f, 144.967f);
+
+
+                    if (tutorialPanelActiveButtonPressed == true)
                     {
                         tutorialPanelLandScape.gameObject.SetActive(false);
                         tutorialPanelPortrait.gameObject.SetActive(true);
@@ -347,6 +406,19 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
                     RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
                     loadingPanelRectTransform.sizeDelta = new Vector3(1283f, 912.1758f);
+
+
+
+                    RectTransform onlinePlayRectTransform = onlinePlay.GetComponent<RectTransform>();
+                    onlinePlayRectTransform.anchoredPosition = new Vector3(0f, -79f);
+
+
+
+                    
+
+                     RectTransform findRoomRectTransform = findRoom.GetComponent<RectTransform>();
+                    findRoomRectTransform.anchoredPosition = new Vector3(0f, -73f);
+
 
                     keyboardPanelImg.gameObject.SetActive(false);
                     keyboardPanelImg2.gameObject.SetActive(false);
@@ -391,27 +463,19 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 
                     RectTransform difficultyTextRectTransform = DifficultyText.GetComponent<RectTransform>();
-                    difficultyTextRectTransform.anchoredPosition = new Vector2(0.611f, -0.2999878f);
+                    difficultyTextRectTransform.anchoredPosition = new Vector2(0.611f, -76f);
                     difficultyTextRectTransform.sizeDelta = new Vector2(534.136f, 99.8f);
 
-                    
+
 
                     RectTransform difficultylevelBackRectTransform = difficultyLevelBackGameObject.GetComponent<RectTransform>();
-                    difficultylevelBackRectTransform.anchoredPosition = new Vector2(53f, -22f);
+                    difficultylevelBackRectTransform.anchoredPosition = new Vector2(53f, -86f);
                     difficultylevelBackRectTransform.sizeDelta = new Vector2(60f, 60f);
 
                     //RectTransform difficultyLevelYopBarRectTransform = topBarDifficultyLevelGameObject.GetComponent<RectTransform>();
                     //difficultyLevelYopBarRectTransform.anchoredPosition = new Vector2(0f, -95f);
 
-                    RectTransform difficultyLevelYopBarRectTransform = topBarDifficultyLevelGameObject.GetComponent<RectTransform>();
-                    difficultyLevelYopBarRectTransform.offsetMin = new Vector2(0, difficultyLevelYopBarRectTransform.offsetMin.y);
-                    difficultyLevelYopBarRectTransform.offsetMax = new Vector2(0, difficultyLevelYopBarRectTransform.offsetMax.y);
-                    Vector2 _sizeDelta = difficultyLevelYopBarRectTransform.sizeDelta;
-                    _sizeDelta.y = 99.8f;
-                    difficultyLevelYopBarRectTransform.sizeDelta = _sizeDelta;
-                    Vector2 _anchoredPosition = difficultyLevelYopBarRectTransform.anchoredPosition;
-                    _anchoredPosition.y = 0f;
-                    difficultyLevelYopBarRectTransform.anchoredPosition = _anchoredPosition;
+                   
 
 
 
@@ -422,7 +486,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     createRoomTextRectTransform.anchoredPosition = new Vector2(179f, -79f);
 
                     RectTransform findRoomTextRectTransform = FindRoomText.GetComponent<RectTransform>();
-                    findRoomTextRectTransform.anchoredPosition = new Vector2(134f, -82f);
+                    findRoomTextRectTransform.sizeDelta = new Vector2(713.702f, 70f);
+                    findRoomTextRectTransform.anchoredPosition = new Vector2(97f, -82f);
 
 
 
@@ -501,6 +566,72 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                         tutorialPanelLandScape.gameObject.SetActive(true);
                         tutorialPanelPortrait.gameObject.SetActive(false);
                     }
+
+
+
+
+                    /////////////////////////////////
+
+                    RectTransform createRoomRectTransform = createRoom.GetComponent<RectTransform>(); //////////
+                    createRoomRectTransform.anchoredPosition = new Vector2(0f, -0.79998f);
+
+
+                    RectTransform onlinePlayRectTransform = onlinePlay.GetComponent<RectTransform>();
+                    onlinePlayRectTransform.anchoredPosition = new Vector3(0f, 0.1700134f);
+
+
+                    RectTransform lobbyPanelBackRectTransform = lobbyPanelBack.GetComponent<RectTransform>(); //////////
+                    lobbyPanelBackRectTransform.anchoredPosition = new Vector2(32f, -24f);
+
+                    RectTransform CreateRoomBackRectTransform = CreateRoomBack.GetComponent<RectTransform>(); //////////
+                    CreateRoomBackRectTransform.anchoredPosition = new Vector2(38f, -27.4f);
+
+                    RectTransform roomListBackRectTransform = roomListBack.GetComponent<RectTransform>(); //////////
+                    roomListBackRectTransform.anchoredPosition = new Vector2(29f, -29f);
+
+
+                    RectTransform findRoomRectTransform = findRoom.GetComponent<RectTransform>();
+                    findRoomRectTransform.anchoredPosition = new Vector3(0f, 0.2000122f);
+
+
+
+                    RectTransform difficultyLevelRectTransform = difficultyLevel.GetComponent<RectTransform>(); //////////
+                    difficultyLevelRectTransform.anchoredPosition = new Vector2(0f, 0.7999878f);
+
+
+
+
+                    RectTransform roomNameGORectTransform = roomNameGO.GetComponent<RectTransform>(); //////////
+                    roomNameGORectTransform.anchoredPosition = new Vector2(0f, -47f);
+
+
+
+                    RectTransform connectPRectTransform = connectP.GetComponent<RectTransform>(); //////////
+                    connectPRectTransform.anchoredPosition = new Vector2(10.208f, -301.93f);
+
+                    RectTransform localPlayPRectTransform = localPlayP.GetComponent<RectTransform>(); //////////
+                    localPlayPRectTransform.anchoredPosition = new Vector2(10.208f, -166f);
+
+
+                    RectTransform createRoomBtnGameObjectPRectTransform = createRoomBtnGameObjectP.GetComponent<RectTransform>(); //////////
+                    createRoomBtnGameObjectPRectTransform.anchoredPosition = new Vector2(137f, 144.967f);
+
+
+                    RectTransform InputFieldCreateRoomGORectTransform = InputFieldCreateRoomGO.GetComponent<RectTransform>(); //////////
+                    InputFieldCreateRoomGORectTransform.anchoredPosition = new Vector2(147.11f, 284.48f);
+                    InputFieldCreateRoomGORectTransform.sizeDelta = new Vector2(1035.1f, 88.956f);
+
+                    RectTransform EnterNameTextGORectTransform = EnterNameTextGO.GetComponent<RectTransform>(); //////////
+                    EnterNameTextGORectTransform.anchoredPosition = new Vector2(-565f, 284.48f);
+                    EnterNameTextGORectTransform.sizeDelta = new Vector2(312.701f, 88.956f);
+
+
+
+
+
+
+
+
 
 
                     RectTransform RoomListSearchBarRectTransform = RoomListSearchBar.GetComponent<RectTransform>();
@@ -585,34 +716,31 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 
                     RectTransform difficultyTextRectTransform = DifficultyText.GetComponent<RectTransform>();
-                    difficultyTextRectTransform.anchoredPosition = new Vector2(0.611f, -31f);
+                    difficultyTextRectTransform.anchoredPosition = new Vector2(0.611f, -9.7144f);
+                    difficultyTextRectTransform.sizeDelta = new Vector2(534.136f, 82.1427f);
+
+
+
+
 
                     RectTransform difficultylevelBackRectTransform = difficultyLevelBackGameObject.GetComponent<RectTransform>();
-                    difficultylevelBackRectTransform.anchoredPosition = new Vector2(53f, -110f);
+                    difficultylevelBackRectTransform.anchoredPosition = new Vector2(53f, -22f);
                     difficultylevelBackRectTransform.sizeDelta = new Vector2(60f, 60f);
 
                     //RectTransform difficultyLevelYopBarRectTransform = topBarDifficultyLevelGameObject.GetComponent<RectTransform>();
                     //difficultyLevelYopBarRectTransform.anchoredPosition = new Vector2(0f, -95f);
 
-                    RectTransform difficultyLevelYopBarRectTransform = topBarDifficultyLevelGameObject.GetComponent<RectTransform>();
-                    difficultyLevelYopBarRectTransform.offsetMin = new Vector2(0, difficultyLevelYopBarRectTransform.offsetMin.y);
-                    difficultyLevelYopBarRectTransform.offsetMax = new Vector2(0, difficultyLevelYopBarRectTransform.offsetMax.y);
-                    Vector2 _sizeDelta = difficultyLevelYopBarRectTransform.sizeDelta;
-                    _sizeDelta.y = 99.8f;
-                    difficultyLevelYopBarRectTransform.sizeDelta = _sizeDelta;
-                    Vector2 _anchoredPosition = difficultyLevelYopBarRectTransform.anchoredPosition;
-                    _anchoredPosition.y = -95f;
-                    difficultyLevelYopBarRectTransform.anchoredPosition = _anchoredPosition;
+                    
 
 
                     //RectTransform lobbyPanelTextRectTransform = LobbyPanelText.GetComponent<RectTransform>();
                     //lobbyPanelTextRectTransform.anchoredPosition = new Vector2(0f, 363f);
 
                     RectTransform createRoomTextRectTransform = CreateRoomText.GetComponent<RectTransform>();
-                    createRoomTextRectTransform.anchoredPosition = new Vector2(938f, -75f);
+                    createRoomTextRectTransform.anchoredPosition = new Vector2(938f, -10f);
 
                     RectTransform findRoomTextRectTransform = FindRoomText.GetComponent<RectTransform>();
-                    findRoomTextRectTransform.anchoredPosition = new Vector2(679f, -85f);
+                    findRoomTextRectTransform.anchoredPosition = new Vector2(679f, -14f);
 
 
 
@@ -630,9 +758,9 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
             }
 
-            
 
-            else if(ratio >= 1.55) // WebGL PC
+
+            else if (ratio >= 1.55) // WebGL PC
             {
                 BottomMenu.gameObject.SetActive(false);
                 buttonsPanel.gameObject.SetActive(true);
@@ -654,8 +782,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                 keyboardCanvas.gameObject.SetActive(false);
 
 
-                
-                
+
+
 
 
             }
