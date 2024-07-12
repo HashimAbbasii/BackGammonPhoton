@@ -308,10 +308,10 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
 
 
     }
-    private void OnEnable()
-    {
-        Application.focusChanged += FocusChanged;
-    }
+    //private void OnEnable()
+    //{
+    //    Application.focusChanged += FocusChanged;
+    //}
     public void FocusChanged(bool FocusChange)
     {
         if (!PhotonNetwork.InRoom) return;
@@ -398,6 +398,7 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         PhotonNetwork.AutomaticallySyncScene = true;
         //startingTime = DateTime.Now;
         StartCoroutine(Test());
+        Application.focusChanged += FocusChanged;
     }
 
 

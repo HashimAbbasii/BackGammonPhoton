@@ -28,16 +28,6 @@ public class MyGameManager : MonoBehaviour
     public bool AiModeTest;
     public static int houseColorDetermince;
 
-    public void OnEnable()
-    {
-        Application.focusChanged += IHaveChangedFocus;
-    }
-
-    public void IHaveChangedFocus(bool focusState)
-    {
-        Debug.Log("Changed Focus to " + focusState);
-    }
-
     //public void gameOverOnHumanPanel()
     //{
 
