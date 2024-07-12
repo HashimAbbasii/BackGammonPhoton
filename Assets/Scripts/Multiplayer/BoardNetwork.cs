@@ -50,6 +50,26 @@ namespace BackgammonNet.Core
             //submitBtns[1].onClick.AddListener(delegate { Accept(1); });
         }
 
+        private void OnEnable()
+        {
+            Application.focusChanged += FocusChanged;
+        }
+
+        public void FocusChanged(bool FocusChange)
+        {
+            photonView.RPC(nameof(FocusChangeRPC), RpcTarget.AllBuffered, FocusChange);
+        }
+
+        [PunRPC]
+        public void FocusChangeRPC(bool FocusChange)
+        {
+            submitBtns[0].interactable = FocusChange;
+        }
+
+        private void Update()
+        {
+            
+        }
 
         public void Accept()
         {

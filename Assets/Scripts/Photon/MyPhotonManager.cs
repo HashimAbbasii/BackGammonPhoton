@@ -264,7 +264,9 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         //base.OnCreatedRoom();
         Debug.Log(PhotonNetwork.LocalPlayer.NickName + "Room Joined");
         ActiveMyPanel(InsideRoomPanel.name);
+
         
+
         if (playerListGameObject == null)
         {
             playerListGameObject = new Dictionary<int, GameObject>();
@@ -272,10 +274,12 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom.PlayerCount > 1)
         {
+            PhotonNetwork.CurrentRoom.IsVisible = false;
             PlayButton.SetActive(true);
         }
         else
         {
+            PhotonNetwork.CurrentRoom.IsVisible = true;
             PlayButton.SetActive(false);
         }
         foreach (Player p in PhotonNetwork.PlayerList)
@@ -303,6 +307,21 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         }
 
 
+    }
+    private void OnEnable()
+    {
+        Application.focusChanged += FocusChanged;
+    }
+    public void FocusChanged(bool FocusChange)
+    {
+        if (!PhotonNetwork.InRoom) return;
+        photonView.RPC(nameof(FocusChangeRPC), RpcTarget.AllBuffered, FocusChange);
+    }
+
+    [PunRPC]
+    public void FocusChangeRPC(bool FocusChange)
+    {
+        PlayButton.GetComponent<Button>().interactable = FocusChange;
     }
     IEnumerator roomname()
     {

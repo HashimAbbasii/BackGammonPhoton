@@ -76,6 +76,7 @@ MonoBehaviour:
   - UpdatePlayerNames
   - ScoreUpdate
   - ScoreUpdate1
+  - FocusChangeRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

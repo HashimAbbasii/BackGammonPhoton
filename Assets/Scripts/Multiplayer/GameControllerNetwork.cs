@@ -760,6 +760,8 @@ namespace BackgammonNet.Core
             if (winner == int.Parse(PhotonNetwork.NickName))
             {
 
+                
+
                 PawnNetwork.InitializePawn();
 
                 //YouWinPanel.SetActive(true);
@@ -767,10 +769,12 @@ namespace BackgammonNet.Core
 #if UNITY_WEBGL
                 if (IsRunningOnAndroid() || IsRunningOniOS())
                 {
+                    isGameOver = true;
                     YouWinPanelportraitMain.gameObject.SetActive(true);
                 }
                 else
                 {
+                    isGameOver = true;
                     YouWinPanel.gameObject.SetActive(true);
                 }
 
