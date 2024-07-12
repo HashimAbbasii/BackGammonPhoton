@@ -201,20 +201,20 @@ public class CanvasHandlerNetwork : MonoBehaviour
 
 
 
-        //float screen_ratio = (Screen.width * 1f / Screen.height);
+        float screen_ratio = (Screen.width * 1f / Screen.height);
 
-        //if (screen_ratio <= 1.5f)
-        //{
-        //    Player0Object.anchoredPosition = new Vector3(0, 0, 0);
-        //    Player1Object.anchoredPosition = new Vector3(0, 0, 0);
+        if (screen_ratio <= 1.5f)
+        {
+            Player0Object.anchoredPosition = new Vector3(0, 0, 0);
+            Player1Object.anchoredPosition = new Vector3(0, 0, 0);
 
-        //}
+        }
 
-        //else if (screen_ratio > 1.5f)
-        //{
-        //    Player0Object.anchoredPosition = new Vector3(15, 0, 0);
-        //    Player1Object.anchoredPosition = new Vector3(-15, 0, 0);
-        //}
+        else if (screen_ratio > 1.5f)
+        {
+            Player0Object.anchoredPosition = new Vector3(15, 0, 0);
+            Player1Object.anchoredPosition = new Vector3(-15, 0, 0);
+        }
 
 
 
@@ -228,7 +228,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
         // -------------------------------------------------------- Portrait WEBGL Commented Area-------------------------------------------------------------------------------//
 
         float ratio = (Screen.width * 1f / Screen.height);
-        //if (Application.platform == RuntimePlatform.WebGLPlayer)
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
             var width = Screen.width;
             var height = Screen.height;
@@ -239,7 +239,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
             }
 
 
-            //if (IsRunningOnAndroid() || IsRunningOniOS())
+            if (IsRunningOnAndroid() || IsRunningOniOS())
             {
                 BottomMenu.gameObject.SetActive(true);
                 buttonsPanel.gameObject.SetActive(false);
@@ -609,23 +609,23 @@ public class CanvasHandlerNetwork : MonoBehaviour
 
 
 
-            //else if (ratio >= 1.55) // WebGL PC
-            //{
+            else if (ratio >= 1.55) // WebGL PC
+            {
 
-            //    BottomMenu.gameObject.SetActive(false);
-            //    buttonsPanel.gameObject.SetActive(true);
+                BottomMenu.gameObject.SetActive(false);
+                buttonsPanel.gameObject.SetActive(true);
 
-            //    //RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
-            //    //keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);
-            //    //keysParentRectTransform.localScale = new Vector3(0.71715f, 0.71715f, 0.71715f);
-            //    //keysParentRectTransform.localPosition = new Vector2(0.70713f, -0.14143f);
-
-
-            //    //RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
-            //    //loadingPanelRectTransform.sizeDelta = new Vector3(1949.1f, 1385.721f);
+                //RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
+                //keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);
+                //keysParentRectTransform.localScale = new Vector3(0.71715f, 0.71715f, 0.71715f);
+                //keysParentRectTransform.localPosition = new Vector2(0.70713f, -0.14143f);
 
 
-            //}
+                //RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
+                //loadingPanelRectTransform.sizeDelta = new Vector3(1949.1f, 1385.721f);
+
+
+            }
 
         }
 
