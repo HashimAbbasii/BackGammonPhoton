@@ -250,7 +250,7 @@ public class CanvasHandler : MonoBehaviour
         // -------------------------------------------------------- Portrait WEBGL Commented Area-------------------------------------------------------------------------------//
 
         float ratio = (Screen.width * 1f / Screen.height);
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
+      //  if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
             var width = Screen.width;
             var height = Screen.height;
@@ -263,7 +263,7 @@ public class CanvasHandler : MonoBehaviour
 
 
 
-            if (IsRunningOnAndroid() || IsRunningOniOS())
+           // if (IsRunningOnAndroid() || IsRunningOniOS())
             {
             
                     BottomMenu.gameObject.SetActive(true);
@@ -323,22 +323,42 @@ public class CanvasHandler : MonoBehaviour
 
 
                     RectTransform player0RectTransform = player0.GetComponent<RectTransform>();
+
+                    player0RectTransform.anchorMin = new Vector2(0f, 0.5f);
+                    player0RectTransform.anchorMax = new Vector2(0f, 0.5f);
+                    player0RectTransform.pivot = new Vector2(0f, 0.5f);
+
                     player0RectTransform.anchoredPosition = new Vector2(134f, 301f);
                     player0RectTransform.sizeDelta = new Vector2(100f, 600f);
                     player0RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
 
                     RectTransform points0RectTransform = Points0Object.GetComponent<RectTransform>();
+
+                    points0RectTransform.anchorMin = new Vector2(0f, 0.5f);
+                    points0RectTransform.anchorMax = new Vector2(0f, 0.5f);
+                    points0RectTransform.pivot = new Vector2(0f, 0.5f);
+
                     points0RectTransform.anchoredPosition = new Vector2(253f, 299.97f);
                     points0RectTransform.sizeDelta = new Vector2(100f, 100f);
                     points0RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
 
 
                     RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
+
+                    player1RectTransform.anchorMin = new Vector2(1f, 0.5f);
+                    player1RectTransform.anchorMax = new Vector2(1f, 0.5f);
+                    player1RectTransform.pivot = new Vector2(1f, 0.5f);
+
                     player1RectTransform.anchoredPosition = new Vector2(-251f, -305f);                         //-129
                     player1RectTransform.sizeDelta = new Vector2(100f, 600f);
                     player1RectTransform.localScale = new Vector3(1f, 1f, 1f);        //// 0.52276
 
                     RectTransform points1RectTransform = Points1Object.GetComponent<RectTransform>();
+
+                    points1RectTransform.anchorMin = new Vector2(1f, 0.5f);
+                    points1RectTransform.anchorMax = new Vector2(1f, 0.5f);
+                    points1RectTransform.pivot = new Vector2(1f, 0.5f);
+
                     points1RectTransform.anchoredPosition = new Vector2(-133f, -318.7f);
                     points1RectTransform.sizeDelta = new Vector2(100f, 100f);
                     points1RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
@@ -351,7 +371,7 @@ public class CanvasHandler : MonoBehaviour
                     submissionPanelRectTransform.localScale = new Vector3(0.7967f, 0.7967f, 0.7967f);
 
                     RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
-                    timerPanelRectTransform.anchoredPosition = new Vector2(19f, 87f);
+                    timerPanelRectTransform.anchoredPosition = new Vector2(19f, 79f);
                     timerPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                     RectTransform highlight2P0RectTransform = Highlight2P0.GetComponent<RectTransform>();
@@ -661,21 +681,21 @@ public class CanvasHandler : MonoBehaviour
 
 
 
-            else if (ratio >= 1.55) // WebGL PC
-            {
-                BottomMenu.gameObject.SetActive(false);
-                buttonsPanel.gameObject.SetActive(true);
+            //else if (ratio >= 1.55) // WebGL PC
+            //{
+            //    BottomMenu.gameObject.SetActive(false);
+            //    buttonsPanel.gameObject.SetActive(true);
 
-                //RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
-                //keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);
-                //keysParentRectTransform.localScale = new Vector3(0.71715f, 0.71715f, 0.71715f);
-                //keysParentRectTransform.localPosition = new Vector2(0.70713f, -0.14143f);
+            //    //RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
+            //    //keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);
+            //    //keysParentRectTransform.localScale = new Vector3(0.71715f, 0.71715f, 0.71715f);
+            //    //keysParentRectTransform.localPosition = new Vector2(0.70713f, -0.14143f);
 
 
-                //RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
-                //loadingPanelRectTransform.sizeDelta = new Vector3(1949.1f, 1385.721f);
+            //    //RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
+            //    //loadingPanelRectTransform.sizeDelta = new Vector3(1949.1f, 1385.721f);
 
-            }
+            //}
 
         }
 
