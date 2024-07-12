@@ -228,7 +228,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
         // -------------------------------------------------------- Portrait WEBGL Commented Area-------------------------------------------------------------------------------//
 
         float ratio = (Screen.width * 1f / Screen.height);
-        if (Application.platform == RuntimePlatform.WebGLPlayer)
+       // if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
             var width = Screen.width;
             var height = Screen.height;
@@ -239,7 +239,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
             }
 
 
-            if (IsRunningOnAndroid() || IsRunningOniOS())
+          //  if (IsRunningOnAndroid() || IsRunningOniOS())
             {
                 BottomMenu.gameObject.SetActive(true);
                 buttonsPanel.gameObject.SetActive(false);
@@ -259,18 +259,54 @@ public class CanvasHandlerNetwork : MonoBehaviour
                     nameText1RectTransform.anchoredPosition = new Vector2(-1.5258f, -21f);
 
 
-                    //RectTransform pointStatic0RectTransform = pointsStatic0.GetComponent<RectTransform>();
-                    //pointStatic0RectTransform.anchoredPosition = new Vector2(0f, 25f);
-
-                    //RectTransform pointStatic1RectTransform = pointsStatic1.GetComponent<RectTransform>();
-                    //pointStatic1RectTransform.anchoredPosition = new Vector2(-3.051758e-05f, 25.67082f);
 
 
-                    //RectTransform pointVar0RectTransform = pointsVar0.GetComponent<RectTransform>();
-                    //pointVar0RectTransform.anchoredPosition = new Vector2(0f, -15f);
 
-                    //RectTransform pointVar1RectTransform = pointsVar1.GetComponent<RectTransform>();
-                    //pointVar1RectTransform.anchoredPosition = new Vector2(-3.051758e-05f, -15f);
+
+
+
+
+                    RectTransform pointStatic0RectTransform = pointsStatic0.GetComponent<RectTransform>();
+                    pointStatic0RectTransform.anchoredPosition = new Vector2(0f, 25f);
+
+                    RectTransform pointStatic1RectTransform = pointsStatic1.GetComponent<RectTransform>();
+                    pointStatic1RectTransform.anchoredPosition = new Vector2(-3.051758e-05f, 25.67082f);
+
+
+                    RectTransform pointVar0RectTransform = pointsVar0.GetComponent<RectTransform>();
+                    pointVar0RectTransform.anchoredPosition = new Vector2(0f, -15f);
+
+                    RectTransform pointVar1RectTransform = pointsVar1.GetComponent<RectTransform>();
+                    pointVar1RectTransform.anchoredPosition = new Vector2(-3.051758e-05f, -15f);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                     RectTransform player0BGImgRectTransform = player0BGImg.GetComponent<RectTransform>();
@@ -295,23 +331,44 @@ public class CanvasHandlerNetwork : MonoBehaviour
 
 
                     RectTransform player0RectTransform = player0.GetComponent<RectTransform>();
-                    player0RectTransform.anchoredPosition = new Vector2(134f, 301f);
+                    
+                    player0RectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+                    player0RectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+                    player0RectTransform.pivot = new Vector2(1f, 0.5f);
+
+                    player0RectTransform.anchoredPosition = new Vector2(-15f, 301f);
                     player0RectTransform.sizeDelta = new Vector2(100f, 600f);
                     player0RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
 
+
                     RectTransform points0RectTransform = Points0Object.GetComponent<RectTransform>();
-                    points0RectTransform.anchoredPosition = new Vector2(253f, 299.97f);
+
+                    points0RectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+                    points0RectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+                    points0RectTransform.pivot = new Vector2(1f, 0.5f);
+
+                    points0RectTransform.anchoredPosition = new Vector2(100f, 299.97f);
                     points0RectTransform.sizeDelta = new Vector2(100f, 100f);
                     points0RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
 
 
                     RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
-                    player1RectTransform.anchoredPosition = new Vector2(-251f, -305f);                         //-129
+
+                    player1RectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+                    player1RectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+                    player1RectTransform.pivot = new Vector2(1f, 0.5f);
+
+                    player1RectTransform.anchoredPosition = new Vector2(-15f, -305f);                         //-129
                     player1RectTransform.sizeDelta = new Vector2(100f, 600f);
                     player1RectTransform.localScale = new Vector3(1f, 1f, 1f);        //// 0.52276
 
                     RectTransform points1RectTransform = Points1Object.GetComponent<RectTransform>();
-                    points1RectTransform.anchoredPosition = new Vector2(-133f, -318.7f);
+
+                    points1RectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+                    points1RectTransform.anchorMax = new Vector2(0.5f, 0.5f);
+                    points1RectTransform.pivot = new Vector2(1f, 0.5f);
+
+                    points1RectTransform.anchoredPosition = new Vector2(100f, -318.7f);
                     points1RectTransform.sizeDelta = new Vector2(100f, 100f);
                     points1RectTransform.localScale = new Vector3(1f, 1f, 1f);     // 0.52276
 
@@ -323,7 +380,7 @@ public class CanvasHandlerNetwork : MonoBehaviour
                     submissionPanelRectTransform.localScale = new Vector3(0.7967f, 0.7967f, 0.7967f);
 
                     RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
-                    timerPanelRectTransform.anchoredPosition = new Vector2(0f, 111f);
+                    timerPanelRectTransform.anchoredPosition = new Vector2(0f, 83f);
                     timerPanelRectTransform.sizeDelta = new Vector2(132.76f, 50f);
                     timerPanelRectTransform.localScale = new Vector3(1f,1f, 1f);
 
@@ -483,11 +540,25 @@ public class CanvasHandlerNetwork : MonoBehaviour
                     //buttonsPanelRectTransform.localScale = new Vector3(1f, 1f, 1f);
 
                     RectTransform player0RectTransform = player0.GetComponent<RectTransform>();
+
+                    player0RectTransform.anchorMin = new Vector2(0f, 0.5f);
+                    player0RectTransform.anchorMax = new Vector2(0f, 0.5f);
+                    player0RectTransform.pivot = new Vector2(0f, 0.5f);
+
+
                     player0RectTransform.anchoredPosition = new Vector2(200f, 165.722f);
                     player0RectTransform.sizeDelta = new Vector2(100f, 600f);
                     player0RectTransform.localScale = new Vector3(2f, 2f, 2f);           //1
 
+                    
+
                     RectTransform points0RectTransform = Points0Object.GetComponent<RectTransform>();
+
+                    points0RectTransform.anchorMin = new Vector2(0f, 0.5f);
+                    points0RectTransform.anchorMax = new Vector2(0f, 0.5f);
+                    points0RectTransform.pivot = new Vector2(0f, 0.5f);
+
+
                     points0RectTransform.anchoredPosition = new Vector2(201f, -57f);
                     points0RectTransform.sizeDelta = new Vector2(100f, 93.6f);
                     points0RectTransform.localScale = new Vector3(2f, 2f, 2f);     // 0.52276
@@ -496,11 +567,22 @@ public class CanvasHandlerNetwork : MonoBehaviour
 
 
                     RectTransform player1RectTransform = player1.GetComponent<RectTransform>();
+
+                    player1RectTransform.anchorMin = new Vector2(1f, 0.5f);
+                    player1RectTransform.anchorMax = new Vector2(1f, 0.5f);
+                    player1RectTransform.pivot = new Vector2(1f, 0.5f);
+
+
                     player1RectTransform.anchoredPosition = new Vector2(-199f, 167.15f);
                     player1RectTransform.sizeDelta = new Vector2(100f, 600f);
                     player1RectTransform.localScale = new Vector3(2f, 2f, 2f);                //1
 
                     RectTransform points1RectTransform = Points1Object.GetComponent<RectTransform>();
+
+                    points1RectTransform.anchorMin = new Vector2(1f, 0.5f);
+                    points1RectTransform.anchorMax = new Vector2(1f, 0.5f);
+                    points1RectTransform.pivot = new Vector2(1f, 0.5f);
+
                     points1RectTransform.anchoredPosition = new Vector2(-197, -53f);
                     points1RectTransform.sizeDelta = new Vector2(100f, 93.6026f);
                     points1RectTransform.localScale = new Vector3(2f, 2f, 2f);     // 0.52276
@@ -609,23 +691,23 @@ public class CanvasHandlerNetwork : MonoBehaviour
 
 
 
-            else if (ratio >= 1.55) // WebGL PC
-            {
+            //else if (ratio >= 1.55) // WebGL PC
+            //{
 
-                BottomMenu.gameObject.SetActive(false);
-                buttonsPanel.gameObject.SetActive(true);
+            //    BottomMenu.gameObject.SetActive(false);
+            //    buttonsPanel.gameObject.SetActive(true);
 
-                //RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
-                //keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);
-                //keysParentRectTransform.localScale = new Vector3(0.71715f, 0.71715f, 0.71715f);
-                //keysParentRectTransform.localPosition = new Vector2(0.70713f, -0.14143f);
-
-
-                //RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
-                //loadingPanelRectTransform.sizeDelta = new Vector3(1949.1f, 1385.721f);
+            //    //RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
+            //    //keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);
+            //    //keysParentRectTransform.localScale = new Vector3(0.71715f, 0.71715f, 0.71715f);
+            //    //keysParentRectTransform.localPosition = new Vector2(0.70713f, -0.14143f);
 
 
-            }
+            //    //RectTransform loadingPanelRectTransform = LoadingPanel.GetComponent<RectTransform>();
+            //    //loadingPanelRectTransform.sizeDelta = new Vector3(1949.1f, 1385.721f);
+
+
+            //}
 
         }
 
