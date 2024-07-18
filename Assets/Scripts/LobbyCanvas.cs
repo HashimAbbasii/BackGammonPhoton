@@ -362,8 +362,8 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 
                     RectTransform InputFieldCreateRoomGORectTransform = InputFieldCreateRoomGO.GetComponent<RectTransform>(); //////////
-                    InputFieldCreateRoomGORectTransform.anchoredPosition = new Vector2(150.96f, 284.4f);
-                    InputFieldCreateRoomGORectTransform.sizeDelta = new Vector2(569.73f, 88.95f);
+                    InputFieldCreateRoomGORectTransform.anchoredPosition = new Vector2(171.1366f, 284.4f);
+                    InputFieldCreateRoomGORectTransform.sizeDelta = new Vector2(610.0934f, 88.95f);
 
                     RectTransform EnterNameTextGORectTransform = EnterNameTextGO.GetComponent<RectTransform>(); //////////
                     EnterNameTextGORectTransform.anchoredPosition = new Vector2(-306.755f, 284.48f);
@@ -375,7 +375,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     
                     
                     RectTransform createRoomBtnGameObjectPRectTransform = createRoomBtnGameObjectP.GetComponent<RectTransform>(); //////////
-                    createRoomBtnGameObjectPRectTransform.anchoredPosition = new Vector2(75.1268f, 144.967f);
+                    createRoomBtnGameObjectPRectTransform.anchoredPosition = new Vector2(150f, 144.967f);
 
 
                     if (tutorialPanelActiveButtonPressed == true)
