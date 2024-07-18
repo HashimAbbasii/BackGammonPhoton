@@ -110,6 +110,8 @@ public class CanvasHandler : MonoBehaviour
     public static CanvasHandler Instance { get; set; }
     public FullscreenWebGLManager fullScreenWebGLManager;
 
+    //public float limitReachSizeChange = 1f;
+
 #if UNITY_WEBGL
 
     [DllImport("__Internal")]
@@ -250,6 +252,8 @@ public class CanvasHandler : MonoBehaviour
         // -------------------------------------------------------- Portrait WEBGL Commented Area-------------------------------------------------------------------------------//
 
         float ratio = (Screen.width * 1f / Screen.height);
+
+
         if (Application.platform == RuntimePlatform.WebGLPlayer)
         {
             var width = Screen.width;
@@ -459,7 +463,7 @@ public class CanvasHandler : MonoBehaviour
                     RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
                     diceButtonRectTransform.anchoredPosition = new Vector2(164f, 5f);
                     diceButtonRectTransform.sizeDelta = new Vector2(98f, 98f);
-                    diceButtonRectTransform.localScale = new Vector3(0.5761739f, 0.5761739f, 0.5761739f);
+                    diceButtonRectTransform.localScale = new Vector3(0.5761739f, 0.5761739f, 0.5761739f) ;
 
                     RectTransform diceResultRectTransform = diceResult.GetComponent<RectTransform>();
                     diceResultRectTransform.anchoredPosition = new Vector2(66f, -536f);
@@ -642,7 +646,7 @@ public class CanvasHandler : MonoBehaviour
                     RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
                     diceButtonRectTransform.anchoredPosition = new Vector2(383f, 7f);
                     diceButtonRectTransform.sizeDelta = new Vector2(88f, 88f);
-                    diceButtonRectTransform.localScale = new Vector3(1f, 1f, 1f);
+                    diceButtonRectTransform.localScale = new Vector3(1f, 1f, 1f) ;
 
                     RectTransform diceResultRectTransform = diceResult.GetComponent<RectTransform>();
                     diceResultRectTransform.anchoredPosition = new Vector2(204f, -529f);
@@ -831,7 +835,7 @@ public class CanvasHandler : MonoBehaviour
                     RectTransform diceButtonRectTransform = diceButton.GetComponent<RectTransform>();
                     diceButtonRectTransform.anchoredPosition = new Vector2(493f, 24f);
                     diceButtonRectTransform.sizeDelta = new Vector2(98f, 98f);
-                    diceButtonRectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                    diceButtonRectTransform.localScale = new Vector3(1.5f, 1.5f, 1.5f) ;
 
                     RectTransform diceResultRectTransform = diceResult.GetComponent<RectTransform>();
                     diceResultRectTransform.anchoredPosition = new Vector2(236f, -528f);
@@ -876,6 +880,8 @@ public class CanvasHandler : MonoBehaviour
             {
                 BottomMenu.gameObject.SetActive(false);
                 buttonsPanel.gameObject.SetActive(true);
+
+                
 
                 //RectTransform keysParentRectTransform = keysParent.GetComponent<RectTransform>();
                 //keysParentRectTransform.sizeDelta = new Vector3(100f, 100f);

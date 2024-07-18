@@ -355,10 +355,10 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 
                     RectTransform connectPRectTransform = connectP.GetComponent<RectTransform>(); //////////
-                    connectPRectTransform.anchoredPosition = new Vector2(10.208f, -415f);
+                    connectPRectTransform.anchoredPosition = new Vector2(10.208f, -529f);
 
                     RectTransform localPlayPRectTransform = localPlayP.GetComponent<RectTransform>(); //////////
-                    localPlayPRectTransform.anchoredPosition = new Vector2(10.208f, -279.06f);
+                    localPlayPRectTransform.anchoredPosition = new Vector2(10.208f, -358.06f);
 
 
                     RectTransform InputFieldCreateRoomGORectTransform = InputFieldCreateRoomGO.GetComponent<RectTransform>(); //////////
@@ -516,7 +516,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
                     createRoom.gameObject.SetActive(false);
                     findRoom.gameObject.SetActive(false);
                     difficultyLevel.gameObject.SetActive(false);
-                    DifficultyText.gameObject.SetActive(false);
+                    //DifficultyText.gameObject.SetActive(false);
 
 
              
@@ -607,10 +607,10 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
 
                     RectTransform connectPRectTransform = connectP.GetComponent<RectTransform>(); //////////
-                    connectPRectTransform.anchoredPosition = new Vector2(10.208f, -301.93f);
+                    connectPRectTransform.anchoredPosition = new Vector2(10.208f, -529f);
 
                     RectTransform localPlayPRectTransform = localPlayP.GetComponent<RectTransform>(); //////////
-                    localPlayPRectTransform.anchoredPosition = new Vector2(10.208f, -166f);
+                    localPlayPRectTransform.anchoredPosition = new Vector2(10.208f, -358.06f);
 
 
                     RectTransform createRoomBtnGameObjectPRectTransform = createRoomBtnGameObjectP.GetComponent<RectTransform>(); //////////

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DG.Tweening;
 using System.Collections;
+using System.Linq;
 
 namespace BackgammonNet.Core
 {
@@ -25,6 +26,7 @@ namespace BackgammonNet.Core
         private float placeOffset = -0.9f;
         private int lastCount;
         private bool isModifyingPosition;
+
 
         private void Start()
         {
@@ -58,8 +60,21 @@ namespace BackgammonNet.Core
         {
             yield return new WaitForSeconds(0.5f);
 
+            //if (slots.Any(t => t.pawns.Count > 5 && (t.slotNo == 1 || t.slotNo == 2 || t.slotNo == 23 || t.slotNo == 24)))
+            //{
+            //    CanvasHandler.Instance.limitReachSizeChange = 0.5f;
+
+            //}
+            //else
+            //{
+            //    CanvasHandler.Instance.limitReachSizeChange = 1f;
+            //}
+
+
+
             if (pawns.Count > 5)
             {
+
                 float difference = 0;
                 for (int i = 1; i < pawnsContainer.childCount; i++)
                 {
@@ -79,9 +94,12 @@ namespace BackgammonNet.Core
 
                 placeOffset = difference;
 
+
             }
             else
             {
+                //CanvasHandler.Instance.limitReachSizeChange = 1f;
+
                 for (int i = 1; i < pawnsContainer.childCount; i++)
                 {
                     placeOffset = -0.9f;
