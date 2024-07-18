@@ -160,6 +160,179 @@ namespace BackgammonNet.Core
         private Coroutine keepChecking;
         //public bool preventAiGenertion=true;
 
+        public int d0;
+        public int d1;
+        public int HouseColorChoose;
+
+        private void Awake()
+        {
+            // dragEnable = false;
+
+            Instance = this;
+
+            if (MyPhotonManager.instance.multiPlayerMode == true)
+            {
+                diceButton.enabled = false;
+            }
+            _photonView = GetComponent<PhotonView>();
+
+            Pawn.OnCompleteTurn += Pawn_OnCompleteTurn;
+            //Pawn.OnCompleteTurnForBlockState += Pawn_OnCompleteTurnForBlockState;
+            Pawn.OnGameOver += Pawn_OnGameOver;
+            TimeController.OnTimeLimitEnd += Pawn_OnGameOver;
+
+            mainMenuButton.onClick.AddListener(GoToMainMenu);
+            newGameButton.onClick.AddListener(NewGame);
+
+
+
+            if (MyGameManager.AiMode == true)
+            {
+                //   Debug.Log("Ai Mode");
+
+                diceButton.onClick.AddListener(GenerateForAi);
+
+
+            }
+            else
+            {
+
+                Debug.Log("Human Mode");
+                diceButton.onClick.AddListener(Generate);
+                MyGameManager.HumanMode = true;
+                MyGameManager.AiMode = false;
+            }
+
+
+            turn = 0;
+
+            //   turnImages[0].gameObject.SetActive(turn == 0);
+            //  turnImages[1].gameObject.SetActive(1 - turn == 0);
+
+            highlightImages[0].gameObject.SetActive(turn == 0);
+            highlightImages[1].gameObject.SetActive(turn == 0);
+            highlightImages[2].gameObject.SetActive(turn == 0);
+
+            highlightImages[3].gameObject.SetActive(1 - turn == 0);
+            highlightImages[4].gameObject.SetActive(1 - turn == 0);
+            highlightImages[5].gameObject.SetActive(1 - turn == 0);
+
+        }
+
+        private void Start()
+        {
+            pawns = new List<Pawn>(FindObjectsOfType<Pawn>());
+
+            if (MyGameManager.houseColorDetermince == 0)
+            {
+                WhiteHouseChoose();
+                MyGameManager.houseColorDetermince = 0;
+
+            }
+            else if (MyGameManager.houseColorDetermince == 2)
+            {
+                BlackHouseChoose();
+                MyGameManager.houseColorDetermince = 0;
+            }
+            else
+            {
+                RandomSelectHouse();
+                MyGameManager.houseColorDetermince = 0;
+            }
+
+            for (var i = 0; i < 2; i++)
+            {
+                PlayerScore playerScore = new();
+                playerScores.Add(playerScore);
+            }
+
+            if (Board.Instance.client)
+                if (!Board.Instance.isClientWhite)
+                    diceButton.gameObject.SetActive(false);
+
+            if (Board.Instance.observer)     // lock buttons
+                ActivateButtons(false);
+
+
+            if (MyPhotonManager.instance.multiPlayerMode == true)
+            {
+                //StartCoroutine(NetworkButton());
+            }
+
+
+            if (MyGameManager.AiMode == false)
+            {
+                AiDifficulty.gameObject.SetActive(false);
+                AiDifficultyP.gameObject.SetActive(false);
+                playerVsplayerScorePausePanel.gameObject.SetActive(true);
+                playerVsplayerScoreGameOverPanel.gameObject.SetActive(true);
+                playerVsplayerScoreYouWinPanel.gameObject.SetActive(true);
+
+                playerHeadingPausePanel.gameObject.SetActive(true);
+                playerHeadingGameOverPanel.gameObject.SetActive(true);
+                playerHeadingYouWinPanel.gameObject.SetActive(true);
+
+                playerScorePausePanel.gameObject.SetActive(false);
+                playeScoreGameOverPanel.gameObject.SetActive(false);
+                playerScoreYouWinPanel.gameObject.SetActive(false);
+
+
+            }
+
+
+
+            if (MyGameManager.AiMode == true)
+            {
+                //player0Name.text = "Player";
+                //player1Name.text = "AI";
+
+                player0Name.LocalizationKey = "Text.Player";
+                LanguageManager.OnVariableChanged();
+
+                player1Name.LocalizationKey = "Text.AI";
+                LanguageManager.OnVariableChanged();
+
+                playerVsplayerScorePausePanel.gameObject.SetActive(false);
+                playerVsplayerScoreGameOverPanel.gameObject.SetActive(false);
+                playerVsplayerScoreYouWinPanel.gameObject.SetActive(false);
+
+                playerScorePausePanel.gameObject.SetActive(true);
+                playeScoreGameOverPanel.gameObject.SetActive(true);
+                playerScoreYouWinPanel.gameObject.SetActive(true);
+
+                playerHeadingPausePanel.gameObject.SetActive(false);
+                playerHeadingGameOverPanel.gameObject.SetActive(false);
+                playerHeadingYouWinPanel.gameObject.SetActive(false);
+
+            }
+
+            else
+            {
+                //player0Name.text = "Player 1";
+                //player1Name.text = "Player 2";
+
+                player0Name.LocalizationKey = "Text.Player1Text";
+                LanguageManager.OnVariableChanged();
+
+                player1Name.LocalizationKey = "Text.Player2Text";
+                LanguageManager.OnVariableChanged();
+            }
+
+        }
+
+        private void Update()
+        {
+            HouseColorChoose = MyGameManager.houseColorDetermince;
+            d0 = dices[0];
+            d1 = dices[1];
+
+            if (sidesAgreed == 2)
+                LoadGameScene();
+
+            TryDeactivateDigit();
+            testDrag = dragEnable;
+        }
+
         public bool IsRunningOnAndroid()
         {
             return SystemInfo.operatingSystem.ToLower().Contains("android");
@@ -175,11 +348,9 @@ namespace BackgammonNet.Core
 
         public void StartChecking()
         {
-          
-            
-               keepChecking = StartCoroutine(CheckFinalPoint());
-            
+            keepChecking = StartCoroutine(CheckFinalPoint());
         }
+
         private IEnumerator CheckFinalPoint()
         {
             while (true)
@@ -238,60 +409,7 @@ namespace BackgammonNet.Core
         //}
 
 
-        private void Awake()
-        {
-           // dragEnable = false;
-
-            Instance = this;
-            
-            if (MyPhotonManager.instance.multiPlayerMode == true)
-            {
-                diceButton.enabled=false;
-            }
-            _photonView = GetComponent<PhotonView>();
-
-            Pawn.OnCompleteTurn += Pawn_OnCompleteTurn;
-            //Pawn.OnCompleteTurnForBlockState += Pawn_OnCompleteTurnForBlockState;
-            Pawn.OnGameOver += Pawn_OnGameOver;
-            TimeController.OnTimeLimitEnd += Pawn_OnGameOver;
-
-            mainMenuButton.onClick.AddListener(GoToMainMenu);
-            newGameButton.onClick.AddListener(NewGame);
-
-            
-
-            if (MyGameManager.AiMode==true)
-            {
-              //   Debug.Log("Ai Mode");
-
-                diceButton.onClick.AddListener(GenerateForAi);
-
-
-            }
-            else
-            {
-
-                Debug.Log("hUMAN mODE");
-                diceButton.onClick.AddListener(Generate);
-                MyGameManager.HumanMode = true;
-                MyGameManager.AiMode = false;
-            }
-
-
-            turn = 0;
-
-         //   turnImages[0].gameObject.SetActive(turn == 0);
-          //  turnImages[1].gameObject.SetActive(1 - turn == 0);
-
-            highlightImages[0].gameObject.SetActive(turn == 0);
-            highlightImages[1].gameObject.SetActive(turn == 0);
-            highlightImages[2].gameObject.SetActive(turn == 0);
-
-            highlightImages[3].gameObject.SetActive(1 - turn == 0);
-            highlightImages[4].gameObject.SetActive(1 - turn == 0); 
-            highlightImages[5].gameObject.SetActive(1 - turn == 0); 
-
-        }
+        
 
         public void WhiteHouseChoose()
         {
@@ -334,106 +452,7 @@ namespace BackgammonNet.Core
 
 
 
-        private void Start()
-        {
-            pawns = new List<Pawn>(FindObjectsOfType<Pawn>());
-           
-            if (MyGameManager.houseColorDetermince == 0)
-            {
-                WhiteHouseChoose();
-                MyGameManager.houseColorDetermince = 0;
-
-            }
-            else if(MyGameManager.houseColorDetermince == 2)
-            {
-                BlackHouseChoose();
-                MyGameManager.houseColorDetermince = 0;
-            }
-            else
-            {
-                RandomSelectHouse();
-                MyGameManager.houseColorDetermince = 0;
-            }
-
-            for (var i = 0; i < 2; i++)
-            {
-                PlayerScore playerScore = new();
-                playerScores.Add(playerScore);
-            }
-
-            if (Board.Instance.client)
-                if (!Board.Instance.isClientWhite)
-                    diceButton.gameObject.SetActive(false);
-
-            if (Board.Instance.observer)     // lock buttons
-                ActivateButtons(false);
-
-
-            if (MyPhotonManager.instance.multiPlayerMode == true)
-            {
-                //StartCoroutine(NetworkButton());
-            }
-
-
-            if(MyGameManager.AiMode == false)
-            {
-                AiDifficulty.gameObject.SetActive(false);
-                AiDifficultyP.gameObject.SetActive(false);
-                playerVsplayerScorePausePanel.gameObject.SetActive(true);
-                playerVsplayerScoreGameOverPanel.gameObject.SetActive(true);
-                playerVsplayerScoreYouWinPanel.gameObject.SetActive(true);
-
-                playerHeadingPausePanel.gameObject.SetActive(true);
-                playerHeadingGameOverPanel.gameObject.SetActive(true);
-                playerHeadingYouWinPanel.gameObject.SetActive(true);
-
-                playerScorePausePanel.gameObject.SetActive(false);
-                playeScoreGameOverPanel.gameObject.SetActive(false);
-                playerScoreYouWinPanel.gameObject.SetActive(false);
-
-
-            }
-
-
-
-            if(MyGameManager.AiMode == true)
-            {
-                //player0Name.text = "Player";
-                //player1Name.text = "AI";
-
-                player0Name.LocalizationKey = "Text.Player";
-                LanguageManager.OnVariableChanged();
-
-                player1Name.LocalizationKey = "Text.AI";
-                LanguageManager.OnVariableChanged();
-
-                playerVsplayerScorePausePanel.gameObject.SetActive(false);
-                playerVsplayerScoreGameOverPanel.gameObject.SetActive(false);
-                playerVsplayerScoreYouWinPanel.gameObject.SetActive(false);
-
-                playerScorePausePanel.gameObject.SetActive(true);
-                playeScoreGameOverPanel.gameObject.SetActive(true);
-                playerScoreYouWinPanel.gameObject.SetActive(true);
-
-                playerHeadingPausePanel.gameObject.SetActive(false);
-                playerHeadingGameOverPanel.gameObject.SetActive(false);
-                playerHeadingYouWinPanel.gameObject.SetActive(false);
-
-            }
-
-            else
-            {
-                //player0Name.text = "Player 1";
-                //player1Name.text = "Player 2";
-
-                player0Name.LocalizationKey = "Text.Player1Text";
-                LanguageManager.OnVariableChanged();
-
-                player1Name.LocalizationKey = "Text.Player2Text";
-                LanguageManager.OnVariableChanged();
-            }
-
-        }
+        
 
         //IEnumerator NetworkButton()
         //{
@@ -450,11 +469,11 @@ namespace BackgammonNet.Core
         //}       
         
         [PunRPC]
-
         public void DiceEnbleForMaster()
         {
             diceButton.enabled=true;
         }
+
         [PunRPC]
         public void DiceEnbleForClient()
         {
@@ -462,6 +481,7 @@ namespace BackgammonNet.Core
             Board.Instance.submitBtns[1].gameObject.SetActive(false);
             diceButton.enabled = false;
         }
+
         [PunRPC]
         void ClientTurnStarted(int viewID)
         {
@@ -511,21 +531,6 @@ namespace BackgammonNet.Core
             TimeController.OnTimeLimitEnd -= Pawn_OnGameOver;
         }
 
-        public int d0;
-        public int d1;
-        public int HouseColorChoose;
-        private void Update()
-        {
-            HouseColorChoose=MyGameManager.houseColorDetermince;
-            d0 = dices[0];
-            d1 = dices[1];
-
-            if (sidesAgreed == 2)
-                LoadGameScene();
-
-            TryDeactivateDigit();
-            testDrag = dragEnable;
-        }
 
         private void TryDeactivateDigit()
         {
@@ -1380,93 +1385,16 @@ namespace BackgammonNet.Core
                         if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
                         {
                             //....................Ai Mode Work Only........................//
+                            Debug.Log("Ai Same Color Shelter");
                             ShelterManipulation();
                             StartCoroutine(ShelterSecondDice());
                         }
                         else
                         {
-
-                        GameController.Instance.playerScores[1].Moves++;
-                        Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
-                        Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
-                        randomSelectPawn.CheckShelterStage();
-                            if (randomSelectPawn.CheckShelterAndMore())
-                            {
-                                return;
-                            }
-
-                            randomSelectPawn.CheckIfNextTurn();
-                            Slot.slots[slot0].HightlightMe(true);
-                        StartCoroutine(SecondDice());
-                        }
-                    }
-
-                    //.............If pawn Slot is Empty or Height ==0...................
-                  else  if (Slot.slots[slot0].Height() == 0)
-                    {
-
-                        if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
-                        {
-                            //....................Ai Mode Work Only........................//
-                            ShelterManipulation();
-                            StartCoroutine(ShelterSecondDice());
-                        }
-                        else
-                        {
-
-                        GameController.Instance.playerScores[1].Moves++;
-                        Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
-                        Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
-                        randomSelectPawn.CheckShelterStage();
-                            if (randomSelectPawn.CheckShelterAndMore())
-                            {
-                                return;
-                            }
-
-                            randomSelectPawn.CheckIfNextTurn();
-                            Slot.slots[slot0].HightlightMe(true);
-                        StartCoroutine(SecondDice());
-                        }
-                    }
-
-
-                  else if (Slot.slots[slot0].Height() == 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
-                    {
-                        if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
-                        {
-                            //....................Ai Mode Work Only........................//
-                            ShelterManipulation();
-                            StartCoroutine(ShelterSecondDice());
-                        }
-                        else
-                        {
-                        GameController.Instance.playerScores[1].Kills++;
-                        //.......JAIL KAR Dooh...........//
-                        GameController.Instance.playerScores[1].Moves++;
-
-                        Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
-                        Slot.slots[slot0].GetTopPawn(false).PlaceJail();
-                        Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
-
-                        randomSelectPawn.CheckShelterStage();
-                            if (randomSelectPawn.CheckShelterAndMore())
-                            {
-                                return;
-                            }
-
-                            randomSelectPawn.CheckIfNextTurn();
-                            StartCoroutine(SecondDice());
-
-                        }
-                    }
-
-                    else if(Slot.slots[slot0].Height() > 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
-                    {
-                     
-                        if (topEPawns.Count == 0)
-                        {
-                            //.............. Shift the TURN tO THE HUMAN..................//
-                            Debug.Log("Turn on First SLOT");
+                            Debug.Log("Ai Same Color No Shelter");
+                            GameController.Instance.playerScores[1].Moves++;
+                            Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
+                            Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
                             randomSelectPawn.CheckShelterStage();
                             if (randomSelectPawn.CheckShelterAndMore())
                             {
@@ -1474,13 +1402,101 @@ namespace BackgammonNet.Core
                             }
 
                             randomSelectPawn.CheckIfNextTurn();
+                            Slot.slots[slot0].HightlightMe(true);
+                            Debug.Log("Second Dice turn");
+                            StartCoroutine(SecondDice());
+                        }
+                    }
+
+                    //.............If pawn Slot is Empty or Height ==0...................
+                    else  if (Slot.slots[slot0].Height() == 0)
+                    {
+
+                        if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
+                        {
+                            //....................Ai Mode Work Only........................//
+                            Debug.Log("Ai Empty Slot Shelter");
+                            ShelterManipulation();
+                            StartCoroutine(ShelterSecondDice());
+                        }
+                        else
+                        {
+                            Debug.Log("Ai Empty Slot No Shelter");
+                            GameController.Instance.playerScores[1].Moves++;
+                            Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
+                            Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+                            randomSelectPawn.CheckShelterStage();
+                            if (randomSelectPawn.CheckShelterAndMore())
+                            {
+                                return;
+                            }
+
+                            randomSelectPawn.CheckIfNextTurn();
+                            Slot.slots[slot0].HightlightMe(true);
+                            Debug.Log("Second Dice turn");
+                            StartCoroutine(SecondDice());
+                        }
+                    }
+
+
+                    else if (Slot.slots[slot0].Height() == 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
+                    {
+                        if (Pawn.shelterSide[1] && MyGameManager.AiMode == true)
+                        {
+                            //....................Ai Mode Work Only........................//
+                            Debug.Log("Ai Kill Slot Shelter");
+                            ShelterManipulation();
+                            StartCoroutine(ShelterSecondDice());
+                        }
+                        else
+                        {
+                            Debug.Log("Ai Kill Slot No Shelter");
+                            GameController.Instance.playerScores[1].Kills++;
+                            //.......JAIL KAR Dooh...........//
+                            GameController.Instance.playerScores[1].Moves++;
+
+                            Slot.slots[randomSelectPawn.slotNo].GetTopPawn(true);
+                            Slot.slots[slot0].GetTopPawn(false).PlaceJail();
+                            Slot.slots[slot0].PlacePawn(randomSelectPawn, randomSelectPawn.pawnColor);
+
+                            randomSelectPawn.CheckShelterStage();
+                            if (randomSelectPawn.CheckShelterAndMore())
+                            {
+                                return;
+                            }
+
+                            randomSelectPawn.CheckIfNextTurn();
+                            Debug.Log("Second Dice turn");
+                            StartCoroutine(SecondDice());
+
+                        }
+                    }
+
+
+                    else if(Slot.slots[slot0].Height() > 1 && Slot.slots[slot0].IsWhite() != randomSelectPawn.pawnColor)
+                    {
+                     
+                        if (topEPawns.Count == 0)
+                        {
+                            //.............. Shift the TURN tO THE HUMAN..................//
+                            Debug.Log("No moves Available for any pawn, Choose next Dice");
+
+                            randomSelectPawn.CheckShelterStage();
+                            if (randomSelectPawn.CheckShelterAndMore())
+                            {
+                                return;
+                            }
+
+                           
+                            randomSelectPawn.CheckIfNextTurn();
                             // Pawn_OnCompleteTurn(turn);
+                            Debug.Log("Second Dice turn");
                             StartCoroutine(SecondDice());
 
                         }
                         else
                         {
-
+                            Debug.Log("No Moves Available, Choose next pawn");
                             SelectRandomEnemy();
 
                         }
@@ -1807,6 +1823,7 @@ namespace BackgammonNet.Core
         {
             StartCoroutine(SecondDice());
         }
+        
         #region
         public IEnumerator SecondDice()
         {
