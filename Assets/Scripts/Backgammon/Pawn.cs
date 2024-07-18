@@ -365,7 +365,7 @@ namespace BackgammonNet.Core
                     {
                         return;
                     }
-                    //  CheckIfNextTurn();
+                     CheckIfNextTurn();
                     StartCoroutine(GameController.Instance.SecondDice());
 
                 }
