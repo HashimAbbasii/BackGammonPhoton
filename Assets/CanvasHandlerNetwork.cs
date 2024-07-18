@@ -578,10 +578,10 @@ public class CanvasHandlerNetwork : MonoBehaviour
                     submissionPanelRectTransform.sizeDelta = new Vector2(338f, 56f);
                     submissionPanelRectTransform.localScale = new Vector3(1.3f, 1.3f, 1.3f);
 
-                    RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
-                    timerPanelRectTransform.anchoredPosition = new Vector2(-891f, 198f);
-                    timerPanelRectTransform.sizeDelta = new Vector2(129.5194f, 50f);
-                    timerPanelRectTransform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
+                    //RectTransform timerPanelRectTransform = timerPanel.GetComponent<RectTransform>();
+                    //timerPanelRectTransform.anchoredPosition = new Vector2(-891f, 198f);
+                    //timerPanelRectTransform.sizeDelta = new Vector2(129.5194f, 50f);
+                    //timerPanelRectTransform.localScale = new Vector3(1.6f, 1.6f, 1.6f);
 
                     RectTransform pauseMenuRectTransform = pauseMenu.GetComponent<RectTransform>();
                     pauseMenuRectTransform.localScale = new Vector3(1f, 1f, 1f);

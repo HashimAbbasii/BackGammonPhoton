@@ -2167,9 +2167,20 @@ namespace BackgammonNet.Core
 #if UNITY_WEBGL
             if (IsRunningOnAndroid() || IsRunningOniOS())
             {
-                 if (MyGameManager.AiMode == true)
+                float ratio = (Screen.width * 1f / Screen.height);
+
+
+                if (MyGameManager.AiMode == true)
                 {
-                    pausePanelportrait.gameObject.SetActive(true);
+                    if (ratio > 1.39 && ratio <= 1.42)
+                    {
+                        pausePanel.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        pausePanelportrait.gameObject.SetActive(true);
+                    }
+                        
                 }
                 else
                 {
