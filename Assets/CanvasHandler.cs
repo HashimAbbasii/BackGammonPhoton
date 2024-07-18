@@ -313,10 +313,14 @@ public class CanvasHandler : MonoBehaviour
                     RectTransform player0ProfileImgRectTransform = player0ProfileImg.GetComponent<RectTransform>();
                     player0ProfileImgRectTransform.anchoredPosition = new Vector2(11.7f, 50.2f);
                     player0ProfileImgRectTransform.sizeDelta = new Vector2(76.1546f, 73.497f);
+                    player0ProfileImgRectTransform.localScale = new Vector3(0.796f, 0.796f, 0.796f);
+
+
 
                     RectTransform player1ProfileImgRectTransform = player1ProfileImg.GetComponent<RectTransform>();
                     player1ProfileImgRectTransform.anchoredPosition = new Vector2(-11.9f, 35f);
                     player1ProfileImgRectTransform.sizeDelta = new Vector2(75.3125f, 75.3125f);
+                    player1ProfileImgRectTransform.localScale = new Vector3(0.796f, 0.796f, 0.796f);
 
 
 
@@ -717,10 +721,12 @@ public class CanvasHandler : MonoBehaviour
                     RectTransform player0ProfileImgRectTransform = player0ProfileImg.GetComponent<RectTransform>();
                     player0ProfileImgRectTransform.anchoredPosition = new Vector2(11.7f, 50.2f);
                     player0ProfileImgRectTransform.sizeDelta = new Vector2(76.1546f, 73.497f);
+                    player0ProfileImgRectTransform.localScale = new Vector3(0.796f, 0.796f, 0.796f);
 
                     RectTransform player1ProfileImgRectTransform = player1ProfileImg.GetComponent<RectTransform>();
                     player1ProfileImgRectTransform.anchoredPosition = new Vector2(-11.9f, 35f);
                     player1ProfileImgRectTransform.sizeDelta = new Vector2(75.3125f, 75.3125f);
+                    player1ProfileImgRectTransform.localScale = new Vector3(0.796f, 0.796f, 0.796f);
 
 
 
