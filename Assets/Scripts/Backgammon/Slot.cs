@@ -61,8 +61,8 @@ namespace BackgammonNet.Core
             yield return new WaitForSeconds(0.5f);
 
             // Minimum and maximum space between pawns when count > 5
-            float minYOffset = -2.0f;
-            float maxYOffset = -2.5f;
+            float minYOffset = -2.5f;
+            float maxYOffset = -2.7f;
 
             if (pawns.Count > 5)
             {
