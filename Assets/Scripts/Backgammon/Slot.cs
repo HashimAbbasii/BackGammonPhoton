@@ -60,20 +60,13 @@ namespace BackgammonNet.Core
         {
             yield return new WaitForSeconds(0.5f);
 
-            //if (slots.Any(t => t.pawns.Count > 5 && (t.slotNo == 1 || t.slotNo == 2 || t.slotNo == 23 || t.slotNo == 24)))
-            //{
-            //    CanvasHandler.Instance.limitReachSizeChange = 0.5f;
-
-            //}
-            //else
-            //{
-            //    CanvasHandler.Instance.limitReachSizeChange = 1f;
-            //}
-
-
+            // Minimum and maximum space between pawns when count > 5
+            float minYOffset = -2.0f;
+            float maxYOffset = -2.5f;
 
             if (pawns.Count > 5)
             {
+                yOffset = Mathf.Max(minYOffset, maxYOffset / pawnsContainer.childCount);
 
                 float difference = 0;
                 for (int i = 1; i < pawnsContainer.childCount; i++)
@@ -93,17 +86,15 @@ namespace BackgammonNet.Core
                 }
 
                 placeOffset = difference;
-
-
             }
             else
             {
-                //CanvasHandler.Instance.limitReachSizeChange = 1f;
-
+                // Fixed yOffset when pawn count is 5 or less
+                float fixedYOffset = -0.5f;
                 for (int i = 1; i < pawnsContainer.childCount; i++)
                 {
                     placeOffset = -0.9f;
-                    pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * yOffset, 0);
+                    pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * fixedYOffset, 0);
                 }
             }
 

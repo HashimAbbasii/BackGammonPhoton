@@ -379,6 +379,37 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
             PlayButton.SetActive(false); // Disable the Play button
         }
     }
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        Debug.LogError("Disconnected from Photon: " + cause);
+
+        // Optionally handle reconnection logic
+        HandleDisconnection();
+    }
+
+    private void HandleDisconnection()
+    {
+        // Check if we are in a room
+        if (PhotonNetwork.InRoom)
+        {
+            PhotonNetwork.LeaveRoom(); // Leave the room
+        }
+
+        // Check if we are in a lobby
+        if (PhotonNetwork.InLobby)
+        {
+            PhotonNetwork.LeaveLobby(); // Leave the lobby
+        }
+           LobbyPanel.gameObject.SetActive(true);
+
+
+        // Optionally reconnect or handle other disconnection logic
+        // PhotonNetwork.Reconnect(); // Uncomment if you want to automatically reconnect
+    }
+
+
+
+
     public override void OnLeftRoom()
     {
         ActiveMyPanel(LobbyPanel.name);

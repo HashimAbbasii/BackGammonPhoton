@@ -16,7 +16,7 @@ namespace BackgammonNet.Core
     {
         public static List<SlotNetwork> slots;             // stores created slots
         private float placeOffset = -0.9f;
-         public int slotNo;        // slot number assigned at the time of its creation
+        public int slotNo;        // slot number assigned at the time of its creation
 
         public Color lightSlot;
         public Color darkSlot;
@@ -81,9 +81,9 @@ namespace BackgammonNet.Core
                 PawnNetwork pawn = pawns[pawns.Count - 1];
                 if (pop)
                 {
-                    photonView.RPC(nameof(RemoveListNetwork), RpcTarget.AllBuffered,photonView.ViewID);
-                  //  Debug.Log("LLLLL");
-                   // pawns.RemoveAt(pawns.Count - 1);
+                    photonView.RPC(nameof(RemoveListNetwork), RpcTarget.AllBuffered, photonView.ViewID);
+                    //  Debug.Log("LLLLL");
+                    // pawns.RemoveAt(pawns.Count - 1);
                 }
                 return pawn;
             }
@@ -114,13 +114,13 @@ namespace BackgammonNet.Core
         [PunRPC]
         public void RemoveListNetwork(int slotViewId)
         {
-         
 
-          
+
+
             var testSlot = PhotonView.Find(slotViewId).GetComponent<SlotNetwork>();
             testSlot.pawns.RemoveAt(pawns.Count - 1);
-          
-            
+
+
         }
 
         public int Height() => pawns.Count;
@@ -129,7 +129,7 @@ namespace BackgammonNet.Core
 
         //---- methods related to the control of the position of the pieces in the slot
 
-       // private void Update() => ModifyPositions();   // adjusting the arrangement of pieces on the slot depending on their number
+        // private void Update() => ModifyPositions();   // adjusting the arrangement of pieces on the slot depending on their number
 
         private void ModifyPositions()     // modify the positions in the pieces container
         {
@@ -160,8 +160,14 @@ namespace BackgammonNet.Core
         {
             yield return new WaitForSeconds(0.5f);
 
+            // Minimum and maximum space between pawns when count > 5
+            float minYOffset = -2.0f;
+            float maxYOffset = -2.5f;
+
             if (pawns.Count > 5)
             {
+                yOffset = Mathf.Max(minYOffset, maxYOffset / pawnsContainer.childCount);
+
                 float difference = 0;
                 for (int i = 1; i < pawnsContainer.childCount; i++)
                 {
@@ -180,14 +186,15 @@ namespace BackgammonNet.Core
                 }
 
                 placeOffset = difference;
-
             }
             else
             {
+                // Fixed yOffset when pawn count is 5 or less
+                float fixedYOffset = -0.5f;
                 for (int i = 1; i < pawnsContainer.childCount; i++)
                 {
                     placeOffset = -0.9f;
-                    pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * yOffset, 0);
+                    pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * fixedYOffset, 0);
                 }
             }
 
