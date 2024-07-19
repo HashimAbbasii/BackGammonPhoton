@@ -2063,7 +2063,17 @@ namespace BackgammonNet.Core
 #if UNITY_WEBGL
                 if (IsRunningOnAndroid() || IsRunningOniOS())
                 {
-                    YouWinPanelportraitMain.gameObject.SetActive(true);
+
+                    float ratio = (Screen.width * 1f / Screen.height);
+                    if (ratio > 1.39 && ratio <= 1.42)
+                    {
+                        YouWinPanel.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        YouWinPanelportraitMain.gameObject.SetActive(true);
+                    }
+                    
                 }
                 else
                 {
@@ -2111,7 +2121,18 @@ namespace BackgammonNet.Core
 #if UNITY_WEBGL
                 if (IsRunningOnAndroid() || IsRunningOniOS())
                 {
-                    GameOverPanelPortraitMain.gameObject.SetActive(true);
+                    float ratio = (Screen.width * 1f / Screen.height);
+
+                    if (ratio > 1.39 && ratio <= 1.42)
+                    {
+                        gameOverPanel.gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        GameOverPanelPortraitMain.gameObject.SetActive(true);
+                    }
+
+                        
                 }
                 else
                 {
