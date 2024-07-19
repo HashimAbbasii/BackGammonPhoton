@@ -1484,7 +1484,7 @@ namespace BackgammonNet.Core
                             randomSelectPawn.CheckShelterStage();
                             if (randomSelectPawn.CheckShelterAndMore())
                             {
-                                return;
+                                //return;
                             }
 
                            
