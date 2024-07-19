@@ -44,6 +44,8 @@ namespace BackgammonNet.Core
 
         public Coroutine keepChecking;
 
+        public bool isGrabbing;
+
         public IEnumerator CheckFinalPoint()
         {
             while (true)
@@ -94,10 +96,24 @@ namespace BackgammonNet.Core
                 shelter = false;
         }
 
+//#if UNITY_WEBGL
+
+
+
+//#endif
+
         private void OnMouseDown()
         {
             //if (GameControllerNetwork.turn != int.Parse(PhotonNetwork.NickName)) return;
 
+            if (isGrabbing)
+
+            {
+                transform.position = startPos;
+                //Reset pawn pos 
+            }
+
+            isGrabbing = true;
 
             if (GameController.GameOver)
             {
@@ -136,6 +152,50 @@ namespace BackgammonNet.Core
             }
         }
 
+        private void OnMouseDrag()
+        {
+            if (isDown)                     // you need to convert the cursor positions to world positions
+            {
+                Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y);
+                Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+                transform.position = new Vector3(worldPos.x, worldPos.y, -1);
+            }
+        }
+
+        private void OnMouseUp()
+        {
+            isGrabbing = false;
+
+            if (isDown)
+            {
+                TryHighlight(false);        // we turn off the highlighting of the appropriate slots
+                isDown = false;
+
+                if (IsPatology())
+                    return;                 // impossible moves (against the rules of the game)
+                                            //------------ a mechanism that guarantees the correct movement of the pieces
+                CheckShelterStage();
+
+                if (TryPlace())
+                {                                       // prison mode support
+                    CheckShelterAndMore();
+
+                    if (Board.Instance.client)          // network game
+                    {
+                        string msg = "CMOV|" + beginSlot.ToString() + "|" + slot.slotNo.ToString() + "|" + shelter.ToString() + "|";
+
+                        if (Board.Instance.isClientWhite)                                       // time synchronization
+                            msg += TimeController.Instance.timeLapse[0].ToString("0.00");
+                        else
+                            msg += TimeController.Instance.timeLapse[1].ToString("0.00");
+
+                        Board.Instance.client.Send(msg);           // Send information about the move to the server.
+                    }
+                }
+
+                CheckIfNextTurn();
+            }
+        }
 
         public void Selectimprisoned()
         {
@@ -539,48 +599,7 @@ namespace BackgammonNet.Core
             TryHighlight(true);     // we turn on the highlighting of the appropriate slots
         }
 
-        private void OnMouseDrag()
-        {
-            if (isDown)                     // you need to convert the cursor positions to world positions
-            {
-                Vector3 mousePos = new Vector3(Input.mousePosition.x, Input.mousePosition.y);
-                Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
-                transform.position = new Vector3(worldPos.x, worldPos.y, -1);
-            }
-        }
-
-        private void OnMouseUp()
-        {
-            if (isDown)
-            {
-                TryHighlight(false);        // we turn off the highlighting of the appropriate slots
-                isDown = false;
-
-                if (IsPatology())
-                    return;                 // impossible moves (against the rules of the game)
-                                            //------------ a mechanism that guarantees the correct movement of the pieces
-                CheckShelterStage();
-
-                if (TryPlace())
-                {                                       // prison mode support
-                    CheckShelterAndMore();
-
-                    if (Board.Instance.client)          // network game
-                    {
-                        string msg = "CMOV|" + beginSlot.ToString() + "|" + slot.slotNo.ToString() + "|" + shelter.ToString() + "|";
-                        
-                        if (Board.Instance.isClientWhite)                                       // time synchronization
-                            msg += TimeController.Instance.timeLapse[0].ToString("0.00");
-                        else
-                            msg += TimeController.Instance.timeLapse[1].ToString("0.00");
-
-                        Board.Instance.client.Send(msg);           // Send information about the move to the server.
-                    }
-                }
-
-                CheckIfNextTurn();
-            }
-        }
+        
 
         public void OpponentMove(int toSlot, bool isShelter)    // move your network opponent's piece
         {

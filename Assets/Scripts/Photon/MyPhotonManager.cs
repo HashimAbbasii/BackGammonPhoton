@@ -34,6 +34,7 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
     public GameObject RoomCreatePanel;
     public GameObject ConnectingPanel;
     public GameObject Roomlist;
+    public GameObject mainMenu;
     private Dictionary<string, RoomInfo> roomListData;
     public Dictionary<string, GameObject> roomListGameObject;
     private Dictionary<int, GameObject> playerListGameObject;
@@ -384,23 +385,29 @@ public class MyPhotonManager : MonoBehaviourPunCallbacks
         Debug.LogError("Disconnected from Photon: " + cause);
 
         // Optionally handle reconnection logic
-        HandleDisconnection();
+       StartCoroutine(HandleDisconnection());
     }
 
-    private void HandleDisconnection()
+    IEnumerator  HandleDisconnection()
     {
+        yield return null;
         // Check if we are in a room
         if (PhotonNetwork.InRoom)
         {
-            PhotonNetwork.LeaveRoom(); // Leave the room
+            PhotonNetwork.LeaveRoom();
+            Debug.Log("Leave Room");// Leave the room
         }
 
         // Check if we are in a lobby
         if (PhotonNetwork.InLobby)
         {
-            PhotonNetwork.LeaveLobby(); // Leave the lobby
+
+            PhotonNetwork.LeaveLobby();
+            Debug.Log("Leave Lobby");// Leave the lobby
         }
-           LobbyPanel.gameObject.SetActive(true);
+        yield return new WaitForSecondsRealtime(1f);
+        LobbyPanel.gameObject.SetActive(false);
+        mainMenu.gameObject.SetActive(true);
 
 
         // Optionally reconnect or handle other disconnection logic

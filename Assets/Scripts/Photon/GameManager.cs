@@ -89,6 +89,10 @@ public class GameManager : MonoBehaviour
 
     }
 
+
+
+
+
     [PunRPC]
     void UpdatePlayerNames(string name0, string name1)
     {

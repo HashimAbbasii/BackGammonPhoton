@@ -75,6 +75,7 @@ public class LobbyCanvas : MonoBehaviourPunCallbacks
 
     [Header("WebGL ScalingElements")]
     public GameObject RoomListSearchBar;
+
     public GameObject RoomListScrollView;
 
     public GameObject PlayBtnInsideRoomPanel;
