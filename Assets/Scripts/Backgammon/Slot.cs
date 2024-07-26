@@ -22,6 +22,8 @@ namespace BackgammonNet.Core
         [SerializeField] private Transform pawnsContainer;
 
         public List<Pawn> pawns = new List<Pawn>();
+        public float value;
+        public float posY;
         private float yOffset = -0.9f;
         private float placeOffset = -0.9f;
         private int lastCount;
@@ -60,20 +62,14 @@ namespace BackgammonNet.Core
         {
             yield return new WaitForSeconds(0.5f);
 
-            // Minimum and maximum space between pawns when count > 5
-            float minYOffset = -2.5f;
-            float maxYOffset = -2.7f;
-
             if (pawns.Count > 5)
             {
-                yOffset = Mathf.Max(minYOffset, maxYOffset / pawnsContainer.childCount);
-
                 float difference = 0;
                 for (int i = 1; i < pawnsContainer.childCount; i++)
                 {
                     pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * yOffset, 0);
-                    float value = (20 - pawnsContainer.childCount) / 15f * 0.85f;
-                    float posY = pawnsContainer.GetChild(i).transform.localPosition.y * Mathf.Clamp(value, 0f, 1f);
+                    value = (20 - pawnsContainer.childCount) / 15f * 0.65f;
+                    posY = pawnsContainer.GetChild(i).transform.localPosition.y * Mathf.Clamp(value, 0f, 1f);
                     pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, posY, -i / 150f);
                     if (i == pawnsContainer.childCount - 2)
                     {
@@ -86,15 +82,14 @@ namespace BackgammonNet.Core
                 }
 
                 placeOffset = difference;
+
             }
             else
             {
-                // Fixed yOffset when pawn count is 5 or less
-                float fixedYOffset = -0.5f;
                 for (int i = 1; i < pawnsContainer.childCount; i++)
                 {
                     placeOffset = -0.9f;
-                    pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * fixedYOffset, 0);
+                    pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * yOffset, 0);
                 }
             }
 
@@ -130,18 +125,18 @@ namespace BackgammonNet.Core
             if (isModifyingPosition) return;
             ModifyPositions();         // adjusting the arrangement of pieces on the slot depending on their number
         }
-
+        
         private void ModifyPositions()     // modify the positions in the pieces container
         {
             if (pawns.Count != lastCount)
             {
                 lastCount = pawns.Count;
-
+        
                 if (pawns.Count > 5)
                     for (int i = 1; i < pawnsContainer.childCount; i++)
                     {
                         pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, -0.5f + i * yOffset, 0);
-                        float value = (20 - pawnsContainer.childCount) / 15f * 0.85f;
+                        float value = (20 - pawnsContainer.childCount) / 15f * 0.65f;
                         float posY = pawnsContainer.GetChild(i).transform.localPosition.y * Mathf.Clamp(value, 0f, 1f);
                         pawnsContainer.GetChild(i).transform.localPosition = new Vector3(0, posY, -i / 150f);
                     }
